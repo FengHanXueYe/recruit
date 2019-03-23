@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="cn.kgc.tangcco.tcmp073.qizu">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+
+
+	<context:property-placeholder location="classpath:jdbcproperties.properties" />
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driver}"></property>
+		<property name="jdbcUrl" value="${jdbc.url}"></property>
+		<property name="user" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	<!-- 
+	<bean id="sqlsession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="typeAliasesPackage" value="cn.kgc.tangcco.tcm073.xumaofeng.entity"></property>
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="mapperLocations" value="classpath:/mapper/*/*.xml"></property>
+		分页
+		<property name="plugins">
+	        <array>
+	            <bean class="com.github.pagehelper.PageInterceptor">
+	                <property name="properties">
+	                   <value>
+	                   		自动检测数据链接，选中合适的分页方式
+	                        helperDialect=mysql
+	                        分页合理化参数，true（pageNum<0显示第一页 pageNum>最大数显示最后一页）
+	                        reasonable=true
+	                        支持接口传递参数
+	                        supportMethodsArguments=true
+	                        为了支持 startPage
+	                        params=count=countSql
+	                        设置为 true 时，允许在运行时根据多数据源自动识别对应方言的分页
+	                        autoRuntimeDialect=true
+	                    </value> 
+	                </property>
+	            </bean>
+	        </array>
+    	</property>
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="cn.kgc.tangcco.tcm073.xumaofeng.*.mapper"></property>
+		<property name="sqlSessionFactoryBeanName" value="sqlsession"></property>
+	</bean>
+ -->
+</beans>
