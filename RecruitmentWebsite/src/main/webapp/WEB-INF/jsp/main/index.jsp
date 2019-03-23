@@ -44,7 +44,7 @@ var youdao_conv_id = 271546;
     		</a>
     		<ul class="reset" id="navheader">
     			<li class="current"><a href="index.html">首页</a></li>
-    			<li ><a href="companylist.html" >公司</a></li>
+    			<li ><a href="tocompanlist.controller" >公司</a></li>
     			<li ><a href="h/toForum.html" target="_blank">论坛</a></li>
     				    			<li ><a href="toResume.controller" rel="nofollow">我的简历</a></li>
 	    							    			<li ><a href="create.html" rel="nofollow">发布职位</a></li>
