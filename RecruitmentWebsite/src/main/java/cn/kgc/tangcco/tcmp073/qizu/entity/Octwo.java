@@ -4,6 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 职业类别二级表 
+ * @author jiangwu
+ *
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -1,5 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.entity;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +19,7 @@ public class Occupation {
 	private Integer oeducation;
 	private String owelfare,odetail,oaddress,oemail,ophone;
 	private Integer ostate;
+	//发布时间
+	private Date orelease;
 	
 }

@@ -5,7 +5,11 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/**
+ * 项目经验
+ * @author jiangwu
+ *
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -8,6 +8,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+/**
+ * 用户表
+ * @author jiangwu
+ *
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

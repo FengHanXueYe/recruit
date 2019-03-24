@@ -6,6 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ *  工作经历
+ * @author jiangwu
+ *
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

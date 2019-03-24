@@ -7,10 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Expectedwork {
-		private Integer pid;
-		private String pcity;
-		private Integer ptype;
-		private String pname,pmoney;
-		private Integer puserid;
+public class HopeJob {
+		private Integer hid;
+		private String hcity;
+		private Integer htype;
+		private String hname;
+		private double hmoney;
+		private Integer huserid;
 }
