@@ -1,4 +1,4 @@
-package cn.kgc.tangcco.tcmp073.qizu.user.controller;
+package cn.kgc.tangcco.tcmp073.qizu.recruit.user.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
