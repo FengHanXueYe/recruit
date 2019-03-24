@@ -13,4 +13,5 @@ public interface OconeMapper {
 	 */
 	@Select("select *from ocone order by nid desc")
     List<Ocone> queryAll();
+	
 }
