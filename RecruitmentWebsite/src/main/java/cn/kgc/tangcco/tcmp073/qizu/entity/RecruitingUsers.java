@@ -19,9 +19,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RecruitingUsers {
 	private Integer userid;
+	private String username;
 	@NonNull
-	private String username,password;
+	private String email,password;
 	private  Integer gender,education,userlog,jurisdiction;
-	private String email,telephone,userpicture,resumeName;
+	private String telephone,userpicture,resumeName;
 	private Timestamp registrationTime;
 }
