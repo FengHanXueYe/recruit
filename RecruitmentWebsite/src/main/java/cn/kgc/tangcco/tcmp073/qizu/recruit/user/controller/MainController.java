@@ -18,5 +18,10 @@ public class MainController {
 		return "main/index";
 	}
 	
+	@RequestMapping("toResume")
+	public String toResume(Model model) {
+		return "main/jianli";
+	}
+	
 	
 }
