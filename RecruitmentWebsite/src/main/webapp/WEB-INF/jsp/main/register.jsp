@@ -63,7 +63,7 @@ var youdao_conv_id = 271546;
                 <input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码" />
                 <span></span>
             	<label class="fl registerJianJu" for="checkbox">
-            		<input type="checkbox" id="checkbox" name="checkbox" checked  class="checkbox valid" />我已阅读并同意<a href="h/privacy.html" target="_blank">《拉勾用户协议》</a>
+            		<input type="checkbox" id="checkbox" name="checkbox" checked  class="checkbox valid" />我已阅读并同意<a href="toProtocolController.controller" target="_blank">《拉勾用户协议》</a>
            		</label>
            		<span></span>
                 <input type="submit" id="submitLogin" value="注 &nbsp; &nbsp; 册" />
