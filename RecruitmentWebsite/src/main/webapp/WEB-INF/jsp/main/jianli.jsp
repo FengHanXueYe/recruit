@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 ﻿<!DOCTYPE HTML>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html xmlns:wb="http://open.weibo.com/wb"><head>
 </script><script type="text/javascript" async="" src="style/js/conversion.js"></script><script src="style/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script><style type="text/css"></style>
 <meta content="no-siteapp" http-equiv="Cache-Control">
@@ -42,7 +44,7 @@ var youdao_conv_id = 271546;
     			<img width="229" height="43" alt="拉勾招聘-专注互联网招聘" src="style/images/logo.png">
     		</a>
     		<ul id="navheader" class="reset">
-    			<li><a href="index.html">首页</a></li>
+    			<li><a href="toIndex.controller">首页</a></li>
     			<li><a href="companylist.html">公司</a></li>
     			<li><a target="_blank" href="h/toForum.html">论坛</a></li>
     				    			<li class="current"><a rel="nofollow" href="jianli.html">我的简历</a></li>
@@ -75,15 +77,18 @@ var youdao_conv_id = 271546;
             <div class="content_l">
             	<div class="fl" id="resume_name">
 	            	<div class="nameShow fl">
-	            		<h1 title="jason的简历">jason的简历</h1>
+	            		<h1 title="jason的简历">
+	            			<c:if test="${empty loginUser.resumeName }">${loginUser.email }</c:if>
+	            			<c:if test="${!empty loginUser.resumeName }">${loginUser.resumeName }</c:if>
+	            		</h1>
 	            		<span class="rename">重命名</span> | <a target="_blank" href="h/resume/preview.html">预览</a>
             		</div>
-            		<form class="fl dn" id="resumeNameForm">
-            			<input type="text" value="jason的简历" name="resumeName" class="nameEdit c9">	
+            		<form class="fl dn"  method="post" action="doUpdateResumename.controller">
+            			<input type="text" value="<c:if test="${empty loginUser.resumeName }">${loginUser.email }</c:if><c:if test="${!empty loginUser.resumeName }">${loginUser.resumeName }</c:if>" name="resumeName" class="nameEdit c9">	
             			<input type="submit" value="保存"> | <a target="_blank" href="h/resume/preview.html">预览</a>
             		</form>
             	</div><!--end #resume_name-->
-            	<div class="fr c5" id="lastChangedTime">最后一次更新：<span>2014-07-01 15:14 </span></div><!--end #lastChangedTime-->
+            	<div class="fr c5" id="lastChangedTime">最后一次更新：<span><fmt:formatDate value="${loginUser.registrationTime}" pattern="yyyy年MM月dd日 HH时mm分ss秒" /></span></div><!--end #lastChangedTime-->
             	<div id="resumeScore">
             		<div class="score fl">
             			<canvas height="120" width="120" id="doughnutChartCanvas" style="width: 120px; height: 120px;"></canvas>
@@ -100,8 +105,12 @@ var youdao_conv_id = 271546;
             		<h2>基本信息</h2>
             		<span class="c_edit"></span>
             		<div class="basicShow">
-            			            			<span>jason |  男 |    大专 |  3年工作经验<br>
-            			            			18644444444 | jason@qq.com<br>
+            			            			<span><c:if test="${!empty loginUser.username }">${loginUser.username } |</c:if>
+            			            			<c:if test="${!empty loginUser.gender}"><c:if test="${loginUser.gender eq '1' }">男</c:if><c:if test="${loginUser.gender eq '2' }">女</c:if> |</c:if>
+            			            			<c:if test="${!empty loginUser.education }">${loginUser.education } |</c:if>
+            			            			<c:if test="${!empty loginUser.userlog }">${loginUser.userlog }<br></c:if>
+            			            			<c:if test="${!empty loginUser.telephone }">${loginUser.telephone }</c:if>
+            			            			  ${loginUser.email }<br>
             			</span>
             			<div class="m_portrait">
 	                    	<div></div>
@@ -110,25 +119,26 @@ var youdao_conv_id = 271546;
             		</div><!--end .basicShow-->
 
             		<div class="basicEdit dn">
-            			<form id="profileForm">
+            		<!-- <form id="kkkkkkk" action="doUpdateResumename.controller" method="post"> -->
+            			<form id="profileForm" >
 						  <table>
 						    <tbody><tr>
 						      <td valign="top">
 						        <span class="redstar">*</span>
 						      </td> 
 						      <td>
-						        <input type="text" placeholder="姓名" value="jason" name="name" id="name">
+						        <input type="text" placeholder="姓名" value="jason" name="username" id="name">
 						      </td>
 						      <td valign="top"></td> 
 						      <td>
 						          <ul class="profile_radio clearfix reset">
 						            <li class="current">
 						           	  	 男<em></em>
-						              	<input type="radio" checked="checked" name="gender" value="男"> 
+						              	<input type="radio" checked="checked" name="gender" value="2"> 
 						            </li>
 						            <li>
 						            	  女<em></em>
-						              	<input type="radio" name="gender" value="女"> 
+						              	<input type="radio" name="gender" value="1"> 
 						            </li>
 						          </ul>  
 						      </td>
@@ -138,7 +148,7 @@ var youdao_conv_id = 271546;
 						        <span class="redstar">*</span>
 						      </td> 
 						      <td>
-						      	<input type="hidden" id="topDegree" value="大专" name="topDegree">
+						      	<input type="hidden" id="topDegree" value="大专" name="education">
 						        <input type="button" value="大专" id="select_topDegree" class="profile_select_190 profile_select_normal">
 								<div class="boxUpDown boxUpDown_190 dn" id="box_topDegree" style="display: none;">
 						        	<ul>
@@ -154,7 +164,7 @@ var youdao_conv_id = 271546;
 						        <span class="redstar">*</span>
 						      </td> 
 						      <td>
-						          <input type="hidden" id="workyear" value="" name="workyear">
+						          <input type="hidden" id="workyear" value="" name="userlog">
 						          <input type="button" value="" id="select_workyear" class="profile_select_190 profile_select_normal">
 								  <div class="boxUpDown boxUpDown_190 dn" id="box_workyear" style="display: none;">
 						          	 <ul>
@@ -179,7 +189,7 @@ var youdao_conv_id = 271546;
 						        <span class="redstar">*</span>
 						      </td> 
 						      <td colspan="3">
-						          <input type="text" placeholder="手机号码" value="18644444444" name="tel" id="tel">
+						          <input type="text" placeholder="手机号码" value="18644444444" name="telephone" id="tel">
 						      </td>
 						   	</tr>
 						   	<tr>
@@ -193,7 +203,7 @@ var youdao_conv_id = 271546;
 						    <tr>
 						      <td valign="top"> </td> 
 						      <td colspan="3">
-						          <input type="hidden" id="currentState" value="" name="currentState">
+						          <input type="hidden" id="currentState" value="" name="currentstate">
 						          <input type="button" value="目前状态" id="select_currentState" class="profile_select_410 profile_select_normal">
 								  <div class="boxUpDown boxUpDown_410 dn" id="box_currentState" style="display: none;">
 						          	  <ul>
@@ -208,12 +218,19 @@ var youdao_conv_id = 271546;
 						    <tr>
 						      <td></td> 
 						      <td colspan="3">
-						          <input type="submit" value="保 存" class="btn_profile_save">
+						          <input type="submit" value="保 存" class="btn_profile_save"> 
 						          <a class="btn_profile_cancel" href="javascript:;">取 消</a>
+						          <!-- <input type="button" value="保 存" onclick="jianli()"> --> 
 						      </td>
 						    </tr>
 						  </tbody></table>
+						 
 						</form><!--end #profileForm-->
+						<!-- </form> -->
+						
+						
+						
+						
 						<div class="new_portrait">
 						  <div class="portrait_upload" id="portraitNo">
 						      <span>上传自己的头像</span>
@@ -231,13 +248,13 @@ var youdao_conv_id = 271546;
 						  	<span style="display:none;" id="headPic_error" class="error"></span>
 						</div><!--end .new_portrait-->
             		</div><!--end .basicEdit-->
-            		<input type="hidden" id="nameVal" value="jason">
-            		<input type="hidden" id="genderVal" value="男">
-            		<input type="hidden" id="topDegreeVal" value="大专">
-            		<input type="hidden" id="workyearVal" value="3年">
-            		<input type="hidden" id="currentStateVal" value="">
-            		<input type="hidden" id="emailVal" value="jason@qq.com">
-            		<input type="hidden" id="telVal" value="18644444444">
+            		<input type="hidden" id="nameVal" value="${loginUser.username }">
+            		<input type="hidden" id="genderVal" value="<c:if test="${loginUser.gender eq '2' }">男</c:if><c:if test="${loginUser.gender eq '1' }">女</c:if>">
+            		<input type="hidden" id="topDegreeVal" value="${loginUser.education }">
+            		<input type="hidden" id="workyearVal" value="${loginUser.userlog }">
+            		<input type="hidden" id="currentStateVal" value="${loginUser.currentstate }">
+            		<input type="hidden" id="emailVal" value="${loginUser.email }">
+            		<input type="hidden" id="telVal" value="${loginUser.telephone }">
             		<input type="hidden" id="pageType" value="1"> 
             	</div><!--end #basicInfo-->
 
@@ -1569,6 +1586,12 @@ $(function(){
 <!--  -->
 
 <script type="text/javascript">
+/* function jianli(){
+	alert("asdasd");
+	//action="doUpdateResumename.controller" method="post"
+	$("form#kkkkkkk").submit();
+} */
+
 $(function(){
 	$('#noticeDot-1').hide();
 	$('#noticeTip a.closeNT').click(function(){
