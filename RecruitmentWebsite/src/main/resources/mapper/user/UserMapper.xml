@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.user.mapper.UserMapper">
+	<update id="updateUser" parameterType="RecruitingUsers">
+		update recruitingusers 
+		<set>
+			<if test="ruser.username!=null and ruser.rusername!=''">username=#{ruser.username},</if>
+			<if test="ruser.email!=null and ruser.email!=''">email=#{ruser.email},</if>
+			<if test="ruser.password!=null and ruser.password!=''">password=#{ruser.password},</if>
+			<if test="ruser.gender!=null and ruser.gender!=''">gender=#{ruser.gender},</if>
+			<if test="ruser.education!=null and ruser.education">education=#{ruser.education},</if>
+			<if test="ruser.userlog!=null and ruser.userlog!=''">userlog=#{ruser.userlog},</if>
+			<if test="ruser.jurisdiction!=null and ruser.jurisdiction!=''">jurisdiction=#{ruser.jurisdiction},</if>
+			<if test="ruser.telephone!=null and ruser.telephone!=''">telephone=#{ruser.telephone},</if>
+			<if test="ruser.userpicture!=null and ruser.userpicture">userpicture=#{ruser.userpicture},</if>
+			<if test="ruser.resumeName!=null and ruser.resumeName">resumeName=#{ruser.resumeName},</if>
+			registrationTime=NOW()
+		</set>
+		where userid = #{ruser.userid}
+	</update>
+	
 	
 </mapper>

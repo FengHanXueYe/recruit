@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 ﻿<!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
 <script id="allmobilize" charset="utf-8" src="style/js/allmobilize.min.js"></script>
 <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -49,11 +50,19 @@ var youdao_conv_id = 271546;
     				    			<li ><a href="jianli.html" rel="nofollow">我的简历</a></li>
 	    							    			<li ><a href="create.html" rel="nofollow">发布职位</a></li>
 	    		    		</ul>
-        	            <ul class="loginTop">
+	    		    		<c:choose>
+	    		    			<c:when test="${empty loginUser }">
+	    		    				<jsp:include page="/mainjsp/login/registerSignin.jsp"></jsp:include>
+	    		    			</c:when>
+	    		    			<c:otherwise>
+	    		    				<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
+	    		    			</c:otherwise>
+	    		    		</c:choose>
+        	            <!-- <ul class="loginTop">
             	<li><a href="login.html" rel="nofollow">登录</a></li> 
             	<li>|</li>
             	<li><a href="register.html" rel="nofollow">注册</a></li>
-            </ul>
+            </ul> -->
                                 </div>
     </div><!-- end #header -->
     <div id="container">

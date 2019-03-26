@@ -1,7 +1,10 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.user.emailutils;
 
+import java.text.SimpleDateFormat;
+
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.mail.EmailException;
@@ -37,6 +40,8 @@ public class Email {
 	public String sendEamilCode(String email) {
 		HtmlEmail send = new HtmlEmail();
 		String resultCode = achieveCode();
+		Date date = new Date();SimpleDateFormat df = new SimpleDateFormat("yyyy年M月dd日 HH时mm分ss秒");
+		String format = df.format(new Date());
 		try {
 //			send.setHostName("smtp.163.com");//发送服务
 			send.setHostName("smtp.qq.com");//发送服务
@@ -48,8 +53,8 @@ public class Email {
 //			send.setAuthentication("fenghanxueye@163.com", "jlysdaqc123456");
 			send.setFrom("505385234@qq.com");
 			send.setAuthentication("505385234@qq.com", "okmmzaqgniykcbdi");
-			send.setSubject("呆鸡");
-			send.setMsg("hello，呆鸡！：" + resultCode + "哈哈哈");
+			send.setSubject("拉勾网注册通知！");
+			send.setMsg("尊敬的用户您好！\n您于" + format + "成功注册成为拉勾网用户！");
 			send.send(); //发送
 			/**
 			 *  send.addTo(“这里面放的接收人的QQ邮箱”);
@@ -61,7 +66,8 @@ public class Email {
 		} catch (EmailException e) {
 			e.printStackTrace();
 		}
-		return resultCode;//返回验证码
+		System.err.println("-------------->邮件发送成功！");
+		return "成功";//返回验证码
 	}
 
 	

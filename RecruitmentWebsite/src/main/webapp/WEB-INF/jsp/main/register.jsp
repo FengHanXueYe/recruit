@@ -45,23 +45,27 @@ var youdao_conv_id = 271546;
         
     	<input type="hidden" id="resubmitToken" value="9b207beb1e014a93bc852b7ba450db27" />		
 		<div class="login_box">
-        	<form id="loginForm">
+        	<form id="loginForm" method="post" action="doRegister.controller">
         		<ul class="register_radio clearfix">
 		            <li>
 		            	找工作
-		              	<input type="radio" value="0" name="type" /> 
+		              	<input type="radio" value="0" name="jurisdiction" /> 
 		            </li>
 		            <li>
 		           	           招人
-		              	<input type="radio" value="1" name="type" /> 
+		              	<input type="radio" value="1" name="jurisdiction" /> 
 		            </li>
-		        </ul> 
+		        </ul>
+		        <span></span>
             	<input type="text" id="email" name="email" tabindex="1" placeholder="请输入常用邮箱地址" />
-                <span class="error" style="display:none;" id="beError"></span>
+            	<span></span>
+                <!-- <span class="error" style="display:none;" id="beError"></span> -->
                 <input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码" />
+                <span></span>
             	<label class="fl registerJianJu" for="checkbox">
             		<input type="checkbox" id="checkbox" name="checkbox" checked  class="checkbox valid" />我已阅读并同意<a href="h/privacy.html" target="_blank">《拉勾用户协议》</a>
            		</label>
+           		<span></span>
                 <input type="submit" id="submitLogin" value="注 &nbsp; &nbsp; 册" />
                 
                 <input type="hidden" id="callback" name="callback" value=""/>
@@ -71,7 +75,7 @@ var youdao_conv_id = 271546;
             </form>
             <div class="login_right">
             	<div>已有拉勾帐号</div>
-            	<a  href="login.html"  class="registor_now">直接登录</a>
+            	<a  href="toLogin.controller"  class="registor_now">直接登录</a>
                 <div class="login_others">使用以下帐号直接登录:</div>
                 <a  href="h/ologin/auth/sina.html"  target="_blank" class="icon_wb" title="使用新浪微博帐号登录"></a>
                	<a  href="h/ologin/auth/qq.html"  class="icon_qq" target="_blank" title="使用腾讯QQ帐号登录" ></a>
@@ -88,12 +92,62 @@ var youdao_conv_id = 271546;
     	});
     	
     	$('#email').focus(function(){
-    		$('#beError').hide();
-    	});
+    		$('form span:eq(1)').html("");
+    	}).blur(function(){
+    		var email = $.trim($("input[name='email']").val());
+    		if(email!=""){
+	    		$.ajax({
+	    			type:"post",
+	    			url:"ajaxQueryEmail.controller",
+	    			data:{"email":email},
+	    			success:function(data){
+	    				if(data=="0"){
+	    					$('form span:eq(1)').html("<span style='color:green'>😊</span>").show();
+	    				}else{
+	    					$('form span:eq(1)').html("<span style='color:red'>🙁</span>").show();
+	    				}
+	    			}
+	    		})
+    		}
+    	})
+    	$("form").submit(function(){
+			        		alert("123123");
+			        		var type =$('input[type="radio"]:checked').val();
+			        		var email =$('#email').val();
+			        		var password =$('#password').val();
+			        		if(type==null){
+			        			alert("请选择目的！");
+		        				return false;
+			        		}
+			        		if(email==""){
+			        			alert("请填写邮箱！");
+			        		}
+			        		if(password.length<5){
+			        			alert("请输入大于等于6位的密码！");
+			        			return false;
+			        		}
+			           		  $.ajax({
+			        	           	type:'POST',
+			        	           	data: {"email":email},
+			        	           	url:"ajaxQueryEmail.controller",
+			        	          		success:function(data){
+			        	          			alert(data);
+			        	          			if(data=="0"){
+			        	          				alert("能");
+			        	          			}else{
+			        	          				alert("不能");
+			        	          				return false;
+			        	          			}
+			        	          		}
+			                   }); 
+			           		  return true;
+			        	
+    	})    	
+    	
     	//验证表单
-	    	 $("#loginForm").validate({
+	    /*	 $("#loginForm").validate({
 	    	        rules: {
-	    	        	type:{
+	    	        	jurisdiction:{
 	    	        		required: true
 	    	        	},
 			    	   	email: {
@@ -107,7 +161,7 @@ var youdao_conv_id = 271546;
 			    	   	checkbox:{required:true}
 			    	},
 			    	messages: {
-			    		type:{
+			    		jurisdiction:{
 	    	        		required:"请选择使用拉勾的目的"
 	    	        	},
 			    	 	email: {
@@ -129,8 +183,8 @@ var youdao_conv_id = 271546;
 			    			label.inserresult.contenttAfter($(element).parent()).css('clear','left');
 			    		}else{
 			    			label.insertAfter(element);
-			    		} */			    		
-			    		/*modify nancy*/
+			    		} 		    		
+			    		modify nancy
 			    		if(element.attr("type") == "radio"){
 			    			label.insertAfter($(element).parents('ul')).css('marginTop','-20px');
 			    		}else if(element.attr("type") == "checkbox"){
@@ -139,7 +193,7 @@ var youdao_conv_id = 271546;
 			    			label.insertAfter(element);
 			    		};	
 			    	},
-			    	submitHandler:function(form){
+			    	    submitHandler:function(form){
 			    		var type =$('input[type="radio"]:checked',form).val();
 			    		var email =$('#email').val();
 			    		var password =$('#password').val();
@@ -151,23 +205,48 @@ var youdao_conv_id = 271546;
 			    		var timestamp = $('#timestamp').val();
 			    		
 			    		$(form).find(":submit").attr("disabled", true);
-
+			    		
 			            $.ajax({
 			            	type:'POST',
-			            	data: {email:email,password:password,type:type,resubmitToken:resubmitToken, callback:callback, authType:authType, signature:signature, timestamp:timestamp},
-			            	url:ctx+'/user/register.json',
-			            	dataType:'json'
-			            }).done(function(result) {
-		            		$('#resubmitToken').val(result.resubmitToken);
-			            	if(result.success){
-			            		window.location.href=result.content;			            		
-			            	}else{
-								$('#beError').text(result.msg).show();
+			            	data: {"email":email,"password":password,"jurisdiction":type},
+			            	url:"doRegister.controller",
+			            	dataType:'json',
+			            	success:function(data){
+			            		alert(data);
+			            		if(data=="0"){
+			           				alert("能");
+			           				//$(form).find(":submit").attr("disabled", true);
+			           				//$("from#loginForm").attr({"action":"doRegister.controller","method":"post"}).submit();
+			            			//$(form).find(":submit").attr("disabled", false);			           		
+			           			}else{
+			           				alert("不能");
+			            			$(form).find(":submit").attr("disabled", "disabled");			           		
+			           			}
 			            	}
-			            	$(form).find(":submit").attr("disabled", false);			           		
+			            }
+			          
+			        }    
+			       /*  var email =$('#email').val();
+			    	  $.ajax({
+			            	type:'POST',
+			            	data: {"email":email},
+			            	url:"ajaxQueryEmail.controller",
+			           		success:function(data){
+			           			alert(data);
+			           			if(data=="0"){
+			           				alert("能");
+			           				//$(form).find(":submit").attr("disabled", true);
+			           				$("from#loginForm").submit();
+			            			//$(form).find(":submit").attr("disabled", false);			           		
+			           			}else{
+			           				alert("不能");
+			            			$(form).find(":submit").attr("disabled", "disabled");			           		
+			           			}
+			           		}
 			            });
-			        }  
 	    	});
+			         */
+    	
     });
     </script>
 </body>
