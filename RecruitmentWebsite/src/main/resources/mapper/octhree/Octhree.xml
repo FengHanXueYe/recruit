@@ -18,6 +18,6 @@
 
 	</select>
 	<select id="querySuiji" parameterType="int" resultMap="Octhree">
-	SELECT * FROM ocone o,octwo t, octhree h WHERE o.nid=t.wnid AND t.wid=h.hwid ORDER BY RAND() LIMIT 7;
+	SELECT * FROM ocone o,octwo t, octhree h WHERE o.nid=t.wnid AND t.wid=h.hwid And h.hid=#{hid} ORDER BY RAND() LIMIT 7;
 	</select>
 </mapper>
