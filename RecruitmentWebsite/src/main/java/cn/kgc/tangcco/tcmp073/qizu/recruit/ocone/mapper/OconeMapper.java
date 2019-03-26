@@ -8,10 +8,14 @@ import cn.kgc.tangcco.tcmp073.qizu.entity.Ocone;
 
 public interface OconeMapper {
 	/**
-	 * 查询所有一级表
+	 * 查询类别
+	 * 
 	 * @return
 	 */
-	@Select("select *from ocone order by nid desc")
-    List<Ocone> queryAll();
-	
+	@Select("select *from oncone ")
+	List<Ocone> queryType();
+
+
+
+
 }

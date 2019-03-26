@@ -16,4 +16,5 @@ import lombok.NoArgsConstructor;
 public class Ocone {
 	private Integer nid;
 	private String nname;
+	
 }
