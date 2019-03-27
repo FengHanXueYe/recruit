@@ -4,7 +4,7 @@
 	<update id="updateUser" parameterType="RecruitingUsers">
 		update recruitingusers 
 		<set>
-			<if test="ruser.username!=null and ruser.rusername!=''">username=#{ruser.username},</if>
+			<if test="ruser.username!=null and ruser.username!=''">username=#{ruser.username},</if>
 			<if test="ruser.email!=null and ruser.email!=''">email=#{ruser.email},</if>
 			<if test="ruser.password!=null and ruser.password!=''">password=#{ruser.password},</if>
 			<if test="ruser.gender!=null and ruser.gender!=''">gender=#{ruser.gender},</if>
@@ -14,6 +14,7 @@
 			<if test="ruser.telephone!=null and ruser.telephone!=''">telephone=#{ruser.telephone},</if>
 			<if test="ruser.userpicture!=null and ruser.userpicture">userpicture=#{ruser.userpicture},</if>
 			<if test="ruser.resumeName!=null and ruser.resumeName">resumeName=#{ruser.resumeName},</if>
+			<if test="ruser.currentstate!=null and ruser.currentstate">currentstate=#{ruser.currentstate},</if>
 			registrationTime=NOW()
 		</set>
 		where userid = #{ruser.userid}

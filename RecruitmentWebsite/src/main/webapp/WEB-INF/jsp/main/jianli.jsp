@@ -106,10 +106,10 @@ var youdao_conv_id = 271546;
             		<span class="c_edit"></span>
             		<div class="basicShow">
             			            			<span><c:if test="${!empty loginUser.username }">${loginUser.username } |</c:if>
-            			            			<c:if test="${!empty loginUser.gender}"><c:if test="${loginUser.gender eq '1' }">男</c:if><c:if test="${loginUser.gender eq '2' }">女</c:if> |</c:if>
-            			            			<c:if test="${!empty loginUser.education }">${loginUser.education } |</c:if>
-            			            			<c:if test="${!empty loginUser.userlog }">${loginUser.userlog }<br></c:if>
-            			            			<c:if test="${!empty loginUser.telephone }">${loginUser.telephone }</c:if>
+            			            			<c:if test="${!empty loginUser.gender}"><c:if test="${loginUser.gender eq '2' }">男</c:if><c:if test="${loginUser.gender eq '1' }">女</c:if> |</c:if>
+            			            			<c:if test="${!empty loginUser.education }"><c:if test="${loginUser.education eq '1'}">大专</c:if><c:if test="${loginUser.education eq '2'}">本科</c:if><c:if test="${loginUser.education eq '3'}">硕士</c:if><c:if test="${loginUser.education eq '4'}">博士</c:if><c:if test="${loginUser.education eq '5'}">其它</c:if> |</c:if>
+            			            			<c:if test="${!empty loginUser.userlog }"><c:if test="${loginUser.userlog eq '1'}">应届毕业生</c:if><c:if test="${loginUser.userlog eq '2'}">1年</c:if><c:if test="${loginUser.userlog eq '3'}">2年</c:if><c:if test="${loginUser.userlog eq '4'}">3年</c:if><c:if test="${loginUser.userlog eq '5'}">4年</c:if><c:if test="${loginUser.userlog eq '6'}">5年</c:if><c:if test="${loginUser.userlog eq '7'}">6年</c:if><c:if test="${loginUser.userlog eq '8'}">7年</c:if><c:if test="${loginUser.userlog eq '9'}">8年</c:if><c:if test="${loginUser.userlog eq '10'}">9年</c:if><c:if test="${loginUser.userlog eq '11'}">10年</c:if><c:if test="${loginUser.userlog eq '12'}">10年以上</c:if> |<br></c:if>
+            			            			<c:if test="${!empty loginUser.telephone }">${loginUser.telephone } |</c:if>
             			            			  ${loginUser.email }<br>
             			</span>
             			<div class="m_portrait">
@@ -120,25 +120,26 @@ var youdao_conv_id = 271546;
 
             		<div class="basicEdit dn">
             		<!-- <form id="kkkkkkk" action="doUpdateResumename.controller" method="post"> -->
-            			<form id="profileForm" >
+            			<form  method="post" id="profileForm" onsubmit="false">
 						  <table>
 						    <tbody><tr>
 						      <td valign="top">
 						        <span class="redstar">*</span>
 						      </td> 
 						      <td>
-						        <input type="text" placeholder="姓名" value="jason" name="username" id="name">
+						        <input type="text" placeholder="姓名" value="${loginUser.username }" name="username" id="name">
 						      </td>
 						      <td valign="top"></td> 
 						      <td>
 						          <ul class="profile_radio clearfix reset">
 						            <li class="current">
 						           	  	 男<em></em>
-						              	<input type="radio" checked="checked" name="gender" value="2"> 
+						           	  	 
+						              	<input type="radio"  <c:if test="${loginUser.gender eq '2' }">checked</c:if>  name="gender" value="2"> 
 						            </li>
 						            <li>
 						            	  女<em></em>
-						              	<input type="radio" name="gender" value="1"> 
+						              	<input type="radio"  <c:if test="${loginUser.gender eq '1' }">checked</c:if> name="gender" value="1"> 
 						            </li>
 						          </ul>  
 						      </td>
@@ -148,26 +149,53 @@ var youdao_conv_id = 271546;
 						        <span class="redstar">*</span>
 						      </td> 
 						      <td>
-						      	<input type="hidden" id="topDegree" value="大专" name="education">
-						        <input type="button" value="大专" id="select_topDegree" class="profile_select_190 profile_select_normal">
-								<div class="boxUpDown boxUpDown_190 dn" id="box_topDegree" style="display: none;">
-						        	<ul>
+						      	<input type="hidden" id="topDegree" value="${loginUser.education }" name="education">
+						        <%-- <input type="button" value="${loginUser.education }" id="select_topDegree" class="profile_select_190 profile_select_normal"> --%>
+						        <div>
+						        	<select name="education" style="width:166px;border-color:#D1D1D1;border:2px;height:40px;font-size:18px">
+										<option value="1">大专</option>
+										<option value="2">本科</option>
+										<option value="3">硕士</option>
+										<option value="4">博士</option>
+										<option value="5">其他</option>
+									</select>
+						        </div>
+								<!-- <div class="boxUpDown boxUpDown_190 dn" id="box_topDegree" style="display: none;">
+									
+						        <ul>
 						        								        			<li>大专</li>
 						        								        			<li>本科</li>
 						        								        			<li>硕士</li>
 						        								        			<li>博士</li>
 						        								        			<li>其他</li>
-						        								        	</ul>
-						        </div>  
+						        								        	
+						        </div>   -->
 						      </td>
 						      <td valign="top">
 						        <span class="redstar">*</span>
 						      </td> 
 						      <td>
-						          <input type="hidden" id="workyear" value="" name="userlog">
-						          <input type="button" value="" id="select_workyear" class="profile_select_190 profile_select_normal">
-								  <div class="boxUpDown boxUpDown_190 dn" id="box_workyear" style="display: none;">
-						          	 <ul>
+						          <input type="hidden" id="workyear" value="${loginUser.userlog }" name="userlog">
+						         <%--  <input type="button" value="${loginUser.userlog }" id="select_workyear" class="profile_select_190 profile_select_normal"> --%>
+						         <div>
+						         	  <select name="userlog" style="width:150px;border-color:#D1D1D1;border:2px;height:40px;font-size:18px">
+								  			<option value="1">应届毕业生</option>
+								  			<option value="2">1年</option>
+								  			<option value="3">2年</option>
+								  			<option value="4">3年</option>
+								  			<option value="5">4年</option>
+								  			<option value="6">5年</option>
+								  			<option value="7">6年</option>
+								  			<option value="8">7年</option>
+								  			<option value="9">8年</option>
+								  			<option value="1">9年</option>
+								  			<option value="11">10年</option>
+								  			<option value="12">10年以上</option>
+								  		</select> 
+						         </div>
+								  <!-- <div class="boxUpDown boxUpDown_190 dn" id="box_workyear" style="display: none;">
+								  		
+						          	<ul>
 						        								        			<li>应届毕业生</li>
 						        								        			<li>1年</li>
 						        								        			<li>2年</li>
@@ -180,8 +208,8 @@ var youdao_conv_id = 271546;
 						        								        			<li>9年</li>
 						        								        			<li>10年</li>
 						        								        			<li>10年以上</li>
-						        								        	 </ul>
-						          </div>  
+						        								        	 </ul> 
+						          </div>   -->
 						      </td>
 						    </tr>
 						    <tr>
@@ -189,7 +217,7 @@ var youdao_conv_id = 271546;
 						        <span class="redstar">*</span>
 						      </td> 
 						      <td colspan="3">
-						          <input type="text" placeholder="手机号码" value="18644444444" name="telephone" id="tel">
+						          <input type="text" placeholder="手机号码" value="${loginUser.telephone }" name="telephone" id="tel">
 						      </td>
 						   	</tr>
 						   	<tr>
@@ -197,14 +225,14 @@ var youdao_conv_id = 271546;
 						        <span class="redstar">*</span>
 						      </td> 
 						      <td colspan="3">
-						          <input type="text" placeholder="接收面试通知的邮箱" value="jason@qq.com" name="email" id="email">
+						          <input type="text" placeholder="接收面试通知的邮箱" value="${loginUser.email }" name="email" id="email">
 						      </td>
 						    </tr>
 						    <tr>
 						      <td valign="top"> </td> 
 						      <td colspan="3">
-						          <input type="hidden" id="currentState" value="" name="currentstate">
-						          <input type="button" value="目前状态" id="select_currentState" class="profile_select_410 profile_select_normal">
+						          <input type="hidden" id="currentState" value="${loginUser.currentstate }" name="currentstate">
+						          <input type="button" value="${loginUser.currentstate }" id="select_currentState" class="profile_select_410 profile_select_normal">
 								  <div class="boxUpDown boxUpDown_410 dn" id="box_currentState" style="display: none;">
 						          	  <ul>
 						        								        			<li>我目前已离职，可快速到岗</li>
@@ -218,16 +246,22 @@ var youdao_conv_id = 271546;
 						    <tr>
 						      <td></td> 
 						      <td colspan="3">
-						          <input type="submit" value="保 存" class="btn_profile_save"> 
+						          <input type="submit" onclick="jianli()" value="保 存" class="btn_profile_save"> 
 						          <a class="btn_profile_cancel" href="javascript:;">取 消</a>
 						          <!-- <input type="button" value="保 存" onclick="jianli()"> --> 
 						      </td>
 						    </tr>
 						  </tbody></table>
-						 
+						 <input type="hidden" name="xueli" />
+						 <input type="hidden" name="jingyan" />
 						</form><!--end #profileForm-->
 						<!-- </form> -->
-						
+						<script type="text/javascript">
+							function jianli(){
+								$('#profileForm').attr("action","doUpdateResumename.controller");
+								$('#profileForm').submit();
+							}
+						</script>
 						
 						
 						
@@ -239,7 +273,7 @@ var youdao_conv_id = 271546;
 						    <img width="120" height="120" src="">
 						    <span>更换头像</span>
 						  </div>
-						  <input type="file" value="" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="img_check(this,'h/resume/uploadPhoto.json','headPic');" name="headPic" id="headPic" class="myfiles">
+						  <input type="file" value="" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="img_check(this,'h/resume/uploadPhoto.json','headPic');" name="userpicture" id="headPic" class="myfiles">
 							<!-- <input type="hidden" id="headPicHidden" /> -->
 						  	<em>
 						                  尺寸：120*120px <br>   
@@ -250,11 +284,25 @@ var youdao_conv_id = 271546;
             		</div><!--end .basicEdit-->
             		<input type="hidden" id="nameVal" value="${loginUser.username }">
             		<input type="hidden" id="genderVal" value="<c:if test="${loginUser.gender eq '2' }">男</c:if><c:if test="${loginUser.gender eq '1' }">女</c:if>">
-            		<input type="hidden" id="topDegreeVal" value="${loginUser.education }">
-            		<input type="hidden" id="workyearVal" value="${loginUser.userlog }">
+            		<input type="hidden" id="topDegreeVal" name= "topDegreeVal" value="">
+            		<input type="hidden" id="workyearVal" name= "workyearVal" value="">
             		<input type="hidden" id="currentStateVal" value="${loginUser.currentstate }">
             		<input type="hidden" id="emailVal" value="${loginUser.email }">
             		<input type="hidden" id="telVal" value="${loginUser.telephone }">
+            		<script type="text/javascript">
+            			$(function(){
+            				$("select[name='education']").val("${loginUser.education}");
+            				$("select[name='userlog']").val("${loginUser.userlog}");
+            				$("select[name='education']").change(function(){
+            					var xl = $(this).val();
+            					$("input[name='xueli']").val(xl);
+            				})
+            				$("select[name='userlog']").change(function(){
+            					var jy = $(this).val();
+            					$("input[name='jingyan']").val(jy)
+            				})
+            			})
+            		</script>
             		<input type="hidden" id="pageType" value="1"> 
             	</div><!--end #basicInfo-->
 
