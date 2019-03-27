@@ -461,7 +461,7 @@ var youdao_conv_id = 271546;
 						快来添加期望工作吧！
 						<span>添加期望工作</span>
             		</div><!--end .expectAdd-->
-            		
+            		<!-- asd -->
             		<input type="hidden" id="expectJobVal" value="">
             		<input type="hidden" id="expectCityVal" value="">
             		<input type="hidden" id="typeVal" value="">
