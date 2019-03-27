@@ -4,17 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * 职业类别一级表 
- * @author jiangwu
- *
- */
-
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Ocone {
-	private Integer nid;
-	private String nname;
-	
+@NoArgsConstructor
+public class Occupationtype {
+	private Integer id;
+	private String name;
 }
