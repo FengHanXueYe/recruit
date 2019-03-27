@@ -28,6 +28,9 @@ public interface UserMapper {
 	@Select(value="select * from recruitingusers where userid=#{userid}")
 	RecruitingUsers detailRecruitingUsers(@Param("userid")Integer userid);
 	
+	/**
+	 * 啊实打实
+	 */
 	
 	
 }

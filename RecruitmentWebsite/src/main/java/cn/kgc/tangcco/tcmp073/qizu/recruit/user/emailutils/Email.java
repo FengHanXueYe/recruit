@@ -70,6 +70,9 @@ public class Email {
 		return "成功";//返回验证码
 	}
 
+	/**
+	 * 啊实打实
+	 */
 	
 	
 }

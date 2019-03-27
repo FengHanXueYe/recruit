@@ -16,4 +16,10 @@ public interface UserService {
 	int queryRecruitingUsersCount(String email);
 	
 	RecruitingUsers detailRecruitingUsers(Integer userid);
+	
+	/**
+	 * 啊实打实
+	 */
+	
+	
 }

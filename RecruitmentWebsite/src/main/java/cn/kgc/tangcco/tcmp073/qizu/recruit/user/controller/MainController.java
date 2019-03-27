@@ -54,6 +54,8 @@ public class MainController {
 	public String toReset(Model model) {
 		return "main/reset";
 	}
-	
+	/**
+	 * 阿萨大
+	 */
 	
 }
