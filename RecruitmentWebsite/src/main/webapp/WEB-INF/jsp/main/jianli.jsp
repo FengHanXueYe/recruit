@@ -1603,7 +1603,7 @@ $(function(){
 	if(!$.cookie(sessionId)){
 		$.cookie(sessionId, 0, {expires: 1});
 	}
-	if($.cookie(sessionId) &amp;&amp; $.cookie(sessionId) != 5){
+	if($.cookie(sessionId) && $.cookie(sessionId) != 5){
 		$('#qr_cloud_resume').removeClass('dn');
 	}
 	$('#qr_cloud_resume .close').click(function(){
