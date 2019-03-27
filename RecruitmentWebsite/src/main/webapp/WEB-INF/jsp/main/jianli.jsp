@@ -301,6 +301,7 @@ var youdao_conv_id = 271546;
             					var jy = $(this).val();
             					$("input[name='jingyan']").val(jy)
             				})
+            				/* ass */  
             			})
             		</script>
             		<input type="hidden" id="pageType" value="1"> 
