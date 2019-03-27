@@ -119,7 +119,7 @@ public class UserController {
 			userService.updateUser(ruser);
 			System.err.println("))))))))))))))))))))))"+userService.detailRecruitingUsers(attribute.getUserid()));
 			session.setAttribute("loginUser", userService.detailRecruitingUsers(attribute.getUserid()));
-			
+			System.out.println();
 		
 		return "main/jianli";
 	}
