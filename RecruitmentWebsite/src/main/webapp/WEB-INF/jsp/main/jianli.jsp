@@ -1612,7 +1612,7 @@ $(function(){
 		$.cookie(sessionId, resumeQR, {expires: 1});
 	});
 });
-/* sdfds */
+
 </script>
 			<div class="clear"></div>
 			<input type="hidden" value="97fd449bcb294153a671f8fe6f4ba655" id="resubmitToken">
