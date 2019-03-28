@@ -4,6 +4,7 @@ package cn.kgc.tangcco.tcmp073.qizu.recruit.user.mapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 /**
@@ -28,9 +29,7 @@ public interface UserMapper {
 	@Select(value="select * from recruitingusers where userid=#{userid}")
 	RecruitingUsers detailRecruitingUsers(@Param("userid")Integer userid);
 	
-	/**
-	 * 啊实打实
-	 */
-	
+	@Update(value="update recruitingusers set registrationtime=NOW() where userid=#{userid}")
+	int updateTime(@Param("userid")Integer userid);
 	
 }

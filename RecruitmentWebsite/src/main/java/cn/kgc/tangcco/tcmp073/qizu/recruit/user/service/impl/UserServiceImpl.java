@@ -49,6 +49,11 @@ public class UserServiceImpl implements UserService {
 		return userMapper.detailRecruitingUsers(userid);
 	}
 
+	@Override
+	public int updateTime(Integer userid) {
+		return userMapper.updateTime(userid);
+	}
+
 	
 	/**
 	 * 啊实打实

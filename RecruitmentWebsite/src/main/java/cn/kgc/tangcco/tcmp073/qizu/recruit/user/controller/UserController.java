@@ -66,11 +66,11 @@ public class UserController {
 	@RequestMapping("doRegister")
 	public String doRegister(RecruitingUsers ruser,Model model) {
 		userService.addUser(ruser);
-		model.addAttribute("ruser", ruser);
 		Email email = new Email();
 		String sendEamilCode = email.sendEamilCode(ruser.getEmail());
 		if(sendEamilCode=="成功") {
 			model.addAttribute("userEmail", "邮箱已发送！");
+			model.addAttribute("ruser", ruser);
 			return "main/login";
 		}else {
 			model.addAttribute("ruser", ruser);

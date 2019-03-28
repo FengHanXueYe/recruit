@@ -1,8 +1,17 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.user.controller;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.eb.service.EbService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.selfdescription.service.SelfdescriptionService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.worksdisplay.service.WorksdisplayService;
 
 /**
  * 许茂峰
@@ -11,6 +20,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class MainController {
+	@Resource
+	private EbService ebService;
+	
+	@Resource
+	private UserService userService;
+	
+	@Resource
+	private SelfdescriptionService ss;
+	
+	@Resource
+	private WorksdisplayService ws;
+	
 	@RequestMapping("toIndex")
 	public String toIndex(Model model) {
 		return "main/index";
@@ -22,7 +43,18 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("toResume")
-	public String toResume(Model model) {
+	public String toResume(HttpSession session,Model model) {
+		RecruitingUsers attribute = (RecruitingUsers)session.getAttribute("loginUser");
+		/*储存教育背景*/
+		if(attribute!=null) {
+			model.addAttribute("educationalbackground", ebService.queryEducationalbackground(attribute.getUserid()));
+			model.addAttribute("selfdescriptionModel",ss.querySelfdescription(attribute.getUserid()).getSdescription());
+			model.addAttribute("worksdisplayMapperModel", ws.queryWorksdisplay(attribute.getUserid()));
+			System.out.println("-------------------------------");
+			System.err.println(ws.queryWorksdisplay(attribute.getUserid()).getWlink());
+			System.out.println("-------------------------------");
+			//System.err.println(ss.querySelfdescription(attribute.getUserid()).getSdescription());
+		}
 		return "main/jianli";
 	}
 	/**
