@@ -87,6 +87,11 @@ var youdao_conv_id = 271546;
     <script type="text/javascript">
     
     $(document).ready(function(e) {
+    	var erroremail = '${errorEmail}';
+    	if(erroremail.length>0){
+    		alert(erroremail);
+    	}
+    	
     	$('.register_radio li input').click(function(e){
     		$(this).parent('li').addClass('current').append('<em></em>').siblings().removeClass('current').find('em').remove();
     	});

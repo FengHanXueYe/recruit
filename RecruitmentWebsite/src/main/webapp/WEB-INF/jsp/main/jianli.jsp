@@ -256,15 +256,6 @@ var youdao_conv_id = 271546;
 						 <input type="hidden" name="jingyan" />
 						</form><!--end #profileForm-->
 						<!-- </form> -->
-						<script type="text/javascript">
-							function jianli(){
-								$('#profileForm').attr("action","doUpdateResumename.controller");
-								$('#profileForm').submit();
-							}
-						</script>
-						
-						
-						
 						<div class="new_portrait">
 						  <div class="portrait_upload" id="portraitNo">
 						      <span>上传自己的头像</span>
@@ -290,6 +281,7 @@ var youdao_conv_id = 271546;
             		<input type="hidden" id="emailVal" value="${loginUser.email }">
             		<input type="hidden" id="telVal" value="${loginUser.telephone }">
             		<script type="text/javascript">
+        /* --------------------------自制js-------------------------- */    		
             			$(function(){
             				$("select[name='education']").val("${loginUser.education}");
             				$("select[name='userlog']").val("${loginUser.userlog}");
@@ -302,6 +294,23 @@ var youdao_conv_id = 271546;
             					$("input[name='jingyan']").val(jy)
             				})
             			})
+            			/* 简历 */
+            			function jianli(){
+								$('#profileForm').attr("action","doUpdateResumename.controller");
+								$('#profileForm').submit();
+						}
+        				/* 教育背景 */
+        				function jiaoyu(){
+        					alert("jiaoyu");
+        					$('#jiaoyuform').attr("action","doAddEb.controller");
+							$('#jiaoyuform').submit();
+        				}
+        				/* 作品展示 */
+        				function zhanshi(){
+        					alert("zhanshi");
+        					$('#zhanshiform').attr("action","doAddUpdateWorksdisplay.controller");
+							$('#zhanshiform').submit();
+        				}
             		</script>
             		<input type="hidden" id="pageType" value="1"> 
             	</div><!--end #basicInfo-->
@@ -1014,7 +1023,7 @@ var youdao_conv_id = 271546;
             	<div class="profile_box" id="educationalBackground">
             		<h2>教育背景<span>（投递简历时必填）</span></h2>
             							<span class="c_add dn"></span>
-            		<div class="educationalShow dn">
+            		 <div class="educationalShow dn">
             		            			<form class="educationalForm borderBtm dn">
 	            			<table>
 	            				<tbody><tr>
@@ -1171,19 +1180,19 @@ var youdao_conv_id = 271546;
 	            				<tr>
 	            					<td></td>
 	            					<td colspan="3">
-										<input type="submit" value="保 存" class="btn_profile_save">
+										<input type="submit"  value="保 存" class="btn_profile_save">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
 	            			</tbody></table>
 	            			<input type="hidden" class="eduId" value="">
-            			</form><!--end .educationalForm-->
-
+            			</form><!-- end .educationalForm -->
+						
             			<ul class="elist clearfix">
             					            			            			</ul>
-            		</div><!--end .educationalShow-->
+            		</div> <!--end .educationalShow-->
             		<div class="educationalEdit dn">
-            			<form class="educationalForm">
+            			<form id="jiaoyuform" method="post" onsubmit="false" class="educationalForm">
 	            			<table>
 	            				<tbody><tr>
 							      	<td valign="top">
@@ -1332,13 +1341,13 @@ var youdao_conv_id = 271546;
 	            				<tr>
 	            					<td></td>
 	            					<td colspan="3">
-										<input type="submit" value="保 存" class="btn_profile_save">
+										<input type="submit" value="保 存" onclick="jiaoyu()" class="btn_profile_save">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
 	            			</tbody></table>
 	            			<input type="hidden" class="eduId" value="">
-            			</form><!--end .educationalForm-->
+            			</form><!-- end .educationalForm -->
             		</div><!--end .educationalEdit-->
             		            		<div class="educationalAdd pAdd">
             		            			教育背景可以充分体现你的学习和专业能力，<br>
@@ -1346,7 +1355,15 @@ var youdao_conv_id = 271546;
 						<span>添加教育经历</span>
             		</div><!--end .educationalAdd-->
             	</div><!--end #educationalBackground-->
-
+				<script type="text/javascript">
+					/* 自我描述 */
+					function zishu(){
+						alert("zishu");
+						$('#zishuform').attr("action","doAddSelfdescription.controller");
+						$('#zishuform').submit();
+						/* class="descriptionForm" */
+					}
+				</script>
             	<div class="profile_box" id="selfDescription">
             		<h2>自我描述</h2>
             		            		<span class="c_edit dn"></span>
@@ -1354,17 +1371,17 @@ var youdao_conv_id = 271546;
             		            			
             		</div><!--end .descriptionShow-->
             		<div class="descriptionEdit dn">
-            			<form class="descriptionForm">
+            			<form  id="zishuform" method="post" onsubmit="false">
 	            			<table>
 	            				<tbody><tr>
 									<td colspan="2">
-										<textarea class="selfDescription s_textarea" name="selfDescription" placeholder=""></textarea>
+										<textarea class="selfDescription s_textarea" style="width:600px;height:120px" name="sdescription" placeholder="${selfdescriptionModel }"></textarea>
 										<div class="word_count">你还可以输入 <span>500</span> 字</div>
 									</td>
 	            				</tr>
 	            				<tr>
 	            					<td colspan="2">
-										<input type="submit" value="保 存" class="btn_profile_save">
+										<input type="submit" value="保 存" onclick="zishu()"  class="btn_profile_save">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
@@ -1386,22 +1403,22 @@ var youdao_conv_id = 271546;
             				            			</ul>
             		</div><!--end .workShow-->
             		<div class="workEdit dn">
-            			<form class="workForm">
+            			<form id="zhanshiform"   method="post" onsubmit="false">
 	            			<table>
 	            				<tbody><tr>
 							      	<td>
-							        	<input type="text" placeholder="请输入作品链接" name="workLink" class="workLink">
+							        	<input type="text" placeholder="${worksdisplayMapperModel.wlink }" name="wlink" value="${worksdisplayMapperModel.wlink }" style="width:540px;height:30px" class="workLink">
 							      	</td>
 							    </tr>
 	            				<tr>
 									<td>
-										<textarea maxlength="100" class="workDescription s_textarea" name="workDescription" placeholder="请输入说明文字"></textarea>
+										<textarea maxlength="100" class="workDescription s_textarea" name="wexplain" style="width:540px;height:120px"  placeholder="${worksdisplayMapperModel.wexplain }">${worksdisplayMapperModel.wexplain }</textarea>
 										<div class="word_count">你还可以输入 <span>100</span> 字</div>
 									</td>
 	            				</tr>
 	            				<tr>
 	            					<td>
-										<input type="submit" value="保 存" class="btn_profile_save">
+										<input type="submit" value="保 存" onclick="zhanshi()" class="btn_profile_save">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>

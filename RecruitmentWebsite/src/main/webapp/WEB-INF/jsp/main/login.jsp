@@ -88,6 +88,10 @@ $(function(){
 		
 		
 	}) */
+	var userEmail = '${userEmail}';
+	if(userEmail.length>0){
+		alert(userEmail);
+	}
 	
 	$("form#loginForm").submit(function(){
 		
