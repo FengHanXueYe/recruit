@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 public class Worksdisplay {
 	private Integer wid;
 	private String wlink,wexplain;
-	private 	Integer wuserid;
+	private Integer wuserid;
 }
