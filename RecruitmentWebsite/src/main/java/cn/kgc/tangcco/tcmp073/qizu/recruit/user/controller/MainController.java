@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.kgc.tangcco.tcmp073.qizu.entity.Educationalbackground;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Worksdisplay;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.eb.service.EbService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.selfdescription.service.SelfdescriptionService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
@@ -47,17 +49,20 @@ public class MainController {
 		RecruitingUsers attribute = (RecruitingUsers)session.getAttribute("loginUser");
 		/*储存教育背景*/
 		if(attribute!=null) {
-			if(ebService.queryEducationalbackground(attribute.getUserid())!=null) {
-				model.addAttribute("educationalbackground", ebService.queryEducationalbackground(attribute.getUserid()));
+			Educationalbackground queryEducationalbackground = ebService.queryEducationalbackground(attribute.getUserid());
+			if(queryEducationalbackground!=null) {
+				model.addAttribute("educationalbackground", queryEducationalbackground);
 			}
-			if(ss.querySelfdescription(attribute.getUserid()).getSdescription()!=null) {
+			String sdescription = ss.querySelfdescription(attribute.getUserid()).getSdescription();
+			if(sdescription!=null) {
 				model.addAttribute("selfdescriptionModel",ss.querySelfdescription(attribute.getUserid()).getSdescription());
 			}
-			if(ws.queryWorksdisplay(attribute.getUserid())!=null) {
-				model.addAttribute("worksdisplayMapperModel", ws.queryWorksdisplay(attribute.getUserid()));
+			Worksdisplay queryWorksdisplay = ws.queryWorksdisplay(attribute.getUserid());
+			if(queryWorksdisplay!=null) {
+				model.addAttribute("worksdisplayMapperModel", queryWorksdisplay);
 			}
 			System.out.println("-------------------------------");
-			System.err.println(ws.queryWorksdisplay(attribute.getUserid()).getWlink());
+			System.err.println(queryWorksdisplay.getWlink());
 			System.out.println("-------------------------------");
 			//System.err.println(ss.querySelfdescription(attribute.getUserid()).getSdescription());
 		}
