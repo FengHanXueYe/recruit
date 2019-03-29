@@ -47,9 +47,15 @@ public class MainController {
 		RecruitingUsers attribute = (RecruitingUsers)session.getAttribute("loginUser");
 		/*储存教育背景*/
 		if(attribute!=null) {
-			model.addAttribute("educationalbackground", ebService.queryEducationalbackground(attribute.getUserid()));
-			model.addAttribute("selfdescriptionModel",ss.querySelfdescription(attribute.getUserid()).getSdescription());
-			model.addAttribute("worksdisplayMapperModel", ws.queryWorksdisplay(attribute.getUserid()));
+			if(ebService.queryEducationalbackground(attribute.getUserid())!=null) {
+				model.addAttribute("educationalbackground", ebService.queryEducationalbackground(attribute.getUserid()));
+			}
+			if(ss.querySelfdescription(attribute.getUserid()).getSdescription()!=null) {
+				model.addAttribute("selfdescriptionModel",ss.querySelfdescription(attribute.getUserid()).getSdescription());
+			}
+			if(ws.queryWorksdisplay(attribute.getUserid())!=null) {
+				model.addAttribute("worksdisplayMapperModel", ws.queryWorksdisplay(attribute.getUserid()));
+			}
 			System.out.println("-------------------------------");
 			System.err.println(ws.queryWorksdisplay(attribute.getUserid()).getWlink());
 			System.out.println("-------------------------------");
