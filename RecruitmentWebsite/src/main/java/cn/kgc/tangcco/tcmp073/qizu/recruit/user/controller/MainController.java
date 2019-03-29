@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Educationalbackground;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Selfdescription;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Worksdisplay;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.eb.service.EbService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.selfdescription.service.SelfdescriptionService;
@@ -47,23 +48,24 @@ public class MainController {
 	@RequestMapping("toResume")
 	public String toResume(HttpSession session,Model model) {
 		RecruitingUsers attribute = (RecruitingUsers)session.getAttribute("loginUser");
+		System.err.println(attribute.getUserid());
 		/*储存教育背景*/
 		if(attribute!=null) {
 			Educationalbackground queryEducationalbackground = ebService.queryEducationalbackground(attribute.getUserid());
 			if(queryEducationalbackground!=null) {
 				model.addAttribute("educationalbackground", queryEducationalbackground);
 			}
-			String sdescription = ss.querySelfdescription(attribute.getUserid()).getSdescription();
-			if(sdescription!=null) {
-				model.addAttribute("selfdescriptionModel",ss.querySelfdescription(attribute.getUserid()).getSdescription());
+			Selfdescription querySelfdescription = ss.querySelfdescription(attribute.getUserid());
+			if(querySelfdescription!=null) {
+				model.addAttribute("selfdescriptionModel",querySelfdescription.getSdescription());
 			}
 			Worksdisplay queryWorksdisplay = ws.queryWorksdisplay(attribute.getUserid());
 			if(queryWorksdisplay!=null) {
 				model.addAttribute("worksdisplayMapperModel", queryWorksdisplay);
 			}
-			System.out.println("-------------------------------");
-			System.err.println(queryWorksdisplay.getWlink());
-			System.out.println("-------------------------------");
+//			System.out.println("-------------------------------");
+//			System.err.println(queryWorksdisplay.getWlink());
+//			System.out.println("-------------------------------");
 			//System.err.println(ss.querySelfdescription(attribute.getUserid()).getSdescription());
 		}
 		return "main/jianli";
