@@ -152,7 +152,7 @@ var youdao_conv_id = 271546;
 						      	<input type="hidden" id="topDegree" value="${loginUser.education }" name="education">
 						        <%-- <input type="button" value="${loginUser.education }" id="select_topDegree" class="profile_select_190 profile_select_normal"> --%>
 						        <div>
-						        	<select name="education" style="width:166px;border-color:#D1D1D1;border:2px;height:40px;font-size:18px">
+						        	<select name="education" style="width:166px;border:2px solid #EEE9E9;height:40px;font-size:18px">
 										<option value="1">大专</option>
 										<option value="2">本科</option>
 										<option value="3">硕士</option>
@@ -178,7 +178,7 @@ var youdao_conv_id = 271546;
 						          <input type="hidden" id="workyear" value="${loginUser.userlog }" name="userlog">
 						         <%--  <input type="button" value="${loginUser.userlog }" id="select_workyear" class="profile_select_190 profile_select_normal"> --%>
 						         <div>
-						         	  <select name="userlog" style="width:150px;border-color:#D1D1D1;border:2px;height:40px;font-size:18px">
+						         	  <select name="userlog" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:18px">
 								  			<option value="1">应届毕业生</option>
 								  			<option value="2">1年</option>
 								  			<option value="3">2年</option>
@@ -285,6 +285,10 @@ var youdao_conv_id = 271546;
             			$(function(){
             				$("select[name='education']").val("${loginUser.education}");
             				$("select[name='userlog']").val("${loginUser.userlog}");
+            				$("select[name='eeducation']").val("${educationalbackground.eeducation}");
+            				$("select[name='pyear']").val("${educationalbackground.pyear}");
+            				$("select[name='pyearover']").val("${educationalbackground.pyearover}");
+            				
             				$("select[name='education']").change(function(){
             					var xl = $(this).val();
             					$("input[name='xueli']").val(xl);
@@ -1024,7 +1028,7 @@ var youdao_conv_id = 271546;
             		<h2>教育背景<span>（投递简历时必填）</span></h2>
             							<span class="c_add dn"></span>
             		 <div class="educationalShow dn">
-            		            			<form class="educationalForm borderBtm dn">
+            		            			<!-- <form class="educationalForm borderBtm dn">
 	            			<table>
 	            				<tbody><tr>
 							      	<td valign="top">
@@ -1186,27 +1190,27 @@ var youdao_conv_id = 271546;
 	            				</tr>
 	            			</tbody></table>
 	            			<input type="hidden" class="eduId" value="">
-            			</form><!-- end .educationalForm -->
+            			</form> --><!-- end .educationalForm -->
 						
             			<ul class="elist clearfix">
             					            			            			</ul>
             		</div> <!--end .educationalShow-->
-            		<div class="educationalEdit dn">
-            			<form id="jiaoyuform" method="post" onsubmit="false" class="educationalForm">
-	            			<table>
+            		<div class="educationalEdit dn"><!-- class="educationalForm" -->
+            			<form id="jiaoyuform" method="post" onsubmit="false" >
+	            			<table >
 	            				<tbody><tr>
 							      	<td valign="top">
 							        	<span class="redstar">*</span>
 							      	</td> 
 							      	<td>
-							        	<input type="text" placeholder="学校名称" name="schoolName" class="schoolName">
+							        	<input type="text" placeholder="${educationalbackground.ename }" value="${educationalbackground.ename }" style="width:150px;height:45px;margin-top:2px" name="ename" class="schoolName">
 							      	</td>
 							      	<td valign="top">
 							        	<span class="redstar">*</span>
 							      	</td> 
 							      	<td>
-							      		<input type="hidden" class="degree" value="" name="degree">
-							        	<input type="button" value="学历" class="profile_select_287 profile_select_normal select_degree">
+							      		<!-- <input type="hidden" class="degree" value="" name="degree"> -->
+							        	<!-- <input type="button" value="学历" class="profile_select_287 profile_select_normal select_degree">
 										<div class="box_degree boxUpDown boxUpDown_287 dn" style="display: none;">
 								            <ul>
 								        										        			<li>大专</li>
@@ -1215,7 +1219,16 @@ var youdao_conv_id = 271546;
 								        										        			<li>博士</li>
 								        										        			<li>其他</li>
 								        										        	</ul>
-								        </div>
+								        </div> -->
+								        <div>
+						         	  
+								  		<select name="emajor" style="width:302px;border:2px solid #EEE9E9;height:40px;font-size:15px">
+								  			<option value="1">计算机应用</option>
+								  			<option value="2">计算机网络</option>
+								  			<option value="3">网站建设与网页设计</option>
+								  			<option value="4">经济信息管理与计算机应用</option>
+								  		</select> 
+						         </div>
 							        </td>
 							    </tr>
 	            				<tr>
@@ -1223,67 +1236,173 @@ var youdao_conv_id = 271546;
 							        	<span class="redstar">*</span>
 							      	</td> 
 	            					<td>
-	            						<input type="text" placeholder="专业名称" name="professionalName" class="professionalName">
+	            						<!-- <input type="text" placeholder="专业名称" style="width:150px;height:45px;margin-top:2px" name="emajor" class="professionalName"> -->
+								  		<select name="eeducation" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:15px">
+								  			<option value="1">大专</option>
+								  			<option value="2">本科</option>
+								  			<option value="3">硕士</option>
+								  			<option value="4">博士</option>
+								  			<option value="5">其他</option>
+								  		</select> 
 	            					</td>
 	            					<td valign="top">
 							        	<span class="redstar">*</span>
 							      	</td> 
 	            					<td>
-		            					<div class="fl">
+		            					<!-- <div class="fl">
 		            						<input type="hidden" class="schoolYearStart" value="" name="schoolYearStart">
-								        	<input type="button" value="开始年份" class="profile_select_139 profile_select_normal select_schoolYearStart">
-											<div class="box_schoolYearStart boxUpDown boxUpDown_139 dn" style="display: none;">
-									            <ul>
-									        											        			<li>2014</li>
-									        											        			<li>2013</li>
-									        											        			<li>2012</li>
-									        											        			<li>2011</li>
-									        											        			<li>2010</li>
-									        											        			<li>2009</li>
-									        											        			<li>2008</li>
-									        											        			<li>2007</li>
-									        											        			<li>2006</li>
-									        											        			<li>2005</li>
-									        											        			<li>2004</li>
-									        											        			<li>2003</li>
-									        											        			<li>2002</li>
-									        											        			<li>2001</li>
-									        											        			<li>2000</li>
-									        											        			<li>1999</li>
-									        											        			<li>1998</li>
-									        											        			<li>1997</li>
-									        											        			<li>1996</li>
-									        											        			<li>1995</li>
-									        											        			<li>1994</li>
-									        											        			<li>1993</li>
-									        											        			<li>1992</li>
-									        											        			<li>1991</li>
-									        											        			<li>1990</li>
-									        											        			<li>1989</li>
-									        											        			<li>1988</li>
-									        											        			<li>1987</li>
-									        											        			<li>1986</li>
-									        											        			<li>1985</li>
-									        											        			<li>1984</li>
-									        											        			<li>1983</li>
-									        											        			<li>1982</li>
-									        											        			<li>1981</li>
-									        											        			<li>1980</li>
-									        											        			<li>1979</li>
-									        											        			<li>1978</li>
-									        											        			<li>1977</li>
-									        											        			<li>1976</li>
-									        											        			<li>1975</li>
-									        											        			<li>1974</li>
-									        											        			<li>1973</li>
-									        											        			<li>1972</li>
-									        											        			<li>1971</li>
-									        											        			<li>1970</li>
-									        											        	</ul>
-									        </div>
-										</div>
+		            						<div> -->
+		            						<div>
+		            						<input type="date" name="pyear" value="${educationalbackground.pyear }" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:15px">
+						         	 <!--  <select name="pyear" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:18px">
+								  			<option value="2014">2014</option>
+								  			<option value="2013">2013</option>
+								  			<option value="2012">2012</option>
+								  			<option value="2011">2011</option>
+								  			<option value="2010">2010</option>
+								  			<option value="2009">2009</option>
+								  			<option value="2008">2008</option>
+								  			<option value="2007">2007</option>
+								  			<option value="2006">2006</option>
+								  			<option value="2005">2005</option>
+								  			<option value="2004">2004</option>
+								  			<option value="2003">2003</option>
+								  			<option value="2002">2002</option>
+								  			<option value="2001">2001</option>
+								  			<option value="2000">2000</option>
+								  			<option value="1999">1999</option>
+								  			<option value="1998">1998</option>
+								  			<option value="1997">1997</option>
+								  			<option value="1996">1996</option>
+								  			<option value="1995">1995</option>
+								  			<option value="1994">1994</option>
+								  			<option value="1993">1993</option>
+								  			<option value="1992">1992</option>
+								  			<option value="1991">1991</option>
+								  			<option value="1990">1990</option>
+								  			<option value="1989">1989</option>
+								  			<option value="1988">1988</option>
+								  			<option value="1987">1987</option>
+								  			<option value="1986">1986</option>
+								  			<option value="1985">1985</option>
+								  			<option value="1984">1984</option>
+								  			<option value="1983">1983</option>
+								  			<option value="1982">1982</option>
+								  			<option value="1981">1981</option>
+								  			<option value="1980">1980</option>
+								  			<option value="1979">1979</option>
+								  			<option value="1978">1978</option>
+								  			<option value="1977">1977</option>
+								  			<option value="1976">1976</option>
+								  			<option value="1975">1975</option>
+								  			<option value="1974">1974</option>
+								  			<option value="1973">1973</option>
+								  			<option value="1972">1972</option>
+								  			<option value="1971">1971</option>
+								  		</select>            -->  
+						         </div>
+<!-- 								        	<input type="button" value="开始年份" class="profile_select_139 profile_select_normal select_schoolYearStart"> -->
+<!-- 											<div class="box_schoolYearStart boxUpDown boxUpDown_139 dn" style="display: none;"> -->
+<!-- 									            <ul> -->
+<!-- 									        											        			<li>2014</li> -->
+<!-- 									        											        			<li>2013</li> -->
+<!-- 									        											        			<li>2012</li> -->
+<!-- 									        											        			<li>2011</li> -->
+<!-- 									        											        			<li>2010</li> -->
+<!-- 									        											        			<li>2009</li> -->
+<!-- 									        											        			<li>2008</li> -->
+<!-- 									        											        			<li>2007</li> -->
+<!-- 									        											        			<li>2006</li> -->
+<!-- 									        											        			<li>2005</li> -->
+<!-- 									        											        			<li>2004</li> -->
+<!-- 									        											        			<li>2003</li> -->
+<!-- 									        											        			<li>2002</li> -->
+<!-- 									        											        			<li>2001</li> -->
+<!-- 									        											        			<li>2000</li> -->
+<!-- 									        											        			<li>1999</li> -->
+<!-- 									        											        			<li>1998</li> -->
+<!-- 									        											        			<li>1997</li> -->
+<!-- 									        											        			<li>1996</li> -->
+<!-- 									        											        			<li>1995</li> -->
+<!-- 									        											        			<li>1994</li> -->
+<!-- 									        											        			<li>1993</li> -->
+<!-- 									        											        			<li>1992</li> -->
+<!-- 									        											        			<li>1991</li> -->
+<!-- 									        											        			<li>1990</li> -->
+<!-- 									        											        			<li>1989</li> -->
+<!-- 									        											        			<li>1988</li> -->
+<!-- 									        											        			<li>1987</li> -->
+<!-- 									        											        			<li>1986</li> -->
+<!-- 									        											        			<li>1985</li> -->
+<!-- 									        											        			<li>1984</li> -->
+<!-- 									        											        			<li>1983</li> -->
+<!-- 									        											        			<li>1982</li> -->
+<!-- 									        											        			<li>1981</li> -->
+<!-- 									        											        			<li>1980</li> -->
+<!-- 									        											        			<li>1979</li> -->
+<!-- 									        											        			<li>1978</li> -->
+<!-- 									        											        			<li>1977</li> -->
+<!-- 									        											        			<li>1976</li> -->
+<!-- 									        											        			<li>1975</li> -->
+<!-- 									        											        			<li>1974</li> -->
+<!-- 									        											        			<li>1973</li> -->
+<!-- 									        											        			<li>1972</li> -->
+<!-- 									        											        			<li>1971</li> -->
+<!-- 									        											        			<li>1970</li> -->
+<!-- 									        											        	</ul> -->
+<!-- 									        </div>
+										</div> -->
 										<div class="fl">
-		            						<input type="hidden" class="schoolYearEnd" value="" name="schoolYearEnd">
+										<div>
+										<input type="date" name="pyearover" value="${educationalbackground.pyearover }" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:15px;margin-top:-40px;margin-left:152px">
+						         	  <!-- <select name="pyearover" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:18px">
+								  			<option value="2014">2014</option>
+								  			<option value="2013">2013</option>
+								  			<option value="2012">2012</option>
+								  			<option value="2011">2011</option>
+								  			<option value="2010">2010</option>
+								  			<option value="2009">2009</option>
+								  			<option value="2008">2008</option>
+								  			<option value="2007">2007</option>
+								  			<option value="2006">2006</option>
+								  			<option value="2005">2005</option>
+								  			<option value="2004">2004</option>
+								  			<option value="2003">2003</option>
+								  			<option value="2002">2002</option>
+								  			<option value="2001">2001</option>
+								  			<option value="2000">2000</option>
+								  			<option value="1999">1999</option>
+								  			<option value="1998">1998</option>
+								  			<option value="1997">1997</option>
+								  			<option value="1996">1996</option>
+								  			<option value="1995">1995</option>
+								  			<option value="1994">1994</option>
+								  			<option value="1993">1993</option>
+								  			<option value="1992">1992</option>
+								  			<option value="1991">1991</option>
+								  			<option value="1990">1990</option>
+								  			<option value="1989">1989</option>
+								  			<option value="1988">1988</option>
+								  			<option value="1987">1987</option>
+								  			<option value="1986">1986</option>
+								  			<option value="1985">1985</option>
+								  			<option value="1984">1984</option>
+								  			<option value="1983">1983</option>
+								  			<option value="1982">1982</option>
+								  			<option value="1981">1981</option>
+								  			<option value="1980">1980</option>
+								  			<option value="1979">1979</option>
+								  			<option value="1978">1978</option>
+								  			<option value="1977">1977</option>
+								  			<option value="1976">1976</option>
+								  			<option value="1975">1975</option>
+								  			<option value="1974">1974</option>
+								  			<option value="1973">1973</option>
+								  			<option value="1972">1972</option>
+								  			<option value="1971">1971</option>
+								  		</select>      -->        
+						         </div>
+		            						<!-- <input type="hidden" class="schoolYearEnd" value="" name="schoolYearEnd">
 								        	<input type="button" value="结束年份" class="profile_select_139 profile_select_normal select_schoolYearEnd">
 											<div class="box_schoolYearEnd  boxUpDown boxUpDown_139 dn" style="display: none;">
 									            <ul>
@@ -1333,8 +1452,8 @@ var youdao_conv_id = 271546;
 									        											        			<li>1971</li>
 									        											        			<li>1970</li>
 									        											        	</ul>
-									        </div>
-	            						</div>
+									        </div>-->
+	            						</div> 
 	            						<div class="clear"></div>
 	            					</td>
 	            				</tr>
