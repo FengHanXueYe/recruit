@@ -97,7 +97,24 @@ public class MainController {
 	public String toReset(Model model) {
 		return "main/reset";
 	}
-	
+	/**
+	 * 去账号设置
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("toAccountSettings")
+	public String toAccountSettings(Model model) {
+		return "main/accountBind";
+	}
+	/**
+	 * 去修改密码页面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("toUpdatePwd")
+	public String toUpdatePwd(Model model) {
+		return "main/updatePwd";
+	}
 	
 	
 }
