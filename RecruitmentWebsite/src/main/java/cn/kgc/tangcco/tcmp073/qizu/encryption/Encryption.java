@@ -1,4 +1,4 @@
-package cn.kgc.tangcco.tcmp073.qizu.recruit.user.encryption;
+package cn.kgc.tangcco.tcmp073.qizu.encryption;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

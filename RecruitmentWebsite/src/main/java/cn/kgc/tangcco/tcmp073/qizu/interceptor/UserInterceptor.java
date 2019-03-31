@@ -1,4 +1,4 @@
-package cn.kgc.tangcco.tcmp073.qizu.recruit.user.interceptor;
+package cn.kgc.tangcco.tcmp073.qizu.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -10,9 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.kgc.tangcco.tcmp073.qizu.emailutils.Email;
+import cn.kgc.tangcco.tcmp073.qizu.encryption.Encryption;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
-import cn.kgc.tangcco.tcmp073.qizu.recruit.user.emailutils.Email;
-import cn.kgc.tangcco.tcmp073.qizu.recruit.user.encryption.Encryption;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
 /**
  * 用户servlet

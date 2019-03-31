@@ -1,4 +1,4 @@
-package cn.kgc.tangcco.tcmp073.qizu.recruit.user.emailutils;
+package cn.kgc.tangcco.tcmp073.qizu.emailutils;
 
 import java.text.SimpleDateFormat;
 
