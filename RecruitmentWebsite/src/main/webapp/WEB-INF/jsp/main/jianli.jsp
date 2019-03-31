@@ -1558,7 +1558,8 @@ var youdao_conv_id = 271546;
             <div class="content_r">
             	<div class="mycenterR" id="myInfo">
             		<h2>我的信息</h2>
-            		<a target="_blank" href="collections.html">我收藏的职位</a>
+            		<a  href="doListCollectionp.controller">我收藏的职位</a>
+            		<!-- target="_blank" -->
             		<br>
             		            		            		<a target="_blank" href="subscribe.html">我订阅的职位</a>
             	</div><!--end #myInfo-->

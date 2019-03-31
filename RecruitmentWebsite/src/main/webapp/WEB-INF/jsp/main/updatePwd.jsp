@@ -50,7 +50,8 @@ var youdao_conv_id = 271546;
 	    					    			</li>
 	    							    			<li><a rel="nofollow" href="create.html">发布职位</a></li>
 	    		    		</ul>
-        	        	<dl class="collapsible_menu">
+	    		    		<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
+        	        	<!-- <dl class="collapsible_menu">
             	<dt>
            			<span>jason&nbsp;</span> 
             		<span class="red dn" id="noticeDot-1"></span>
@@ -62,15 +63,15 @@ var youdao_conv_id = 271546;
                 	<dd><a href="list.html">我要找工作</a></dd>
                                                 <dd><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
-            </dl>
+            </dl> -->
                                 </div>
     </div><!-- end #header -->
     <div id="container">
         	<div class="user_bindSidebar">
     <dl id="user_sideBarmenu" class="user_sideBarmenu">
      	        <dt><h3>帐号设置</h3></dt>
-                <dd><a href="accountBind.html">帐号绑定</a></dd>
-        <dd><a class="hover" href="updatePwd.html">修改密码</a></dd>
+                <dd><a href="toAccountSettings.controller">帐号绑定</a></dd>
+        <dd><a class="hover" href="toUpdatePwd.controller">修改密码</a></dd>
             </dl>
 </div>
 <input type="hidden" id="hasSidebar" value="1">	<div class="content user_modifyContent">
@@ -79,16 +80,16 @@ var youdao_conv_id = 271546;
             	<h2><em></em>修改密码</h2>
             </dt>
             <dd>
-            	            	<form id="updatePswForm">
+            	            	<form id="updatePswForm1" method="post" onsubmit="false">
             		<table class="savePassword">
             			<tbody><tr>
             				<td>登录邮箱</td>
-            				<td class="c7">jason@qq.com</td>
+            				<td class="c7">${loginUser.email }</td>
             			</tr>
             			<tr>
             				<td class="label">当前密码</td>
             				<td>
-            					<input type="password" maxlength="16" id="oldpassword" name="oldpassword" style="background-image: url(style/images/img/0CQnd2Jos49xUAAAAASUVORK5CYII=quot); background-repeat: no-repeat; background-attachment: scroll; background-position: right center;">
+            					<input type="password" maxlength="16" id="oldpassword" name="oldpassword" style="background-image: url(style/images/img/0CQnd2Jos49xUAAAAASUVORK5CYII=quot); background-repeat: no-repeat; background-attachment: scroll; background-position: right center;"><span id="opwd"></span>
             					<span id="updatePwd_beError" style="display:none;" class="error">
             				</span></td>            				
             			</tr>
@@ -98,17 +99,78 @@ var youdao_conv_id = 271546;
             			</tr>
             			<tr>
             				<td class="label">确认密码</td>
-            				<td><input type="password" maxlength="16" id="comfirmpassword" name="comfirmpassword" style="background-image: url(style/images/img/a6y3y0Wx5kbFHvGuXzkgf0xhKnPzA4UTyaTB8Ph8AvcHi3fnsrZ7Wore02YViqVOrRXXPhfqP8j6MYlawoAAAAASUVORK5CYII=quot); background-repeat: no-repeat; background-attachment: scroll; background-position: right center;"></td>
+            				<td><input type="password" maxlength="16" id="comfirmpassword" name="comfirmpassword" style="background-image: url(style/images/img/a6y3y0Wx5kbFHvGuXzkgf0xhKnPzA4UTyaTB8Ph8AvcHi3fnsrZ7Wore02YViqVOrRXXPhfqP8j6MYlawoAAAAASUVORK5CYII=quot); background-repeat: no-repeat; background-attachment: scroll; background-position: right center;"><span id="cpwd"></span></td>
             			</tr>
             			<tr>
             				<td>&nbsp;</td>
-            				<td><input type="submit" value="保 存"></td>
+            				<td><input type="submit"  value="保 存"></td>
             			</tr>
             		</tbody></table>
 				</form>
 				            </dd>
         </dl>
     </div>
+    <script type="text/javascript">
+    	$(function(){
+    		var pd = 0;
+    		var pd1 = 0;
+    		$("input[name='oldpassword']").blur(function(){
+    			var orderpwd = $(this).val();
+    			if(orderpwd.length<=5){
+    				$("#opwd").html("<span style='color:green'>密码长度最少6位</span>");
+    			}else{
+	    			$.ajax({
+		    			type:"post",
+		    			url:"ajaxPdPassword.controller",
+		    			data:{"password":orderpwd},
+		    			success:function(data,status){
+		    				if("success"==status){
+			    				if(data){
+			    					$("#opwd").html("<span style='color:green'>√</span>");
+			    					pd = 1;
+			    				}else{
+			    					$("#opwd").html("<span style='color:red'>×</span>");
+			    				}
+		    				}
+		    			}
+		    		})
+    			}
+    		})
+    		
+    		$("input[name='comfirmpassword']").blur(function(){
+    			 var comfirmpassword = $.trim($("input[name='comfirmpassword']").val());
+    			 var newpassword = $.trim($("input[name='newpassword']").val());
+    			 if(comfirmpassword.length<=5){
+    				 $("#cpwd").html("<span style='color:green'>密码长度最少6位</span>");
+    			 }else{
+	    			if(newpassword==comfirmpassword){
+	    				$("#cpwd").html("<span style='color:green'>√</span>");
+	    				pd1 = 1;
+	    			}else{
+	    				$("#cpwd").html("<span style='color:red'>×</span>");
+	    			}
+    			 }
+    			
+    		})
+    		
+    		$("#updatePswForm1").submit(function(){
+    			if(pd==1 && pd1==1){
+	    			$("#updatePswForm1").attr("action","doUpdatePassword.controller").submit();
+    			}else{
+    				alert("请完善信息");
+    			}
+    		});
+    		
+    	})
+    /* 	function updatepwd(){
+    		alert("tijiaol ");
+	    		$("#updatePswForm1").attr("action","doUpdatePassword.controller").submit();
+     		if(pd==1){
+    		}else{
+    			alert("请检查你填写的信息是否正确！");
+    		}  
+    	} */
+    </script>
 <!------------------------------------- 弹窗lightbox ----------------------------------------->
 <div style="display:none;">
 	<!-- 【情况1：第三方首次登录绑定自有帐号】 帐号绑定 : 帐号绑定成功后，未保留的帐号信息将不可恢复 -->	

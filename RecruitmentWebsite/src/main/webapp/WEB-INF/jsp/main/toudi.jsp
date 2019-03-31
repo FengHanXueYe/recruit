@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 ﻿<!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb"><head>
 </script><script type="text/javascript" async="" src="style/js/conversion.js"></script><script src="style/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script><style type="text/css"></style>
@@ -50,7 +51,7 @@ var youdao_conv_id = 271546;
 	    					    			</li>
 	    							<li><a rel="nofollow" href="create.html">发布职位</a></li>
 	    		    		</ul>
-        	        	<dl class="collapsible_menu">
+        	        	<!-- <dl class="collapsible_menu">
             	<dt>
            			<span>jason&nbsp;</span> 
             		<span class="red dn" id="noticeDot-1"></span>
@@ -62,9 +63,38 @@ var youdao_conv_id = 271546;
                 	<dd style="display: none;"><a href="list.html">我要找工作</a></dd>
                                                 <dd style="display: none;"><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout" style="display: none;"><a rel="nofollow" href="login.html">退出</a></dd>
-            </dl>
+            </dl> -->
+            <c:choose>
+	    		    			<c:when test="${empty loginUser }">
+	    		    				<jsp:include page="/mainjsp/login/registerSignin.jsp"></jsp:include>
+	    		    			</c:when>
+	    		    			<c:otherwise>
+	    		    				<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
+	    		    			</c:otherwise>
+	    		    		</c:choose>
                                 </div>
     </div><!-- end #header -->
+    <script type="text/javascript">
+    	$(function(){
+	    	$("#jobCollection").click(function(){
+	    		alert("职位id");
+	    		var oid = 1;
+	    		$.ajax({
+	    			type:"post",
+	    			url:"ajaxQueryAllUserCollectionp.controller",
+	    			data:{"oid":oid},
+	    			success:function(data){
+	    				if(data=="true"){
+	    					alert("收藏成功！");
+	    				}else{
+	    					alert("已取消收藏！");
+	    				}
+	    			}
+	    			
+	    		})
+	    	})
+    	})
+    </script>
     <div id="container">
                 <div class="clearfix">
             <div class="content_l">

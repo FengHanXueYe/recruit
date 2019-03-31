@@ -71,10 +71,19 @@ var youdao_conv_id = 271546;
         	<div class="user_bindSidebar">
     <dl id="user_sideBarmenu" class="user_sideBarmenu">
      	        <dt><h3>帐号设置</h3></dt>
-                <dd><a class="hover" href="accountBind.html">帐号绑定</a></dd>
-        <dd><a href="updatePwd.html">修改密码</a></dd>
+                <dd><a class="hover" href="toAccountSettings.controller">帐号绑定</a></dd>
+        <dd><a href="toUpdatePwd.controller">修改密码</a></dd>
             </dl>
 </div>
+<script type="text/javascript">
+	$(function(){
+		var updatepwdruser = '${updatepwdruser}';
+		if(updatepwdruser.length>0){
+			alert(updatepwdruser);
+		}
+	})
+
+</script>
 <input type="hidden" id="hasSidebar" value="1">	<div class="user_bindContent">
         <dl class="c_section">
             <dt>
@@ -82,15 +91,19 @@ var youdao_conv_id = 271546;
             </dt>
             <dd id="pad">
                 <ul class="user_noModify">
-                    <li>当前登录帐号：<span>jason@qq.com</span> </li>
+                    <li>当前登录帐号：<span>${loginUser.email }</span> </li>
                     <li>绑定后，你可以同时使用以下方式登录拉勾</li>
                 </ul>
-                <dl class="user_thirdLogin">
+                <!-- <dl class="user_thirdLogin">
                     <dt><img alt="qq" src="style/images/qq.png"></dt>
                                         	<dd>已绑定QQ帐号  <span>jason</span>
                     	 	<a id="cancelBind" href="javascript:;">解除绑定</a>
                     	 </dd>
-                	                </dl>
+                	                </dl> -->
+				<dl class="user_thirdLogin">
+                    <dt><img alt="qq" src="style/images/qq.png"></dt>
+                                        	<dd><a href="h/ologin/bind/sina.html">绑定QQ帐号</a></dd>
+                                    </dl>
 				<dl class="user_thirdLogin">
                     <dt><img alt="weibo" src="style/images/weibo.png"></dt>
                                         	<dd><a href="h/ologin/bind/sina.html">绑定新浪微博帐号</a></dd>

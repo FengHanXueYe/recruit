@@ -48,7 +48,7 @@ var youdao_conv_id = 271546;
         	<form id="loginForm" action="userLogin.controller" method="post">
 				<input type="text" id="email" name="email" value="${ruser.email }" tabindex="1" placeholder="请输入登录邮箱地址" />
 				<span></span>
-			  	<input type="password" id="password" name="password" tabindex="2" value="${ruser.password }" placeholder="请输入密码" />
+			  	<input type="password" id="password" name="password" tabindex="2" value="${ruserpwd }" placeholder="请输入密码" />
 			  	<span></span>
 				<!-- <span class="error" style="display:none;" id="beError"></span> -->
 			    <label class="fl" for="remember"><input type="checkbox" id="remember" value="" checked="checked" name="autoLogin" /> 记住我</label>
