@@ -23,7 +23,7 @@
                 	<dd class="btm"><a href="myhome.html">我的公司主页</a></dd>
                 	<dd><a href="jianli.html">我要找工作</a></dd>
                 	<dd><a href="jianli.html">我投递的职位</a></dd>
-                    <dd><a href="accountBind.html">帐号设置</a></dd>
+                    <dd><a href="toAccountSettings.controller">帐号设置</a></dd>
                     <dd class="logout"><a rel="nofollow" href="doRemoveSession.controller">退出</a></dd>
             </dl>
 </body>
