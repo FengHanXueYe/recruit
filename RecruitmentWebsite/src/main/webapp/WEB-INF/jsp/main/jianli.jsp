@@ -153,6 +153,7 @@ var youdao_conv_id = 271546;
 						        <%-- <input type="button" value="${loginUser.education }" id="select_topDegree" class="profile_select_190 profile_select_normal"> --%>
 						        <div>
 						        	<select name="education" style="width:166px;border:2px solid #EEE9E9;height:40px;font-size:18px">
+										<option selected value="">---请选择---</option>
 										<option value="1">大专</option>
 										<option value="2">本科</option>
 										<option value="3">硕士</option>
@@ -179,6 +180,7 @@ var youdao_conv_id = 271546;
 						         <%--  <input type="button" value="${loginUser.userlog }" id="select_workyear" class="profile_select_190 profile_select_normal"> --%>
 						         <div>
 						         	  <select name="userlog" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:18px">
+						         	  		<option selected value="">---请选择---</option>
 								  			<option value="1">应届毕业生</option>
 								  			<option value="2">1年</option>
 								  			<option value="3">2年</option>
