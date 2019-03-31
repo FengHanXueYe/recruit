@@ -28,7 +28,7 @@
 			<!-- <mvc:mapping path="/**"/> -->
 			<mvc:mapping path="/tocreate.controller"/>
 			<mvc:mapping path="/toResume.controller"/> 
-		<bean class="cn.kgc.tangcco.tcmp073.qizu.recruit.user.interceptor.UserInterceptor"></bean>
+		<bean class="cn.kgc.tangcco.tcmp073.qizu.interceptor.UserInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors> 
 </beans>
