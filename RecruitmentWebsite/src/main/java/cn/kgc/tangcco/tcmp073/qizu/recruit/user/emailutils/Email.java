@@ -43,16 +43,16 @@ public class Email {
 		Date date = new Date();SimpleDateFormat df = new SimpleDateFormat("yyyy年M月dd日 HH时mm分ss秒");
 		String format = df.format(new Date());
 		try {
-//			send.setHostName("smtp.163.com");//发送服务
-			send.setHostName("smtp.qq.com");//发送服务
+			send.setHostName("smtp.163.com");//发送服务
+//			send.setHostName("smtp.qq.com");//发送服务
 			send.setSmtpPort(465);//发送端口号
 			send.setSSLOnConnect(true);//开启 SSL 加密
 			send.setCharset("utf-8");
 			send.addTo(email);
-//			send.setFrom("fenghanxueye@163.com");
-//			send.setAuthentication("fenghanxueye@163.com", "jlysdaqc123456");
-			send.setFrom("505385234@qq.com");
-			send.setAuthentication("505385234@qq.com", "okmmzaqgniykcbdi");
+			send.setFrom("fenghanxueye@163.com");
+			send.setAuthentication("fenghanxueye@163.com", "jlysdaqc123456");
+//			send.setFrom("505385234@qq.com");
+//			send.setAuthentication("505385234@qq.com", "okmmzaqgniykcbdi");
 			send.setSubject("拉勾网注册通知！");
 			send.setMsg("尊敬的用户您好！\n您于" + format + "成功注册成为拉勾网用户！");
 			send.send(); //发送
@@ -65,6 +65,7 @@ public class Email {
 			 */			
 		} catch (EmailException e) {
 			e.printStackTrace();
+			return "失败";
 		}
 		System.err.println("-------------->邮件发送成功！");
 		return "成功";//返回验证码

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.user.emailutils.Email;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.user.encryption.Encryption;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
 /**
  * 用户servlet
@@ -36,6 +37,16 @@ public class UserController {
 		//设置session有效时间
 		//session.setMaxInactiveInterval(15*60);
 		//System.err.println("login---->"+ruser);
+		//得到密码
+		String password = ruser.getPassword();
+		//MD5加密
+		password = Encryption.md5Encode(password.getBytes());
+		//base64编码
+		password = Encryption.base64Encode(password.getBytes());
+		System.out.println("=====登录====>"+password);
+		//重新赋值给password
+		ruser.setPassword(password);
+		//从数据库中查询是否有这样一个用户
 		RecruitingUsers loginRecruitingUsers = userService.loginRecruitingUsers(ruser);
 		//System.out.println("session==============>"+loginRecruitingUsers);
 		if(loginRecruitingUsers==null) {
@@ -65,10 +76,27 @@ public class UserController {
 	 */
 	@RequestMapping("doRegister")
 	public String doRegister(RecruitingUsers ruser,Model model) {
-		userService.addUser(ruser);
+		//得到注册时的密码
+		String password = ruser.getPassword();
+		//再次储存方便转发到登录界面
+		String password1 = ruser.getPassword();
+		//MD5
+		password = Encryption.md5Encode(password.getBytes());
+		//base64
+		password = Encryption.base64Encode(password.getBytes());
+		System.out.println("====注册====>"+password);
+		//赋值给password
+		ruser.setPassword(password);
 		Email email = new Email();
+		//实现邮箱发送
 		String sendEamilCode = email.sendEamilCode(ruser.getEmail());
+		//判断是否成功
 		if(sendEamilCode=="成功") {
+			//增加一个用户
+			userService.addUser(ruser);
+			//将注册时的密码储存
+			ruser.setPassword(password1);
+			//储存发闪送到登录界面
 			model.addAttribute("userEmail", "邮箱已发送！");
 			model.addAttribute("ruser", ruser);
 			return "main/login";
@@ -87,6 +115,7 @@ public class UserController {
 	 */
 	@RequestMapping("doRemoveSession")
 	public String doRemoveSession(HttpSession session,Model model) {
+		//消除session
 		session.invalidate();
 		return "main/index";
 	}
@@ -99,8 +128,9 @@ public class UserController {
 	 */
 	@RequestMapping("doUpdateResumename")
 	public String doUpdateResumename(RecruitingUsers ruser,String xueli,String jingyan,HttpSession session,Model model) {
-		
+		//从session中取用户
 		RecruitingUsers attribute =(RecruitingUsers) session.getAttribute("loginUser");
+		//查询该用户的详细信息
 		RecruitingUsers detailUser = userService.detailRecruitingUsers(attribute.getUserid());
 			if(xueli!=null) {
 				ruser.setEducation(Integer.parseInt(xueli));
@@ -112,15 +142,12 @@ public class UserController {
 			}else {
 				ruser.setUserlog(detailUser.getUserlog());
 			}
-			System.err.println("经验"+jingyan+"------学历"+xueli);
-			System.err.println("8888**************    "+ruser);
+			//将用户的id赋值给ruser（因为前台没传用户id）
 			ruser.setUserid(attribute.getUserid());
-			System.err.println("0000000000000"+ruser.getResumeName());
+			//执行修改
 			userService.updateUser(ruser);
-			System.err.println("))))))))))))))))))))))"+userService.detailRecruitingUsers(attribute.getUserid()));
+			//再次查询该用户信息储存到session中覆盖
 			session.setAttribute("loginUser", userService.detailRecruitingUsers(attribute.getUserid()));
-			System.out.println();
-		
 		return "main/jianli";
 	}
 	
