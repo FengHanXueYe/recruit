@@ -1,5 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.entity;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +19,6 @@ public class Octwo {
 	private Integer wid;
 	private String wname;
 	private Integer wnid;
-	
-	
+	private List<Octhree> octhree;
+	//aaa
 }
