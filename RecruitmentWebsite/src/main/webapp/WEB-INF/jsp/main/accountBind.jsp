@@ -47,6 +47,7 @@ var youdao_conv_id = 271546;
     			<li><a href="companylist.html">公司</a></li>
     			<li><a target="_blank" href="h/toForum.html">论坛</a></li>
     				    			<li>
+    				    			<!-- asd -->
 	    				<a rel="nofollow" href="positions.html">简历管理</a>
 	    					    			</li>
 	    							    			<li><a rel="nofollow" href="create.html">发布职位</a></li>
