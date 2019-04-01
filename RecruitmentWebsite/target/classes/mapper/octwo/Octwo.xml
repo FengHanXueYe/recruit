@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.octwo.mapper.OctwoMapper">
+  <resultMap type="Octwo" id="Octwo" autoMapping="true">
+  <id column="wid" property="wid"/>
+  <association property="wnid" resultMap="Ocone"></association>
+  </resultMap>
+  <resultMap type="Ocone" id="Ocone" autoMapping="true">
+  <id column="nid" property="nid"/>
+  </resultMap>
+	<select id="queryZhiwei" parameterType="int" resultMap="Octwo">
+		select *from Octwo where wnid=#{wnid}
+	</select>
+</mapper>

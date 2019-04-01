@@ -1,11 +1,18 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.controller;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.service.OccupationService;
+
 @Controller
 public class OccupationController {
+	@Resource
+	private OccupationService service;
 	
 	
 	@RequestMapping("tocreate")
@@ -23,7 +30,17 @@ public class OccupationController {
 		return "main/toudi";
 	}
 	
-	
+	@RequestMapping("doAddOccupation")
+	public String doAdd(Occupation occ) {
+		
+		int row=this.service.addOccupation(occ);
+		if(row>0) {
+			return "";
+		}else {
+			return "";
+		}
+		
+	}
 	
 	
 	

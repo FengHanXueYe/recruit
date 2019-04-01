@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.collectionp.mapper.CollectionpMapper">
+				
+	<resultMap type="Collectionp" id="collectionMap" autoMapping="true">
+		<id column="cid" property="cid"/>
+		<association property="user" resultMap="userMap"></association>
+		<collection property="occupation" resultMap="occupationMap" ></collection>
+	</resultMap>
+	<resultMap type="RecruitingUsers" id="userMap" autoMapping="true">
+		<id column="userid" property="userid"/>
+	</resultMap>
+	<resultMap type="Occupation" id="occupationMap" autoMapping="true">
+		<id column="oid" property="oid"/>
+	</resultMap>
+	<select id="queryAllUserCollectionp" parameterType="INTEGER" resultMap="collectionMap">
+		SELECT * FROM `collectionp` c,`occupation` o,`recruitingusers` r WHERE c.oid=o.oid AND c.userid=r.userid AND c.userid=#{userid}
+	</select>
+	<select id="queryAllOccupationCollectionp" parameterType="Collectionp" resultMap="collectionMap">
+		SELECT * FROM `collectionp` c,`occupation` o,`recruitingusers` r WHERE c.oid=o.oid AND c.userid=r.userid and c.oid=#{occupation.oid} and c.userid=#{cuser.userid}
+	</select> 
+	
+	
+</mapper>

@@ -20,4 +20,15 @@
 	</bean>
 
 	<mvc:annotation-driven></mvc:annotation-driven>
+	
+	<!-- 配置拦截器 默认拦截全部-->
+	 <mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 指定拦截的路径  基于ant -->
+			<!-- <mvc:mapping path="/**"/> -->
+			<mvc:mapping path="/tocreate.controller"/>
+			<mvc:mapping path="/toResume.controller"/> 
+		<bean class="cn.kgc.tangcco.tcmp073.qizu.interceptor.UserInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors> 
 </beans>

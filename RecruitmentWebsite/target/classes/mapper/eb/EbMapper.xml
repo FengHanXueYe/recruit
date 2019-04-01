@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.eb.mapper.EbMapper">
+	<update id="updateEb" parameterType="Educationalbackground">
+		update Educationalbackground 
+		<set>
+			<if test="eb.ename!=null and eb.ename!=''">ename=#{eb.ename},</if>
+			<if test="eb.eeducation!=null and eb.eeducation!=''">eeducation=#{eb.eeducation},</if>
+			<if test="eb.emajor!=null and eb.emajor!=''">emajor=#{eb.emajor},</if>
+			<if test="eb.pyear!=null and eb.pyear!=''">pyear=#{eb.pyear},</if>
+			<if test="eb.pyearover!=null and eb.pyearover!=''">pyearover=#{eb.pyearover}</if>
+		</set>
+		where eid=#{eb.eid}
+	</update>
+
+</mapper>
