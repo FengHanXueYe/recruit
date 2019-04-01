@@ -32,12 +32,13 @@ public class OccupationController {
 	
 	@RequestMapping("doAddOccupation")
 	public String doAdd(Occupation occ) {
-		
+		occ.setOstate(0);
+		occ.setOcid(1);
 		int row=this.service.addOccupation(occ);
 		if(row>0) {
-			return "";
+			return "main/index06";
 		}else {
-			return "";
+			return "main/create";
 		}
 		
 	}
