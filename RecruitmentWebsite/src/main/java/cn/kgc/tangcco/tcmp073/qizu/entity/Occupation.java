@@ -21,6 +21,7 @@ public class Occupation {
 	private Integer ostate;
 	//发布时间
 	private Date orelease;
+	private int otype;
 	private Integer ocid;
 	
 }
