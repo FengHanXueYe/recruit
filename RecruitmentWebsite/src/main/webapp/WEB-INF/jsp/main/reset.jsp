@@ -38,7 +38,7 @@ var youdao_conv_id = 271546;
 <body id="login_bg">
 	<div class="login_wrapper">
 		<div class="login_header">
-        	<a href="index.html"><img src="style/images/logo_white.png" width="285" height="62" alt="拉勾招聘" /></a>
+        	<a href="toIndex.controller"><img src="style/images/logo_white.png" width="285" height="62" alt="拉勾招聘" /></a>
             <div id="cloud_s"><img src="style/images/cloud_s.png" width="81" height="52" alt="cloud" /></div>
             <div id="cloud_m"><img src="style/images/cloud_m.png" width="136" height="95"  alt="cloud" /></div>
         </div>
@@ -46,9 +46,9 @@ var youdao_conv_id = 271546;
     	<input type="hidden" id="resubmitToken" value="" />
      	<div class="find_psw">
         	<img src="style/images/psw_step1.png" width="369" height="56" alt="找回密码第一步" />
-            <form id="pswForm" action="http://www.lagou.com/rs.html" method="post">
+            <form id="pswForm" action="doRetrievePwd.controller" method="post">
            		<input type="text" name="email" id="email" tabindex="1" value="" placeholder="请输入注册时使用的邮箱地址" />
-                                <input type="submit" id="submitLogin" value="找回密码" />
+                <input type="submit" id="submitLogin" value="找回密码" />
             </form>
         </div>
     </div>
@@ -58,6 +58,8 @@ var youdao_conv_id = 271546;
     	$('#pswForm input[type="text"]').focus(function(){
     		$(this).siblings('.error').hide();
     	});
+    	
+    	
     	//验证表单
 
 	    	 $("#pswForm").validate({
