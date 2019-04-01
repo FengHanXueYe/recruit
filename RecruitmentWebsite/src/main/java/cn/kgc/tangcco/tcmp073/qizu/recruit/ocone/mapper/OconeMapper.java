@@ -12,7 +12,7 @@ public interface OconeMapper {
 	 * 
 	 * @return
 	 */
-	@Select("select *from oncone ")
+	
 	List<Ocone> queryType();
 
 
