@@ -103,6 +103,7 @@ var youdao_conv_id = 271546;
                     		</ul>
                     	</div>
                     	                        <form id="deliveryForm">
+                    	                        <!-- 循环体 -->
                             <ul class="reset my_delivery">
                                	                             	<li>
                              		<div class="d_item">
