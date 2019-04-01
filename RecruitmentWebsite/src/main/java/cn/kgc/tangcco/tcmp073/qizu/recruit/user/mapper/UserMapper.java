@@ -32,4 +32,8 @@ public interface UserMapper {
 	@Update(value="update recruitingusers set registrationtime=NOW() where userid=#{userid}")
 	int updateTime(@Param("userid")Integer userid);
 	
+	@Select(value="select * from recruitingusers where email=#{email}")
+	RecruitingUsers queryUserByEmail(@Param("email")String email);
+	
+	
 }
