@@ -12,6 +12,7 @@ import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Selfdescription;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Worksdisplay;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.eb.service.EbService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.ocone.service.OconeService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.selfdescription.service.SelfdescriptionService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.worksdisplay.service.WorksdisplayService;
@@ -34,9 +35,13 @@ public class MainController {
 	
 	@Resource
 	private WorksdisplayService ws;
+	@Resource
+	private OconeService os;
 	
 	@RequestMapping("toIndex")
 	public String toIndex(Model model) {
+		model.addAttribute("ocone",os.queryType());
+		
 		return "main/index";
 	}
 	

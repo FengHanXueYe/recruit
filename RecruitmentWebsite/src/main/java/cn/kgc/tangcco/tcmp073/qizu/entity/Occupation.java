@@ -19,8 +19,9 @@ public class Occupation {
 	private Integer oeducation;
 	private String owelfare,odetail,oaddress,oemail,ophone;
 	private Integer ostate;
-	//发布时间
+	//发布时间1234
 	private Date orelease;
+	private int otype;
 	private Integer ocid;
 	
 }
