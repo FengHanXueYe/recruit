@@ -54,6 +54,11 @@ public class UserServiceImpl implements UserService {
 		return userMapper.updateTime(userid);
 	}
 
+	@Override
+	public RecruitingUsers queryUserByEmail(String email) {
+		return userMapper.queryUserByEmail(email);
+	}
+
 	
 	/**
 	 * 啊实打实

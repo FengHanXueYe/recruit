@@ -216,5 +216,43 @@ public class UserController {
 			return false;
 		}
 	}
-
+	/**
+	 * 找回密码
+	 * @param email
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("doRetrievePwd")
+	public String doRetrievePwd(String email,Model model) {
+		RecruitingUsers queryUserByEmail = userService.queryUserByEmail(email);
+		if(queryUserByEmail!=null) {
+			Email e = new Email();
+			String pwd = e.sendEamilCodeDoRetrievePwd(email);
+			if(!"失败".equals(pwd)) {
+				// MD5
+				pwd = Encryption.md5Encode(pwd.getBytes());
+				// base64
+				pwd = Encryption.base64Encode(pwd.getBytes());
+				RecruitingUsers ruser = new RecruitingUsers();
+				ruser.setPassword(pwd);
+				ruser.setUserid(queryUserByEmail.getUserid());
+				int updateUser = userService.updateUser(ruser);
+				if(updateUser>0) {
+					model.addAttribute("successEmail", "密码已发送至您的邮箱，请注意查收！");
+					return "main/login";
+				}else {
+					model.addAttribute("errEmail1", "出现未知错误！");
+					return "main/reset";
+				}
+			}else {
+				model.addAttribute("errEmail2", email);
+				return "main/reset";
+			}
+		}else {
+			model.addAttribute("errEmail3", "没有该用户！");
+			return "main/reset";
+		}
+	}
+	
+	
 }
