@@ -13,6 +13,11 @@ import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.project.service.ProjectService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
 
+/**
+ * 
+ * @author jiangwu
+ *
+ */
 @Controller
 public class ProjectController {
 
