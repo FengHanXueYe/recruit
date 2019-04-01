@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.kgc.tangcco.tcmp073.qizu.emailutils.Email;
 import cn.kgc.tangcco.tcmp073.qizu.encryption.Encryption;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.ocone.service.OconeService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
 
 /**
@@ -25,6 +26,8 @@ public class UserController {
 
 	@Resource
 	private UserService userService;
+	@Resource
+	private OconeService os;
 
 	/**
 	 * 登录
@@ -34,6 +37,7 @@ public class UserController {
 	 * @param model
 	 * @return
 	 */
+	
 	@RequestMapping("userLogin")
 	public String userLogin(RecruitingUsers ruser, HttpSession session, Model model) {
 		String ruserpwd = ruser.getPassword();
@@ -58,6 +62,7 @@ public class UserController {
 			return "main/login";
 		} else {
 			session.setAttribute("loginUser", loginRecruitingUsers);
+			model.addAttribute("ocone",os.queryType());
 			return "main/index";
 		}
 
@@ -127,7 +132,7 @@ public class UserController {
 	public String doRemoveSession(HttpSession session, Model model) {
 		// 消除session
 		session.invalidate();
-		return "main/index";
+		return "redirect:toIndex.controller";
 	}
 
 	/**
