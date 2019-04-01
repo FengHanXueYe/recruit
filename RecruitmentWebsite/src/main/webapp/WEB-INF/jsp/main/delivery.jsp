@@ -42,12 +42,13 @@ var youdao_conv_id = 271546;
     			<img width="229" height="43" alt="拉勾招聘-专注互联网招聘" src="style/images/logo.png">
     		</a>
     		<ul id="navheader" class="reset">
-    			<li><a href="index.html">首页</a></li>
+    			<li><a href="toIndex.controller">首页</a></li>
     			<li><a href="companylist.html">公司</a></li>
     			<li><a target="_blank" href="">论坛</a></li>
     				    			<li><a rel="nofollow" href="jianli.html">我的简历</a></li>
 	    						    		</ul>
-        	        	<dl class="collapsible_menu">
+	    						    		<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
+        	        	<!-- <dl class="collapsible_menu">
             	<dt>
            			<span>jason&nbsp;</span> 
             		<span class="red dn" id="noticeDot-0"></span>
@@ -60,7 +61,7 @@ var youdao_conv_id = 271546;
                 	<dd style="display: none;"><a href="create.html">我要招人</a></dd>
                                                 <dd style="display: none;"><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout" style="display: none;"><a rel="nofollow" href="login.html">退出</a></dd>
-            </dl>
+            </dl> -->
                                     <div class="dn" id="noticeTip">
             	<span class="bot"></span>
 				<span class="top"></span>

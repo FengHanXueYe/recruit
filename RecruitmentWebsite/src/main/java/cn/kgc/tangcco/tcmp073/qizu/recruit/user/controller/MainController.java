@@ -115,6 +115,14 @@ public class MainController {
 	public String toUpdatePwd(Model model) {
 		return "main/updatePwd";
 	}
-	
+	/**
+	 * 去投递职位
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("toDelivery")
+	public String toDelivery(Model model) {
+		return "main/delivery";
+	}
 	
 }
