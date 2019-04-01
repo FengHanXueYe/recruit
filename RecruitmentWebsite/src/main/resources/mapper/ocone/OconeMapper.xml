@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.ocone.mapper.OconeMapper">
-<select id="queryType" resultType="Ocone">
-SELECT *FROM ocone o,octwo t,octhree h WHERE o.nid=t.wnid AND h.hwid=t.wid
-</select>
+	<resultMap type="Ocone" id="Ocone" autoMapping="true">
+		<id column="nid" property="nid" />
+		<collection property="octwo" resultMap="octwo"></collection>
+	</resultMap>
+	<resultMap type="Octwo" id="octwo" autoMapping="true">
+		<id column="wid" property="wid" />
+		<collection property="octhree" resultMap="octhree"></collection>
+	</resultMap>
+	<resultMap type="Octhree" id="octhree" autoMapping="true">
+		<id column="hid" property="hid" />
+	</resultMap>
+	<select id="queryType" resultMap="Ocone">
+		SELECT *FROM ocone o,octwo t,octhree h WHERE o.nid=t.wnid AND h.hwid=t.wid
+	</select>
 
 </mapper>
