@@ -46,6 +46,7 @@ public class CompanyController {
 		}
 		
 	}
+	//123
 	@RequestMapping("UpdateCNameController")
 	public String updateCName(Company com,Model model) {
 		int row=this.service.updateCompany(com);
