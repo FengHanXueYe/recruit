@@ -19,4 +19,10 @@ public class OconeServiceImpl implements OconeService{
 	public List<Ocone> queryType() {
 		return oconeMapper.queryType();
 	}
+
+	@Override
+	public List<Ocone> querySuiji(int pk) {
+		// TODO Auto-generated method stub
+		return oconeMapper.querySuiji(pk);
+	}
 }

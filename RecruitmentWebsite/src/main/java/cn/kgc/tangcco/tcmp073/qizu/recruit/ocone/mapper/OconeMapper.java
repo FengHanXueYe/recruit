@@ -14,6 +14,7 @@ public interface OconeMapper {
 	 */
 	
 	List<Ocone> queryType();
+	List<Ocone> querySuiji(int pk);
 
 
 
