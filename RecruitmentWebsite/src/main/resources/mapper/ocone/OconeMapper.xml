@@ -13,7 +13,13 @@
 		<id column="hid" property="hid" />
 	</resultMap>
 	<select id="queryType" resultMap="Ocone">
-		SELECT *FROM ocone o,octwo t,octhree h WHERE o.nid=t.wnid AND h.hwid=t.wid
+		SELECT *FROM ocone o,octwo
+		t,octhree h WHERE o.nid=t.wnid AND h.hwid=t.wid
+	</select>
+	<select id="querySuiji" parameterType="int" resultMap="Ocone">
+
+		SELECT * FROM ocone o,octwo t, octhree h WHERE o.nid=t.wnid AND t.wid=h.hwid
+		AND o.nid=#{nid} ORDER BY RAND() LIMIT 7;
 	</select>
 
 </mapper>
