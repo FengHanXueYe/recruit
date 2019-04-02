@@ -31,7 +31,6 @@ public class UserController {
 
 	/**
 	 * 登录
-	 * 
 	 * @param ruser
 	 * @param session
 	 * @param model
