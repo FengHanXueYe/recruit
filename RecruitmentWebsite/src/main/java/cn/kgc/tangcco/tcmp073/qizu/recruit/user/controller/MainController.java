@@ -1,5 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.user.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Educationalbackground;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Ocone;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Selfdescription;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Worksdisplay;
@@ -42,8 +45,10 @@ public class MainController {
 	@RequestMapping("toIndex")
 	public String toIndex(Model model) {
 		model.addAttribute("ocone", os.queryType());
-		for (int i = 0; i < 7; i++) {
-			model.addAttribute("ocone1" + i, os.querySuiji(i));
+		for (int i = 1; i <= 7; i++) {
+			List<Ocone> list=os.querySuiji(i);
+			model.addAttribute("ocone1" + i, list);
+			
 		}
 
 		return "main/index";
