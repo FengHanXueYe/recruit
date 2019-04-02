@@ -15,6 +15,7 @@ import org.apache.commons.mail.HtmlEmail;
  * @author HASEE
  *
  */
+//aa
 public class Email {
 	public String achieveCode() {
 		String[] beforeShuffle = new String[] { "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F",
