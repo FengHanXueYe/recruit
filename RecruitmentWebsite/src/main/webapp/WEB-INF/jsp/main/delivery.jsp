@@ -70,6 +70,27 @@ var youdao_conv_id = 271546;
             </div>
                     </div>
     </div><!-- end #header -->
+    <script type="text/javascript">
+    	function ajaxLook(status){
+    		alert(status);
+    		$.ajax({
+    			type:"post",
+    			url:"ajaxQueryDeliverypost.controller",
+    			data:{"status":status},
+    			success:function(data){
+    				var html;
+    				for(var i = 0; i<data.length;i++){
+    					html = "";
+    				}
+    				
+    			}
+    			
+    		})
+    		
+    		
+    		
+    	}
+    </script>
     <div id="container">
         	  	
         <div class="clearfix">
@@ -83,28 +104,85 @@ var youdao_conv_id = 271546;
                     	<div class="delivery_tabs">
                     		<ul class="reset">
                     			                    			<li class="current">
-                    				<a href="delivery.html?tag=-1">全部</a>
+                    				<a href="javascript:void(0)" onclick="ajaxLook(0)">全部</a>
                     			</li>
                     			                    			<li>
-                    				<a href="delivery.html?tag=5">投递成功</a>
+                    				<a href="javascript:void(0)" onclick="ajaxLook(1)">投递成功</a>
                     			</li>
                     			<li>
-                    				<a href="delivery.html?tag=1">被查看</a>
+                    				<a href="javascript:void(0)" onclick="ajaxLook(2)">被查看</a>
                     			</li>
                     			<li>
-                    				<a href="delivery.html?tag=2">通过初筛</a>
+                    				<a href="javascript:void(0)" onclick="ajaxLook(3)">通过初筛</a>
                     			</li>
                     			<li>
-                    				<a href="delivery.html?tag=3">通知面试</a>
+                    				<a href="javascript:void(0)" onclick="ajaxLook(4)">通知面试</a>
                     			</li>
                     			<li class="last">
-                    				<a href="delivery.html?tag=4">不合适</a>
+                    				<a href="javascript:void(0)" onclick="ajaxLook(5)">不合适</a>
                     			</li>
                     		</ul>
                     	</div>
                     	                        <form id="deliveryForm">
-                    	                        <!-- 循环体 -->
+                    	                        <!-- 循环体 li -->
                             <ul class="reset my_delivery">
+                               	                             	<li>
+                             		<div class="d_item">
+                             			 	                                    <h2 title="随便写">
+	                                        <a target="_blank" href="http://www.lagou.com/jobs/149594.html">
+	                                        	<em>随便写</em> 
+	                                        	<span>（1k-2k）</span>
+	                                        	<!--  -->
+	                                    	</a>
+	                                    </h2>
+	                                    		                                <div class="clear"></div>
+	                                   	<a title="公司名称" class="d_jobname" target="_blank" href="http://www.lagou.com/c/25927.html">
+	                                   		公司名称 <span>[上海]</span> 
+	                                    </a>
+	                                    <span class="d_time">2014-07-01 17:15</span>
+	                                    <div class="clear"></div>
+	                                    <div class="d_resume">
+	                                    	使用简历：
+	                                    	<span>
+	                                    	                                        		在线简历
+                                        		                                    	</span>
+	                                    </div>
+	                                    	                                    	<a class="btn_showprogress" href="javascript:;">
+	                                    			                                    			不合适
+	                                    			                                    	<i></i></a>
+                               			                               		</div>
+                               		                               		<div class="progress_status	dn">
+	                               		                               			<ul class="status_steps">
+                               				<li class="status_done status_1">1</li>
+                               				<li class="status_line status_line_done"><span></span></li>
+                               				<li class="status_done"><span>2</span></li>
+                               				<li class="status_line status_line_done"><span></span></li>
+                               				<li class="status_done"><span>3</span></li>
+                               				<li class="status_line status_line_done"><span></span></li>
+                               				<li class="status_done"><span>4</span></li>
+                               			</ul>
+                               			<ul class="status_text">
+                           					<li>投递成功</li>
+                           					<li class="status_text_2">简历被查看</li>
+                           					<li class="status_text_3">通过初步筛选</li>
+                           						                                    		<li style="margin-left: 75px;*margin-left: 60px;" class="status_text_4">不合适</li>
+	                                    	                               			</ul>
+                               			<ul class="status_list">
+                               				    <li class="top">
+                               					<div class="list_time"><em></em>2014-07-01 17:15</div>
+                               					<div class="list_body">
+                               						                               							简历被lixiang标记为不合适<div>您的简历已收到，但目前您的工作经历与该职位不是很匹配，因此很抱歉地通知您无法进入面试。</div>                               						                               					</div>
+                               				</li>
+                               				<li class="bottom">
+                               					<div class="list_time"><em></em>2014-07-01 17:08</div>
+                               					<div class="list_body">
+                               						                               							lixiang已成功接收你的简历                               						                               					</div>
+                               				</li>
+                               				                               			</ul>
+                               			<a class="btn_closeprogress" href="javascript:;"></a>
+                               		</div>
+                               		                            	</li>
+                               		                            	<!-- ------------------- -->
                                	                             	<li>
                              		<div class="d_item">
                              			 	                                    <h2 title="随便写">
