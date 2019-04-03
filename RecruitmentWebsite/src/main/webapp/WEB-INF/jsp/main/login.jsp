@@ -34,7 +34,25 @@ var youdao_conv_id = 271546;
 </script> 
 <script type="text/javascript" src="style/js/conv.js"></script>
 </head>
-
+<%
+    String username = "";
+    String password = "";
+    //获取当前站点的所有Cookie
+    Cookie[] cookies = request.getCookies();
+    //有cookie数据的时候再去遍历人家
+    if(cookies!=null){
+    	 if(cookies.length>0){
+        	 for (int i = 0; i < cookies.length; i++) {//对cookies中的数据进行遍历，找到用户名、密码的数据
+        	        if ("cookiename".equals(cookies[i].getName())) {
+        	            username = cookies[i].getValue();
+        	        } else if ("cookiepwd".equals(cookies[i].getName())) {
+        	            password = cookies[i].getValue();
+        	        }
+        	    }
+        }
+    }
+   
+%>
 <body id="login_bg">
 	<div class="login_wrapper">
 		<div class="login_header">
@@ -46,9 +64,9 @@ var youdao_conv_id = 271546;
     	<input type="hidden" id="resubmitToken" value="" />		
 		 <div class="login_box">
         	<form id="loginForm" action="userLogin.controller" method="post">
-				<input type="text" id="email" name="email" value="${ruser.email }" tabindex="1" placeholder="请输入登录邮箱地址" />
+				<input type="text" id="email" name="email" value="<%=username %>" tabindex="1" placeholder="请输入登录邮箱地址" />
 				<span></span>
-			  	<input type="password" id="password" name="password" tabindex="2" value="${ruserpwd }" placeholder="请输入密码" />
+			  	<input type="password" id="password" name="password" tabindex="2" value="<%=password %>" placeholder="请输入密码" />
 			  	<span></span>
 				<!-- <span class="error" style="display:none;" id="beError"></span> -->
 			    <label class="fl" for="remember"><input type="checkbox" id="remember" value="yes" checked="checked" name="autoLogin" /> 记住我</label>
@@ -81,12 +99,7 @@ $(function(){
 		var password = $('#password').val();
 		alert(email);
 		alert(password);
-		
 		$("").submit();	
-		
-		
-		
-		
 	}) */
 	var userEmail = '${userEmail}';
 	if(userEmail.length>0){
