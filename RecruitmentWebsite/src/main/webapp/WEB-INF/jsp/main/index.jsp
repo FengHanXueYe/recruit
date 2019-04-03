@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+﻿
 <!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -75,14 +76,111 @@
 
 			<div id="sidebar">
 				<div class="mainNavs">
+
+
 					<c:forEach items="${ocone}" var="o">
 						<div class="menu_box">
 							<div class="menu_main">
+
 								<h2>
 									${o.nname} <span></span>
 								</h2>
-								
-								<!-- <a href="h/jobs/list_Java?labelWords=label">JAVA</a>
+
+								<c:if test="${o.nid eq '1' }">
+									<c:forEach items="${ocone11}" var="oc">
+
+										<c:forEach items="${oc.octwo}" var="ooc">
+
+											<c:forEach items="${ooc.octhree}" var="oooc">
+
+												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+
+											</c:forEach>
+
+										</c:forEach>
+
+									</c:forEach>
+								</c:if>
+								<c:if test="${o.nid eq '2' }">
+									<c:forEach items="${ocone12}" var="oc">
+
+										<c:forEach items="${oc.octwo}" var="ooc">
+
+											<c:forEach items="${ooc.octhree}" var="oooc">
+
+												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+
+											</c:forEach>
+
+										</c:forEach>
+
+									</c:forEach>
+								</c:if>
+								<c:if test="${o.nid eq '3' }">
+									<c:forEach items="${ocone13}" var="oc">
+
+										<c:forEach items="${oc.octwo}" var="ooc">
+
+											<c:forEach items="${ooc.octhree}" var="oooc">
+
+												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+
+											</c:forEach>
+
+										</c:forEach>
+
+									</c:forEach>
+								</c:if>
+								<c:if test="${o.nid eq '4' }">
+									<c:forEach items="${ocone14}" var="oc">
+
+										<c:forEach items="${oc.octwo}" var="ooc">
+
+											<c:forEach items="${ooc.octhree}" var="oooc">
+
+												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+
+											</c:forEach>
+
+										</c:forEach>
+
+									</c:forEach>
+								</c:if>
+								<c:if test="${o.nid eq '5' }">
+									<c:forEach items="${ocone15}" var="oc">
+
+										<c:forEach items="${oc.octwo}" var="ooc">
+
+											<c:forEach items="${ooc.octhree}" var="oooc">
+
+												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+
+											</c:forEach>
+
+										</c:forEach>
+
+									</c:forEach>
+								</c:if>
+								<c:if test="${o.nid eq '6' }">
+									<c:forEach items="${ocone16}" var="oc">
+
+										<c:forEach items="${oc.octwo}" var="ooc">
+
+											<c:forEach items="${ooc.octhree}" var="oooc">
+
+												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+
+											</c:forEach>
+
+										</c:forEach>
+
+									</c:forEach>
+								</c:if>
+
+
+
+
+								<!-- 
 							 <a
 								href="h/jobs/list_PHP?labelWords=label">PHP</a> <a
 								href="h/jobs/list_C?labelWords=label">C</a> <a
@@ -95,21 +193,40 @@
 								href="h/jobs/list_项目经理?labelWords=label">项目经理</a> <a
 								href="h/jobs/list_架构师?labelWords=label">架构师</a> -->
 							</div>
+
 							<div class="menu_sub dn">
-								<dl class="reset">
-									<dt>
-										<c:forEach items="${o.octwo}" var="oo">
+								<c:forEach items="${o.octwo}" var="oo">
+									<dl class="reset">
+										<dt>
+											<!-- //页面 -->
+
 											<a href="h/jobs/list_后端开发?labelWords=label">${oo.wname}</a>
-										
+										</dt>
 
-									</dt>
-									<dd>
-										<c:forEach items="${oo.octhree}" var="ooo">
-											<a href="h/jobs/list_Java?labelWords=label" class="curr">${ooo.hname}</a>
+										<dd>
+											<c:forEach items="${oo.octhree}" var="ooo">
+												<a href="h/jobs/list_Java?labelWords=label" class="curr">${ooo.hname}</a>
+											</c:forEach>
 
-										</c:forEach>
-                                </c:forEach>        
-										<!--  <a href="h/jobs/list_C%2B%2B?labelWords=label" class="curr">C++</a>
+
+										</dd>
+
+									</dl>
+
+
+
+								</c:forEach>
+
+							</div>
+
+						</div>
+					</c:forEach>
+
+					<!-- 
+			
+			
+			
+			 <a href="h/jobs/list_C%2B%2B?labelWords=label" class="curr">C++</a>
 									<a href="h/jobs/list_PHP?labelWords=label" class="curr">PHP</a>
 									<a href="h/jobs/list_%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98?labelWords=label">数据挖掘</a>
 									<a href="h/jobs/list_C?labelWords=label" class="curr">C</a>
@@ -122,9 +239,24 @@
 									<a href="h/jobs/list_Perl?labelWords=label">Perl</a>
 									<a href="h/jobs/list_Ruby?labelWords=label">Ruby</a>
 									<a href="h/jobs/list_Node.js?labelWords=label">Node.js</a>  -->
+
+					<!--  <dl class="reset">
+									<dt>
+										<a href="h/jobs/list_前端开发?labelWords=label"> 前端开发 </a>
+									</dt>
+									<dd>
+										<a href="h/jobs/list_web%E5%89%8D%E7%AB%AF?labelWords=label">web前端</a>
+										<a href="h/jobs/list_Flash?labelWords=label">Flash</a> <a
+											href="h/jobs/list_html5?labelWords=label">html5</a> <a
+											href="h/jobs/list_JavaScript?labelWords=label">JavaScript</a>
+										<a href="h/jobs/list_U3D?labelWords=label">U3D</a> <a
+											href="h/jobs/list_COCOS2D-X?labelWords=label">COCOS2D-X</a>
 									</dd>
 								</dl>
-								<!-- <dl class="reset">
+			
+			
+			
+			<dl class="reset">
 									<dt>
 										<a href="h/jobs/list_移动开发?labelWords=label"> 移动开发 </a>
 									</dt>
@@ -221,9 +353,8 @@
 											href="h/jobs/list_%E8%BF%90%E7%BB%B4%E6%80%BB%E7%9B%91?labelWords=label">运维总监</a>
 									</dd>
 								</dl> -->
-							</div>
-						</div>
-						<!-- <div class="menu_box">
+
+					<!-- <div class="menu_box">
 							<div class="menu_main">
 								<h2>
 									产品 <span></span>
@@ -280,7 +411,7 @@
 								</dl>
 							</div>
 						</div> -->
-					</c:forEach>
+
 					<!-- <div class="menu_box">
 						<div class="menu_main">
 							<h2>
@@ -541,7 +672,7 @@
 							</dl>
 						</div>
 					</div> -->
-					 <div class="menu_box" hidden="true">
+					<div class="menu_box" hidden="true">
 						<div class="menu_main">
 							<h2>
 								职能 <span></span>
@@ -614,7 +745,7 @@
 			</div>
 			<div class="content">
 				<div id="search_box">
-					<form id="searchForm" name="searchForm" action="list.html"
+					<form id="searchForm" name="searchForm" action="list.jsp"
 						method="get">
 						<ul id="searchType">
 							<li data-searchtype="1" class="type_selected">职位</li>
@@ -635,7 +766,7 @@
 							name="workAddress" id="workAddress" value="" /> <input
 							type="hidden" name="city" id="cityInput" value="" /> <input
 							type="submit" id="search_button" value="搜索" />
-
+<!-- asd -->
 					</form>
 				</div>
 				<style>
@@ -1193,7 +1324,7 @@
 							</div>
 						</li>
 
-						<a href="list.html" class="btn fr" target="_blank">查看更多</a>
+						<a href="toListOoccupation.controller" class="btn fr" target="_blank">查看更多</a>
 					</ul>
 					<ul class="hot_pos hot_posHotPosition reset" style="display: none;">
 						<li class="clearfix">
@@ -1614,7 +1745,7 @@
 								</ul>
 							</div>
 						</li>
-						<a href="list.html?city=%E5%85%A8%E5%9B%BD" class="btn fr"
+						<a href="toListOoccupation.controller" class="btn fr"
 							target="_blank">查看更多</a>
 					</ul>
 				</div>

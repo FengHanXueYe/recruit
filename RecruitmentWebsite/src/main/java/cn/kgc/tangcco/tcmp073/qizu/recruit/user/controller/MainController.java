@@ -41,6 +41,9 @@ public class MainController {
 	@RequestMapping("toIndex")
 	public String toIndex(Model model) {
 		model.addAttribute("ocone",os.queryType());
+		for (int i = 0; i <7; i++) {
+			model.addAttribute("ocone1"+i, os.querySuiji(i));
+		}
 		
 		return "main/index";
 	}

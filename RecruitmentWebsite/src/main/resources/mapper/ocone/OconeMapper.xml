@@ -16,5 +16,10 @@
 		SELECT *FROM ocone o,octwo
 		t,octhree h WHERE o.nid=t.wnid AND h.hwid=t.wid
 	</select>
+	<select id="querySuiji" resultMap="Ocone" parameterType="int">
+	
+	SELECT * FROM ocone o,octwo t, octhree h WHERE o.nid=t.wnid AND t.wid=h.hwid
+		AND o.nid=#{nid} ORDER BY RAND() LIMIT 7;
+	</select>
 
 </mapper>
