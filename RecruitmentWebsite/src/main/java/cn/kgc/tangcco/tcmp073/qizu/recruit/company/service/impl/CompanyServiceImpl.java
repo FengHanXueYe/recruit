@@ -1,5 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -40,6 +42,10 @@ public class CompanyServiceImpl implements CompanyService {
 	@Override
 	public Company qyeryAllCompany(int cuid) {
 		return mapper.qyeryAllCompany(cuid);
+	}
+	@Override
+	public List<Company> queryalltoFounder() {
+		return mapper.queryalltoFounder();
 	}
 	
 	//1232

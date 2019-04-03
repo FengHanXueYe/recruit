@@ -1,5 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.company.service;
 
+import java.util.List;
+
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 
 public interface CompanyService {
@@ -10,5 +12,6 @@ public interface CompanyService {
 	int updateCompanyThree(String cfinancing,int cid);
 	int updateCompanyProfile(String companyProfile,int cid);
 	Company qyeryAllCompany(int cuid);
+	List<Company> queryalltoFounder();
 	//123
 }

@@ -1,5 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.company.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -20,6 +22,6 @@ public interface CompanyMapper {
 	int updateCompanyThree(@Param("cfinancing")String cfinancing,@Param("cid")int cid);
 	@Update("update company set companyProfile=#{companyProfile} where cid=#{cid}")
 	int updateCompanyProfile(@Param("companyProfile")String companyProfile,@Param("cid")int cid);
-
+    List<Company> queryalltoFounder();
 	Company qyeryAllCompany(int cuid);
 }
