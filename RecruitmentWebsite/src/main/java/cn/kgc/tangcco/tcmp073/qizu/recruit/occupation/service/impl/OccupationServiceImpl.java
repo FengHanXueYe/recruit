@@ -22,7 +22,7 @@ public class OccupationServiceImpl implements OccupationService {
 
 	@Override
 	public List<Occupation> queryall() {
-		return mapper.queryall();
+		return mapper.queryall();//sad
 	}
 
 }

@@ -6,5 +6,5 @@ import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 
 public interface OccupationService {
 	int addOccupation(Occupation occ);
-	List<Occupation> queryall();
+	List<Occupation> queryall();//热门搜索
 }

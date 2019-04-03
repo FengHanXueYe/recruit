@@ -9,6 +9,7 @@
 	<resultMap type="Education" id="Education" autoMapping="true">
 		<id column="eid" property="eid" />
 	</resultMap>
+	<!-- //热门搜索 -->
 	<select id="queryall" resultMap="Occupation">
 		SELECT *FROM occupation
 		o,education e WHERE o.oeducation=e.eid ORDER BY
