@@ -132,5 +132,14 @@ public class MainController {
 	public String toDelivery(Model model) {
 		return "main/delivery";
 	}
-	
+
+	/**
+	 * 去list页面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("toListOoccupation")
+	public String toListOoccupation(Model model) {
+		return "main/list";
+	}
 }
