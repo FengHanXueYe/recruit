@@ -2,8 +2,11 @@ package cn.kgc.tangcco.tcmp073.qizu.recruit.user.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +41,7 @@ public class UserController {
 	 */
 	
 	@RequestMapping("userLogin")
-	public String userLogin(RecruitingUsers ruser,String autoLogin, HttpSession session, Model model) {
+	public String userLogin(RecruitingUsers ruser,String autoLogin,HttpServletRequest request,HttpServletResponse response, HttpSession session, Model model) {
 		System.out.println("---------------->"+autoLogin);
 		String ruserpwd = ruser.getPassword();
 		// 设置session有效时间
@@ -62,6 +65,16 @@ public class UserController {
 			return "main/login";
 		} else {
 			session.setAttribute("loginUser", loginRecruitingUsers);
+			if(autoLogin!=null) {
+				Cookie cookiename = new Cookie("cookiename",ruser.getEmail());
+				cookiename.setMaxAge(60 * 60 * 24 * 3);
+				Cookie cookiepwd = new Cookie("cookiepwd",ruserpwd);
+				cookiepwd.setMaxAge(60 * 60 * 24 * 3);
+				response.addCookie(cookiepwd);
+				response.addCookie(cookiename);
+//				model.addAttribute("cookiename", cookiename);
+//				model.addAttribute("cookiepwd", cookiepwd);
+			}
 			model.addAttribute("ocone",os.queryType());
 			for (int i = 0; i <7; i++) {
 				model.addAttribute("ocone1"+i, os.querySuiji(i));
