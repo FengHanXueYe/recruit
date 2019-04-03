@@ -1,7 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.user.controller;
 
 import javax.annotation.Resource;
-
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -38,7 +38,8 @@ public class UserController {
 	 */
 	
 	@RequestMapping("userLogin")
-	public String userLogin(RecruitingUsers ruser, HttpSession session, Model model) {
+	public String userLogin(RecruitingUsers ruser,String autoLogin, HttpSession session, Model model) {
+		System.out.println("---------------->"+autoLogin);
 		String ruserpwd = ruser.getPassword();
 		// 设置session有效时间
 		// session.setMaxInactiveInterval(15*60);

@@ -51,7 +51,7 @@ var youdao_conv_id = 271546;
 			  	<input type="password" id="password" name="password" tabindex="2" value="${ruserpwd }" placeholder="请输入密码" />
 			  	<span></span>
 				<!-- <span class="error" style="display:none;" id="beError"></span> -->
-			    <label class="fl" for="remember"><input type="checkbox" id="remember" value="" checked="checked" name="autoLogin" /> 记住我</label>
+			    <label class="fl" for="remember"><input type="checkbox" id="remember" value="yes" checked="checked" name="autoLogin" /> 记住我</label>
 			    <a href="toReset.controller" class="fr">忘记密码？</a>
 			    
 				<input type="submit" id="submitLogin" value="登 &nbsp; &nbsp; 录" />
