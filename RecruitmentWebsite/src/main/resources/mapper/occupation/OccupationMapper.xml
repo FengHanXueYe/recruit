@@ -12,7 +12,6 @@
 	<!-- //热门搜索 -->
 	<select id="queryall" resultMap="Occupation">
 		SELECT *FROM occupation
-		o,education e WHERE o.oeducation=e.eid ORDER BY
-		orelease DESC
+		o,education e WHERE o.oeducation=e.eid 	
 	</select>
 </mapper>
