@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.mapper.OccupationMapper">
+	<resultMap type="Occupation" id="Occupation" autoMapping="true">
+		<id column="oid" property="oid" />
+		<association property="education" resultMap="Education"></association>
+	</resultMap>
+	<resultMap type="Education" id="Education" autoMapping="true">
+		<id column="eid" property="eid" />
+	</resultMap>
+	<select id="queryall" resultMap="Occupation">
+		SELECT *FROM occupation
+		o,education e WHERE o.oeducation=e.eid ORDER BY
+		orelease DESC
+	</select>
+</mapper>
