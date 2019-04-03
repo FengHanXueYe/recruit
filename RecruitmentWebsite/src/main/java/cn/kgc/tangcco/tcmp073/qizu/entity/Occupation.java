@@ -1,6 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.entity;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,5 +24,5 @@ public class Occupation {
 	private Date orelease;
 	private int otype;
 	private Integer ocid;
-	
+	private List<Education> education;
 }
