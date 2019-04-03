@@ -1,5 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.mapper.OccupationMapper;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.service.OccupationService;
+
 @Service
 public class OccupationServiceImpl implements OccupationService {
 	@Resource
@@ -16,7 +19,10 @@ public class OccupationServiceImpl implements OccupationService {
 	public int addOccupation(Occupation occ) {
 		return mapper.addOccupation(occ);
 	}
-	
-	
+
+	@Override
+	public List<Occupation> queryall() {
+		return mapper.queryall();//sad
+	}
 
 }
