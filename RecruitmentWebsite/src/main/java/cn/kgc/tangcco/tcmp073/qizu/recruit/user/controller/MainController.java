@@ -153,6 +153,12 @@ public class MainController {
 		return "main/delivery";
 	}
 	
+	
+	/**
+	 * 去list职业页面
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("toListOoccupation")
 	public String toListOoccupation(Model model) {
 		return "main/list";
