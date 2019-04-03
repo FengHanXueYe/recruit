@@ -1324,7 +1324,7 @@
 							</div>
 						</li>
 
-						<a href="list.html" class="btn fr" target="_blank">查看更多</a>
+						<a href="toListOoccupation.controller" class="btn fr" target="_blank">查看更多</a>
 					</ul>
 					<ul class="hot_pos hot_posHotPosition reset" style="display: none;">
 						<li class="clearfix">
@@ -1745,7 +1745,7 @@
 								</ul>
 							</div>
 						</li>
-						<a href="list.html?city=%E5%85%A8%E5%9B%BD" class="btn fr"
+						<a href="toListOoccupation.controller" class="btn fr"
 							target="_blank">查看更多</a>
 					</ul>
 				</div>

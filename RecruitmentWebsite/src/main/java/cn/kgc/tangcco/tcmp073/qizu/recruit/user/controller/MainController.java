@@ -152,5 +152,11 @@ public class MainController {
 	public String toDelivery(Model model) {
 		return "main/delivery";
 	}
-
+	
+	@RequestMapping("toListOoccupation")
+	public String toListOoccupation(Model model) {
+		return "main/list";
+	}
+	
+	
 }
