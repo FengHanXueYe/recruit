@@ -50,7 +50,8 @@ var youdao_conv_id = 271546;
 	    					    			</li>
 	    							    			<li><a rel="nofollow" href="create.html">发布职位</a></li>
 	    		    		</ul>
-        	        	<dl class="collapsible_menu">
+	    		    		<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
+        	     <!-- 	<dl class="collapsible_menu">
             	<dt>
            			<span>jason&nbsp;</span> 
             		<span class="red dn" id="noticeDot-1"></span>
@@ -62,7 +63,7 @@ var youdao_conv_id = 271546;
                 	<dd style="display: none;"><a href="list.html">我要找工作</a></dd>
                                                 <dd style="display: none;"><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout" style="display: none;"><a rel="nofollow" href="login.html">退出</a></dd>
-            </dl>
+            </dl> -->   
                                 </div>
     </div><!-- end #header -->
     <div id="container">
@@ -73,15 +74,21 @@ var youdao_conv_id = 271546;
                     <h2><em></em>开通招聘服务</h2>
                 </dt>
                 <dd> 
+                <form action="toIndex01.controller" method="post">
                 	<div class="os_step_3"></div>
                 	<div class="open_service_success">
-	                	<h3>验证邮件已发送至：jason@admin.com</h3>
+	                	<h3>验证邮件已发送至：${company2.cemail}</h3>
+	                	<input type="hidden" value="${company2.cemail}"    name="cemail">
+	                	
 	                	<h4>请登录邮箱点击邮件内的链接，验证后即可发布职位</h4>
+	                	<input type="submit" value="下一步" id="bindSubmit">
+	                	
 	                    <!-- <div class="emailus">
 	                    	我们已将主题为“开通招聘服务信息确认”邮件发送至邮箱：<a class="f18"></a> <br />
 							请点击邮件内的链接完成确认，确认后即可发布职位
 	                    </div> -->
 	                    	            	</div>
+	                    	            	</form>
 	            	<div class="open_service_success_btm">
 	                 	<h5>没有收到确认邮件，怎么办？</h5>
 	                   	<div class="contacttip">
@@ -125,7 +132,14 @@ var youdao_conv_id = 271546;
 
 <script src="style/js/core.min.js" type="text/javascript"></script>
 <script src="style/js/popup.min.js" type="text/javascript"></script>
-
+<script type="text/javascript" src="${pageContext.request.contextPath }/webjars/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+		$("#bindSubmit").click(function(){
+			location.href="toIndex01.controller";
+			
+			
+		})
+</script>
 <!--  -->
 
 

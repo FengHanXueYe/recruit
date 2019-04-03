@@ -1471,6 +1471,7 @@ div.BMap_cmLstItem {
 				</ul>
 				<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
 				<!-- <dl class="collapsible_menu">
+				
             	<dt>
            			<span>jason&nbsp;</span> 
             		<span class="red dn" id="noticeDot-1"></span>
@@ -1543,13 +1544,10 @@ div.BMap_cmLstItem {
 						<div class="ccc_tr">
 							今日已发布 <span>0</span> 个职位 还可发布 <span>5</span> 个职位
 						</div>
-						<form action="http://www.lagou.com/corpPosition/preview.html"
-							method="post" id="jobForm">
-							<input type="hidden" value="" name="id"> <input
-								type="hidden" value="create" name="preview"> <input
-								type="hidden" value="25927" name="companyId"> <input
-								type="hidden" value="c29d4a7c35314180bf3be5eb3f00048f"
-								name="resubmitToken">
+						<!--  -->
+						<form action="" 
+							 method="post" >
+							
 							<table class="btm">
 								<tbody>
 									<tr>
@@ -1850,13 +1848,13 @@ div.BMap_cmLstItem {
 										<td><span class="redstar">*</span></td>
 										<td>职位名称</td>
 										<td><input type="text" placeholder="请输入职位名称，如：产品经理"
-											value="" name="positionName" id="positionName"></td>
+											value="" name="oname" id="positionName"></td>
 									</tr>
 									<tr>
 										<td></td>
 										<td>所属部门</td>
 										<td><input type="text" placeholder="请输入所属部门" value=""
-											name="department" id="department"></td>
+											name="odepartment" id="department"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -1868,14 +1866,15 @@ div.BMap_cmLstItem {
 										<td width="85">工作性质</td>
 										<td>
 											<ul class="profile_radio clearfix reset">
-												<li>全职<em></em> <input type="radio" name="jobNature"
+												<li>全职<em></em> <input type="radio" name="oonatures"
 													value="全职">
 												</li>
-												<li>兼职<em></em> <input type="radio" name="jobNature"
+												<li>兼职<em></em> <input type="radio" name="oonatures"
 													value="兼职">
 												</li>
-												<li>实习<em></em> <input type="radio" name="jobNature"
+												<li>实习<em></em> <input type="radio" name="oonatures"
 													value="实习">
+													<input name="ocid" value="${loginUser.userid}" type="hidden">
 												</li>
 											</ul>
 										</td>
@@ -1887,12 +1886,14 @@ div.BMap_cmLstItem {
 										<td>
 											<div class="salary_range">
 												<div>
+												<input name="onature" type="hidden">
+												
 													<input type="text" placeholder="最低月薪" value=""
-														id="salaryMin" name="salaryMin"> <span>k</span>
+														id="salaryMin" name="ominsalary"> <span>k</span>
 												</div>
 												<div>
 													<input type="text" placeholder="最高月薪" value=""
-														id="salaryMax" name="salaryMax"> <span>k</span>
+														id="salaryMax" name="omaxsalary"> <span>k</span>
 												</div>
 												<span>只能输入整数，如：9</span>
 											</div>
@@ -1902,7 +1903,7 @@ div.BMap_cmLstItem {
 										<td><span class="redstar">*</span></td>
 										<td>工作城市</td>
 										<td><input type="text" placeholder="请输入工作城市，如：北京"
-											value="上海" name="workAddress" id="workAddress"></td>
+											value="上海" name="ocity" id="workAddress"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -1912,7 +1913,7 @@ div.BMap_cmLstItem {
 									<tr>
 										<td width="25"><span class="redstar">*</span></td>
 										<td width="85">工作经验</td>
-										<td><input type="hidden" id="experience" value=""
+										<td><input type="hidden" id="experience" name="olog" value=""
 											name="workYear"> <input type="button" value="请选择工作经验"
 											id="select_experience" class="selectr selectr_380">
 											<div class="boxUpDown boxUpDown_380 dn" id="box_experience"
@@ -1932,7 +1933,7 @@ div.BMap_cmLstItem {
 										<td><span class="redstar">*</span></td>
 										<td>学历要求</td>
 										<!--<h3><span>(最高月薪不能大于最低月薪的2倍)</span></h3> -->
-										<td><input type="hidden" id="education" value=""
+										<td><input type="hidden" id="educations" name="oeducation" value=""
 											name="education"> <input type="button"
 											value="请选择学历要求" id="select_education"
 											class="selectr selectr_380">
@@ -1957,15 +1958,16 @@ div.BMap_cmLstItem {
 										<td width="85">职位诱惑</td>
 										<td><input type="text"
 											placeholder="20字描述该职位的吸引力，如：福利待遇、发展前景等" value=""
-											name="positionAdvantage" class="input_520"
+											name="owelfare" class="input_520"
 											id="positionAdvantage"></td>
 									</tr>
 									<tr>
 										<td><span class="redstar">*</span></td>
 										<td>职位描述</td>
 										<td><span class="c9 f14">(建议分条描述工作职责等。请勿输入公司邮箱、联系电话及其他外链，否则将自动删除)</span>
-
-											<textarea name="positionDetail" id="positionDetail"
+										<textarea rows="60" cols="300" name="odetail"></textarea>
+	
+										<!--  	<textarea name="positionDetail" id="positionDetail"
 												class="tinymce" style="display: none;" aria-hidden="true"></textarea><span
 											role="application" aria-labelledby="positionDetail_voice"
 											id="positionDetail_parent" class="mceEditor defaultSkin"><span
@@ -1994,7 +1996,7 @@ div.BMap_cmLstItem {
 																					<td
 																						class="mceToolbarStart mceToolbarStartButton mceFirst"><span>
 																							<!-- IE -->
-																					</span></td>
+																				<!--	</span></td>
 																					<td style="position: relative"><a
 																						title="粗体(Ctrl B)"
 																						aria-labelledby="positionDetail_bold_voice"
@@ -2222,7 +2224,7 @@ div.BMap_cmLstItem {
 																					<td
 																						class="mceToolbarEnd mceToolbarEndButton mceLast"><span>
 																							<!-- IE -->
-																					</span></td>
+																			<!--		</span></td>
 																				</tr>
 																			</tbody>
 																		</table></span>
@@ -2232,7 +2234,7 @@ div.BMap_cmLstItem {
 																title="转到工具按钮 - Alt-Q，转到编辑器 - Alt-Z，转到元素路径 - Alt-X。"
 																accesskey="z">
 																	<!-- IE -->
-															</a></td>
+													<!--		</a></td>
 														</tr>
 														<tr class="mceLast">
 															<td class="mceIframeContainer mceFirst mceLast"><iframe
@@ -2242,13 +2244,13 @@ div.BMap_cmLstItem {
 																	style="width: 100%; height: 253px; display: block;"></iframe></td>
 														</tr>
 													</tbody>
-												</table></span></td>
+												</table></span></td>-->
 									</tr>
 									<tr>
 										<td><span class="redstar">*</span></td>
 										<td>工作地址</td>
 										<td><input type="text" placeholder="请输入详细的工作地址" value=""
-											name="positionAddress" class="input_520" id="positionAddress">
+											name="oaddress" class="input_520" id="positionAddress">
 											<input type="hidden" value="" name="positionLng" id="lng">
 											<input type="hidden" value="" name="positionLat" id="lat">
 											<div class="work_place f14">
@@ -2262,22 +2264,16 @@ div.BMap_cmLstItem {
 								<tbody>
 									<tr>
 										<td width="25"><span class="redstar">*</span></td>
-										<td colspan="2">接收简历邮箱： <span id="receiveEmailVal">admin@admin.com</span>
-											<input type="hidden" value="admin@admin.com"
-											id="receiveEmail" name="email">
+										<td colspan="2">接收简历邮箱 <span id="receiveEmailVal"><input name="oemail" id="forwardEmail"></span>
+											
 										</td>
 									</tr>
+									
 									<tr>
 										<td width="25"></td>
-										<td colspan="2">同时简历自动发送至邮箱（仅一个） <input type="text"
-											value="" id="forwardEmail" name="forwardEmail"> <!-- <span class="error" id="beError" style="display:none"></span> -->
-										</td>
-									</tr>
-									<tr>
-										<td width="25"></td>
-										<td colspan="2"><input type="submit" value="预览"
-											id="jobPreview" class="btn_32"> <input type="button"
-											value="发布" id="formSubmit" class="btn_32"></td>
+										<td colspan="2"><!--  <input type="submit" value="预览"
+											id="jobPreview" class="btn_32">--> <input type="button"
+											value="发布" id="formSubmits" class="btn_32"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -2738,6 +2734,54 @@ $(function(){
 
 	<script src="style/js/core.min.js" type="text/javascript"></script>
 	<script src="style/js/popup.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function(){
+			var olog="";
+			var oeducation="";
+			var rid="";
+			$("#box_experience ul li").click(function(){
+				olog=$(this).html();
+				
+				$("#experience").html(olog);
+			})
+			$("#box_education ul li").click(function(){
+				
+				var i=$(this).html();
+				if(i=="不限"){
+					oeducation=1;
+				}else if(i=="大专"){
+					oeducation=2;
+				}else if(i=="本科"){
+					oeducation=3;
+				}else if(i=="硕士"){
+					oeducation=4;
+				}else if(i=="博士"){
+					oeducation=5;
+				}
+				
+				$("#educations").val(oeducation);
+			})
+			$("input[type='radio']").change(function(){
+				 rid=$(this).val();
+				if(rid=="全职"){
+					rid=1;
+				}else if(rid=="兼职"){
+					rid=2;
+				}else if(rid=="实习"){
+					rid=3;
+				}
+				
+				$("input[name='onature']").val(rid);
+			})
+			
+			
+			$("#formSubmits").click(function(){
+				
+				$("form").attr("action","doAddOccupation.controller").submit();
+			})
+		})
+	
+	</script>
 
 	<!--  -->
 

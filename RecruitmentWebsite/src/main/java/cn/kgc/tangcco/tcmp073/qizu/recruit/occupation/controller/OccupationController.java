@@ -33,7 +33,6 @@ public class OccupationController {
 	@RequestMapping("doAddOccupation")
 	public String doAdd(Occupation occ) {
 		occ.setOstate(0);
-		occ.setOcid(1);
 		int row=this.service.addOccupation(occ);
 		if(row>0) {
 			return "main/index06";

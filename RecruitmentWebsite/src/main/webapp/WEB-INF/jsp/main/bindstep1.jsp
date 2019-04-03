@@ -50,21 +50,24 @@ var youdao_conv_id = 271546;
 	    					    			</li>
 	    							    			<li><a rel="nofollow" href="create.html">发布职位</a></li>
 	    		    		</ul>
-        	        	<dl class="collapsible_menu">
-            	<dt>
+	    		    		<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
+        	         <!-- 	<dl class="collapsible_menu">
+           			
+           	
+           	<dt>
            			<span>jason&nbsp;</span> 
             		<span class="red dn" id="noticeDot-1"></span>
             		<i></i>
             	</dt>
-                                	<dd><a href="positions.html">我发布的职位</a></dd>
+                                	 <dd><a href="positions.html">我发布的职位</a></dd>
                 	<dd><a href="positions.html">我收到的简历</a></dd>
                 	<dd class="btm"><a href="myhome.html">我的公司主页</a></dd>
                 	<dd><a href="list.html">我要找工作</a></dd>
                                                 <dd><a href="accountBind.html">帐号设置</a></dd>
-                                <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
+                              <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>-->
             </dl>
                                 </div>
-    </div><!-- end #header -->
+    </div>
     <div id="container">
             <div class="content_mid">
         <!--form-->  
@@ -77,9 +80,9 @@ var youdao_conv_id = 271546;
 	                <form class="corp_form" id="bindForm">
 	                    <input type="hidden" value="a517d13d23f5432eab682688151c3673" id="resubmitToken">
 	                 	<h3><em class="redstar">*</em>联系电话 <span>（请填写真实有效的电话号码，方便系统校验使用）</span></h3>
-	                    <input type="text" value="" placeholder="请输入你的手机号码或座机号码" maxlength="49" name="tel" id="tel">	
+	                    <input type="text" value="" name="cphone" placeholder="请输入你的手机号码或座机号码" maxlength="49"  id="tel">	
 	                 	<h3><em class="redstar">*</em>接收简历邮箱 <span>（该邮箱为公司邮箱，审核通过后不可更改）</span></h3>
-	                    <input type="text" value="" placeholder="请输入你的公司邮箱作为接收简历邮箱" name="email" id="email">	
+	                    <input type="text" value="" name="cemail" placeholder="请输入你的公司邮箱作为接收简历邮箱"  id="email">	
 	                    <span id="beError" style="display:none;" class="error"></span>
 	                    <input type="submit" value="下一步" id="bindSubmit">
                     </form>
@@ -131,7 +134,16 @@ var youdao_conv_id = 271546;
 
 <script src="style/js/core.min.js" type="text/javascript"></script>
 <script src="style/js/popup.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/webjars/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+		$("#bindSubmit").click(function(){
+			$("#bindForm").attr("action","AddCompanyOneController.controller").submit();
+		})
 
+	
+
+
+</script>
 <!--  -->
 
 

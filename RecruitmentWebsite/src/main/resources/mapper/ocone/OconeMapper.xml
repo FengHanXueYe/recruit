@@ -13,7 +13,8 @@
 		<id column="hid" property="hid" />
 	</resultMap>
 	<select id="queryType" resultMap="Ocone">
-		SELECT *FROM ocone o,octwo t,octhree h WHERE o.nid=t.wnid AND h.hwid=t.wid
+		SELECT *FROM ocone o,octwo
+		t,octhree h WHERE o.nid=t.wnid AND h.hwid=t.wid
 	</select>
 
 </mapper>
