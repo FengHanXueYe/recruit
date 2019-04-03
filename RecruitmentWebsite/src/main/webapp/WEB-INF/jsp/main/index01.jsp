@@ -33,7 +33,7 @@ console.log(1);
 var youdao_conv_id = 271546; 
 </script> 
 <script src="style/js/conv.js" type="text/javascript"></script>
-<script src="style/js/ajaxCross.json" charset="UTF-8"></script></head>
+  <script src="style/js/ajaxCross.json" charset="UTF-8"></script></head>
 <body>
 <div id="body">
 	<div id="header">
@@ -78,14 +78,16 @@ var youdao_conv_id = 271546;
                     <h2><em></em>填写公司信息</h2>
                 </dt>
                 <dd>
-	                <form id="stepForm">
+                <!-- id="stepForm"  -->
+	                <form  action="ajaxUpdateCompanyTwo.controller" >
 	                	<div class="c_text_1">基本信息为必填项，是求职者加速了解公司的窗口，认真填写吧！</div>
 	                 	<img width="668" height="56" class="c_steps" alt="第一步" src="style/images/step1.png">
 	                    
-	                    <h3>公司全称 <span>福建平潭协创进出口贸易有限公司</span></h3>
-	                    
+	                    <h3>公司全称 <span>${company.cname}</span></h3>
+	                    <input name="cid" value="${company.cid}" type="hidden" >
+	                    <input name="cemail" value="${company.cemail}" type="hidden" >
 	                    <h3>公司简称</h3> <!--非必填-->
-	                    <input type="text" placeholder="请输入公司简称，如:拉勾" value="" name="name" id="name" class="valid">	
+	                    <input type="text" placeholder="请输入公司简称，如:拉勾" value="" name="cabbreviation" id="name" class="valid">	
 	                    
 	                    <h3>公司LOGO</h3> <!--非必填改必填-->
 	                   	<div class="c_logo c_logo_pos">
@@ -103,16 +105,16 @@ var youdao_conv_id = 271546;
 	                    </div>
 	                    
 	                    <h3>公司网址</h3>
-	                    <input type="text" placeholder="请输入公司网址" value="" name="website" id="website">	
+	                    <input type="text" placeholder="请输入公司网址" value="" name="curl" id="website">	
 	                    
 	                    <h3>所在城市</h3>
-	                    <input type="text" placeholder="请输入工作城市，如：北京" name="city" id="city">	
+	                    <input type="text" placeholder="请输入工作城市，如：北京" name="caddress" id="city">	
 	                    
 	                    <h3>行业领域</h3>
 	                    <div>
-		                    <input type="hidden" value="" name="select_industry_hidden" id="select_industry_hidden">
+		                    <input type="hidden" value=""  name="" id="select_industry_hidden">
 		                    		                    	<input type="button" value="请选择行业领域" name="select_industry" id="select_industry" class="select">
-		                    		                    <div class="dn" id="box_industry" style="display: none;">
+		                    		                    <div class="dn" id="box_industry" style="display: none;"><input name="cfield" type="hidden" >
 		                        <ul class="reset">
 		                        			                        		<li>移动互联网</li>
 		                            		                        		<li>电子商务</li>
@@ -147,7 +149,7 @@ var youdao_conv_id = 271546;
 	                    <div>
 		                    <input type="hidden" value="" name="select_scale_hidden" id="select_scale_hidden">
 		                    <input type="button" value="请选择公司规模" id="select_scale" class="select">
-		                    <div class="dn" id="box_scale" style="display: none;">
+		                    <div class="dn" id="box_scale" style="display: none;"><input type="hidden" name="cscale">
 		                        <ul class="reset">
 		                        			                            	<li>少于15人</li>
 		                            		                            	<li>15-50人</li>
@@ -160,9 +162,11 @@ var youdao_conv_id = 271546;
 	                    </div>
 	                    
 	                    <h3>发展阶段</h3> 
-	                    <div>
+	                    <div id="msg2">
+	                    <input type="hidden" name="cfs">
 		                    <input type="hidden" id="s_radio_hidden" name="s_radio_hidden" value="">
-		                    <ul class="s_radio clearfix s_radio_ex">
+		                    <ul class="s_radio clearfix s_radio_ex" >
+		                    									
 		                        		                        	<li>未融资</li>
 		                        		                        	<li>天使轮</li>
 		                        		                        	<li>A轮</li>
@@ -171,22 +175,24 @@ var youdao_conv_id = 271546;
 		                        		                        	<li>D轮及以上</li>
 		                        		                        	<li>上市公司</li>
 		                        		                    </ul>
+		                        		                   
+		                        		                    
 	                    </div>
 	                    
-	                    <h3>投资机构</h3>
+	               <h3>投资机构</h3>
 	                    <ul id="stagesList" class="reset">
 	                    	<li>
 	                    		<input type="hidden" class="select_invest_hidden" name="select_invest_hidden">
 			                    <input type="button" value="请选择发展阶段" class="select_short select_invest">
 			                    <div class="box_invest dn" style="display: none;">
 			                        <ul class="reset">
-			                        					                        					                        				                        						                        	<li>天使轮</li>
-				                        					                        				                        						                        	<li>A轮</li>
-				                        					                        				                        						                        	<li>B轮</li>
-				                        					                        				                        						                        	<li>C轮</li>
-				                        					                        				                        						                        	<li>D轮及以上</li>
-				                        					                        				                        						                        	<li>上市公司</li>
-				                        					                        			                        </ul>
+			                         <li>天使轮</li>
+				                     <li>A轮</li>
+				                     <li>B轮</li>
+				                     <li>C轮</li>
+				                     <li>D轮及以上</li>
+				                     <li>上市公司</li>
+				               </ul>
 			                    </div>
 			                    <input type="text" placeholder="请输入投资机构，如真格基金，创新工场" name="stageorg">
 	                    	</li>
@@ -196,19 +202,19 @@ var youdao_conv_id = 271546;
 		                    <input type="button" value="请选择发展阶段" class="select_short select_invest">
 		                    <div class="box_invest dn">
 		                        <ul class="reset">
-		                        				                        				                        			                        					                        	<li>天使轮</li>
-			                        				                        			                        					                        	<li>A轮</li>
-			                        				                        			                        					                        	<li>B轮</li>
-			                        				                        			                        					                        	<li>C轮</li>
-			                        				                        			                        					                        	<li>D轮及以上</li>
-			                        				                        			                        					                        	<li>上市公司</li>
-			                        				                        		                        </ul>
+		                             <li>天使轮</li>
+			                         <li>A轮</li>
+			                         <li>B轮</li>
+        			                 <li>C轮</li>
+		                        	 <li>D轮及以上</li>
+		                        	 <li>上市公司</li>
+	                        </ul>
 		                    </div>	
 		                    <input type="text" placeholder="请输入投资机构，如真格基金，创新工场" name="stageorg">
 	                    </div>
 	                    
 	                    <h3>一句话介绍</h3> 
-	                    <input type="text" placeholder="一句话概括公司亮点，如公司愿景、领导团队等，限50字" maxlength="50" name="temptation" id="temptation">	
+	                    <input type="text" placeholder="一句话概括公司亮点，如公司愿景、领导团队等，限50字" maxlength="50" name="cdetail" id="temptation">	
 	                    <span style="display:none;" class="error" id="beError"></span>
 	                    <input type="hidden" id="companyId" name="companyId" value="25927">
 	                    <input type="hidden" id="companyName" name="companyName" value="福建平潭协创进出口贸易有限公司">
@@ -251,6 +257,35 @@ var youdao_conv_id = 271546;
 <!------------------------------------- end ----------------------------------------->
 
 <script src="style/js/step1.min.js" type="text/javascript"></script>
+<!-- <script type="text/javascript" src="${pageContext.request.contextPath }/webjars/jquery/3.2.1/jquery.min.js"></script> -->
+<script type="text/javascript">
+		var msg="";
+		var msg2="";
+		var msg3="";
+		$("#box_industry ul li").click(function(){
+			if(msg==""){
+				msg=$(this).html();	
+			}else{
+				msg+=","+$(this).html();	
+			}
+			alert(msg);
+			$("input[name='cfield']").val(msg);
+		})
+		$("#msg2 ul li").click(function(){
+			
+				msg2=$(this).html();
+				alert(msg2);
+				$("input[name='cfs']").val(msg2);
+		})
+		$("#box_scale ul li").click(function(){
+			msg3=$(this).html();
+			alert(msg3);
+			$("input[name='cscale']").val(msg3);
+		})
+	
+</script>
+
+
 <script>
 var avatar = {};
 avatar.uploadComplate = function( data ){

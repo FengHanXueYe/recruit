@@ -66,8 +66,14 @@ var youdao_conv_id = 271546;
                                 </div>
     </div><!-- end #header -->
     <div id="container">
-            	
-        <div class="content_mid">
+          
+           <form action="UpdateCompanyThree.controller">
+        	<input type="hidden" name="cid" value="${company.cid}">
+        	<input type="hidden" name="cemail" value="${company.cemail}">
+        	<input type="hidden" name="cfinancing" >
+        <div class="content_mid">  
+        
+        
             <dl class="c_section c_section_mid">
                 <dt>
                     <h2><em></em>填写公司信息</h2>
@@ -138,14 +144,37 @@ var youdao_conv_id = 271546;
 	                        </dl>
 	                        	                    </div>	
 	                    <input type="hidden" id="companyId" name="companyId" value="25927">
-	                    <input type="button" value="保存，下一步" id="step2Submit" class="btn_big fr">
+	                    <input type="submit" value="保存，下一步" id="step2Submit" class="btn_big fr">
 	                    <a class="btn_cancel fr" href="http://www.lagou.com/c/founder.html">跳过</a>
                    
                 </dd>
             </dl>
        	</div>
-       	
-<script src="style/js/step2.min.js" type="text/javascript"></script>       
+       	</form> 	
+<script src="style/js/step2.min.js" type="text/javascript">
+</script>  
+<script type="text/javascript">
+	$(function(){
+		var msg="";
+		$("#box_labels dl dd ul li").click(function(){
+			
+			if(msg==""){
+				msg=$(this).html();	
+				
+			}else{
+				msg+=","+$(this).html();	
+			}
+			
+			
+			$("input[name='cfinancing']").val(msg);
+
+		})
+
+	})
+
+</script>
+
+     
 			<div class="clear"></div>
 			<input type="hidden" value="" id="resubmitToken">
 	    	<a rel="nofollow" title="回到顶部" id="backtop" style="display: none;"></a>

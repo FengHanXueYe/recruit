@@ -50,7 +50,7 @@ var youdao_conv_id = 271546;
 	    					    			</li>
 	    							    			<li><a rel="nofollow" href="create.html">发布职位</a></li>
 	    		    		</ul>
-        	        	<dl class="collapsible_menu">
+        	     <!--   	<dl class="collapsible_menu">
             	<dt>
            			<span>jason&nbsp;</span> 
             		<span class="red dn" id="noticeDot-1"></span>
@@ -62,7 +62,7 @@ var youdao_conv_id = 271546;
                 	<dd><a href="jianli.html">我要找工作</a></dd>
                                                 <dd><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
-            </dl>
+            </dl>--> <jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
                                 </div>
     </div><!-- end #header -->
     <div id="container">
@@ -80,6 +80,7 @@ var youdao_conv_id = 271546;
                     <form method="post" action="http://www.lagou.com/c/saveProfile.json" id="infoForm">
                     	<input type="hidden" name="companyId" value="25927">
                         <h3>公司介绍</h3> 
+                        <input type="hidden" value="${company.cid}" name="cid">
                         <textarea placeholder="请分段详细描述公司简介、企业文化等" name="companyProfile" id="companyProfile"></textarea>	
                         <div class="word_count">你还可以输入 <span>1000</span> 字</div>
                     	<div class="clear"></div>
@@ -89,7 +90,12 @@ var youdao_conv_id = 271546;
             </dl>
        	</div>
 <script src="style/js/step5.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$("#step5Submit").click(function(){
+		$("#infoForm").attr("action","UpdateCompanyProfile.controller").submit();
+	})
 
+</script>
 			<div class="clear"></div>
 			<input type="hidden" value="" id="resubmitToken">
 	    	<a rel="nofollow" title="回到顶部" id="backtop" style="display: none;"></a>

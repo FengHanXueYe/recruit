@@ -50,7 +50,7 @@ var youdao_conv_id = 271546;
 	    					    			</li>
 	    							    			<li><a rel="nofollow" href="create.html">发布职位</a></li>
 	    		    		</ul>
-        	        	<dl class="collapsible_menu">
+        	  <!--      	<dl class="collapsible_menu">
             	<dt>
            			<span>jason&nbsp;</span> 
             		<span class="red dn" id="noticeDot-1"></span>
@@ -62,7 +62,9 @@ var youdao_conv_id = 271546;
                 	<dd><a href="jianli.html">我要找工作</a></dd>
                                                 <dd><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
-            </dl>
+            </dl>-->  
+            	<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
+            
                                 </div>
     </div><!-- end #header -->
     <div id="container">
@@ -78,6 +80,8 @@ var youdao_conv_id = 271546;
                  	<img width="668" height="56" class="c_steps" alt="第三步" src="style/images/step3.png">
                     
                     <form method="post" action="http://www.lagou.com/cl/saveLeaderInfos.json" id="memberForm">
+                    	<input type="hidden" name="cfid" value="${company.cid}">
+                    	<input type="hidden" name="cemail" value="${company.cemail}">
                     	<input type="hidden" value="52346c62232045a8ab1d45cb3e0540b7" name="resubmitToken">
                    	 	<input type="hidden" id="companyId" name="companyId" value="25927">
 	                    <div id="memberDiv">
@@ -103,22 +107,22 @@ var youdao_conv_id = 271546;
 		                        
 		                        
 		                        <h3>创始人姓名</h3>
-		                        <input type="text" placeholder="请输入创始人姓名" name="leaderInfos[0].name" id="name0" class="s_input1 valid">	
+		                        <input type="text" placeholder="请输入创始人姓名" name="fname" id="name0" class="s_input1 valid">	
 		                        
 		                        <h3>当前职位</h3>
-		                        <input type="text" placeholder="请输入当前职位，如：创始人兼CEO" name="leaderInfos[0].position" id="position0" class="s_input1 valid">	
+		                        <input type="text" placeholder="请输入当前职位，如：创始人兼CEO" name="fposition" id="position0" class="s_input1 valid">	
 		                        
 		                        <h3>新浪微博</h3>
-		                        <input type="text" placeholder="请输入创始人新浪微博地址" name="leaderInfos[0].weibo" id="weibo0">	
+		                        <input type="text" placeholder="请输入创始人新浪微博地址" name="flang" id="weibo0">	
 		                        
 		                        <h3>创始人简介</h3> 
-		                        <textarea placeholder="请输入该创始人的个人履历等，建议按照时间倒序分条展示" maxlength="1000" name="leaderInfos[0].remark" id="description0"></textarea>	
+		                        <textarea placeholder="请输入该创始人的个人履历等，建议按照时间倒序分条展示" maxlength="1000" name="fdescribe" id="description0"></textarea>	
 		                        <div class="word_count">你还可以输入 <span>500</span> 字</div>
 		                    </div>
 	                    </div>
                     	<a id="addMember" class="add_member" href="javascript:void(0)"><i></i>继续添加创始团队</a>
                    		<div class="clear"></div>
-                    	<input type="submit" value="保存，下一步" id="step3Submit" class="btn_big fr">
+                    	<input type="button" value="保存，下一步" id="step3Submit" class="btn_big fr">
                     	<a class="btn_cancel fr" href="http://www.lagou.com/c/product.html">跳过</a>
                     </form>
                 </dd>
@@ -127,6 +131,18 @@ var youdao_conv_id = 271546;
     
  
 <script src="style/js/step3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+		$(function(){
+			$("#step3Submit").click(function(){
+				$("#memberForm").attr("action","doAddFounderController.controller").submit();
+				
+			})
+			
+			
+		})
+
+</script>
+
 			<div class="clear"></div>
 			<input type="hidden" value="52346c62232045a8ab1d45cb3e0540b7" id="resubmitToken">
 	    	<a rel="nofollow" title="回到顶部" id="backtop" style="display: inline;"></a>

@@ -50,7 +50,7 @@ var youdao_conv_id = 271546;
 	    					    			</li>
 	    							    			<li><a rel="nofollow" href="create.html">发布职位</a></li>
 	    		    		</ul>
-        	        	<dl class="collapsible_menu">
+        	    <!--    	<dl class="collapsible_menu">
             	<dt>
            			<span>jason&nbsp;</span> 
             		<span class="red dn" id="noticeDot-1"></span>
@@ -62,7 +62,7 @@ var youdao_conv_id = 271546;
                 	<dd><a href="jianli.html">我要找工作</a></dd>
                                                 <dd><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
-            </dl>
+            </dl>--> <jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
                                 </div>
     </div><!-- end #header -->
     <div id="container">
@@ -103,13 +103,17 @@ var youdao_conv_id = 271546;
 			                   	<span style="display:none;" id="myfiles0_error" class="error"></span>
 			                    
 		                        <h3>产品名称</h3>
-		                        <input type="text" placeholder="请输入产品名称" name="productInfos[0].product" id="name0">	
+		                        <input type="text" placeholder="请输入产品名称" name="pname" id="name0">	
 		                        
 		                        <h3>产品地址</h3>
-		                        <input type="text" placeholder="请输入产品主页URL或产品下载地址" name="productInfos[0].productUrl" id="address0">	
+		                        <input type="text" placeholder="请输入产品主页URL或产品下载地址" name="paddress" id="address0">	
 		                        
 		                        <h3>产品简介</h3> 
-		                        <textarea placeholder="请简短描述该产品定位、产品特色、用户群体等" maxlength="1000" name="productInfos[0].productProfile" id="description0"></textarea>	
+		                        <textarea placeholder="请简短描述该产品定位、产品特色、用户群体等" maxlength="1000" name="pdetail" id="description0">
+		                       
+		                       
+		                        </textarea>	<input name="pcid" type="hidden" value="${company.cid}">
+		                        			<input name="cemail"  type="hidden" value="${company.cemail}">	
 		                        <div class="word_count">你还可以输入 <span>500</span> 字</div>
 		                    </div>
 	                    </div>
@@ -123,6 +127,17 @@ var youdao_conv_id = 271546;
        	</div>
     
 <script src="style/js/step4.min.js" type="text/javascript"></script>        	
+<script type="text/javascript">
+	$(function(){
+		$("#step4Submit").click(function(){
+			$("#productForm").attr("action","doAddProductController.controller").submit();
+		})
+		
+		
+	})
+
+</script>			
+			
 			<div class="clear"></div>
 			<input type="hidden" value="8f79f658e49846ae89d90a3f1590f12e" id="resubmitToken">
 	    	<a rel="nofollow" title="回到顶部" id="backtop" style="display: none;"></a>
