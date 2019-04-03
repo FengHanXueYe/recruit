@@ -85,99 +85,99 @@
 								<h2>
 									${o.nname} <span></span>
 								</h2>
-                        
+
 								<c:if test="${o.nid eq '1' }">
-								<c:forEach items="${ocone11}"  var="oc" >
+									<c:forEach items="${ocone11}" var="oc">
 
-									<c:forEach items="${oc.octwo}" var="ooc">
+										<c:forEach items="${oc.octwo}" var="ooc">
 
-										<c:forEach items="${ooc.octhree}" var="oooc">
+											<c:forEach items="${ooc.octhree}" var="oooc">
 
-											<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
 
-										</c:forEach>
-
-									</c:forEach>
-
-								</c:forEach>
-				</c:if>
-				<c:if test="${o.nid eq '2' }">
-								<c:forEach items="${ocone12}"  var="oc" >
-
-									<c:forEach items="${oc.octwo}" var="ooc">
-
-										<c:forEach items="${ooc.octhree}" var="oooc">
-
-											<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+											</c:forEach>
 
 										</c:forEach>
 
 									</c:forEach>
+								</c:if>
+								<c:if test="${o.nid eq '2' }">
+									<c:forEach items="${ocone12}" var="oc">
 
-								</c:forEach>
-				</c:if>
-				<c:if test="${o.nid eq '3' }">
-								<c:forEach items="${ocone13}"  var="oc" >
+										<c:forEach items="${oc.octwo}" var="ooc">
 
-									<c:forEach items="${oc.octwo}" var="ooc">
+											<c:forEach items="${ooc.octhree}" var="oooc">
 
-										<c:forEach items="${ooc.octhree}" var="oooc">
+												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
 
-											<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
-
-										</c:forEach>
-
-									</c:forEach>
-
-								</c:forEach>
-				</c:if>
-				<c:if test="${o.nid eq '4' }">
-								<c:forEach items="${ocone14}"  var="oc" >
-
-									<c:forEach items="${oc.octwo}" var="ooc">
-
-										<c:forEach items="${ooc.octhree}" var="oooc">
-
-											<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+											</c:forEach>
 
 										</c:forEach>
 
 									</c:forEach>
+								</c:if>
+								<c:if test="${o.nid eq '3' }">
+									<c:forEach items="${ocone13}" var="oc">
 
-								</c:forEach>
-				</c:if>
-				<c:if test="${o.nid eq '5' }">
-								<c:forEach items="${ocone15}"  var="oc" >
+										<c:forEach items="${oc.octwo}" var="ooc">
 
-									<c:forEach items="${oc.octwo}" var="ooc">
+											<c:forEach items="${ooc.octhree}" var="oooc">
 
-										<c:forEach items="${ooc.octhree}" var="oooc">
+												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
 
-											<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
-
-										</c:forEach>
-
-									</c:forEach>
-
-								</c:forEach>
-				</c:if>
-				<c:if test="${o.nid eq '6' }">
-								<c:forEach items="${ocone16}"  var="oc" >
-
-									<c:forEach items="${oc.octwo}" var="ooc">
-
-										<c:forEach items="${ooc.octhree}" var="oooc">
-
-											<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+											</c:forEach>
 
 										</c:forEach>
 
 									</c:forEach>
+								</c:if>
+								<c:if test="${o.nid eq '4' }">
+									<c:forEach items="${ocone14}" var="oc">
 
-								</c:forEach>
-				</c:if>
-				
-				
+										<c:forEach items="${oc.octwo}" var="ooc">
+
+											<c:forEach items="${ooc.octhree}" var="oooc">
+
+												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+
+											</c:forEach>
+
+										</c:forEach>
+
+									</c:forEach>
+								</c:if>
+								<c:if test="${o.nid eq '5' }">
+									<c:forEach items="${ocone15}" var="oc">
+
+										<c:forEach items="${oc.octwo}" var="ooc">
+
+											<c:forEach items="${ooc.octhree}" var="oooc">
+
+												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+
+											</c:forEach>
+
+										</c:forEach>
+
+									</c:forEach>
+								</c:if>
+								<c:if test="${o.nid eq '6' }">
+									<c:forEach items="${ocone16}" var="oc">
+
+										<c:forEach items="${oc.octwo}" var="ooc">
+
+											<c:forEach items="${ooc.octhree}" var="oooc">
+
+												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+
+											</c:forEach>
+
+										</c:forEach>
+
+									</c:forEach>
+								</c:if>
+
+
 
 
 								<!-- 

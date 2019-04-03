@@ -104,9 +104,9 @@ var youdao_conv_id = 271546;
                 </dl>
                                 <dl >
                    	<dt>发布时间 <em ></em></dt>
-	                <dd >
-	                    	                    	<div>今天</div>
-	                    	                    	<div>3天内</div>
+	                <dd>
+	                    	                    	<div class="aaa">今天</div>
+	                    	                    	<div class="aaa">3天内</div>
 	                    	                    	<div>一周内</div>
 	                    	                    	<div>一月内</div>
 	                    	                </dd> 
@@ -119,6 +119,17 @@ var youdao_conv_id = 271546;
 		            	<div class="f18">跟同行聊聊</div>
 		            	<p>160541839</p>
 		            </div>
+		            
+		            
+		            <script type="text/javascript">
+		            $(function() {
+						$(".aaa").click(function() {
+							var list=$(this).html();
+							alert(list);
+						})
+					})
+		            
+		            </script>
 		                                
             <!-- 对外合作广告位  -->
              	            		        	<a href="http://www.w3cplus.com/" target="_blank" class="partnersAd">
