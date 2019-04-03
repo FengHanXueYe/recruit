@@ -11,4 +11,5 @@ public interface OconeService {
 	 * @return
 	 */
 	List<Ocone> queryType();
+	List<Ocone> querySuiji(int pk);
 }
