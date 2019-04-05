@@ -745,7 +745,7 @@
 			</div>
 			<div class="content">
 				<div id="search_box">
-					<form id="searchForm" name="searchForm" action="list.jsp"
+					<form id="searchForm" name="searchForm" action="toListOoccupation.controller"
 						method="get">
 						<ul id="searchType">
 							<li data-searchtype="1" class="type_selected">职位</li>
@@ -945,10 +945,15 @@
 										<a href="toxiangqing.controller" target="_blank">${com.cphone}</a>
 										&nbsp; <span class="c9">[ ${com.caddress} ]</span>
 									</div>
-									<span><em class="c7">月薪： </em>${com.occupation.omaxsalary}</span>
-									<span><em class="c7">经验：</em> ${com.occupation.olog}</span> <span><em
-										class="c7">最低学历： </em>${com.occupation.oeducation.oname}</span> <br />
-									<span><em class="c7">职位诱惑：</em>${com.occupation.owelfare}</span>
+									<c:forEach items="${com.occupation}" var="cooo">
+										<span><em class="c7">月薪： </em>${cooo.omaxsalary}</span>
+										<span><em class="c7">经验：</em> ${cooo.olog}</span>
+										<c:forEach items="${cooo.education}" var="coooo"></c:forEach>
+										<span><em class="c7">最低学历： </em>${coooo.ename}</span>
+
+										<br />
+										<span><em class="c7">职位诱惑：</em>${cooo.owelfare}</span>
+									</c:forEach>
 									<br /> <span>1天前发布</span>
 									<!-- <a  class="wb">分享到微博</a> -->
 								</div>
@@ -970,7 +975,7 @@
 
 
 
-						 <li class="odd clearfix">
+						<!-- <li class="odd clearfix">
 							<div class="hot_pos_l">
 								<div class="mb10">
 									<a href="toxiangqing.controller" target="_blank">售前工程师（运维经验优先）</a>
@@ -979,8 +984,7 @@
 								<span><em class="c7">月薪： </em>6k-12k</span> <span><em
 									class="c7">经验：</em> 3-5年</span> <span><em class="c7">最低学历：
 								</em>大专</span> <br /> <span><em class="c7">职位诱惑：</em>五险一金+商业保险+带薪年假+奖金等</span>
-								<br /> <span>1天前发布</span>
-								<a  class="wb">分享到微博</a>
+								<br /> <span>1天前发布</span> <a class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -1004,8 +1008,7 @@
 								<span><em class="c7">月薪： </em>4k-8k</span> <span><em
 									class="c7">经验：</em> 1-3年</span> <span><em class="c7">最低学历：
 								</em>本科</span> <br /> <span><em class="c7">职位诱惑：</em>工作氛围和谐~正面激励成长~福利好~</span>
-								<br /> <span>1天前发布</span>
-								<a  class="wb">分享到微博</a>
+								<br /> <span>1天前发布</span> <a class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -1019,7 +1022,7 @@
 									<li>五险一金</li>
 								</ul>
 							</div>
-						</li>
+						</li> -->
 						<!--<li class="odd clearfix">
 							<div class="hot_pos_l">
 								<div class="mb10">
