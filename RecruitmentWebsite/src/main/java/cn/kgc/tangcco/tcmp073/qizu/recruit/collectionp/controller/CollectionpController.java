@@ -65,9 +65,11 @@ public class CollectionpController {
 		if(queryAllOccupationCollectionp==null) {
 			//为给用户收藏此职位
 			cs.addCollectionp(c);
+			System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
 			return true;
 		}else {
 			cs.deleteCollectionp(queryAllOccupationCollectionp.getCid());
+			System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 			return false;
 		}
 	}
