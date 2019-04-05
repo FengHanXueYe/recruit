@@ -766,7 +766,7 @@
 							name="workAddress" id="workAddress" value="" /> <input
 							type="hidden" name="city" id="cityInput" value="" /> <input
 							type="submit" id="search_button" value="搜索" />
-<!-- asd -->
+						<!-- asd -->
 					</form>
 				</div>
 				<style>
@@ -937,24 +937,26 @@
 				</ul>
 				<div id="hotList">
 					<ul class="hot_pos reset">
+					
+					<c:forEach items="${com}" var="com">
 						<li class="clearfix">
 							<div class="hot_pos_l">
 								<div class="mb10">
-									<a href="h/jobs/147822.html" target="_blank">运营总监</a> &nbsp; <span
-										class="c9">[北京]</span>
+									<a href="toxiangqing.controller" target="_blank">${com.cphone}</a> &nbsp; <span
+										class="c9">[ ${com.caddress} ]</span>
 								</div>
-								<span><em class="c7">月薪： </em>15k-20k</span> <span><em
-									class="c7">经验：</em> 3-5年</span> <span><em class="c7">最低学历：
-								</em>本科</span> <br /> <span><em class="c7">职位诱惑：</em>发展前景</span> <br /> <span>1天前发布</span>
+								<span><em class="c7">月薪： </em>${com.occupation.omaxsalary}</span> <span><em
+									class="c7">经验：</em> ${com.occupation.olog}</span> <span><em class="c7">最低学历：
+								</em>${com.occupation.oeducation.oname}</span> <br /> <span><em class="c7">职位诱惑：</em>${com.occupation.owelfare}</span> <br /> <span>1天前发布</span>
 								<!-- <a  class="wb">分享到微博</a> -->
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
 									<a href="h/c/399.html" target="_blank">节操精选</a>
 								</div>
-								<span><em class="c7">领域：</em> 移动互联网</span> <span><em
-									class="c7">创始人：</em>陈桦</span> <br /> <span><em class="c7">阶段：</em>
-									初创型(天使轮)</span> <span><em class="c7">规模：</em>少于15人</span>
+								<span><em class="c7">领域：</em> ${com.cfield}</span> <span><em
+									class="c7">创始人：</em>${com.founder.fname}</span> <br /> <span><em class="c7">阶段：</em>
+									${com.cfs}</span> <span><em class="c7">规模：</em>${com.cscale}</span>
 								<ul class="companyTags reset">
 									<li>移动互联网</li>
 									<li>五险一金</li>
@@ -962,7 +964,11 @@
 								</ul>
 							</div>
 						</li>
-						<li class="odd clearfix">
+						</c:forEach>
+						
+						
+						
+						<!-- <li class="odd clearfix">
 							<div class="hot_pos_l">
 								<div class="mb10">
 									<a href="h/jobs/147974.html" target="_blank">售前工程师（运维经验优先）</a>
@@ -972,7 +978,7 @@
 									class="c7">经验：</em> 3-5年</span> <span><em class="c7">最低学历：
 								</em>大专</span> <br /> <span><em class="c7">职位诱惑：</em>五险一金+商业保险+带薪年假+奖金等</span>
 								<br /> <span>1天前发布</span>
-								<!-- <a  class="wb">分享到微博</a> -->
+								<a  class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -997,7 +1003,7 @@
 									class="c7">经验：</em> 1-3年</span> <span><em class="c7">最低学历：
 								</em>本科</span> <br /> <span><em class="c7">职位诱惑：</em>工作氛围和谐~正面激励成长~福利好~</span>
 								<br /> <span>1天前发布</span>
-								<!-- <a  class="wb">分享到微博</a> -->
+								<a  class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -1022,7 +1028,7 @@
 									class="c7">经验：</em> 1-3年</span> <span><em class="c7">最低学历：
 								</em>本科</span> <br /> <span><em class="c7">职位诱惑：</em>喝着世界美酒快乐地工作！</span> <br />
 								<span>1天前发布</span>
-								<!-- <a  class="wb">分享到微博</a> -->
+								<a  class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -1047,7 +1053,7 @@
 									class="c7">经验：</em> 1-3年</span> <span><em class="c7">最低学历：
 								</em>本科</span> <br /> <span><em class="c7">职位诱惑：</em>喜欢游戏，喜欢生活，游戏生活~</span>
 								<br /> <span>1天前发布</span>
-								<!-- <a  class="wb">分享到微博</a> -->
+								<a  class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -1073,7 +1079,7 @@
 									class="c7">经验：</em> 不限</span> <span><em class="c7">最低学历： </em>本科</span>
 								<br /> <span><em class="c7">职位诱惑：</em>中国第一只能手机广告平台</span> <br />
 								<span>1天前发布</span>
-								<!-- <a  class="wb">分享到微博</a> -->
+								<a  class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -1099,7 +1105,7 @@
 									class="c7">经验：</em> 1-3年</span> <span><em class="c7">最低学历：
 								</em>本科</span> <br /> <span><em class="c7">职位诱惑：</em>项目快速发展，技术氛围浓厚，有业界大牛</span>
 								<br /> <span>09:21发布</span>
-								<!-- <a  class="wb">分享到微博</a> -->
+								<a  class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -1125,7 +1131,7 @@
 									class="c7">经验：</em> 1-3年</span> <span><em class="c7">最低学历：
 								</em>本科</span> <br /> <span><em class="c7">职位诱惑：</em>靠谱的工程师要来靠谱的公司</span> <br />
 								<span>00:21发布</span>
-								<!-- <a  class="wb">分享到微博</a> -->
+								<a  class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -1151,7 +1157,7 @@
 									class="c7">经验：</em> 不限</span> <span><em class="c7">最低学历： </em>本科</span>
 								<br /> <span><em class="c7">职位诱惑：</em>有技术挑战、有成长机会、有漂亮妹子</span>
 								<br /> <span>09:08发布</span>
-								<!-- <a  class="wb">分享到微博</a> -->
+								<a  class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -1177,7 +1183,7 @@
 									class="c7">经验：</em> 不限</span> <span><em class="c7">最低学历： </em>本科</span>
 								<br /> <span><em class="c7">职位诱惑：</em>实习通过，毕业直接转正，实习期有餐贴</span>
 								<br /> <span>10:16发布</span>
-								<!-- <a  class="wb">分享到微博</a> -->
+								<a  class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -1203,7 +1209,7 @@
 									class="c7">经验：</em> 1-3年</span> <span><em class="c7">最低学历：
 								</em>本科</span> <br /> <span><em class="c7">职位诱惑：</em>六险一金，饭补，班车，晋升机制，氛围好</span>
 								<br /> <span>14:15发布</span>
-								<!-- <a  class="wb">分享到微博</a> -->
+								<a  class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -1229,7 +1235,7 @@
 									class="c7">经验：</em> 5-10年</span> <span><em class="c7">最低学历：
 								</em>本科</span> <br /> <span><em class="c7">职位诱惑：</em>和一群聪明的人共事</span> <br />
 								<span>1天前发布</span>
-								<!-- <a  class="wb">分享到微博</a> -->
+								<a  class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -1255,7 +1261,7 @@
 									class="c7">经验：</em> 不限</span> <span><em class="c7">最低学历： </em>大专</span>
 								<br /> <span><em class="c7">职位诱惑：</em>位置佳，环境优越，发展空间大，薪酬高</span>
 								<br /> <span>2天前发布</span>
-								<!-- <a  class="wb">分享到微博</a> -->
+								<a  class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -1281,7 +1287,7 @@
 									class="c7">经验：</em> 1-3年</span> <span><em class="c7">最低学历：
 								</em>大专</span> <br /> <span><em class="c7">职位诱惑：</em>一年两次调薪，免费早、晚餐，项目、年终奖</span>
 								<br /> <span>2014-06-27</span>
-								<!-- <a  class="wb">分享到微博</a> -->
+								<a  class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -1307,7 +1313,7 @@
 									class="c7">经验：</em> 1-3年</span> <span><em class="c7">最低学历：
 								</em>大专</span> <br /> <span><em class="c7">职位诱惑：</em>年度16薪 市场营销发展方向</span>
 								<br /> <span>1天前发布</span>
-								<!-- <a  class="wb">分享到微博</a> -->
+								<a  class="wb">分享到微博</a>
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10 recompany">
@@ -1322,31 +1328,33 @@
 									<li>移动互联网</li>
 								</ul>
 							</div>
-						</li>
+						</li> -->
 
-						<a href="toListOoccupation.controller" class="btn fr" target="_blank">查看更多</a>
+						<a href="toListOoccupation.controller" class="btn fr"
+							target="_blank">查看更多</a>
 					</ul>
 					<ul class="hot_pos hot_posHotPosition reset" style="display: none;">
+					    <c:forEach items="${coo}" var="coo">
 						<li class="clearfix">
 							<div class="hot_pos_l">
 								<div class="mb10">
-									<a href="h/jobs/149389.html" target="_blank">高级PHP研发工程师</a>
-									&nbsp; <span class="c9">[南京]</span>
+									<a href="h/jobs/149389.html" target="_blank">${coo.cphone}</a>
+									&nbsp; <span class="c9">[${coo.caddress}]</span>
 								</div>
-								<span><em class="c7">月薪： </em>12k-24k</span> <span><em
-									class="c7">经验：</em>3-5年</span> <span><em class="c7">最低学历：</em>
-									本科</span> <br /> <span><em class="c7">职位诱惑：</em>IPO了的互联网创业公司，潜力无限！</span>
+								<span><em class="c7">月薪： </em>${coo.occupation.omaxsalary}</span> <span><em
+									class="c7">经验：</em>${coo.occupation.olog}</span> <span><em class="c7">最低学历：</em>
+									${coo.occupation.oeducation.oname}</span> <br /> <span><em class="c7">职位诱惑：</em>${coo.occupation.owelfare}</span>
 								<br /> <span>15:11发布</span>
 								<!-- <a  class="wb">分享到微博</a> -->
 							</div>
 							<div class="hot_pos_r">
 								<div class="mb10">
-									<a href="h/c/8250.html" target="_blank">途牛旅游网</a>
+									<a href="h/c/8250.html" target="_blank">${coo.cphone}</a>
 								</div>
-								<span><em class="c7">领域：</em> 电子商务,在线旅游</span> <span><em
-									class="c7">创始人：</em>于敦德</span> <br /> <span> <em class="c7">阶段：
-								</em>上市公司
-								</span> <span> <em class="c7">规模：</em>500-2000人
+								<span><em class="c7">领域：</em>  ${coo.cfield}</span> <span><em
+									class="c7">创始人：</em>${coo.founder.fname}</span> <br /> <span> <em class="c7">阶段：
+								</em>${coo.cfs}
+								</span> <span> <em class="c7">规模：</em>${coo.cscale}
 								</span>
 								<ul class="companyTags reset">
 									<li>绩效奖金</li>
@@ -1355,15 +1363,20 @@
 								</ul>
 							</div>
 						</li>
-						<li class="odd clearfix">
+						</c:forEach>
+						
+						
+						
+						
+						<%-- <li class="odd clearfix">
 							<div class="hot_pos_l">
 								<div class="mb10">
 									<a href="h/jobs/149388.html" target="_blank">高级搜索研发工程师</a>
-									&nbsp; <span class="c9">[南京]</span>
+									&nbsp; <span class="c9">[${com.caddress}]</span>
 								</div>
 								<span><em class="c7">月薪： </em>15k-30k</span> <span><em
-									class="c7">经验：</em>3-5年</span> <span><em class="c7">最低学历：</em>
-									本科</span> <br /> <span><em class="c7">职位诱惑：</em>IPO了的互联网创业公司，潜力无限！</span>
+									class="c7">经验：</em>${com.occupation.olog}</span> <span><em class="c7">最低学历：</em>
+									${com.occupation.oeducation.oname}</span> <br /> <span><em class="c7">职位诱惑：</em>IPO了的互联网创业公司，潜力无限！</span>
 								<br /> <span>15:09发布</span>
 								<!-- <a  class="wb">分享到微博</a> -->
 							</div>
@@ -1744,7 +1757,7 @@
 									<li>带薪年假</li>
 								</ul>
 							</div>
-						</li>
+						</li> --%>
 						<a href="toListOoccupation.controller" class="btn fr"
 							target="_blank">查看更多</a>
 					</ul>

@@ -23,5 +23,6 @@ public interface CompanyMapper {
 	@Update("update company set companyProfile=#{companyProfile} where cid=#{cid}")
 	int updateCompanyProfile(@Param("companyProfile")String companyProfile,@Param("cid")int cid);
     List<Company> queryalltoFounder();
+    List<Company> queryalltozuixin();
 	Company qyeryAllCompany(int cuid);
 }

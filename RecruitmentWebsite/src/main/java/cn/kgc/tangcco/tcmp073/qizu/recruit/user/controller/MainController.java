@@ -11,6 +11,7 @@ import cn.kgc.tangcco.tcmp073.qizu.entity.Educationalbackground;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Selfdescription;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Worksdisplay;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.eb.service.EbService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.ocone.service.OconeService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.selfdescription.service.SelfdescriptionService;
@@ -19,6 +20,7 @@ import cn.kgc.tangcco.tcmp073.qizu.recruit.worksdisplay.service.WorksdisplayServ
 
 /**
  * 许茂峰
+ * 
  * @author jiangwu
  *
  */
@@ -26,60 +28,74 @@ import cn.kgc.tangcco.tcmp073.qizu.recruit.worksdisplay.service.WorksdisplayServ
 public class MainController {
 	@Resource
 	private EbService ebService;
-	
+
 	@Resource
 	private UserService userService;
-	
+
 	@Resource
 	private SelfdescriptionService ss;
-	
+
 	@Resource
 	private WorksdisplayService ws;
 	@Resource
 	private OconeService os;
-	
+	@Resource
+	private CompanyService com;
+
 	@RequestMapping("toIndex")
 	public String toIndex(Model model) {
-		model.addAttribute("ocone",os.queryType());
-		for (int i = 0; i <7; i++) {
-			model.addAttribute("ocone1"+i, os.querySuiji(i));
+		model.addAttribute("ocone", os.queryType());
+		for (int i = 0; i < 7; i++) {
+			model.addAttribute("ocone1" + i, os.querySuiji(i));
 		}
-		
+		model.addAttribute("com", com.queryalltoFounder());
+		model.addAttribute("coo", com.queryalltozuixin());
+
 		return "main/index";
 	}
-	
+	@RequestMapping("toxiangqing")
+
+	public String toxiangqing(Model model) {
+		
+		return "main/jobdetail1";
+	}
+
 	/**
 	 * 去简历页
+	 * 
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("toResume")
-	public String toResume(HttpSession session,Model model) {
-		RecruitingUsers attribute = (RecruitingUsers)session.getAttribute("loginUser");
+	public String toResume(HttpSession session, Model model) {
+		RecruitingUsers attribute = (RecruitingUsers) session.getAttribute("loginUser");
 		System.err.println(attribute.getUserid());
-		/*储存教育背景*/
-		if(attribute!=null) {
-			Educationalbackground queryEducationalbackground = ebService.queryEducationalbackground(attribute.getUserid());
-			if(queryEducationalbackground!=null) {
+		/* 储存教育背景 */
+		if (attribute != null) {
+			Educationalbackground queryEducationalbackground = ebService
+					.queryEducationalbackground(attribute.getUserid());
+			if (queryEducationalbackground != null) {
 				model.addAttribute("educationalbackground", queryEducationalbackground);
 			}
 			Selfdescription querySelfdescription = ss.querySelfdescription(attribute.getUserid());
-			if(querySelfdescription!=null) {
-				model.addAttribute("selfdescriptionModel",querySelfdescription.getSdescription());
+			if (querySelfdescription != null) {
+				model.addAttribute("selfdescriptionModel", querySelfdescription.getSdescription());
 			}
 			Worksdisplay queryWorksdisplay = ws.queryWorksdisplay(attribute.getUserid());
-			if(queryWorksdisplay!=null) {
+			if (queryWorksdisplay != null) {
 				model.addAttribute("worksdisplayMapperModel", queryWorksdisplay);
 			}
-//			System.out.println("-------------------------------");
-//			System.err.println(queryWorksdisplay.getWlink());
-//			System.out.println("-------------------------------");
-			//System.err.println(ss.querySelfdescription(attribute.getUserid()).getSdescription());
+			// System.out.println("-------------------------------");
+			// System.err.println(queryWorksdisplay.getWlink());
+			// System.out.println("-------------------------------");
+			// System.err.println(ss.querySelfdescription(attribute.getUserid()).getSdescription());
 		}
 		return "main/jianli";
 	}
+
 	/**
 	 * 去登录页
+	 * 
 	 * @param model
 	 * @return
 	 */
@@ -87,8 +103,10 @@ public class MainController {
 	public String toLogin(Model model) {
 		return "main/login";
 	}
+
 	/**
 	 * 去注册页
+	 * 
 	 * @param model
 	 * @return
 	 */
@@ -96,8 +114,10 @@ public class MainController {
 	public String toRegister(Model model) {
 		return "main/register";
 	}
+
 	/**
 	 * 去找回密码页面
+	 * 
 	 * @param model
 	 * @return
 	 */
@@ -105,8 +125,10 @@ public class MainController {
 	public String toReset(Model model) {
 		return "main/reset";
 	}
+
 	/**
 	 * 去账号设置
+	 * 
 	 * @param model
 	 * @return
 	 */
@@ -114,8 +136,10 @@ public class MainController {
 	public String toAccountSettings(Model model) {
 		return "main/accountBind";
 	}
+
 	/**
 	 * 去修改密码页面
+	 * 
 	 * @param model
 	 * @return
 	 */
@@ -123,8 +147,10 @@ public class MainController {
 	public String toUpdatePwd(Model model) {
 		return "main/updatePwd";
 	}
+
 	/**
 	 * 去投递职位
+	 * 
 	 * @param model
 	 * @return
 	 */
@@ -135,6 +161,7 @@ public class MainController {
 
 	/**
 	 * 去list页面
+	 * 
 	 * @param model
 	 * @return
 	 */

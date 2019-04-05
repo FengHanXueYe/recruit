@@ -27,5 +27,6 @@ public class Company {
 	
 	private List<Founder> founder;//创始团队实体
 	private List<Product> product;//产品实体
+	private List<Occupation> occupation;
 	
 }
