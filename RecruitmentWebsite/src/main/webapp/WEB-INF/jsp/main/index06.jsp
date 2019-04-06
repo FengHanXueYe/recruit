@@ -43,7 +43,7 @@ var youdao_conv_id = 271546;
     		</a>
     		<ul id="navheader" class="reset">
     			<li><a href="index.html">首页</a></li>
-    			<li><a href="companylist.html">公司</a></li>
+    			<li><a href="tocompanlist.controller">公司</a></li>
     			<li><a target="_blank" href="">论坛</a></li>
     				    			<li><a rel="nofollow" href="jianli.html">我的简历</a></li>
 	    						    		</ul>
@@ -72,7 +72,7 @@ var youdao_conv_id = 271546;
     <div id="container">
             
         	<div class="sidebar">
-            	<a class="btn_create" href="create.html">发布新职位</a>
+            	<a class="btn_create" href="tocreate.controller">发布新职位</a>
                 <dl class="company_center_aside">
 		<dt>我收到的简历</dt>
 		<dd>
@@ -126,8 +126,8 @@ var youdao_conv_id = 271546;
 	                	<div class="publish_tip">
                             <h2>恭喜你，职位发布成功！</h2>
                             <a target="_blank" href="http://www.lagou.com/jobs/149594.html">预览职位</a><br>
-                                                        <a class="greylink" href="create.html">继续发布新职位</a><br>
-                                                        <a class="greylink" href="http://www.lagou.com/c/25927.html"> 进入我的公司主页</a><br>
+                                                        <a class="greylink" href="tocreate.controller">继续发布新职位</a><br>
+                                                        <a class="greylink" href="tomyhome.controller"> 进入我的公司主页</a><br>
                         	<div style="float:left;" class="invite_share">
 			                    <!-- JiaThis Button BEGIN -->
 								<div class="jiathis_style_32x32">
