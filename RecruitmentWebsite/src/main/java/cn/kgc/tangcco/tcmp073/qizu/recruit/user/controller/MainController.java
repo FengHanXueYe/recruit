@@ -64,8 +64,8 @@ public class MainController {
 
 	@RequestMapping("toxiangqing")
 
-	public String toxiangqing(Model model) {
-
+	public String toxiangqing(String cccname,Model model) {
+		System.out.println("-------------------->>>>>>>"+cccname);
 		return "main/jobdetail1";
 	}
 
