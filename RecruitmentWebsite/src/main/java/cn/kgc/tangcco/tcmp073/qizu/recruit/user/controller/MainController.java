@@ -1,5 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.user.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Educationalbackground;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Selfdescription;
@@ -48,15 +51,21 @@ public class MainController {
 		for (int i = 0; i < 7; i++) {
 			model.addAttribute("ocone1" + i, os.querySuiji(i));
 		}
-		model.addAttribute("com", com.queryalltoFounder());
+		List<Company> queryalltoFounder = com.queryalltoFounder();
+		for (Company company : queryalltoFounder) {
+			System.err.println(company+"/n");
+		}
+		
+		model.addAttribute("com",queryalltoFounder );
 		model.addAttribute("coo", com.queryalltozuixin());
 
 		return "main/index";
 	}
+
 	@RequestMapping("toxiangqing")
 
 	public String toxiangqing(Model model) {
-		
+
 		return "main/jobdetail1";
 	}
 
@@ -166,7 +175,9 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("toListOoccupation")
-	public String toListOoccupation(Model model) {
+	public String toListOoccupation(String kd,Model model) {
+		System.out.println("这是kd------》"+kd);
+		model.addAttribute("kd", kd);
 		return "main/list";
 	}
 }

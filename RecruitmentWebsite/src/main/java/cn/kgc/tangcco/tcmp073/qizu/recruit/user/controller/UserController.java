@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.kgc.tangcco.tcmp073.qizu.emailutils.Email;
 import cn.kgc.tangcco.tcmp073.qizu.encryption.Encryption;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.ocone.service.OconeService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
 
@@ -31,6 +31,8 @@ public class UserController {
 	private UserService userService;
 	@Resource
 	private OconeService os;
+	@Resource
+	private CompanyService cs;
 
 	/**
 	 * 登录
@@ -76,6 +78,8 @@ public class UserController {
 //				model.addAttribute("cookiepwd", cookiepwd);
 			}
 			model.addAttribute("ocone",os.queryType());
+			model.addAttribute("com", cs.queryalltoFounder());
+			model.addAttribute("coo",cs.queryalltozuixin());
 			for (int i = 0; i <7; i++) {
 				model.addAttribute("ocone1"+i, os.querySuiji(i));
 			}

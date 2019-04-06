@@ -56,6 +56,31 @@ var youdao_conv_id = 271546;
             </ul>
                                 </div>
     </div><!-- end #header -->
+    
+    <!-- ------------------------------------------------------------------------------------------- -->
+    <script type="text/javascript">
+    	$(function(){
+	    	$(".ajaxdian").click(function(){
+	    		var  zhi = $.trim($(this).html());
+	    		alert(zhi);
+	    		var num = 1;
+	    		if(zhi =="2k以下"){
+	    			num = 2;
+					alert(num);    			
+	    		}
+	    		$.ajax({
+	    			type:"post",
+	    			url:"",
+	    			data:{"num":num},
+	    			success:function(data){
+	    				
+	    				
+	    				
+	    			}
+	    		})
+	    	})
+    	})
+    </script>
     <div id="container">
         
        	<div class="sidebar">
@@ -63,13 +88,13 @@ var youdao_conv_id = 271546;
                                 <dl >
                    	<dt>月薪范围 <em ></em></dt>
 	                <dd >
-	                    	                    	<div>2k以下</div>
-	                    	                    	<div>2k-5k</div>
-	                    	                    	<div>5k-10k</div>
-	                    	                    	<div>10k-15k</div>
-	                    	                    	<div>15k-25k</div>
-	                    	                    	<div>25k-50k</div>
-	                    	                    	<div>50k以上</div>
+	                    	                    	<div class="ajaxdian">2k以下</div>
+	                    	                    	<div class="ajaxdian">2k-5k</div>
+	                    	                    	<div class="ajaxdian">5k-10k</div>
+	                    	                    	<div class="ajaxdian">10k-15k</div>
+	                    	                    	<div class="ajaxdian">15k-25k</div>
+	                    	                    	<div class="ajaxdian">25k-50k</div>
+	                    	                    	<div class="ajaxdian">50k以上</div>
 	                    	                </dd> 
                 </dl>
                                 <dl >
@@ -150,7 +175,7 @@ var youdao_conv_id = 271546;
         	<li data-searchtype="4">公司</li>
         	        </ul>
         <div class="searchtype_arrow"></div>
-        <input type="text" id="search_input" name = "kd"  tabindex="1" value="前端开发"  placeholder="请输入职位名称，如：产品经理"  />
+        <input type="text" id="search_input" name = "kd"  tabindex="1" value="${kd }"  placeholder="请输入职位名称，如：产品经理"  />
         <input type="hidden" name="spc" id="spcInput" value="1"/>
         <input type="hidden" name="pl" id="plInput" value=""/>
         <input type="hidden" name="gj" id="gjInput" value=""/>
@@ -165,6 +190,9 @@ var youdao_conv_id = 271546;
                 <input type="submit" id="search_button" value="搜索" />
     </form>
 </div>
+<script type="text/javascript">
+	
+</script>
 <style>
 .ui-autocomplete{width:488px;background:#fafafa !important;position: relative;z-index:10;border: 2px solid #91cebe;}
 .ui-autocomplete-category{font-size:16px;color:#999;width:50px;position: absolute;z-index:11; right: 0px;/*top: 6px; */text-align:center;border-top: 1px dashed #e5e5e5;padding:5px 0;}

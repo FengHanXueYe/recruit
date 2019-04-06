@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 ﻿
 <!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb">
@@ -50,7 +50,7 @@
 					alt="拉勾招聘-专注互联网招聘" />
 				</a>
 				<ul class="reset" id="navheader">
-					<li class="current"><a href="index.html">首页</a></li>
+					<li class="current"><a href="toIndex.controller">首页</a></li>
 					<li><a href="tocompanlist.controller">公司</a></li>
 					<li><a href="h/toForum.html" target="_blank">论坛</a></li>
 					<li><a href="toResume.controller" rel="nofollow">我的简历</a></li>
@@ -745,8 +745,7 @@
 			</div>
 			<div class="content">
 				<div id="search_box">
-					<form id="searchForm" name="searchForm" action="toListOoccupation.controller"
-						method="get">
+					<form id="searchForm1" name="searchForm" method="get">
 						<ul id="searchType">
 							<li data-searchtype="1" class="type_selected">职位</li>
 							<li data-searchtype="4">公司</li>
@@ -765,10 +764,19 @@
 							type="hidden" name="lc" id="lc" value="" /> <input type="hidden"
 							name="workAddress" id="workAddress" value="" /> <input
 							type="hidden" name="city" id="cityInput" value="" /> <input
-							type="submit" id="search_button" value="搜索" />
+							type="submit" id="search_button" value="搜索" onclick="search()" />
 						<!-- asd -->
 					</form>
 				</div>
+				<script type="text/javascript">
+					function search() {
+						var kd = $("input[name='kd']").val();
+						alert(kd);
+						$("#searchForm1").attr("action",
+								"toListOoccupation.controller").submit();
+
+					}
+				</script>
 				<style>
 .ui-autocomplete {
 	width: 488px;
@@ -939,38 +947,67 @@
 					<ul class="hot_pos reset">
 
 						<c:forEach items="${com}" var="com">
-							<li class="clearfix">
-								<div class="hot_pos_l">
-									<div class="mb10">
-										<a href="toxiangqing.controller" target="_blank">${com.cphone}</a>
-										&nbsp; <span class="c9">[ ${com.caddress} ]</span>
-									</div>
-									<c:forEach items="${com.occupation}" var="cooo">
-										<span><em class="c7">月薪： </em>${cooo.omaxsalary}</span>
-										<span><em class="c7">经验：</em> ${cooo.olog}</span>
-										<c:forEach items="${cooo.education}" var="coooo"></c:forEach>
-										<span><em class="c7">最低学历： </em>${coooo.ename}</span>
+							<c:forEach items="${com.occupation}" var="cooo">
+								<li class="clearfix">
+									<div class="hot_pos_l">
+										<div class="mb10">
+											<a href="toxiangqing.controller" target="_blank">${cooo.oname}</a>
+											&nbsp; <span class="c9">[ ${com.caddress} ]</span>
+										</div>
 
-										<br />
-										<span><em class="c7">职位诱惑：</em>${cooo.owelfare}</span>
-									</c:forEach>
-									<br /> <span>1天前发布</span>
-									<!-- <a  class="wb">分享到微博</a> -->
-								</div>
-								<div class="hot_pos_r">
-									<div class="mb10 recompany">
-										<a href="h/c/399.html" target="_blank">节操精选</a>
+										<span><em class="c7">月薪： </em>${cooo.omaxsalary}</span> <span><em
+											class="c7">经验：</em> ${cooo.olog}</span>
+										<c:forEach items="${cooo.education}" var="coooo"></c:forEach>
+										<span><em class="c7">最低学历： </em>${coooo.ename}</span> <br />
+										<span><em class="c7">职位诱惑：</em>${cooo.owelfare}</span> <br />
+										<span>1天前发布</span>
+										<!-- <a  class="wb">分享到微博</a> -->
 									</div>
-									<span><em class="c7">领域：</em> ${com.cfield}</span> <span><em
-										class="c7">创始人：</em>${com.founder.fname}</span> <br /> <span><em
-										class="c7">阶段：</em> ${com.cfs}</span> <span><em class="c7">规模：</em>${com.cscale}</span>
-									<ul class="companyTags reset">
-										<li>移动互联网</li>
-										<li>五险一金</li>
-										<li>扁平管理</li>
-									</ul>
-								</div>
+
+
+									<div class="hot_pos_r">
+										<div class="mb10 recompany">
+											<a href="h/c/399.html" target="_blank">节操精选</a>
+										</div>
+										<span><em class="c7">领域：</em> ${com.cfield}</span> <span><em
+											class="c7">创始人：</em>${com.founder.fname}</span> <br /> <span><em
+											class="c7">阶段：</em> ${com.cfs}</span> <span><em class="c7">规模：</em>${com.cscale}</span>
+										<ul class="companyTags reset">
+											<li>移动互联网</li>
+											<li>五险一金</li>
+											<li>扁平管理</li>
+										</ul>
+									</div>
+							</c:forEach>
 							</li>
+
+
+							<%-- <c:if test="${com.size()%2==0}">
+									<li class="odd clearfix">
+										<div class="hot_pos_l">
+											<div class="mb10">
+												<a href="toxiangqing.controller" target="_blank">售前工程师（运维经验优先）</a>
+												&nbsp; <span class="c9">[北京]</span>
+											</div>
+											<span><em class="c7">月薪： </em>6k-12k</span> <span><em
+												class="c7">经验：</em> 3-5年</span> <span><em class="c7">最低学历：
+											</em>大专</span> <br /> <span><em class="c7">职位诱惑：</em>五险一金+商业保险+带薪年假+奖金等</span>
+											<br /> <span>1天前发布</span> <a class="wb">分享到微博</a>
+										</div>
+										<div class="hot_pos_r">
+											<div class="mb10 recompany">
+												<a href="h/c/5232.html" target="_blank">监控宝</a>
+											</div>
+											<span><em class="c7">领域：</em> 云计算\大数据</span> <br /> <span><em
+												class="c7">阶段：</em> 成长型(A轮)</span> <span><em class="c7">规模：</em>50-150人</span>
+											<ul class="companyTags reset">
+												<li>五险一金</li>
+												<li>福利好</li>
+												<li>商业险</li>
+											</ul>
+										</div>
+									</li>
+							</c:if> --%>
 						</c:forEach>
 
 
@@ -1339,7 +1376,7 @@
 							target="_blank">查看更多</a>
 					</ul>
 					<ul class="hot_pos hot_posHotPosition reset" style="display: none;">
-						<c:forEach items="${coo}" var="coo">
+						<%--  <c:forEach items="${coo}" var="coo">
 							<li class="clearfix">
 								<div class="hot_pos_l">
 									<div class="mb10">
@@ -1369,9 +1406,45 @@
 									</ul>
 								</div>
 							</li>
+						</c:forEach>  --%>
+
+						<c:forEach items="${com}" var="com">
+						<c:forEach items="${com.occupation}" var="cooo">
+							<li class="clearfix">
+							
+								<div class="hot_pos_l">
+									<div class="mb10">
+										<a href="toxiangqing.controller" target="_blank">${cooo.oname}</a>
+										&nbsp; <span class="c9">[ ${com.caddress} ]</span>
+									</div>
+									
+										<span><em class="c7">月薪： </em>${cooo.omaxsalary}</span>
+										<span><em class="c7">经验：</em> ${cooo.olog}</span>
+										<c:forEach items="${cooo.education}" var="coooo"></c:forEach>
+										<span><em class="c7">最低学历： </em>${coooo.ename}</span>
+
+										<br />
+										<span><em class="c7">职位诱惑：</em>${cooo.owelfare}</span>
+									
+									<br /> <span>1天前发布</span>
+									<!-- <a  class="wb">分享到微博</a> -->
+								</div>
+								<div class="hot_pos_r">
+									<div class="mb10 recompany">
+										<a href="h/c/399.html" target="_blank">节操精选</a>
+									</div>
+									<span><em class="c7">领域：</em> ${com.cfield}</span> <span><em
+										class="c7">创始人：</em>${com.founder.fname}</span> <br /> <span><em
+										class="c7">阶段：</em> ${com.cfs}</span> <span><em class="c7">规模：</em>${com.cscale}</span>
+									<ul class="companyTags reset">
+										<li>移动互联网</li>
+										<li>五险一金</li>
+										<li>扁平管理</li>
+									</ul>
+								</div>
+							</li>
+							</c:forEach>
 						</c:forEach>
-
-
 
 
 						<%-- <li class="odd clearfix">

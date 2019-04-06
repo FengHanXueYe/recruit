@@ -1463,7 +1463,7 @@ div.BMap_cmLstItem {
 					alt="拉勾招聘-专注互联网招聘" src="style/images/logo.png">
 				</a>
 				<ul id="navheader" class="reset">
-					<li><a href="index.html">首页</a></li>
+					<li><a href="toIndex.controller">首页</a></li>
 					<li><a href="companylist.html">公司</a></li>
 					<li><a target="_blank" href="">论坛</a></li>
 					<li><a rel="nofollow" href="">简历管理</a></li>
