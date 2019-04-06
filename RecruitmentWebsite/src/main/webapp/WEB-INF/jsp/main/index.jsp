@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-﻿
+﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -952,15 +952,16 @@
 									<div class="hot_pos_l">
 										<div class="mb10">
 											<a href="toxiangqing.controller?cccname=${cooo.oid }" >${cooo.oname}</a>
-											&nbsp; <span class="c9">[ ${com.caddress} ]</span>
+											&nbsp; <span class="c9">[ ${cooo.ocity} ]</span>
 										</div>
 
-										<span><em class="c7">月薪： </em>${cooo.omaxsalary}</span> <span><em
+										<span><em class="c7">月薪： </em><fmt:formatNumber value="${cooo.omaxsalary}" pattern="#.0k"></fmt:formatNumber></span> <span><em
 											class="c7">经验：</em> ${cooo.olog}</span>
-										<c:forEach items="${cooo.education}" var="coooo"></c:forEach>
-										<span><em class="c7">最低学历： </em>${coooo.ename}</span> <br />
+										<c:forEach items="${cooo.education}" var="coooo">
+											<span><em class="c7">最低学历： </em>${coooo.ename}</span> <br />
+										</c:forEach>
 										<span><em class="c7">职位诱惑：</em>${cooo.owelfare}</span> <br />
-										<span>1天前发布</span>
+										<span>发布时间:<fmt:formatDate value="${cooo.orelease}" pattern="yyyy-MM-dd" /></span>
 										<!-- <a  class="wb">分享到微博</a> -->
 									</div>
 
@@ -1415,18 +1416,18 @@
 								<div class="hot_pos_l">
 									<div class="mb10">
 										<a href="toxiangqing.controller" target="_blank">${cooo.oname}</a>
-										&nbsp; <span class="c9">[ ${com.caddress} ]</span>
+										&nbsp; <span class="c9">[ ${cooo.ocity} ]</span>
 									</div>
 									
 										<span><em class="c7">月薪： </em>${cooo.omaxsalary}</span>
 										<span><em class="c7">经验：</em> ${cooo.olog}</span>
-										<c:forEach items="${cooo.education}" var="coooo"></c:forEach>
+										<c:forEach items="${cooo.education}" var="coooo">
 										<span><em class="c7">最低学历： </em>${coooo.ename}</span>
-
+										</c:forEach>
 										<br />
 										<span><em class="c7">职位诱惑：</em>${cooo.owelfare}</span>
 									
-									<br /> <span>1天前发布</span>
+									<br /> <span>发布时间:<fmt:formatDate value="${cooo.orelease}" pattern="yyyy-MM-dd" /></span>
 									<!-- <a  class="wb">分享到微博</a> -->
 								</div>
 								<div class="hot_pos_r">
