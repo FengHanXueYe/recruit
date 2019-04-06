@@ -34,7 +34,6 @@
 		SELECT *FROM company co,founder f,occupation o,education e WHERE
 		f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid ORDER BY
 		o.orelease DESC
-
 	</select>
 
 </mapper>
