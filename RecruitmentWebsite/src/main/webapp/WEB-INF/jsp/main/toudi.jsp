@@ -83,11 +83,13 @@ var youdao_conv_id = 271546;
 	    			type:"post",
 	    			url:"ajaxQueryAllUserCollectionp.controller",
 	    			data:{"oid":oid},
-	    			success:function(data){
-	    				if(data=="true"){
-	    					alert("收藏成功！");
-	    				}else{
-	    					alert("已取消收藏！");
+	    			success:function(resultData,status){
+	    				if("success"==status){
+	    					if(resultData){
+		    					alert("收藏成功！");
+		    				}else{
+		    					alert("已取消收藏！");
+		    				}
 	    				}
 	    			}
 	    			

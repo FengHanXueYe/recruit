@@ -13,5 +13,6 @@ public interface CompanyService {
 	int updateCompanyProfile(String companyProfile,int cid);
 	Company qyeryAllCompany(int cuid);
 	List<Company> queryalltoFounder();
+	 List<Company> queryalltozuixin();
 	//123
 }

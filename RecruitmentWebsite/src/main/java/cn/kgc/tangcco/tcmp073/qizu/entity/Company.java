@@ -24,8 +24,9 @@ public class Company {
 	private String cfinancing,cabbreviation;
 	private Integer cinv;
 	private String curl,companyProfile;
-	
 	private Founder founder;//创始团队实体
 	private Product product;//产品实体
+	private List<Occupation> occupation;
+
 	
 }

@@ -47,6 +47,10 @@ public class CompanyServiceImpl implements CompanyService {
 	public List<Company> queryalltoFounder() {
 		return mapper.queryalltoFounder();
 	}
+	@Override
+	public List<Company> queryalltozuixin() {
+		return mapper.queryalltozuixin();
+	}
 	
 	//1232
 }

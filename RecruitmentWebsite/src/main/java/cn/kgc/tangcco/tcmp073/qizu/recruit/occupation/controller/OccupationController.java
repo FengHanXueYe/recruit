@@ -29,6 +29,10 @@ public class OccupationController {
 	public String toToudi(Model model) {
 		return "main/toudi";
 	}
+	@RequestMapping("toZhiye")
+	public String toZhiye(Model model) {
+		return "main/list";
+	}
 	
 	@RequestMapping("doAddOccupation")
 	public String doAdd(Occupation occ) {

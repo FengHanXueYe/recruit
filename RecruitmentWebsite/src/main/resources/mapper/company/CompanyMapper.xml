@@ -10,6 +10,14 @@
 		<id column="cid" property="cid" />
 		<collection property="founder" resultMap="FounderMap"></collection>
 		<collection property="product" resultMap="ProductMap"></collection>
+		<collection property="occupation" column="occupation"></collection>
+	</resultMap>
+	<resultMap type="Occupation" id="occupation" autoMapping="true">
+		<id column="oid" property="oid" />
+		<collection property="education" resultMap="education"></collection>
+	</resultMap>
+	<resultMap type="Education" id="education" autoMapping="true">
+		<id column="eid" property="eid" />
 	</resultMap>
 	<resultMap type="Founder" id="FounderMap" autoMapping="true">
 		<id column="fid" property="fid" />
@@ -18,7 +26,15 @@
 		<id column="pid" property="pid" />
 	</resultMap>
 	<select id="queryalltoFounder" resultMap="CompanyMaps">
-		SELECT *FROM company co,founder fo WHERE co.cid=fo.cfid
+		SELECT *FROM company
+		co,founder f,occupation o,education e WHERE f.cfid=co.cid AND
+		e.eid=o.oeducation AND co.cid=o.ocid
+	</select>
+	<select id="queryalltozuixin" resultMap="CompanyMaps">
+		SELECT *FROM company co,founder f,occupation o,education e WHERE
+		f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid ORDER BY
+		o.orelease DESC
+
 	</select>
 
 </mapper>
