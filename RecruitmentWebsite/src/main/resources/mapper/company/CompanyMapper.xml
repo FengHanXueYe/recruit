@@ -10,13 +10,13 @@
 		<id column="cid" property="cid" />
 		<collection property="founder" resultMap="FounderMap"></collection>
 		<collection property="product" resultMap="ProductMap"></collection>
-		<collection property="occupation" column="occupation"></collection>
+		<collection property="occupation" resultMap="occupationMap"></collection>
 	</resultMap>
-	<resultMap type="Occupation" id="occupation" autoMapping="true">
+	<resultMap type="Occupation" id="occupationMap" autoMapping="true">
 		<id column="oid" property="oid" />
-		<collection property="education" resultMap="education"></collection>
+		<collection property="education" resultMap="educationMap"></collection>
 	</resultMap>
-	<resultMap type="Education" id="education" autoMapping="true">
+	<resultMap type="Education" id="educationMap" autoMapping="true">
 		<id column="eid" property="eid" />
 	</resultMap>
 	<resultMap type="Founder" id="FounderMap" autoMapping="true">

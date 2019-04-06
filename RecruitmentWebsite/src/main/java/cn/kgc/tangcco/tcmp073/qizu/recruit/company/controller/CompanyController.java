@@ -1,5 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.company.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Product;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.utilEmail.CEmail;
@@ -48,9 +51,10 @@ public class CompanyController {
 	}
 	//123
 	@RequestMapping("UpdateCNameController")
-	public String updateCName(Company com,Model model) {
+	public String updateCName(Company com,Model model,HttpSession session) {
 		int row=this.service.updateCompany(com);
 		if(row>0) {
+			session.setAttribute("companys", this.service.queryByEmail(com.getCemail()));
 			model.addAttribute("company2", this.service.queryByEmail(com.getCemail()));
 			CEmail email=new CEmail();
 			email.sendEamilCode(com.getCemail());
@@ -102,7 +106,11 @@ public class CompanyController {
 	public String tomyhome(HttpSession session,Model model) {
 		RecruitingUsers user=(RecruitingUsers) session.getAttribute("loginUser");
 		
+		Company com=this.service.qyeryAllCompany(user.getUserid());
+		System.err.println("-------------------------------------------------------"+com);
 		model.addAttribute("listCompany",this.service.qyeryAllCompany(user.getUserid()));
+		
+		
 		
 		return "main/myhome";
 	}
