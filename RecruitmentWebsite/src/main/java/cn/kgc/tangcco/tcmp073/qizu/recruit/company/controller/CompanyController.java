@@ -31,13 +31,20 @@ public class CompanyController {
 	}
 	//跳转到公司注册页面
 	@RequestMapping("toNavController")
-	public String toNav() {
-
-		return "main/bindstep1";
+	public String toNav(HttpSession session) {
+		RecruitingUsers users=(RecruitingUsers) session.getAttribute("loginUser");
+		Company comm=this.service.queryByUid(users.getUserid());
+		if(comm==null) {
+			return "main/bindstep1";
+		}else {
+			return "redirect:tomyhome.controller";
+		}
+		
 	}
 	
 	@RequestMapping("AddCompanyOneController")
 	public String AddCompanyOne(Company com,Model model,HttpSession session) {
+		
 		RecruitingUsers user=(RecruitingUsers) session.getAttribute("loginUser");
 		com.setCuid(user.getUserid());
 		int row=this.service.addCompanyOne(com);		
@@ -47,6 +54,7 @@ public class CompanyController {
 		}else {
 			return "main/bindstep1";
 		}
+		
 		
 	}
 	//123
