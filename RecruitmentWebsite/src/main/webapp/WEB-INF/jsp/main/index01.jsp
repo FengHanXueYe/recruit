@@ -268,18 +268,18 @@ var youdao_conv_id = 271546;
 			}else{
 				msg+=","+$(this).html();	
 			}
-			alert(msg);
+			
 			$("input[name='cfield']").val(msg);
 		})
 		$("#msg2 ul li").click(function(){
 			
 				msg2=$(this).html();
-				alert(msg2);
+				
 				$("input[name='cfs']").val(msg2);
 		})
 		$("#box_scale ul li").click(function(){
 			msg3=$(this).html();
-			alert(msg3);
+			
 			$("input[name='cscale']").val(msg3);
 		})
 	

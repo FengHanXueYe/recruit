@@ -44,6 +44,7 @@ public class OccupationController {
 		Company con=(Company) this.comservice.queryByUid(user.getUserid());
 		occ.setOcid(con.getCid());
 		occ.setOstate(0);
+		
 		int row=this.service.addOccupation(occ);
 		if(row>0) {
 			return "main/index06";

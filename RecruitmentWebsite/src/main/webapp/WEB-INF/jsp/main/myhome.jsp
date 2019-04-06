@@ -48,7 +48,7 @@ var youdao_conv_id = 271546;
     				    			<li>
 	    				<a rel="nofollow" href="">简历管理</a>
 	    					    			</li>
-	    							    			<li><a rel="nofollow" href="create.html">发布职位</a></li>
+	    							    			<li><a rel="nofollow" href="tocreate.controller">发布职位</a></li>
 	    		    		</ul>
 	    		    		<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
         	      <!--   	<dl class="collapsible_menu">
@@ -234,7 +234,7 @@ var youdao_conv_id = 271546;
 					                    </dt>
 					                    <dd>
 						                    <form id="companyDesForm">
-						                        <textarea placeholder="请分段详细描述公司简介、企业文化等" name="companyProfile" id="companyProfile">该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎</textarea>		                                        
+						                        <textarea placeholder="请分段详细描述公司简介、企业文化等" name="companyProfile" id="companyProfile">${listCompany.companyProfile}</textarea>		                                        
 						                        <div class="word_count fr">你还可以输入 <span>1000</span> 字</div>
 						                        <div class="clear"></div>
 						                        <input type="submit" value="保存" id="submitProfile" class="btn_small">
@@ -249,7 +249,7 @@ var youdao_conv_id = 271546;
 					                   		<h2><em></em>公司介绍</h2>
 					                   	</dt>
 					                   	<dd>
-					                   		<div class="c_intro">该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎该方法嘎嘎</div>
+					                   		<div class="c_intro">${listCompany.companyProfile}</div>
 					                   		<a title="编辑公司介绍" id="editIntro" class="c_edit" href="javascript:void(0)"></a>
 					                   	</dd>
 					               	</dl>
@@ -267,7 +267,7 @@ var youdao_conv_id = 271546;
 		                    <dd>
 		                    	<div class="addnew">
 		                        	发布需要的人才信息，让伯乐和千里马尽快相遇……<br>
-		                            <a href="create.html">+添加招聘职位</a>
+		                            <a href="tocreate.controller">+添加招聘职位</a>
 		                        </div>
 		                    </dd>
 		                </dl>
@@ -309,14 +309,14 @@ var youdao_conv_id = 271546;
 		                        <tbody><tr>
 		                            <td>地点</td>
 		                            <td>
-		                            	<input type="text" placeholder="请输入地点" value="上海" name="city" id="city">	
+		                            	<input type="text" placeholder="请输入地点" value="${listCompany.caddress}" name="city" id="city">	
 		                            </td>
 		                        </tr>
 		                        <tr>
 		                            <td>领域</td><!-- 支持多选 -->
 		                            <td>
 		                            	<input type="hidden" value="移动互联网" id="industryField" name="industryField">
-		                            	<input type="button" style="background:none;cursor:default;border:none !important;" disable="disable" value="移动互联网" id="select_ind" class="select_tags">
+		                            	<input type="button" style="background:none;cursor:default;border:none !important;" disable="disable" value="${listCompany.cfield }" id="select_ind" class="select_tags">
 		                                <!-- <div id="box_ind" class="selectBox dn">
 		                                    <ul class="reset">
 			                                    				                        							                            			<li class="current">移动互联网</li>
@@ -328,7 +328,7 @@ var youdao_conv_id = 271546;
 		                            <td>规模</td>
 		                            <td>
 		                            	<input type="hidden" value="150-500人" id="companySize" name="companySize">
-		                            	<input type="button" value="150-500人" id="select_sca" class="select_tags">
+		                            	<input type="button" value="${listCompany.cscale}" id="select_sca" class="select_tags">
 		                                <div class="selectBox dn" id="box_sca" style="display: none;">
 		                                    <ul class="reset">
 		                                    			                                    						                            			<li>少于15人</li>
@@ -344,7 +344,7 @@ var youdao_conv_id = 271546;
 		                        <tr>
 		                            <td>主页</td>
 		                            <td>
-                            			<input type="text" placeholder="请输入网址" value="http://www.weimob.com" name="companyUrl" id="companyUrl">	
+                            			<input type="text" placeholder="请输入网址" value="${listCompany.curl}" name="companyUrl" id="companyUrl">	
 		                            </td>
 		                        </tr>
 		                    </tbody></table>
@@ -366,13 +366,13 @@ var youdao_conv_id = 271546;
                     </dt>
                     <dd>
                     	<ul class="reset stageshow">
-                    		<li>目前阶段：<span class="c5">天使轮</span></li>
+                    		<li>目前阶段：<span class="c5">${listCompany.cfs}</span></li>
                     		                    	</ul>
                     	<form class="dn" id="stageform">
                     		<div class="stageSelect">
                     			<label>目前阶段</label>
                     			<input type="hidden" value="天使轮" id="financeStage" name="financeStage">
-	                         	<input type="button" value="天使轮" id="select_fin" class="select_tags_short fl">
+	                         	<input type="button" value="${listCompany.cfs}" id="select_fin" class="select_tags_short fl">
 	                            <div class="selectBoxShort dn" id="box_fin" style="display: none;">
 	                                 <ul class="reset">
 	                                 		                                 		
@@ -497,14 +497,14 @@ var youdao_conv_id = 271546;
 	                    					<a title="编辑创始人" class="c_edit member_edit" href="javascript:void(0)"></a>
 				                        	<div class="m_portrait">
 				                            	<div></div>
-				                            	<img width="120" height="120" alt="孙泰英" src="style/images/leader_default.png">
+				                            	<a href="${listCompany.founder.flang}"><img width="120" height="120" alt="孙泰英" src="style/images/leader_default.png"></a>
 					                        </div>
 				                            <div class="m_name">
-				                            	孙泰英 
+				                            	${listCompany.founder.fname}
 			                            		                            						<a target="_blank" class="weibo" href="http://weimob.weibo.com"></a>
 				                            					                            </div>
-				                            <div class="m_position">ceo</div>
-				                    		<div class="m_intro">发放的发达范德萨范德萨范德萨发的复大发大水发生的</div>
+				                            <div class="m_position">${listCompany.founder.fposition}</div>
+				                    		<div class="m_intro">${listCompany.founder.fdescribe}</div>
 				                        </div>
 				                        
 				                     </div><!-- end .member_wrap -->
