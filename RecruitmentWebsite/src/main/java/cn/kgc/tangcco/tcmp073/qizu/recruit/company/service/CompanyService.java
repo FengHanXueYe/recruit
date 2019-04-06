@@ -14,5 +14,6 @@ public interface CompanyService {
 	Company qyeryAllCompany(int cuid);
 	List<Company> queryalltoFounder();
 	 List<Company> queryalltozuixin();
+	 Company queryByUid(int userid);
 	//123
 }

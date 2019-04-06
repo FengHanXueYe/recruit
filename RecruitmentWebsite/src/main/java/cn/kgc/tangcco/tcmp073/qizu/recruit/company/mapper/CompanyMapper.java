@@ -25,4 +25,5 @@ public interface CompanyMapper {
     List<Company> queryalltoFounder();
     List<Company> queryalltozuixin();
 	Company qyeryAllCompany(int cuid);
+	Company queryByUid(int cuid);
 }

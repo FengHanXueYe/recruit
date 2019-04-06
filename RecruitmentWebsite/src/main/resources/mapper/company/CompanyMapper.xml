@@ -35,5 +35,7 @@
 		f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid ORDER BY
 		o.orelease DESC
 	</select>
-
+	<select id="queryByUid" parameterType="int" resultMap="CompanyMaps">
+		select * from company where cuid=#{cuid}
+	</select>
 </mapper>

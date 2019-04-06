@@ -51,6 +51,10 @@ public class CompanyServiceImpl implements CompanyService {
 	public List<Company> queryalltozuixin() {
 		return mapper.queryalltozuixin();
 	}
+	@Override
+	public Company queryByUid(int userid) {
+		return mapper.queryByUid(userid);
+	}
 	
 	//1232
 }

@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
+import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.service.OccupationService;
 
 @Controller
 public class OccupationController {
 	@Resource
 	private OccupationService service;
+	@Resource
+	private CompanyService comservice;
 	@RequestMapping("tocreate")
 	public String tocreate() {
 		return "main/create";
@@ -36,7 +40,8 @@ public class OccupationController {
 	
 	@RequestMapping("doAddOccupation")
 	public String doAdd(Occupation occ,HttpSession session) {
-		Company con=(Company) session.getAttribute("companys");
+		RecruitingUsers user=(RecruitingUsers) session.getAttribute("loginUser");
+		Company con=(Company) this.comservice.queryByUid(user.getUserid());
 		occ.setOcid(con.getCid());
 		occ.setOstate(0);
 		int row=this.service.addOccupation(occ);
