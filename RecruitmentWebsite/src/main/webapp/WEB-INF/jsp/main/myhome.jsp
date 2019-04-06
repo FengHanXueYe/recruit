@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 ﻿<!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb"><head>
 </script><script type="text/javascript" async="" src="style/js/conversion.js"></script><script src="style/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script><style type="text/css"></style>
@@ -112,10 +113,13 @@ var youdao_conv_id = 271546;
 	                        <div class="clear oneword"><img width="17" height="15" src="style/images/quote_l.png">&nbsp; <span>${listCompany.cdetail}</span> &nbsp;<img width="17" height="15" src="style/images/quote_r.png"></div>
 	                        <h3 class="dn">已选择标签</h3>
 	                        <ul style="overflow:auto" id="hasLabels" class="reset clearfix">
-	                        			                        	<li><span>年终分红</span></li>
+	                        			                        	<c:forEach var="tag" items="${taglist}">
+	                        			                        		<li><span>${tag}</span></li>
+	                        			                        	</c:forEach>
+	                        			                        	<!--  <li><span>年终分红</span></li>
 		                        		                        	<li><span>五险一金</span></li>
 		                        		                        	<li><span>弹性工作</span></li>
-		                        		                        	<li><span>岗位晋升</span></li>
+		                        		                        	<li><span>岗位晋升</span></li>-->
 		                        	                            <li class="link">编辑</li>
 	                        </ul>
 	                        <div class="dn" id="addLabels">

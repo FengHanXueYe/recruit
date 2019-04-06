@@ -115,7 +115,9 @@ public class CompanyController {
 		RecruitingUsers user=(RecruitingUsers) session.getAttribute("loginUser");
 		
 		Company com=this.service.qyeryAllCompany(user.getUserid());
-		System.err.println("-------------------------------------------------------"+com);
+		String  tag=com.getCfinancing();
+		String taglist[]=tag.split(",");
+		model.addAttribute("taglist", taglist);
 		model.addAttribute("listCompany",this.service.qyeryAllCompany(user.getUserid()));
 		
 		
