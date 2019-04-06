@@ -1874,7 +1874,7 @@ div.BMap_cmLstItem {
 												</li>
 												<li>实习<em></em> <input type="radio" name="oonatures"
 													value="实习">
-													<input name="ocid" value="${loginUser.userid}" type="hidden">
+													
 												</li>
 											</ul>
 										</td>
