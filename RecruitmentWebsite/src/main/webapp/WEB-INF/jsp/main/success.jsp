@@ -50,6 +50,7 @@ var youdao_conv_id = 271546;
 	    					    			</li>
 	    							    			<li><a rel="nofollow" href="create.html">发布职位</a></li>
 	    		    		</ul>
+	    		    		 <jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
         	     <!-- 	<dl class="collapsible_menu">
             	<dt>
            			<span>jason&nbsp;</span> 
@@ -62,7 +63,7 @@ var youdao_conv_id = 271546;
                 	<dd><a href="jianli.html">我要找工作</a></dd>
                                                 <dd><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
-            </dl> -->   <jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
+            </dl> -->  
                                 </div>
     </div><!-- end #header -->
     <div id="container">
@@ -76,7 +77,7 @@ var youdao_conv_id = 271546;
                 </dt>
                 <dd class="c_notice"> 
                 	<h4>恭喜你，公司信息已填写完善，你可以发布职位啦！</h4>
-                    <a class="greylink" href="create.html">发布新职位</a>
+                    <a class="greylink" href="tocreate.controller">发布新职位</a>
                     <a class="greylink" href="tomyhome.controller"> 进入我的公司主页</a>
                 </dd>
             </dl>
