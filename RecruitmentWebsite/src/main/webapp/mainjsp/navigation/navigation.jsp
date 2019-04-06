@@ -20,7 +20,7 @@
                 	<dd><a href="toNavController.controller">去企业版</a></dd>
                     <dd><a href="positions.html">我发布的职位</a></dd>
                 	<dd><a href="positions.html">我收到的简历</a></dd>
-                	<dd class="btm"><a href="myhome.html">我的公司主页</a></dd>
+                	<dd class="btm"><a href="tomyhome.controller">我的公司主页</a></dd>
                 	<dd><a href="jianli.html">我要找工作</a></dd>
                 	<dd><a href="doListDeliverypost.controller">我投递的职位</a></dd>
                     <dd><a href="toAccountSettings.controller">帐号设置</a></dd>
