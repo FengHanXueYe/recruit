@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -951,17 +951,20 @@
 								<li class="clearfix">
 									<div class="hot_pos_l">
 										<div class="mb10">
-											<a href="toxiangqing.controller?cccname=${cooo.oid }" >${cooo.oname}</a>
+											<a href="toxiangqing.controller?cccname=${cooo.oid }">${cooo.oname}</a>
 											&nbsp; <span class="c9">[ ${cooo.ocity} ]</span>
 										</div>
 
-										<span><em class="c7">月薪： </em><fmt:formatNumber value="${cooo.omaxsalary}" pattern="#.0k"></fmt:formatNumber></span> <span><em
-											class="c7">经验：</em> ${cooo.olog}</span>
+										<span><em class="c7">月薪： </em>
+										<fmt:formatNumber value="${cooo.omaxsalary}" pattern="#.0k"></fmt:formatNumber></span>
+										<span><em class="c7">经验：</em> ${cooo.olog}</span>
 										<c:forEach items="${cooo.education}" var="coooo">
-											<span><em class="c7">最低学历： </em>${coooo.ename}</span> <br />
+											<span><em class="c7">最低学历： </em>${coooo.ename}</span>
+											<br />
 										</c:forEach>
 										<span><em class="c7">职位诱惑：</em>${cooo.owelfare}</span> <br />
-										<span>发布时间:<fmt:formatDate value="${cooo.orelease}" pattern="yyyy-MM-dd" /></span>
+										<span>发布时间:<fmt:formatDate value="${cooo.orelease}"
+												pattern="yyyy-MM-dd" /></span>
 										<!-- <a  class="wb">分享到微博</a> -->
 									</div>
 
@@ -1410,40 +1413,40 @@
 						</c:forEach>  --%>
 
 						<c:forEach items="${com}" var="com">
-						<c:forEach items="${com.occupation}" var="cooo">
-							<li class="clearfix">
-							
-								<div class="hot_pos_l">
-									<div class="mb10">
-										<a href="toxiangqing.controller" target="_blank">${cooo.oname}</a>
-										&nbsp; <span class="c9">[ ${cooo.ocity} ]</span>
-									</div>
-									
-										<span><em class="c7">月薪： </em>${cooo.omaxsalary}</span>
-										<span><em class="c7">经验：</em> ${cooo.olog}</span>
+							<c:forEach items="${com.occupation}" var="cooo">
+								<li class="clearfix">
+
+									<div class="hot_pos_l">
+										<div class="mb10">
+											<a href="toxiangqing.controller" target="_blank">${cooo.oname}</a>
+											&nbsp; <span class="c9">[ ${cooo.ocity} ]</span>
+										</div>
+
+										<span><em class="c7">月薪： </em>${cooo.omaxsalary}</span> <span><em
+											class="c7">经验：</em> ${cooo.olog}</span>
 										<c:forEach items="${cooo.education}" var="coooo">
-										<span><em class="c7">最低学历： </em>${coooo.ename}</span>
+											<span><em class="c7">最低学历： </em>${coooo.ename}</span>
 										</c:forEach>
-										<br />
-										<span><em class="c7">职位诱惑：</em>${cooo.owelfare}</span>
-									
-									<br /> <span>发布时间:<fmt:formatDate value="${cooo.orelease}" pattern="yyyy-MM-dd" /></span>
-									<!-- <a  class="wb">分享到微博</a> -->
-								</div>
-								<div class="hot_pos_r">
-									<div class="mb10 recompany">
-										<a href="h/c/399.html" target="_blank">节操精选</a>
+										<br /> <span><em class="c7">职位诱惑：</em>${cooo.owelfare}</span>
+
+										<br /> <span>发布时间:<fmt:formatDate
+												value="${cooo.orelease}" pattern="yyyy-MM-dd" /></span>
+										<!-- <a  class="wb">分享到微博</a> -->
 									</div>
-									<span><em class="c7">领域：</em> ${com.cfield}</span> <span><em
-										class="c7">创始人：</em>${com.founder.fname}</span> <br /> <span><em
-										class="c7">阶段：</em> ${com.cfs}</span> <span><em class="c7">规模：</em>${com.cscale}</span>
-									<ul class="companyTags reset">
-										<li>移动互联网</li>
-										<li>五险一金</li>
-										<li>扁平管理</li>
-									</ul>
-								</div>
-							</li>
+									<div class="hot_pos_r">
+										<div class="mb10 recompany">
+											<a href="h/c/399.html" target="_blank">节操精选</a>
+										</div>
+										<span><em class="c7">领域：</em> ${com.cfield}</span> <span><em
+											class="c7">创始人：</em>${com.founder.fname}</span> <br /> <span><em
+											class="c7">阶段：</em> ${com.cfs}</span> <span><em class="c7">规模：</em>${com.cscale}</span>
+										<ul class="companyTags reset">
+											<li>移动互联网</li>
+											<li>五险一金</li>
+											<li>扁平管理</li>
+										</ul>
+									</div>
+								</li>
 							</c:forEach>
 						</c:forEach>
 
