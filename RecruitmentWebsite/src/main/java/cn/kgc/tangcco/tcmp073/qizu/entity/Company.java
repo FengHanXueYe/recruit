@@ -25,7 +25,7 @@ public class Company {
 	private Integer cinv;
 	private String curl,companyProfile;
 	
-	private List<Founder> founder;//创始团队实体
-	private List<Product> product;//产品实体
+	private Founder founder;//创始团队实体
+	private Product product;//产品实体
 	
 }
