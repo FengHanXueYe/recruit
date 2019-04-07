@@ -101,7 +101,9 @@ public class DeliverypostController {
 		//赋值用户id
 		dp.setRuser(attribute);
 		//赋值状态
-		dp.setDstatus(status);
+		if(status!=9) {
+			dp.setDstatus(status);
+		}
 		List<Deliverypost> queryAllDeliverypost = ds.queryAllDeliverypost(dp);
 		for (Deliverypost deliverypost : queryAllDeliverypost) {
 			dpcy = new DpCy();

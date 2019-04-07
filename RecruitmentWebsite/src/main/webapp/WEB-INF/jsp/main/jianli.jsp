@@ -285,6 +285,10 @@ var youdao_conv_id = 271546;
             		<script type="text/javascript">
         /* --------------------------自制js-------------------------- */    		
             			$(function(){
+            				var jiaoyubeijin = '${jiaoyubeijin}';
+            				if(jiaoyubeijin.length>0){
+            					alert(jiaoyubeijin);
+            				}
             				$("select[name='education']").val("${loginUser.education}");
             				$("select[name='userlog']").val("${loginUser.userlog}");
             				$("select[name='eeducation']").val("${educationalbackground.eeducation}");

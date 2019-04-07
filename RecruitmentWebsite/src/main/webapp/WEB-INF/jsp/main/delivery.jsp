@@ -74,24 +74,171 @@ var youdao_conv_id = 271546;
     </div><!-- end #header -->
     <script type="text/javascript">
     	function ajaxLook(status){
-    		alert(status);
+    		//alert(status);
     		$.ajax({
     			type:"post",
     			url:"ajaxQueryDeliverypost.controller",
     			data:{"status":status},
     			success:function(data){
-    				var html;
-    				for(var i = 0; i<data.length;i++){
+    				$("#youdizhuangtaixianshi").html("");
+    				var html="";
+    				/* for(var i = 0; i<data.length;i++){
     					html = "";
-    				}
-    				
+    				} */
+    				if(data!=""){
+    				$.each(data,function(index,item){
+    					//alert(item.deliverypost.dtime);
+    					/* var time1 = item.deliverypost.dtime;
+    					alert(getLocalTime(time1));
+    					alert(getLocalTime1(time1)); */
+    					var date = new Date(item.deliverypost.dtime);
+    					var d = date.getFullYear() + "-" + (Number(date.getMonth())+Number(1)) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    					var date1 = new Date(item.deliverypost.dxytime);
+    					var ffff = date1.getFullYear() + "-" + (Number(date1.getMonth())+Number(1)) + "-" + date1.getDate() + " " + date1.getHours() + ":" + date1.getMinutes() + ":" + date1.getSeconds();
+    					html+="<li><div class='d_item'>"
+		                          	+"<h2 title='随便写'>"
+		    							+"<a target='_blank' href='http://www.lagou.com/jobs/149594.html'>"
+		    								+"<em>"+item.deliverypost.occupation.oname+"</em>" 
+		    									+"<span>（"+item.deliverypost.occupation.ominsalary+"k-"+item.deliverypost.occupation.omaxsalary+"k）</span>"
+		    							+"</a>"
+		    						+"</h2><div class='clear'></div>"
+		    						+"<a title='公司名称' class='d_jobname' target='_blank' href='http://www.lagou.com/c/25927.html'>"
+		    							+item.company.cname+"<span>["+item.deliverypost.occupation.oaddress+"]</span>" 
+		    						+"</a>"
+		    						+"<span class='d_time'>"+item.deliverypost.occupation.orelease+"</span>"
+		    						+"<div class='clear'></div>"
+		    						+"<div class='d_resume'>使用简历:<span>在线简历</span>"
+		    						
+									if(item.deliverypost.dstatus==0){
+		    							
+			    						html+="</div><a class='btn_showprogress' href='javascript:;'>投递成功！<i></i></a></div>"
+			    						+"<div class='progress_status	dn'><ul class='status_steps'>"
+					    						+"<li class='status_done status_1'>1</li>"
+			    						+"</ul>"
+			    						+"<ul class='status_text'>"
+				    						+"<li>投递成功</li>"
+			    						+"</ul>"
+			    						+"<ul class='status_list'>"
+				    						+"<li class='top'>"
+					    						+"<div class='list_time'><em></em>"+d+"</div>"
+				    						+"</li>"
+			    						+"</div>";
+		    						} 
+			    					if(item.deliverypost.dstatus==1){
+										html+="</div><a class='btn_showprogress' href='javascript:;'>被查看<i></i></a></div>"
+				    						+"<div class='progress_status	dn'><ul class='status_steps'>"
+						    						+"<li class='status_done status_1'>1</li>"
+						    						+"<li class='status_line status_line_done'><span></span></li>"
+						    						+"<li class='status_done'><span>2</span></li>"
+						    						+"<li class='status_line status_line_done'><span></span></li>"
+				    						+"</ul>"
+				    						+"<ul class='status_text'>"
+					    						+"<li>投递成功</li>"
+					    						+"<li class='status_text_2'>简历被查看</li>"
+				    						+"</ul>"
+				    						+"<ul class='status_list'>"
+					    						+"<li class='top'>"
+						    						+"<div class='list_time'><em></em>"+d+"</div>"
+						    						+"<div class='list_body'>简历被"+item.cuser.username+"查看，请耐心等待！</div>"
+					    						+"</li>"
+				    						+"</div>";
+									}
+			    					if(item.deliverypost.dstatus==2){
+		    							html+="</div><a class='btn_showprogress' href='javascript:;'>通过初筛<i></i></a></div>"
+				    						+"<div class='progress_status	dn'><ul class='status_steps'>"
+						    						+"<li class='status_done status_1'>1</li>"
+						    						+"<li class='status_line status_line_done'><span></span></li>"
+						    						+"<li class='status_done'><span>2</span></li>"
+						    						+"<li class='status_line status_line_done'>"+"<span></span></li>"
+						    						+"<li class='status_done'><span>3</span></li>"
+				    						+"</ul>"
+				    						+"<ul class='status_text'>"
+					    						+"<li>投递成功</li>"
+					    						+"<li class='status_text_2'>简历被查看</li>"
+					    						+"<li class='status_text_3'>通过初步筛选</li>"
+				    						+"</ul>"
+				    						+"<ul class='status_list'>"
+					    						+"<li class='top'>"
+						    						+"<div class='list_time'><em></em>"+d+"</div>"
+						    						+"<div class='list_body'>简历已通过初次的筛选！</div>"
+					    						+"</li>"
+				    						+"</div>";
+		    						}
+			    					if(item.deliverypost.dstatus==3){
+			    						html+="</div><a class='btn_showprogress' href='javascript:;'>通知面试<i></i></a></div>"
+					    						+"<div class='progress_status	dn'><ul class='status_steps'>"
+							    						+"<li class='status_done status_1'>1</li>"
+							    						+"<li class='status_line status_line_done'><span></span></li>"
+							    						+"<li class='status_done'><span>2</span></li>"
+							    						+"<li class='status_line status_line_done'><span></span></li>"
+							    						+"<li class='status_done'><span>3</span></li>"
+							    						+"<li class='status_line status_line_done'><span></span></li>"
+							    						+"<li class='status_done'><span>4</span></li>"
+					    						+"</ul>"
+					    						+"<ul class='status_text'>"
+						    						+"<li>投递成功</li>"
+						    						+"<li class='status_text_2'>简历被查看</li>"
+						    						+"<li class='status_text_3'>通过初筛</li>"
+						    						+"<li style='margin-left: 75px;*margin-left: 60px;' class='status_text_4'>通知面试</li>"
+					    						+"</ul>"
+					    						+"<ul class='status_list'>"
+						    						+"<li class='top'>"
+							    						+"<div class='list_time'><em></em>"+d+"</div>"
+							    						+"<div class='list_body'>简历被"+item.cuser.username+"查看，面试</div>"
+						    						+"</li>"
+					    						+"<li class='bottom'>"
+						    						+"<div class='list_time'><em></em>"+ffff+"</div>"
+						    						+"<div class='list_body'>"+item.cuser.username+"已成功接收你的简历  </li></ul>"
+					    						+"<a class='btn_closeprogress' href='javascript:;'></a>"
+					    						+"</div>";
+			    					}
+			    					if(item.deliverypost.dstatus==4){
+			    						html+="</div><a class='btn_showprogress' href='javascript:;'>不合适<i></i></a></div>"
+				    						+"<div class='progress_status	dn'><ul class='status_steps'>"
+						    						+"<li class='status_done status_1'>1</li>"
+						    						+"<li class='status_line status_line_done'><span></span></li>"
+						    						+"<li class='status_done'><span>2</span></li>"
+						    						+"<li class='status_line status_line_done'><span></span></li>"
+						    						+"<li class='status_done'><span>3</span></li>"
+						    						+"<li class='status_line status_line_done'><span></span></li>"
+						    						+"<li class='status_done'><span>4</span></li>"
+				    						+"</ul>"
+				    						+"<ul class='status_text'>"
+					    						+"<li>投递成功</li>"
+					    						+"<li class='status_text_2'>简历被查看</li>"
+					    						+"<li class='status_text_3'>通过初步筛选</li>"
+					    						+"<li style='margin-left: 75px;*margin-left: 60px;' class='status_text_4'>不合适</li>"
+				    						+"</ul>"
+				    						+"<ul class='status_list'>"
+					    						+"<li class='top'>"
+						    						+"<div class='list_time'><em></em>"+d+"</div>"
+						    						+"<div class='list_body'>简历被"+item.cuser.username+"标记为不合适！</div>"
+					    						+"</li>"
+				    						+"<li class='bottom'>"
+					    						+"<div class='list_time'><em></em>"+ffff+"</div>"
+					    						+"<div class='list_body'>"+item.cuser.username+"已查看你的简历  </li></ul>"
+				    						+"<a class='btn_closeprogress' href='javascript:;'></a>"
+				    						+"</div>";
+			    						
+			    					}
+		    						html+="</li>";
+					}); 
+// 					html = "<li><div class='d_item'><h2 title='随便写'><a target='_blank' href='http://www.lagou.com/jobs/149594.html'><em>随便写</em><span>（1k-2k）</span></a></h2><div class='clear'></div><a title='公司名称' class='d_jobname' target='_blank' href='http://www.lagou.com/c/25927.html'>公司名称 <span>[上海]</span></a><span class='d_time'>2014</span><div class='clear'></div><div class='d_resume'>+使用简历:<span>在线简历</span></div><a class='btn_showprogress' href='javascript:;'>不合适<i></i></a></div><div class='progress_status	dn'><ul class='status_steps'><li class='status_done status_1'>1</li><li class='status_line status_line_done'><span></span></li><li class='status_done'><span>2</span></li><li class='status_line status_line_done'><span></span></li><li class='status_done'><span>3</span></li><li class='status_line status_line_done'><span></span></li><li class='status_done'><span>4</span></li></ul><ul class='status_text'><li>投递成功</li><li class='status_text_2'>简历被查看</li><li class='status_text_3'>通过初步筛选</li><li style='margin-left: 75px;*margin-left: 60px;' class='status_text_4'>不合适</li></ul><ul class='status_list'><li class='top'><div class='list_time'><em></em>2014</div><div class='list_body'>简历被lixiang标记为不合适<div>您的简历已收到，但目前您的工作经历与该职位不是很匹配，因此很抱歉地通知您无法进入面试。</div></div></li><li class='bottom'><div class='list_time'><em></em>2014</div><div class='list_body'>lixiang已成功接收你的简历  </li></ul><a class='btn_closeprogress' href='javascript:;'></a></div></li>";
+                      	
+    				$("#youdizhuangtaixianshi").html(html).hide().slideDown(500);
     			}
-    			
+    			}
     		})
     		
     		
     		
     	}
+    	function getLocalTime1(nS) {     
+				return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');     
+		} 
+    	function getLocalTime(nS) {     
+				return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');     
+		} 
     </script>
     <div id="container">
         	  	
@@ -106,28 +253,28 @@ var youdao_conv_id = 271546;
                     	<div class="delivery_tabs">
                     		<ul class="reset">
                     			                    			<li class="current">
-                    				<a href="javascript:void(0)" onclick="ajaxLook(0)">全部</a>
+                    				<a href="javascript:void(0)" onclick="ajaxLook(9)">全部</a>
                     			</li>
                     			                    			<li>
-                    				<a href="javascript:void(0)" onclick="ajaxLook(1)">投递成功</a>
+                    				<a href="javascript:void(0)" onclick="ajaxLook(0)">投递成功</a>
                     			</li>
                     			<li>
-                    				<a href="javascript:void(0)" onclick="ajaxLook(2)">被查看</a>
+                    				<a href="javascript:void(0)" onclick="ajaxLook(1)">被查看</a>
                     			</li>
                     			<li>
-                    				<a href="javascript:void(0)" onclick="ajaxLook(3)">通过初筛</a>
+                    				<a href="javascript:void(0)" onclick="ajaxLook(2)">通过初筛</a>
                     			</li>
                     			<li>
-                    				<a href="javascript:void(0)" onclick="ajaxLook(4)">通知面试</a>
+                    				<a href="javascript:void(0)" onclick="ajaxLook(3)">通知面试</a>
                     			</li>
                     			<li class="last">
-                    				<a href="javascript:void(0)" onclick="ajaxLook(5)">不合适</a>
+                    				<a href="javascript:void(0)" onclick="ajaxLook(4)">不合适</a>
                     			</li>
                     		</ul>
                     	</div>
                     	                        <form id="deliveryForm">
                     	                        <!-- 循环体 li -->
-                            <ul class="reset my_delivery">
+                            <ul class="reset my_delivery" id="youdizhuangtaixianshi">
                             		<c:if test="${!empty listDeliverypost }">
                             		<c:forEach items="${listDeliverypost }" var="item">
                                	                             	<li>
@@ -291,14 +438,14 @@ var youdao_conv_id = 271546;
                                		                            	</c:forEach>
                                		                            	</c:if>
                                		                            	<!-- ------------------- -->
-                               	                             	<li>
+                               	                             	<!-- <li>
                                	                             	
                              		<div class="d_item">
                              			 	                                    <h2 title="随便写">
 	                                        <a target="_blank" href="http://www.lagou.com/jobs/149594.html">
 	                                        	<em>随便写</em> 
 	                                        	<span>（1k-2k）</span>
-	                                        	<!--  -->
+	                                        	
 	                                    	</a>
 	                                    </h2>
 	                                    		                                <div class="clear"></div>
@@ -347,7 +494,7 @@ var youdao_conv_id = 271546;
                                				                               			</ul>
                                			<a class="btn_closeprogress" href="javascript:;"></a>
                                		</div>
-                               		                            	</li>
+                               		                            	</li> -->
                             	                            </ul>
                                                     	<input type="hidden" value="-1" name="tag">
                         	<input type="hidden" value="" name="r">
