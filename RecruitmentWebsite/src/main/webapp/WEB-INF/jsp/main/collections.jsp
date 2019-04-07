@@ -112,29 +112,33 @@ var youdao_conv_id = 271546;
                             <ul class="reset my_collections">
                             
                             <!-- 自制循环收藏 -->
-                            <c:forEach items="${cpcyList }" var="item">
-                            	<li data-id="133340" id=${item.collectionp.cid }>
-                             		<a title="发布者" target="_blank" href="h/c/6636.html">
-                             			<img alt="发布者" src="style/images/ff808081441c19bf01441f9a47190b3a.png">
-                             		</a>
-                             		<div class="co_item">
-                             			<h2 title="职位">
-	                                        <a target="_blank" href="h/jobs/133340.html">
-	                                        	<em>${item.collectionp.occupation.oname }</em> 
-	                                        	<span>(${item.collectionp.occupation.ominsalary}-${item.collectionp.occupation.omaxsalary}k)</span>
-	                                    	</a>
-	                                    </h2>
-	                                    <span class="co_time">发布时间：<fmt:formatDate value="${item.collectionp.occupation.orelease}" pattern="yyyy-MM-dd" /></span>
-	                                    <div class="co_cate">${item.company.cname}<%-- <c:forEach items="${listCompany }" var="listc"><c:if test="${listc.cid eq item.occupation.ocid }">${listc.cname }</c:if> </c:forEach> --%> / ${item.collectionp.occupation.oaddress } / ${item.collectionp.occupation.olog } / <c:if test="${item.collectionp.occupation.oeducation eq '1'}">大专</c:if><c:if test="${item.collectionp.occupation.oeducation eq '2'}">本科</c:if><c:if test="${item.collectionp.occupation.oeducation eq '3'}">硕士</c:if><c:if test="${item.collectionp.occupation.oeducation eq '4'}">博士</c:if><c:if test="${item.collectionp.occupation.oeducation eq '5'}">其它</c:if></div>
-	                                    <span class="co_youhuo c7">${item.collectionp.occupation.owelfare }</span>
-                                        <a class="collectionCancel collection_link collected" onclick="quxiao(${item.collectionp.cid })" href="javascript:void(0);">
-                                        	取消收藏
-                                        	<span>已取消收藏</span>
-                                        </a>
-                               		</div>
-                            	</li>
-                            </c:forEach>
-                            
+                            <c:if test="${!empty cpcyList }">
+	                            <c:forEach items="${cpcyList }" var="item">
+	                            	<li data-id="133340" id=${item.collectionp.cid }>
+	                             		<a title="发布者" target="_blank" href="h/c/6636.html">
+	                             			<img alt="发布者" src="style/images/ff808081441c19bf01441f9a47190b3a.png">
+	                             		</a>
+	                             		<div class="co_item">
+	                             			<h2 title="职位">
+		                                        <a target="_blank" href="h/jobs/133340.html">
+		                                        	<em>${item.collectionp.occupation.oname }</em> 
+		                                        	<span>(${item.collectionp.occupation.ominsalary}-${item.collectionp.occupation.omaxsalary}k)</span>
+		                                    	</a>
+		                                    </h2>
+		                                    <span class="co_time">发布时间：<fmt:formatDate value="${item.collectionp.occupation.orelease}" pattern="yyyy-MM-dd" /></span>
+		                                    <div class="co_cate">${item.company.cname}<%-- <c:forEach items="${listCompany }" var="listc"><c:if test="${listc.cid eq item.occupation.ocid }">${listc.cname }</c:if> </c:forEach> --%> / ${item.collectionp.occupation.oaddress } / ${item.collectionp.occupation.olog } / <c:if test="${item.collectionp.occupation.oeducation eq '1'}">大专</c:if><c:if test="${item.collectionp.occupation.oeducation eq '2'}">本科</c:if><c:if test="${item.collectionp.occupation.oeducation eq '3'}">硕士</c:if><c:if test="${item.collectionp.occupation.oeducation eq '4'}">博士</c:if><c:if test="${item.collectionp.occupation.oeducation eq '5'}">其它</c:if></div>
+		                                    <span class="co_youhuo c7">${item.collectionp.occupation.owelfare }</span>
+	                                        <a class="collectionCancel collection_link collected" onclick="quxiao(${item.collectionp.cid })" href="javascript:void(0);">
+	                                        	取消收藏
+	                                        	<span>已取消收藏</span>
+	                                        </a>
+	                               		</div>
+	                            	</li>
+	                            </c:forEach>
+                            </c:if>
+                            <c:if test="${empty cpcyList }">
+                            	<center><h3>您还没有任何收藏职位！</h3></center>
+                            </c:if>
                             <!-- 
                                	                             	<li data-id="133340">
                              		<a title="携程旅行网" target="_blank" href="h/c/6636.html">
