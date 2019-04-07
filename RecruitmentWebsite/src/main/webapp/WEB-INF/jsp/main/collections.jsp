@@ -86,10 +86,10 @@ var youdao_conv_id = 271546;
     			success:function(resultData,status){
     				if("success"==status){
     					if(resultData){
-        					alert("删除成功！");
+        					alert("已取消收藏！");
         					$("li#"+cid).remove();
         				}else{
-        					alert("删除失败可能原因，您投递了该职位的简历！");
+        					alert("取消收藏失败！可能原因:您投递了该职位的简历！");
         				}
     				}
     				
