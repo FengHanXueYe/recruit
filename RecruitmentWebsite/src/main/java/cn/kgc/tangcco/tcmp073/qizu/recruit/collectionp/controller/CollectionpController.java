@@ -1,5 +1,6 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.collectionp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Collectionp;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
+import cn.kgc.tangcco.tcmp073.qizu.entity.CpCy;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.collectionp.service.CollectionService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
 
 @Controller
 public class CollectionpController {
@@ -22,6 +26,8 @@ public class CollectionpController {
 	@Resource
 	private CollectionService cs;
 	
+	@Resource
+	private CompanyService companyService;
 	/**
 	 * 查询用户收藏的职位
 	 * @param session
@@ -33,8 +39,20 @@ public class CollectionpController {
 		//从session中取用户
 		RecruitingUsers attribute =(RecruitingUsers) session.getAttribute("loginUser");
 		System.out.println("-----doListCollectionp----->"+attribute);
+		List<CpCy> cpcyList = new ArrayList<>();
+		CpCy cpcy = null;
 		List<Collectionp> queryAllUserCollectionp = cs.queryAllUserCollectionp(attribute.getUserid());
+		List<Company> listCompany = new ArrayList<>();
+		for(Collectionp c : queryAllUserCollectionp) {
+			cpcy = new CpCy();
+			cpcy.setCompany(companyService.queryCompanyByCid(c.getOccupation().getOcid()));
+			cpcy.setCollectionp(c);
+			//listCompany.add(companyService.queryCompanyByCid(c.getOccupation().getOcid()));
+			cpcyList.add(cpcy);
+		}
 		model.addAttribute("queryAllUserCollectionp", queryAllUserCollectionp);
+		model.addAttribute("cpcyList", cpcyList);
+		//model.addAttribute("listCompany", listCompany);
 		System.err.println("--我的收藏职位--"+queryAllUserCollectionp);
 		return "main/collections";
 	}

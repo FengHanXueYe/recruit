@@ -48,7 +48,14 @@ var youdao_conv_id = 271546;
     			<li><a target="_blank" href="toForum.html">论坛</a></li>
     				    			<li><a rel="nofollow" href="jianli.html">我的简历</a></li>
 	    						    		</ul>
-	    						    		<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
+	    						    		<c:choose>
+	    		    			<c:when test="${empty loginUser }">
+	    		    				<jsp:include page="/mainjsp/login/registerSignin.jsp"></jsp:include>
+	    		    			</c:when>
+	    		    			<c:otherwise>
+	    		    				<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
+	    		    			</c:otherwise>
+	    		    		</c:choose>
         	        	<!-- <dl class="collapsible_menu">
             	<dt>
            			<span>jason&nbsp;</span> 
@@ -71,6 +78,29 @@ var youdao_conv_id = 271546;
             </div>
                     </div>
     </div><!-- end #header -->
+    <script type="text/javascript">
+		            $(function(){
+		    	    	$("#jobCollection").click(function(){
+		    	    		var oid = '${queryOccupation.oid }';
+		    	    		alert(oid);
+		    	    		$.ajax({
+		    	    			type:"post",
+		    	    			url:"ajaxQueryAllUserCollectionp.controller",
+		    	    			data:{"oid":oid},
+		    	    			success:function(resultData,status){
+		    	    				if("success"==status){
+		    	    					if(resultData){
+		    		    					alert("收藏成功！");
+		    		    				}else{
+		    		    					alert("已取消收藏！");
+		    		    				}
+		    	    				}
+		    	    			}
+		    	    			
+		    	    		})
+		    	    	})
+		        	})
+   			 </script>
     <div id="container">
                 <div class="clearfix">
             <div class="content_l">
@@ -95,9 +125,7 @@ var youdao_conv_id = 271546;
                     	<span class="red">${queryOccupation.ominsalary }k-${queryOccupation.omaxsalary }k</span>
                        	<span> ${queryOccupation.oaddress }</span> 
                        	<span> ${queryOccupation.olog }</span>
-                       	<span> 本科<%-- <c:forEach items="${queryOccupation.oeducation}" var="item">
-                       				${item.ename }
-                       			</c:forEach> --%>
+                       	<span> <c:if test="${queryOccupation.oeducation eq '1'}">大专</c:if><c:if test="${queryOccupation.oeducation eq '2'}">本科</c:if><c:if test="${queryOccupation.oeducation eq '3'}">硕士</c:if><c:if test="${queryOccupation.oeducation eq '4'}">博士</c:if><c:if test="${queryOccupation.oeducation eq '5'}">其它</c:if>
                        	</span> 
                        	<span> <c:if test="${queryOccupation.onature eq '1' }">全职</c:if><c:if test="${queryOccupation.onature eq '2' }">兼职</c:if><c:if test="${queryOccupation.onature eq '3' }">实习</c:if></span><br>
                       	  职位诱惑 : ${queryOccupation.owelfare }
@@ -185,6 +213,7 @@ var youdao_conv_id = 271546;
                 </dl>
                                 <div id="weibolist"></div>
             </div>	
+            
             <div class="content_r">
                 <dl class="job_company">
                     <dt>

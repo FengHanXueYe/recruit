@@ -4,7 +4,7 @@
 				
 	<resultMap type="Collectionp" id="collectionMap" autoMapping="true">
 		<id column="cid" property="cid"/>
-		<association property="user" resultMap="userMap"></association>
+		<association property="cuser" resultMap="userMap"></association>
 		<collection property="occupation" resultMap="occupationMap" ></collection>
 	</resultMap>
 	<resultMap type="RecruitingUsers" id="userMap" autoMapping="true">
