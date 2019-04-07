@@ -25,5 +25,6 @@ public class Deliverypost {
 	private Timestamp dtime;
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Timestamp dxytime;
+	private String texttz;
 	
 }

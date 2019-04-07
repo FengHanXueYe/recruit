@@ -167,7 +167,7 @@ public class DeliverypostController {
 				occ.setOid(Integer.parseInt(oid));
 				dp.setRuser(attribute);
 				dp.setOccupation(occ);
-				dp.setDstatus(0);
+				dp.setDstatus(5);
 				int addDeliverypost = ds.addDeliverypost(dp);
 				if(addDeliverypost>0) {
 					return "redirect:doListDeliverypost.controller";

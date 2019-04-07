@@ -109,7 +109,7 @@ var youdao_conv_id = 271546;
 		    						+"<div class='clear'></div>"
 		    						+"<div class='d_resume'>使用简历:<span>在线简历</span>"
 		    						
-									if(item.deliverypost.dstatus==0){
+									if(item.deliverypost.dstatus==5){
 		    							
 			    						html+="</div><a class='btn_showprogress' href='javascript:;'>投递成功！<i></i></a></div>"
 			    						+"<div class='progress_status	dn'><ul class='status_steps'>"
@@ -256,7 +256,7 @@ var youdao_conv_id = 271546;
                     				<a href="javascript:void(0)" onclick="ajaxLook(9)">全部</a>
                     			</li>
                     			                    			<li>
-                    				<a href="javascript:void(0)" onclick="ajaxLook(0)">投递成功</a>
+                    				<a href="javascript:void(0)" onclick="ajaxLook(5)">投递成功</a>
                     			</li>
                     			<li>
                     				<a href="javascript:void(0)" onclick="ajaxLook(1)">被查看</a>
@@ -299,14 +299,14 @@ var youdao_conv_id = 271546;
                                         		                                    	</span>
 	                                    </div>
 	                                    	                                    	<a class="btn_showprogress" href="javascript:;">
-	                                    			                                    			<c:if test="${item.deliverypost.dstatus eq '0' }">投递成功</c:if>
+	                                    			                                    			<c:if test="${item.deliverypost.dstatus eq '5' }">投递成功</c:if>
 	                                    			                                    			<c:if test="${item.deliverypost.dstatus eq '1' }">被查看</c:if>
 	                                    			                                    			<c:if test="${item.deliverypost.dstatus eq '2' }">通过初筛</c:if>
 	                                    			                                    			<c:if test="${item.deliverypost.dstatus eq '3' }">通知面试</c:if>
 	                                    			                                    			<c:if test="${item.deliverypost.dstatus eq '4' }">不合适</c:if>
 	                                    			                                    	<i></i></a>
                                			                               		</div>
-                               			                               			<c:if test="${item.deliverypost.dstatus eq '0' }">
+                               			                               			<c:if test="${item.deliverypost.dstatus eq '5' }">
 			                               		                               		<div class="progress_status	dn">
 				                               		                               			<ul class="status_steps">
 													                               				<li class="status_done status_1">1</li>
