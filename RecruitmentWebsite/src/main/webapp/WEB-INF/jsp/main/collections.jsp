@@ -120,7 +120,7 @@ var youdao_conv_id = 271546;
 	                             		</a>
 	                             		<div class="co_item">
 	                             			<h2 title="职位">
-		                                        <a target="_blank" href="h/jobs/133340.html">
+		                                        <a  href="toxiangqing.controller?cccname=${item.collectionp.occupation.oid }">
 		                                        	<em>${item.collectionp.occupation.oname }</em> 
 		                                        	<span>(${item.collectionp.occupation.ominsalary}-${item.collectionp.occupation.omaxsalary}k)</span>
 		                                    	</a>
