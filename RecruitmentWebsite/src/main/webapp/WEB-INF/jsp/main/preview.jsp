@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 ﻿<!DOCTYPE HTML>
 <html><head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -47,13 +49,20 @@ $(function(){
             <div class="profile_box" id="basicInfo">
                 <h2>基本信息</h2>
                 <div class="basicShow">
-                   <span>jason | 
+                		<span><c:if test="${!empty loginUser.username }">${loginUser.username } |</c:if>
+            			            			<c:if test="${!empty loginUser.gender}"><c:if test="${loginUser.gender eq '2' }">男</c:if><c:if test="${loginUser.gender eq '1' }">女</c:if> |</c:if>
+            			            			<c:if test="${!empty loginUser.education }"><c:if test="${loginUser.education eq '1'}">大专</c:if><c:if test="${loginUser.education eq '2'}">本科</c:if><c:if test="${loginUser.education eq '3'}">硕士</c:if><c:if test="${loginUser.education eq '4'}">博士</c:if><c:if test="${loginUser.education eq '5'}">其它</c:if> |</c:if>
+            			            			<c:if test="${!empty loginUser.userlog }"><c:if test="${loginUser.userlog eq '1'}">应届毕业生</c:if><c:if test="${loginUser.userlog eq '2'}">1年</c:if><c:if test="${loginUser.userlog eq '3'}">2年</c:if><c:if test="${loginUser.userlog eq '4'}">3年</c:if><c:if test="${loginUser.userlog eq '5'}">4年</c:if><c:if test="${loginUser.userlog eq '6'}">5年</c:if><c:if test="${loginUser.userlog eq '7'}">6年</c:if><c:if test="${loginUser.userlog eq '8'}">7年</c:if><c:if test="${loginUser.userlog eq '9'}">8年</c:if><c:if test="${loginUser.userlog eq '10'}">9年</c:if><c:if test="${loginUser.userlog eq '11'}">10年</c:if><c:if test="${loginUser.userlog eq '12'}">10年以上</c:if> |<br></c:if>
+            			            			<c:if test="${!empty loginUser.telephone }">${loginUser.telephone } |</c:if>
+            			            			  ${loginUser.email }<br>
+            			</span>
+                   <!-- <span>jason | 
                     男 |                     大专 |                                       		3年工作经验
             		            			| 广州<br>
             			            				高级产品经理 · 上海辉硕科技有限公司 | 本科 · 北京大学<br>
             			            			18644444444 | jason@qq.com<br>
             			
-            		</span>
+            		</span> -->
            			<div class="m_portrait">
                     	<div></div>
                     	<img width="120" height="120" alt="jason" src="style/images/default_headpic.png">
@@ -64,7 +73,7 @@ $(function(){
 				            <div class="profile_box" id="expectJob">
 	                <h2>期望工作</h2>
 	                <div class="expectShow">
-	                	广州，全职，月薪5k-10k，产品经理
+	                	<!-- 广州，全职，月薪5k-10k，产品经理 -->
 	                </div><!--end .expectShow-->
 	            </div><!--end #expectJob-->
 						
@@ -73,11 +82,11 @@ $(function(){
 	                <div class="experienceShow">
 	                  <ul class="wlist clearfix">
 	                  	                    	           				            				<li class="clear">
-            					           					<span class="c9">2013.06-至今</span>
+            					           					<span class="c9"><!-- 2013.06-至今 --></span>
 	           					<div>
 	           						<img width="56" height="56" alt="上海辉硕科技有限公司" src="style/images/logo_default.png">
-	           						<h3>高级产品经理 </h3>
-	           						<h4>上海辉硕科技有限公司</h4>
+	           						<h3><!-- 高级产品经理 --> </h3>
+	           						<h4><!-- 上海辉硕科技有限公司 --></h4>
 	           					</div>
 	           				</li>
 	           					          				                  </ul>
@@ -90,9 +99,9 @@ $(function(){
 	                  <ul class="plist clearfix">
 	                  			            				            					            				<li class="noborder">
 	            					            					<div class="projectList">
-		            					<div class="f16 mb10">微盟，jason
+		            					<div class="f16 mb10"><!-- 微盟，jason -->
 		            						<span class="c9">
-		            									            								（2013.06-至今）
+		            									            								<!-- （2013.06-至今） -->
 		            									            						</span>
 		            					</div>
 		            							            					<div class="dl1"></div>
@@ -107,10 +116,21 @@ $(function(){
 	                <div class="educationalShow">
 	                  <ul class="elist clearfix">
 	                  	                  	            				            				<li class="clear">
-            				            					<span class="c9">2004-2008</span>
+            				            					<span class="c9">${educationalbackground.pyear }-${educationalbackground.pyearover }</span>
             					<div>
-            						<h3>北京大学</h3>
-            						<h4>黑客联盟，本科</h4>
+            						<h3>${educationalbackground.ename }</h3>
+            						<h4>
+            							<c:if test="${educationalbackground.emajor eq '1' }">计算机应用</c:if> 
+            							<c:if test="${educationalbackground.emajor eq '2' }">计算机网络</c:if> 
+            							<c:if test="${educationalbackground.emajor eq '3' }">网站建设与网页设计</c:if> 
+            							<c:if test="${educationalbackground.emajor eq '4' }">经济信息管理与计算机应用</c:if> 
+            							，
+            							<c:if test="${educationalbackground.eeducation eq '1' }">大专</c:if> 
+            							<c:if test="${educationalbackground.eeducation eq '2' }">本科</c:if> 
+            							<c:if test="${educationalbackground.eeducation eq '3' }">硕士</c:if> 
+            							<c:if test="${educationalbackground.eeducation eq '4' }">博士</c:if> 
+            							<c:if test="${educationalbackground.eeducation eq '5' }">其它</c:if> 
+            						</h4>
             					</div>
             				</li>
             				           					                  </ul>
@@ -120,7 +140,7 @@ $(function(){
 				            <div class="profile_box" id="selfDescription">
 	                <h2>自我描述</h2>
 	                <div class="descriptionShow">
-	            	黑客
+	            	${selfdescriptionModel }
 	                </div><!--end .descriptionShow-->
 	            </div><!--end #selfDescription-->
 						
@@ -130,8 +150,8 @@ $(function(){
 	                  <ul class="slist clearfix">
 	                  		                  	            				            				<li class="noborder">
             				            					<div class="workList c7">
-	            						            							            							<div class="f16">网址：<a target="_blank" href="http://www.weimob.com">http://www.weimob.com</a></div>
-	            							            						            					<p>产品 </p>
+	            						            							            							<div class="f16">网址：<a target="_blank" href="http://www.weimob.com">${worksdisplayMapperModel.wlink }</a></div>
+	            							            						            					<p>${worksdisplayMapperModel.wexplain } </p>
 	            				</div>
             				</li>
             				           					                  </ul>

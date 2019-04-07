@@ -183,8 +183,9 @@ var youdao_conv_id = 271546;
                                         	<!-- 用户是否激活 0-否；1-是 -->
 	                			       									                    <dd class="resume resume_web">
 				                        <div style="width:400px;">
-								          <span> 你已设置默认投递简历：<a title="jason的简历" target="_blank" href="resume/myresume.html"><strong>在线简历：jason的简历</strong></a></span><br>
-								          <span>设置于2014-07-01 17:08</span>
+								          <span> 你已设置默认投递简历：<a title="jason的简历" target="_blank" href="resume/myresume.html"><strong>在线简历：<c:if test="${empty loginUser.resumeName }">${loginUser.email }</c:if>
+	            																																		 <c:if test="${!empty loginUser.resumeName }">${loginUser.resumeName }</c:if></strong></a></span><br>
+								          <span>设置于<fmt:formatDate value="${loginUser.registrationTime}" pattern="yyyy-MM-dd HH:mm" /></span>
 				                        </div>
 				                        <a title="设置默认投递简历" href="#setResume" class="inline fl cboxElement">重新设置</a>
 				                    </dd>
@@ -207,7 +208,7 @@ var youdao_conv_id = 271546;
                                         <dd>
                                         	                    				                   		<!-- 用户是否激活 0-否；1-是 -->
 		                				                   			
-	                   					                        									                 	<a title="投个简历" class="btn fr btn_apply" href="javascript:sendResume(314873,149487,false,false);">投个简历</a>
+	                   					                        									                 	<a title="投个简历" class="btn fr btn_apply" href="doAddDeliverypost.controller?oid=${queryOccupation.oid }">投个简历</a>
 						                	                        				                        	
 		                        	                        	                   		                	                </dd>
                 </dl>
@@ -346,11 +347,12 @@ var youdao_conv_id = 271546;
 	            		<label class="radio">
 	            			<input type="radio" checked="" value="1" class="resume1" name="resumeName">
 	            			在线简历：
-	            				            				<span title="jason的简历">jason的简历</span>
+	            				            				<span title="jason的简历"><c:if test="${empty loginUser.resumeName }">${loginUser.email }</c:if><c:if test="${!empty loginUser.resumeName }">${loginUser.resumeName }</c:if>的简历</span>
+	            				            				
 	            				            		</label>
             			<div class="setBtns">
-            					            				<a target="_blank" href="resume/preview.html">预览</a> |
-	            										<a target="_blank" href="resume/myresume.html">修改</a>
+            					            				<a target="_blank" href="doCheckView.controller?userid=${loginUser.userid }">预览</a> |
+	            										<a  href="toResume.controller">修改</a>
             			</div>
 	            		<div class="clear"></div>
 	            		<label class="radio">
@@ -387,11 +389,11 @@ var youdao_conv_id = 271546;
 	            		<label class="radio">
 	            			<input type="radio" checked="" value="1" class="resume1" name="resumeName">
 	            			在线简历：
-	            				            				<span title="jason的简历">jason的简历</span>
+	            				            				<span title="jason的简历"><c:if test="${empty loginUser.resumeName }">${loginUser.email }</c:if><c:if test="${!empty loginUser.resumeName }">${loginUser.resumeName }</c:if>的简历</span>
 	            				            		</label>
             			<div class="setBtns">
-            					            				<a target="_blank" href="resume/preview.html">预览</a> |
-	            										<a target="_blank" href="resume/myresume.html">修改</a>
+            					            				<a target="_blank" href="doCheckView.controller?userid=${loginUser.userid }">预览</a> |
+	            										<a  href="toResume.controller">修改</a>
             			</div>
 	            		<div class="clear"></div>
 	            		<label class="radio">
