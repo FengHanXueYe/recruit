@@ -25,4 +25,9 @@ public class OccupationServiceImpl implements OccupationService {
 		return mapper.queryall();//sad
 	}
 
+	@Override
+	public Occupation queryOccupation(Integer oid) {
+		return mapper.queryOccupation(oid);
+	}
+
 }

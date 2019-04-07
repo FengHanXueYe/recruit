@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Educationalbackground;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Selfdescription;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Worksdisplay;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.eb.service.EbService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.service.OccupationService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.ocone.service.OconeService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.selfdescription.service.SelfdescriptionService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
@@ -40,10 +42,17 @@ public class MainController {
 
 	@Resource
 	private WorksdisplayService ws;
+	
 	@Resource
 	private OconeService os;
+	
 	@Resource
 	private CompanyService com;
+	
+	@Resource
+	private OccupationService occupationService;
+	
+	
 
 	@RequestMapping("toIndex")
 	public String toIndex(Model model) {
@@ -61,11 +70,21 @@ public class MainController {
 
 		return "main/index";
 	}
-
+	/**
+	 * 跳转职位详情页面
+	 * @param cccname
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("toxiangqing")
-
 	public String toxiangqing(String cccname,Model model) {
 		System.out.println("-------------------->>>>>>>"+cccname);
+		//查询职业详情
+		Occupation queryOccupation = occupationService.queryOccupation(Integer.parseInt(cccname));
+		//查询职业所在的公司
+		Company queryCompanyByCid = com.queryCompanyByCid(queryOccupation.getOcid());
+		model.addAttribute("queryOccupation", queryOccupation);
+		model.addAttribute("queryCompanyByCid", queryCompanyByCid);
 		return "main/jobdetail1";
 	}
 

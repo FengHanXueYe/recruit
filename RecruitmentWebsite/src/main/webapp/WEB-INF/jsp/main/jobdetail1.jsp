@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 ﻿<html xmlns:wb="http://open.weibo.com/wb"><head>
 <script async="" src="style/js/analytics.js"></script><script type="text/javascript" async="" src="style/js/conversion.js"></script><script src="style/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script><style type="text/css"></style>
 <meta content="no-siteapp" http-equiv="Cache-Control">
@@ -76,8 +78,8 @@ var youdao_conv_id = 271546;
                     <dt>
                         <h1 title="web前端开发">
                             <em></em>
-                                                        	<div>国馆互联网招聘</div>
-                           	                           	web前端开发
+                                                        	<div>${queryCompanyByCid.cname }招聘</div>
+                           	                           	${queryOccupation.oname }
                         </h1>
                         
                                                	
@@ -90,17 +92,20 @@ var youdao_conv_id = 271546;
                        	</div>
                        	                    </dt>
                     <dd class="job_request">
-                    	<span class="red">8k-15k</span>
-                       	<span>广州</span> 
-                       	<span>经验3-5年 </span>
-                       	<span> 大专及以上</span> 
-                       	<span>全职</span><br>
-                      	  职位诱惑 : 高薪高福利，良好办公空间
-                      	<div>发布时间：16:05发布</div>
+                    	<span class="red">${queryOccupation.ominsalary }k-${queryOccupation.omaxsalary }k</span>
+                       	<span> ${queryOccupation.oaddress }</span> 
+                       	<span> ${queryOccupation.olog }</span>
+                       	<span> 本科<%-- <c:forEach items="${queryOccupation.oeducation}" var="item">
+                       				${item.ename }
+                       			</c:forEach> --%>
+                       	</span> 
+                       	<span> <c:if test="${queryOccupation.onature eq '1' }">全职</c:if><c:if test="${queryOccupation.onature eq '2' }">兼职</c:if><c:if test="${queryOccupation.onature eq '3' }">实习</c:if></span><br>
+                      	  职位诱惑 : ${queryOccupation.owelfare }
+                      	<div>发布时间：${queryOccupation.orelease }发布</div>
                     </dd>
                     <dd class="job_bt">
                         <h3 class="description">职位描述</h3>
-                        &nbsp;如果你一个人能干掉一个（产品经理+UED部门），快到碗里来！
+                        &nbsp;${queryOccupation.odetail }
 <br>
 <br>
 <br>
@@ -198,17 +203,17 @@ var youdao_conv_id = 271546;
                     </dt>
                     <dd>
                     	<ul class="c_feature reset">
-                        	<li><span>领域</span> 移动互联网,电子商务</li>
-                        	<li><span>规模</span> 50-150人</li>
+                        	<li><span>领域</span> ${queryCompanyByCid.cfield }</li>
+                        	<li><span>规模</span> ${queryCompanyByCid.cscale }</li>
                         	<li>
                         		<span>主页</span> 
-                        		           							<a rel="nofollow" title="http://www.guoguan.com" target="_blank" href="http://www.guoguan.com">http://www.guoguan.com</a>
+                        		           							<a rel="nofollow" title="http://www.guoguan.com" target="_blank" href="http://www.guoguan.com">${queryCompanyByCid.curl }</a>
            						                        	</li>
                         </ul>
                         
                         <h4>发展阶段</h4>
                         <ul class="c_feature reset">
-                        	<li><span>目前阶段</span> D轮及以上</li>
+                        	<li><span>目前阶段</span> ${queryCompanyByCid.cfs }</li>
                         	                        </ul>
                         
                         <!--	                    	<h4>公司产品</h4>
@@ -239,7 +244,7 @@ var youdao_conv_id = 271546;
                         </div> -->
                        	
                        	                       	<h4>工作地址</h4>
-                       	<div>广州市天河区珠江新城花城大道18号建滔广场6楼</div>
+                       	<div>${queryCompanyByCid.caddress }</div>
                        	<div id="smallmap" style="overflow: hidden; position: relative; z-index: 0; background-color: rgb(243, 241, 236); color: rgb(0, 0, 0); text-align: left;"><div style="overflow: visible; position: absolute; z-index: 0; left: 0px; top: 0px; cursor: grab;"><div class="BMap_mask" style="position: absolute; left: 0px; top: 0px; z-index: 9; overflow: hidden; width: 280px; height: 200px;"></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 200;"><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 800;"></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 700;"><span style="position: absolute; padding: 0px; margin: 0px; border: 0px none; -moz-user-select: none; cursor: pointer; background: url(style/images/img/blank.gifquot) repeat scroll 0% 0% transparent; width: 19px; height: 25px; left: 130px; top: 75px; z-index: -4625058;" "="" unselectable="on" class="BMap_Marker BMap_noprint" title=""></span></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 600;"></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 500;"><label class="BMapLabel" unselectable="on" style="position: absolute; -moz-user-select: none; display: none; cursor: inherit; background-color: rgb(190, 190, 190); border: 1px solid rgb(190, 190, 190); padding: 1px; white-space: nowrap; font: 12px arial,simsun,sans-serif; z-index: -20000; color: rgb(190, 190, 190);">shadow</label></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 400;"><span style="position: absolute; padding: 0px; margin: 0px; border: 0px none; width: 0px; height: 0px; -moz-user-select: none; left: 130px; top: 75px; z-index: -4625058;" unselectable="on" class="BMap_Marker"><div style="position: absolute; margin: 0px; padding: 0px; width: 19px; height: 25px; overflow: hidden;"><img style="border:none;margin-left:0px; margin-top:0px; " src="style/images/marker_red_sprite.png"></div></span></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 300;"><span style="position: absolute; padding: 0px; margin: 0px; border: 0px none; width: 20px; height: 11px; -moz-user-select: none; left: 134px; top: 89px;" unselectable="on"><div style="position: absolute; margin: 0px; padding: 0px; width: 20px; height: 11px; overflow: hidden;"><img style="border:none;margin-left:-19px; margin-top:-13px; " src="style/images/marker_red_sprite.png"></div></span></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 201;"></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 200;"></div></div><div style="position: absolute; overflow: visible; top: 0px; left: 0px; z-index: 1;"><div style="position: absolute; overflow: visible; z-index: -100; left: 140px; top: 100px; display: none;"></div></div><div style="position: absolute; overflow: visible; top: 0px; left: 0px; z-index: 2; display: block;"><div style="position: absolute; overflow: visible; top: 100px; left: 140px; z-index: 0; display: block;"><canvas style="position: absolute; width: 256px; height: 256px; left: -156px; top: -103px; background: none repeat scroll 0% 0% rgb(243, 241, 236);" width="256" height="256" id="_1_bg_12319_2568_16"></canvas><canvas style="position: absolute; width: 256px; height: 256px; left: 100px; top: -103px; background: none repeat scroll 0% 0% rgb(243, 241, 236);" width="256" height="256" id="_1_bg_12320_2568_16"></canvas></div><div style="position: absolute; overflow: visible; top: 100px; left: 140px; z-index: 10; display: block;"><canvas style="position: absolute; width: 256px; height: 256px; left: -156px; top: -103px;" width="256" height="256" id="_1_poi_12319_2568_16"></canvas><canvas style="position: absolute; width: 256px; height: 256px; left: 100px; top: -103px;" width="256" height="256" id="_1_poi_12320_2568_16"></canvas></div></div><div style="position: absolute; overflow: visible; top: 0px; left: 0px; z-index: 3;"></div></div><div style="position: absolute; z-index: 1201; top: 10px; right: 10px; width: 17px; height: 16px; background: url(style/images/img/st-close.pngquot) no-repeat scroll 0% 0% transparent; cursor: pointer; display: none;" title="退出全景"></div><div style="position:absolute;z-index:0;top:0px;left:0px;overflow:hidden;visibility:hidden;cursor:-moz-grab" id="zoomer"><div style="top:0;left:0;" class="BMap_zoomer"></div><div style="top:0;right:0;" class="BMap_zoomer"></div><div style="bottom:0;left:0;" class="BMap_zoomer"></div><div style="bottom:0;right:0;" class="BMap_zoomer"></div></div><div style="height: 32px; position: absolute; z-index: 30; -moz-user-select: none; bottom: 0px; right: auto; top: auto; left: 1px; display: none;" class=" anchorBL"><a title="到百度地图查看此区域" target="_blank" href="http://map.baidu.com/?sr=1" style="outline: medium none;"><img src="style/images/copyright_logo.png" style="border:none;width:77px;height:32px"></a></div><div unselectable="on" class=" BMap_cpyCtrl BMap_noprint anchorBL" style="cursor: default; white-space: nowrap; -moz-user-select: none; color: black; background: none repeat scroll 0% 0% transparent; font: 11px/15px arial,simsun,sans-serif; bottom: 2px; right: auto; top: auto; left: 4px; position: absolute; z-index: 10;"><span _cid="1" style="display: inline;"><span style="font-size:11px">&copy; 2014 Baidu&nbsp;- Data &copy; <a style="display:inline;" href="http://www.navinfo.com/" target="_blank">NavInfo</a> &amp; <a style="display:inline;" href="http://www.cennavi.com.cn/" target="_blank">CenNavi</a> &amp; <a style="display:inline;" href="http://www.365ditu.com/" target="_blank">道道通</a></span></span></div></div>
                        	<a id="mapPreview" href="javascript:;">查看完整地图</a>
                        	                    </dd>

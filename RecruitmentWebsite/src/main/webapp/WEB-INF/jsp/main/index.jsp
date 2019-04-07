@@ -1418,7 +1418,7 @@
 
 									<div class="hot_pos_l">
 										<div class="mb10">
-											<a href="toxiangqing.controller" target="_blank">${cooo.oname}</a>
+											<a href="toxiangqing.controller?cccname=${cooo.oid }" >${cooo.oname}</a>
 											&nbsp; <span class="c9">[ ${cooo.ocity} ]</span>
 										</div>
 

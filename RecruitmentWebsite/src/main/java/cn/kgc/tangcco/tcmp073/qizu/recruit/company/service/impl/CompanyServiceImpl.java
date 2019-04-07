@@ -55,6 +55,10 @@ public class CompanyServiceImpl implements CompanyService {
 	public Company queryByUid(int userid) {
 		return mapper.queryByUid(userid);
 	}
+	@Override
+	public Company queryCompanyByCid(Integer cid) {
+		return mapper.queryCompanyByCid(cid);
+	}
 	
 	//1232
 }

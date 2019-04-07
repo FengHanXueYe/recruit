@@ -2,6 +2,8 @@ package cn.kgc.tangcco.tcmp073.qizu.recruit.company.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 
 public interface CompanyService {
@@ -16,4 +18,11 @@ public interface CompanyService {
 	 List<Company> queryalltozuixin();
 	 Company queryByUid(int userid);
 	//123
+	 /**
+	  * 许茂峰
+	  * @param cid
+	  * @return
+	  */
+	 Company queryCompanyByCid(Integer cid);
+	 
 }

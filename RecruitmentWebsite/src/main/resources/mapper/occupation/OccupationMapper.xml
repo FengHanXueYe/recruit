@@ -14,4 +14,9 @@
 		SELECT *FROM occupation
 		o,education e WHERE o.oeducation=e.eid 	
 	</select>
+	
+	<select id="queryOccupation" parameterType="int" resultMap="Occupation">
+		SELECT * FROM `occupation` WHERE oid=#{oid}
+	</select>
+	
 </mapper>

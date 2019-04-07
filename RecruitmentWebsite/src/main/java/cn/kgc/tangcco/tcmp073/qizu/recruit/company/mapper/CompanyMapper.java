@@ -26,4 +26,10 @@ public interface CompanyMapper {
     List<Company> queryalltozuixin();
 	Company qyeryAllCompany(int cuid);
 	Company queryByUid(int cuid);
+	/**
+	 * 许茂峰（查询公司详情根据公司id）
+	 */
+	Company queryCompanyByCid(@Param("cid")Integer cid);
+	
+	
 }

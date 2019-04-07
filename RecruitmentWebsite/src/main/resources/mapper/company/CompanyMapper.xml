@@ -38,4 +38,10 @@
 	<select id="queryByUid" parameterType="int" resultMap="CompanyMaps">
 		select * from company where cuid=#{cuid}
 	</select>
+	<!-- 许茂峰 -->
+	<select id="queryCompanyByCid" resultMap="CompanyMaps" parameterType="int">
+		SELECT * FROM `company` WHERE cid=#{cid}
+	</select>
+	
+	
 </mapper>
