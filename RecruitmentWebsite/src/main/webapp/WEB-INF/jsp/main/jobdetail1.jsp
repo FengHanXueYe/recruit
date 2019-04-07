@@ -82,7 +82,7 @@ var youdao_conv_id = 271546;
 		            $(function(){
 		    	    	$("#jobCollection").click(function(){
 		    	    		var oid = '${queryOccupation.oid }';
-		    	    		alert(oid);
+		    	    		//alert(oid);
 		    	    		$.ajax({
 		    	    			type:"post",
 		    	    			url:"ajaxQueryAllUserCollectionp.controller",

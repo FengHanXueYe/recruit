@@ -73,22 +73,26 @@ var youdao_conv_id = 271546;
     </div><!-- end #header -->
     <script type="text/javascript">
     	$(function(){
-    		alert("asddaasd");
+    		//alert("asddaasd");
     		
     	})
     	function quxiao(cid){
-    		alert("取消中");
-    		
+    		//alert("取消中");
+    		//alert(cid);
     		$.ajax({
     			type:"post",
     			url:"doDeleteCollectionp.controller",
     			data:{"cid":cid},
-    			success:function(data){
-    				if(data=="true"){
-    					alert("删除成功！");
-    				}else{
-    					alert("删除失败可能原因，您投递了该职位的简历！");
+    			success:function(resultData,status){
+    				if("success"==status){
+    					if(resultData){
+        					alert("删除成功！");
+        					$("li#"+cid).remove();
+        				}else{
+        					alert("删除失败可能原因，您投递了该职位的简历！");
+        				}
     				}
+    				
     			}
     			
     		})
