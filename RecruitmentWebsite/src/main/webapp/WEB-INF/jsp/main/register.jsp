@@ -57,7 +57,8 @@ var youdao_conv_id = 271546;
 		            </li>
 		        </ul>
 		        <span></span>
-            	<input type="text" id="email" name="email" tabindex="1" placeholder="请输入常用邮箱地址" />
+            	<input type="text" id="email" value="${email }" name="email" tabindex="1" placeholder="请输入常用邮箱地址" />
+            	<input type="hidden" value="${email }" name="veremail">
             	<span></span>
                 <!-- <span class="error" style="display:none;" id="beError"></span> -->
                 <input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码" />

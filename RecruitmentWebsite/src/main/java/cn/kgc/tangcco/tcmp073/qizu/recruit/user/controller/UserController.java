@@ -280,4 +280,12 @@ public class UserController {
 	}
 	
 	
+	
+	@RequestMapping("verEmail")
+	public String verEmail(String email,Model model) {
+		model.addAttribute("email", email);
+		return "main/register";
+	}
+	
+	
 }

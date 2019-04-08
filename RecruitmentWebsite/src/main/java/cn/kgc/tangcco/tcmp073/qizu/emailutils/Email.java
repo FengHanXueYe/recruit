@@ -76,6 +76,10 @@ public class Email {
 		String resultCode = achieveCode();
 		Date date = new Date();SimpleDateFormat df = new SimpleDateFormat("yyyy年M月dd日 HH时mm分ss秒");
 		String format = df.format(new Date());
+		StringBuffer sb = new  StringBuffer();
+		sb.append("注册请点击：");
+		sb.append("localhost:8080?verEmail.controller&email="+email);
+		
 		try {
 			send.setHostName("smtp.163.com");//发送服务
 //			send.setHostName("smtp.qq.com");//发送服务
