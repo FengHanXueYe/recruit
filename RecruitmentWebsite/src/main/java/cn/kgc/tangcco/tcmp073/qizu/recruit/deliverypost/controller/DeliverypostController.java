@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Companyresume;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Deliverypost;
 import cn.kgc.tangcco.tcmp073.qizu.entity.DpCy;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Educationalbackground;
@@ -20,8 +21,10 @@ import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Selfdescription;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Worksdisplay;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.companyresume.service.CompanyresumeService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.deliverypost.service.DeliverypostService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.eb.service.EbService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.service.OccupationService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.selfdescription.service.SelfdescriptionService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.worksdisplay.service.WorksdisplayService;
@@ -47,6 +50,11 @@ public class DeliverypostController {
 	@Resource
 	private CompanyService companyService;
 	
+	@Resource
+	private CompanyresumeService CompanyresumeService;
+	
+	@Resource
+	private OccupationService occupationService;
 	/**
 	 * 查询所有的投递的职位
 	 * @param userid
@@ -159,17 +167,47 @@ public class DeliverypostController {
 		
 		//判断是否登录
 		if(attribute!=null) {
+			
+			
 			Educationalbackground queryEducationalbackground = ebService.queryEducationalbackground(attribute.getUserid());
 			//判断信息的完整性
 			if(queryEducationalbackground!=null && attribute.getUsername()!=null && attribute.getEducation()!=null && attribute.getTelephone()!=null && attribute.getUserlog()!=null && attribute.getGender()!=null) {
+				//实例投递简历
 				Deliverypost dp = new Deliverypost();
+				//实例职位
 				Occupation occ = new Occupation();
+				//将职位id赋值给职位对象
 				occ.setOid(Integer.parseInt(oid));
 				dp.setRuser(attribute);
 				dp.setOccupation(occ);
+				
+				Deliverypost detailDeliverypost = ds.detailDeliverypost(dp);
+				if(detailDeliverypost!=null) {
+					return "redirect:toIndex.controller";
+				}
+				//赋值状态默认5，投递成功
 				dp.setDstatus(5);
+				//实例公司查看的投递信息
+				Companyresume cr = new Companyresume();
+				//实例公司
+				Company company = new Company();
+				//根据职位id查职位再查发布公司
+				Occupation queryOccupation = occupationService.queryOccupation(Integer.parseInt(oid));
+				//赋值公司id
+				company.setCid(queryOccupation.getOcid());
+				//将公司赋值给Companyresume实体
+				cr.setCompany(company);
+				//职业赋值给Companyresume
+				cr.setOccupation(queryOccupation);
+				//用户赋值给Companyresume
+				cr.setCuser(attribute);
+				//赋值状态
+				cr.setDstatus(5);
+				//添加投递信息
 				int addDeliverypost = ds.addDeliverypost(dp);
-				if(addDeliverypost>0) {
+				//实现公司查看收到简历表的增加
+				int addCompanyresume = CompanyresumeService.addCompanyresume(cr);
+				if(addDeliverypost>0 && addCompanyresume>0) {
 					return "redirect:doListDeliverypost.controller";
 				}else {
 					return "redirect:toIndex.controller";
@@ -181,9 +219,6 @@ public class DeliverypostController {
 		}else {
 			return "redirect:toLogin.controller";
 		}
-		
-		
-		
 	}
 	
 	

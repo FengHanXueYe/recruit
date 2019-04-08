@@ -35,4 +35,9 @@ public class DeliverypostServiceImpl implements DeliverypostService {
 		return dm.queryAllDeliverypost(dp);
 	}
 
+	@Override
+	public Deliverypost detailDeliverypost(Deliverypost dp) {
+		return dm.detailDeliverypost(dp);
+	}
+
 }
