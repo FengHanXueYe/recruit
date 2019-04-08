@@ -200,5 +200,6 @@ public class MainController {
 		model.addAttribute("oname", querylikeoname);
 		model.addAttribute("kd", oname);
 		return "main/list";
+		//aaa
 	}
 }

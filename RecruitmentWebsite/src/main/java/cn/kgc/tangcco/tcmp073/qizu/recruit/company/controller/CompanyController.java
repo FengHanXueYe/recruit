@@ -15,13 +15,18 @@ import cn.kgc.tangcco.tcmp073.qizu.entity.Product;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.utilEmail.CEmail;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.product.service.ProductService;
 
 @Controller
 public class CompanyController {
 	@Resource
 	private CompanyService service;
 
-	// 跳转到公司页面
+	@Resource
+	private ProductService proservice;
+	
+	
+	//跳转到公司页面
 	@RequestMapping("tocompanlist")
 	public String companylist() {
 
@@ -158,4 +163,15 @@ public class CompanyController {
 	public List<Company> querylikeolog(int orelease) {
 		return service.querylikeorelease(orelease);
 	}
+	//修改公司主页的产品
+	@ResponseBody
+	@RequestMapping("updateProductController")
+	public Company updateProduct(Product pro,HttpSession session) {
+//		int row=this.proservice.updateProduct(pro);
+		RecruitingUsers user=(RecruitingUsers) session.getAttribute("loginUser");
+		return this.service.qyeryAllCompany(user.getUserid());
+	}
+	
+	
+	
 }

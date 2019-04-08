@@ -20,7 +20,7 @@ public class CompanyServiceImpl implements CompanyService {
 	public int addCompanyOne(Company com) {
 		return mapper.addCompanyOne(com);
 	}
-
+//a
 	@Override
 	public Company queryByEmail(String cemail) {
 		return mapper.queryByEmail(cemail);

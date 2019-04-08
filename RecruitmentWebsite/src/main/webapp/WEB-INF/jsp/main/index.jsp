@@ -751,7 +751,7 @@
 							<li data-searchtype="4">公司</li>
 						</ul>
 						<div class="searchtype_arrow"></div>
-						<input type="text" id="search_input" name="kd" tabindex="1"
+						<input type="text" id="search_input" name="oname" tabindex="1"
 							value="" placeholder="请输入职位名称，如：产品经理" /> <input type="hidden"
 							name="spc" id="spcInput" value="" /> <input type="hidden"
 							name="pl" id="plInput" value="" /> <input type="hidden"
@@ -770,8 +770,8 @@
 				</div>
 				<script type="text/javascript">
 					function search() {
-						var kd = $("input[name='kd']").val();
-						alert(kd);
+						var oname = $("input[name='oname']").val();
+						alert(oname);
 						$("#searchForm1").attr("action",
 								"toListOoccupation.controller").submit();
 
@@ -956,7 +956,7 @@
 										</div>
 
 										<span><em class="c7">月薪： </em>
-										<fmt:formatNumber value="${cooo.omaxsalary}" pattern="#.0k"></fmt:formatNumber></span>
+										<fmt:formatNumber value="${cooo.omaxsalary}" pattern="#.0k"></fmt:formatNumber>--<fmt:formatNumber value="${cooo.ominsalary}" pattern="#.0k"></fmt:formatNumber></span>
 										<span><em class="c7">经验：</em> ${cooo.olog}</span>
 										<c:forEach items="${cooo.education}" var="coooo">
 											<span><em class="c7">最低学历： </em>${coooo.ename}</span>
@@ -984,7 +984,7 @@
 									</div>
 							</c:forEach>
 							</li>
-
+                        </c:forEach>
 
 							<%-- <c:if test="${com.size()%2==0}">
 									<li class="odd clearfix">
@@ -1012,7 +1012,7 @@
 										</div>
 									</li>
 							</c:if> --%>
-						</c:forEach>
+						
 
 
 

@@ -66,6 +66,7 @@
 		f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid AND
 		e.ename=#{ename}
 	</select>
+	<!-- aaa -->
 	<select id="querylikeonature" resultMap="CompanyMaps"
 		parameterType="int">
 		SELECT *FROM company co,founder f,occupation o,education

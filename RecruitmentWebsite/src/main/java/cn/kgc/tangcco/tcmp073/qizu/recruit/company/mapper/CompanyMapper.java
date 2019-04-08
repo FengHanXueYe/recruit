@@ -46,6 +46,7 @@ public interface CompanyMapper {
 	List<Company> querylikeonature(int onature);
 
 	List<Company> querylikeorelease(int orelease);
+	//aa
 
 	Company qyeryAllCompany(int cuid);
 

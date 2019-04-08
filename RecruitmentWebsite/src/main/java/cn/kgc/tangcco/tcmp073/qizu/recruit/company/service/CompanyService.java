@@ -21,6 +21,7 @@ public interface CompanyService {
 	int updateCompanyProfile(String companyProfile, int cid);
 
 	Company qyeryAllCompany(int cuid);
+	//a
 
 	List<Company> queryalltoFounder();
 
