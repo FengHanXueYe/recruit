@@ -5,11 +5,13 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Companyresume;
+import cn.kgc.tangcco.tcmp073.qizu.entity.CpCy;
 
 public interface CompanyresumeMapper {
-	@Insert("insert into Companyresume value(null,#{cr.company.cid},#{cr.occupation.oid},#{cr.cuser.userid},#{cr.dstatus},default,null)")
+	@Insert("insert into Companyresume value(null,#{cr.company.cid},#{cr.occupation.oid},#{cr.cuser.userid},#{cr.dstatus},default,null,NOW())")
 	int addCompanyresume(@Param("cr")Companyresume cr);
 	
 	int updateCompanyresume(@Param("cr")Companyresume cr);
@@ -20,4 +22,5 @@ public interface CompanyresumeMapper {
 	List<Companyresume> queryAllCompanyresume(@Param("cr")Companyresume cr);
 	
 	
+	Companyresume queryOccuotion(@Param("cuid")Integer cuid);
 }

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 ﻿<!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb"><head>
 </script><script type="text/javascript" async="" src="style/js/conversion.js"></script><script src="style/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script><style type="text/css"></style>
@@ -38,16 +40,17 @@ var youdao_conv_id = 271546;
 <div id="body">
 	<div id="header">
     	<div class="wrapper">
-    		<a class="logo" href="index.html">
+    		<a class="logo" href="toIndex.controller">
     			<img width="229" height="43" alt="拉勾招聘-专注互联网招聘" src="style/images/logo.png">
     		</a>
     		<ul id="navheader" class="reset">
-    			<li><a href="index.html">首页</a></li>
-    			<li><a href="companylist.html">公司</a></li>
+    			<li><a href="toIndex.controller">首页</a></li>
+    			<li><a href="tomyhome.controller">公司</a></li>
     			<li><a target="_blank" href="">论坛</a></li>
-    				    			<li><a rel="nofollow" href="jianli.html">我的简历</a></li>
+    				    			<li><a rel="nofollow" href="toResume.controller">我的简历</a></li>
 	    						    		</ul>
-        	        	<dl class="collapsible_menu">
+	    			<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
+        	        	<!-- <dl class="collapsible_menu">
             	<dt>
            			<span>jason&nbsp;</span> 
             		<span class="red" id="noticeDot-0"></span>
@@ -60,7 +63,7 @@ var youdao_conv_id = 271546;
                 	<dd><a href="create.html">我要招人</a></dd>
                                                 <dd><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
-            </dl>
+            </dl> -->
                                     <div id="noticeTip">
             	<span class="bot"></span>
 				<span class="top"></span>
@@ -74,10 +77,10 @@ var youdao_conv_id = 271546;
         		            	<a class="btn_create" href="create.html">发布新职位</a>
             	                <dl class="company_center_aside">
 		<dt>我收到的简历</dt>
-		<dd>
-		<a href="">待处理简历</a> 
-			</dd>
 	<dd class="current">
+		<a href="">待处理简历</a> 
+	</dd>
+	<dd >
 		<a href="canInterviewResumes.html">待定简历</a>
 	</dd>
 	<dd>
@@ -105,7 +108,7 @@ var youdao_conv_id = 271546;
                     <dt>
                         <h1>
                             <em></em>
-                            	待定简历  <span>（共1份）</span>                        </h1>
+                            	待处理简历  <span>（共${queryAllCompanyresumeCount }份）</span>                        </h1>
                     </dt>
                     <dd>
                     	<form action="canInterviewResumes.html" method="get" id="filterForm">
@@ -164,49 +167,88 @@ var youdao_conv_id = 271546;
      </dl>
           <input type="hidden" value="0" name="filterStatus" id="filterStatus">
      <input type="hidden" value="" name="positionId" id="positionId">
- </div><!-- end .filter_options -->	                        	                        		                        <ul class="reset resumeLists">
-		                        				                            <li data-id="1686182" class="onlineResume">
+ </div><!-- end .filter_options -->	 
+ 									<ul class="reset resumeLists">
+ 									
+ 										<c:forEach items="${queryAllCompanyresume }" var="item">
+			                        		<li data-id="1686182" class="onlineResume">
+				                                <label class="checkbox">
+				                                    <input type="checkbox">
+				                                    <i></i>
+				                                </label>
+				                                <div class="resumeShow">
+				                                	<a title="预览在线简历" target="_blank" class="resumeImg" href="resumeView.html?deliverId=1686182">
+				                                    	<img src="style/images/default_headpic.png">
+				                                    </a>
+				                                    <div class="resumeIntro">
+				                                        <h3 class="unread">
+															<a target="_blank" title="预览jason的简历" href="resumeView.html?deliverId=1686182">${item.companyresume.cuser.username }的简历</a>
+				                                        	<em></em>
+				                                        </h3> 
+				                                        <span class="fr">投递时间：<fmt:formatDate value="${item.companyresume.ctouditime }" pattern="yyyy-MM-dd HH:mm:ss"/></span>
+				                                        <div> 
+				                                        	${item.companyresume.cuser.username }  / <c:if test="${item.companyresume.cuser.gender eq '2' }">男</c:if><c:if test="${item.companyresume.cuser.gender eq '1' }">女</c:if> / <c:if test="${item.companyresume.cuser.education eq '1'}">大专</c:if><c:if test="${item.companyresume.cuser.education eq '2'}">本科</c:if><c:if test="${item.companyresume.cuser.education eq '3'}">硕士</c:if><c:if test="${item.companyresume.cuser.education eq '4'}">博士</c:if><c:if test="${item.companyresume.cuser.education eq '5'}">其它</c:if> 	/ ${item.companyresume.cuser.userlog }年  / ${item.companyresume.occupation.oaddress }    <br> <!-- 高级产品经理 · 上海辉硕科技有限公司 | -->  ${item.eb.ename }
+				                                        </div>
+				                                        <div class="jdpublisher">
+					                                        <span>
+					                                        	应聘职位：<a title="随便写" target="_blank" href="http://www.lagou.com/jobs/149594.html">${item.companyresume.occupation.oname }</a>
+					                                       	</span>
+				                                        </div>
+				                                    </div>
+				                                    <div class="links">
+				                                        <a data-deliverid="1686182" data-name="jason" data-positionid="149594" data-email="888888888@qq.com" class="resume_notice" href="javascript:void(0)">通知面试</a>
+				                                        <a data-deliverid="1686182" class="resume_refuse" href="javascript:void(0)">不合适</a>
+				                                   		<a data-resumename="${item.companyresume.cuser.username }的简历" data-positionname="随便写" data-deliverid="1686182" data-positionid="149594" data-resumekey="1ccca806e13637f7b1a4560f80f08057" data-forwardcount="1" class="resume_forward" href="javascript:void(0)">
+	                                                    	转发<span>(1人)</span>
+	                                                    </a>
+				                                    </div>
+				                                </div>
+				                                <div class="contactInfo">
+				                                	<span class="c9">电话：</span>${item.companyresume.cuser.telephone }   &nbsp;&nbsp;&nbsp;   
+				                                    <span class="c9">邮箱：</span><a href="mailto:888888888@qq.com">${item.companyresume.cuser.email }</a>
+				                                </div>
+				                            </li>
+			                            </c:forEach>
+			                            
+			                            
+		                        		<!-- <li data-id="1686182" class="onlineResume">
 			                                <label class="checkbox">
 			                                    <input type="checkbox">
 			                                    <i></i>
 			                                </label>
 			                                <div class="resumeShow">
-			                                				                                    <a title="预览在线简历" target="_blank" class="resumeImg" href="resumeView.html?deliverId=1686182">
+			                                	<a title="预览在线简历" target="_blank" class="resumeImg" href="resumeView.html?deliverId=1686182">
 			                                    	<img src="style/images/default_headpic.png">
 			                                    </a>
-			                                    			                                    <div class="resumeIntro">
+			                                    <div class="resumeIntro">
 			                                        <h3 class="unread">
-																	                                        	<a target="_blank" title="预览jason的简历" href="resumeView.html?deliverId=1686182">
-			                                        				                                            jason的简历
-			                                        	</a>
-			                                        					                           	 			<em></em>
+														<a target="_blank" title="预览jason的简历" href="resumeView.html?deliverId=1686182">jason的简历</a>
+			                                        	<em></em>
 			                                        </h3> 
 			                                        <span class="fr">投递时间：2014-07-01 17:08</span>
 			                                        <div> 
-			                                        	jason  			                                        	 / 男 			                                        	/ 大专 			                                        	/ 3年  			                                        	/ 广州 			                                            			                                        		<br>
-			                                            	高级产品经理 · 上海辉硕科技有限公司 | 本科 · 北京大学
-			                                            			                                        </div>
+			                                        	jason  / 男 / 大专 	/ 3年  / 广州    <br> 高级产品经理 · 上海辉硕科技有限公司 | 本科 · 北京大学
+			                                        </div>
 			                                        <div class="jdpublisher">
 				                                        <span>
 				                                        	应聘职位：<a title="随便写" target="_blank" href="http://www.lagou.com/jobs/149594.html">随便写</a>
-				                                       						                                        </span>
+				                                       	</span>
 			                                        </div>
 			                                    </div>
 			                                    <div class="links">
 			                                        <a data-deliverid="1686182" data-name="jason" data-positionid="149594" data-email="888888888@qq.com" class="resume_notice" href="javascript:void(0)">通知面试</a>
 			                                        <a data-deliverid="1686182" class="resume_refuse" href="javascript:void(0)">不合适</a>
 			                                   		<a data-resumename="jason的简历" data-positionname="随便写" data-deliverid="1686182" data-positionid="149594" data-resumekey="1ccca806e13637f7b1a4560f80f08057" data-forwardcount="1" class="resume_forward" href="javascript:void(0)">
-                                                    	转发
-                                                    	                                                    	<span>(1人)</span>
-                                                    	                                                    </a>
+                                                    	转发<span>(1人)</span>
+                                                    </a>
 			                                    </div>
 			                                </div>
 			                                <div class="contactInfo">
 			                                	<span class="c9">电话：</span>18650216666   &nbsp;&nbsp;&nbsp;   
 			                                    <span class="c9">邮箱：</span><a href="mailto:888888888@qq.com">888888888@qq.com</a>
 			                                </div>
-			                            </li>
-		                            		                    	</ul><!-- end .resumeLists -->
+			                            </li> -->
+		                          </ul><!-- end .resumeLists -->
 		                    		                                               	</form>
                     </dd>
                 </dl><!-- end .company_center_content -->

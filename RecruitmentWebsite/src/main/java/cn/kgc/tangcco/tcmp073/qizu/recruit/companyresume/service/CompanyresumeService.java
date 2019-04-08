@@ -2,8 +2,8 @@ package cn.kgc.tangcco.tcmp073.qizu.recruit.companyresume.service;
 
 import java.util.List;
 
-
 import cn.kgc.tangcco.tcmp073.qizu.entity.Companyresume;
+import cn.kgc.tangcco.tcmp073.qizu.entity.CpCy;
 
 public interface CompanyresumeService {
 	
@@ -15,4 +15,5 @@ public interface CompanyresumeService {
 	
 	List<Companyresume> queryAllCompanyresume(Companyresume cr);
 	
+	Companyresume queryOccuotion(Integer userid);
 }

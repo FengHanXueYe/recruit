@@ -29,8 +29,12 @@
 	</resultMap>
 	
 	<select id="queryAllCompanyresume" resultMap="companyresumeMap" parameterType="Companyresume">
-		SELECT * FROM companyresume c,`company` j,`occupation` o,`recruitingusers` r WHERE c.`userid`=r.`userid` AND c.`cid`=j.`cid` AND c.`oid`=o.`oid` AND r.`userid`=#{cr.cuser.userid}
+		SELECT * FROM companyresume c,`company` j,`occupation` o,`recruitingusers` r WHERE c.`userid`=r.`userid` AND c.`cid`=j.`cid` AND c.`oid`=o.`oid` AND j.`cid`=#{cr.company.cid}
 		<if test="cr.dstatus!=null and cr.dstatus!=''"> and dstatus=#{cr.dstatus}</if>
+	</select>
+
+	<select id="queryOccuotion" resultMap="companyresumeMap" parameterType="int">
+		SELECT * FROM companyresume c,`company` j,`occupation` o,`recruitingusers` r WHERE c.`userid`=r.`userid` AND c.`cid`=j.`cid` AND c.`oid`=o.`oid` AND j.`cuid`=#{cuid} limit 1
 	</select>
 
 </mapper>
