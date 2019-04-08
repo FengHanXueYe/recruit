@@ -108,7 +108,7 @@ var youdao_conv_id = 271546;
                     <dt>
                         <h1>
                             <em></em>
-                            	待处理简历  <span>（共${queryAllCompanyresumeCount }份）</span>                        </h1>
+                            	<span id="tishi">待处理简历</span>  <span id="shuliang">（共${queryAllCompanyresumeCount }份）</span>                        </h1>
                     </dt>
                     <dd>
                     	<form action="canInterviewResumes.html" method="get" id="filterForm">
@@ -118,7 +118,7 @@ var youdao_conv_id = 271546;
 		                                <i></i>
 		                        	</label>
 		                            <span>全选</span>
-		                        	<a id="resumeRefuseAll" href="javascript:;">不合适</a>
+		                        	<a id="resumeRefuseAll" href="javascript:;">待处理简历</a>
 		                            <div id="filter_btn" class="">筛选简历 <em class=""></em></div>
 		                        </div><!-- end .filter_actions -->
 		                        <div class="filter_options  dn " style="display: none;">
@@ -183,21 +183,21 @@ var youdao_conv_id = 271546;
 			var ms = "";
 			if("待处理简历"==zhi){
 				zt=5;
-				ms=zhi;
+				ms = "待处理";
 			}else if("待定简历"==zhi){
 				zt=2;
-				ms=zhi;
+				ms = "待定";
 			}else if("已通知面试简历"==zhi){
 				zt=3;
-				ms=zhi;
+				ms = "已通知";
 			}else if("不合适简历"==zhi){
 				zt=4;
-				ms=zhi;
+				ms = "不合适";
 			}else {
 				zt=1;
-				ms=zhi;
+				ms = "已过滤";
 			}
-			alert(zt);
+			//alert(zt);
 			$.ajax({
 				type:"post",
 				url:"ajaxLookStatus.controller",
@@ -205,7 +205,7 @@ var youdao_conv_id = 271546;
 				success:function(data){
 					$("#bianlichakan").html("");
 					var html="";
-					
+					var number = data.length;
 					$.each(data,function(index,item){
 						var date = new Date(item.companyresume.ctouditime);
     					var d = date.getFullYear() + "-" + (Number(date.getMonth())+Number(1)) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
@@ -255,8 +255,8 @@ var youdao_conv_id = 271546;
 				                            +"</div>"
 				                        +"</div>"
 				                        +"<div class='links'>"
-				                            +"<a data-deliverid='1686182' data-name='jason' data-positionid='149594' data-email='888888888@qq.com' class='resume_notice' href='javascript:void(0)' onclick='updateStatus(3,+item.companyresume.crid +)'>通知面试</a>"
-				                            +"<a data-deliverid='1686182' class='resume_refuse' href='javascript:void(0)' onclick='updateStatus(4,+item.companyresume.crid +)'>不合适</a>"
+				                            +"<a data-deliverid='1686182' data-name='jason' data-positionid='149594' data-email='888888888@qq.com' class='resume_notice' href='javascript:void(0)' onclick='updateStatus(3,"+item.companyresume.crid+")'>通知面试</a>"
+				                            +"<a data-deliverid='1686182' class='resume_refuse' href='javascript:void(0)' onclick='updateStatus(4,"+item.companyresume.crid+")'>不合适</a>"
 				                       		+"<a data-resumename='+item.companyresume.cuser.username +的简历' data-positionname='随便写' data-deliverid='1686182' data-positionid='149594' data-resumekey='1ccca806e13637f7b1a4560f80f08057' data-forwardcount='1' class='resume_forward' href='javascript:void(0)'>"
 				                            	+"转发<span>(1人)</span>"
 				                            +"</a>"
@@ -269,8 +269,10 @@ var youdao_conv_id = 271546;
 				                +"</li>";
 				          
 					})
+					$("#tishi").html(zhi);
 					$("#bianlichakan").html(html).hide().slideDown(500);
-					
+					$("#shuliang").html("(共"+number+"份)");
+					$("#resumeRefuseAll").html(ms);
 				}
 				
 			})
