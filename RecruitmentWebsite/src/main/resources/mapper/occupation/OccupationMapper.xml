@@ -23,4 +23,9 @@
 	<select id="queryBystate" parameterType="int" resultMap="Occupation">
 		SELECT * FROM occupation WHERE ocid=#{ocid} AND ostate=#{ostate}
 	</select>
+	<!-- 编辑职位信息用的方法 -->
+	<select id="queryByoid" parameterType="int" resultMap="Occupation">
+		select * from occupation where oid=#{oid}
+	</select>
+	
 </mapper>

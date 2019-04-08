@@ -28,13 +28,13 @@
 	<select id="queryalltoFounder" resultMap="CompanyMaps">
 		SELECT *FROM company
 		co,founder f,occupation o,education e WHERE f.cfid=co.cid AND
-		e.eid=o.oeducation AND co.cid=o.ocid
+		e.eid=o.oeducation AND co.cid=o.ocid AND o.ostate=0
 	</select>
 	<select id="queryalltozuixin" resultMap="CompanyMaps">
 		SELECT *FROM company
 		co,founder f,occupation o,education e WHERE
 		f.cfid=co.cid AND
-		e.eid=o.oeducation AND co.cid=o.ocid ORDER BY
+		e.eid=o.oeducation AND co.cid=o.ocid AND o.ostate=0 ORDER BY
 		o.orelease DESC
 	</select>
 	<select id="querylikeoname" resultMap="CompanyMaps"
