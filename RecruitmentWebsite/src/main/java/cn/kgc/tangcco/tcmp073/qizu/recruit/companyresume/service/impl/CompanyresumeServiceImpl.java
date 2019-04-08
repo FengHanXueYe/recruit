@@ -41,4 +41,11 @@ public class CompanyresumeServiceImpl implements CompanyresumeService {
 		return cm.queryOccuotion(userid);
 	}
 
+	@Override
+	public Companyresume detailCompanyresume(Integer crid) {
+		return cm.detailCompanyresume(crid);
+	}
+	
+	
+
 }

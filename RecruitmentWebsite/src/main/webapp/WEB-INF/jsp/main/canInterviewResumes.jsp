@@ -77,21 +77,21 @@ var youdao_conv_id = 271546;
         		            	<a class="btn_create" href="create.html">发布新职位</a>
             	                <dl class="company_center_aside">
 		<dt>我收到的简历</dt>
-	<dd class="current">
-		<a href="">待处理简历</a> 
+	<dd >
+		<a href="javascript:void(0)" class="statetransition">待处理简历</a> 
 	</dd>
 	<dd >
-		<a href="canInterviewResumes.html">待定简历</a>
+		<a href="javascript:void(0)" class="statetransition">待定简历</a>
 	</dd>
 	<dd>
-		<a href="haveNoticeResumes.html">已通知面试简历</a>
+		<a href="javascript:void(0)" class="statetransition">已通知面试简历</a>
 	</dd>
 	<dd>
-		<a href="haveRefuseResumes.html">不合适简历</a>
+		<a href="javascript:void(0)" class="statetransition">不合适简历</a>
 	</dd>
-	<dd class="btm">
-		<a href="autoFilterResumes.html">自动过滤简历</a> 
-			</dd>
+	<dd >
+		<a href="javascript:void(0)" class="statetransition">自动过滤简历</a> 
+	</dd> 
 </dl>
 <dl class="company_center_aside">
 		<dt>我发布的职位</dt>
@@ -168,10 +168,152 @@ var youdao_conv_id = 271546;
           <input type="hidden" value="0" name="filterStatus" id="filterStatus">
      <input type="hidden" value="" name="positionId" id="positionId">
  </div><!-- end .filter_options -->	 
- 									<ul class="reset resumeLists">
+ 
+ <script type="text/javascript">
+ 	function statetransition(){
+ 		//alert("123132");
+//  		$(this).parent().addClass('current');
+ 	}
+ 	 $(function(){
+ 		$(".statetransition").click(function(){
+ 			var zhi = $(this).html();
+//  			$(this).parent().addClass('current');
+//  			$(".statetransition").removeClass('current');
+			var zt;
+			var ms = "";
+			if("待处理简历"==zhi){
+				zt=5;
+				ms=zhi;
+			}else if("待定简历"==zhi){
+				zt=2;
+				ms=zhi;
+			}else if("已通知面试简历"==zhi){
+				zt=3;
+				ms=zhi;
+			}else if("不合适简历"==zhi){
+				zt=4;
+				ms=zhi;
+			}else {
+				zt=1;
+				ms=zhi;
+			}
+			alert(zt);
+			$.ajax({
+				type:"post",
+				url:"ajaxLookStatus.controller",
+				data:{"zt":zt},
+				success:function(data){
+					$("#bianlichakan").html("");
+					var html="";
+					
+					$.each(data,function(index,item){
+						var date = new Date(item.companyresume.ctouditime);
+    					var d = date.getFullYear() + "-" + (Number(date.getMonth())+Number(1)) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+						var date1 = new Date(item.companyresume.ctime);
+    					var dd = date1.getFullYear() + "-" + (Number(date1.getMonth())+Number(1)) + "-" + date1.getDate() + " " + date1.getHours() + ":" + date1.getMinutes() + ":" + date1.getSeconds();
+    					var gender = "";
+    					if(item.companyresume.cuser.gender==2){
+    						gender = "男";
+    					}else{
+    						gender = "女";
+    					}
+    					var eduction = "";
+    					if(item.companyresume.cuser.education==1){
+    						eduction = "大专";
+    					}else if(item.companyresume.cuser.education==2){
+    						eduction = "本科";
+    					}else if(item.companyresume.cuser.education==3){
+    						eduction = "硕士";
+    					}else if(item.companyresume.cuser.education==4){
+    						eduction = "博士";
+    					}else {
+    						eduction = "其它";
+    					}
+    					
+						html+="<li data-id='1686182' class='onlineResume' id='"+item.companyresume.crid+"'>"
+				                        +"<label class='checkbox'>"
+				                        +"<input type='checkbox'>"
+				                        +"<i></i>"
+				                    +"</label>"
+				                    +"<div class='resumeShow'>"
+				                    	+"<a title='预览在线简历' target='_blank' class='resumeImg' href='resumeView.html?deliverId=1686182'>"
+				                        	+"<img src='style/images/default_headpic.png'>"
+				                        +"</a>"
+				                        +"<div class='resumeIntro'>"
+				                            +"<h3 class='unread'>"
+												+"<a target='_blank' title='预览"+item.companyresume.cuser.username +"的简历' href='resumeView.html?deliverId=1686182'>"+item.companyresume.cuser.username +"的简历</a>"
+				                            	+"<em></em>"
+				                            +"</h3>" 
+				                            +"<span class='fr'>投递时间："+d+"</span>"
+				                            +"<div>" 
+				                            	+item.companyresume.cuser.username + "/ "+item.eb.ename+"/ "+gender+"/ "+eduction+"/ "+item.companyresume.cuser.userlog+"/ "+item.companyresume.occupation.oaddress+"/ "+item.eb.ename 
+				                            +"</div>"
+				                            +"<div class='jdpublisher'>"
+				                                +"<span>"
+				                                	+"应聘职位：<a title='随便写' target='_blank' href='http://www.lagou.com/jobs/149594.html'>"+item.companyresume.occupation.oname +"</a>"
+				                               	+"</span>"
+				                            +"</div>"
+				                        +"</div>"
+				                        +"<div class='links'>"
+				                            +"<a data-deliverid='1686182' data-name='jason' data-positionid='149594' data-email='888888888@qq.com' class='resume_notice' href='javascript:void(0)' onclick='updateStatus(3,+item.companyresume.crid +)'>通知面试</a>"
+				                            +"<a data-deliverid='1686182' class='resume_refuse' href='javascript:void(0)' onclick='updateStatus(4,+item.companyresume.crid +)'>不合适</a>"
+				                       		+"<a data-resumename='+item.companyresume.cuser.username +的简历' data-positionname='随便写' data-deliverid='1686182' data-positionid='149594' data-resumekey='1ccca806e13637f7b1a4560f80f08057' data-forwardcount='1' class='resume_forward' href='javascript:void(0)'>"
+				                            	+"转发<span>(1人)</span>"
+				                            +"</a>"
+				                        +"</div>"
+				                    +"</div>"
+				                    +"<div class='contactInfo'>"
+				                    	+"<span class='c9'>电话：</span>"+item.companyresume.cuser.telephone +  " &nbsp;&nbsp;&nbsp;  " 
+				                        +"<span class='c9'>邮箱：</span><a href='mailto:888888888@qq.com'>"+item.companyresume.cuser.email +"</a>"
+				                    +"</div>"
+				                +"</li>";
+				          
+					})
+					$("#bianlichakan").html(html).hide().slideDown(500);
+					
+				}
+				
+			})
+			
+			
+ 			//alert(zhi);
+ 		})
+ 		
+ 	}) 
+ 
+ 	function updateStatus(z,crid){
+ 		alert(z+"-----------"+crid);
+ 		var zhi = "";
+ 		if(z==3){
+ 			zhi = "确定要通知面试吗？";
+ 		}else{
+ 			zhi = "确定要标记为不合适吗？";
+ 		}
+ 		var flg = confirm(zhi);
+ 		if(flg){
+ 			$.ajax({
+				type:"post", 				
+				url:"ajaxUpdateCompanyresume.controller",
+				data:{"dstatus":z,"crid":crid},
+ 				success:function(resultDate,status){
+ 					if("success"==status){
+ 						if(resultDate){
+ 							alert("true");
+ 							$("li#"+crid).slideUp(500).remove();
+ 						}else{
+ 							alert("false");
+ 						}
+ 					}
+ 				}
+ 			})
+ 		}
+ 	}
+ 
+ </script>
+ 									<ul class="reset resumeLists" id="bianlichakan">
  									
  										<c:forEach items="${queryAllCompanyresume }" var="item">
-			                        		<li data-id="1686182" class="onlineResume">
+			                        		<li data-id="1686182" class="onlineResume" id="${item.companyresume.crid }">
 				                                <label class="checkbox">
 				                                    <input type="checkbox">
 				                                    <i></i>
@@ -196,8 +338,8 @@ var youdao_conv_id = 271546;
 				                                        </div>
 				                                    </div>
 				                                    <div class="links">
-				                                        <a data-deliverid="1686182" data-name="jason" data-positionid="149594" data-email="888888888@qq.com" class="resume_notice" href="javascript:void(0)">通知面试</a>
-				                                        <a data-deliverid="1686182" class="resume_refuse" href="javascript:void(0)">不合适</a>
+				                                        <a data-deliverid="1686182" data-name="jason" data-positionid="149594" data-email="888888888@qq.com" class="resume_notice" href="javascript:void(0)" onclick="updateStatus(3,${item.companyresume.crid })">通知面试</a>
+				                                        <a data-deliverid="1686182" class="resume_refuse" href="javascript:void(0)" onclick="updateStatus(4,${item.companyresume.crid })">不合适</a>
 				                                   		<a data-resumename="${item.companyresume.cuser.username }的简历" data-positionname="随便写" data-deliverid="1686182" data-positionid="149594" data-resumekey="1ccca806e13637f7b1a4560f80f08057" data-forwardcount="1" class="resume_forward" href="javascript:void(0)">
 	                                                    	转发<span>(1人)</span>
 	                                                    </a>

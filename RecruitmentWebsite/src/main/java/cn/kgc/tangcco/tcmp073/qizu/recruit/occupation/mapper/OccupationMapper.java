@@ -24,4 +24,5 @@ public interface OccupationMapper {
 	int deleteOccupation(int oid);//删除发布的职位
 	@Update("update occupation set ostate=#{ostate} where oid=#{oid}")
 	int updateOccupation(@Param("oid")int oid,@Param("ostate")int ostate);//修改已发布职位的状态
+	Occupation queryByoid(@Param("oid")int oid);//编辑职位信息用的方法
 }
