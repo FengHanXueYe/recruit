@@ -25,4 +25,6 @@ public class Companyresume {
 	private Integer dstatus ;
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Timestamp ctime;
+	private String ctext;
+	
 }
