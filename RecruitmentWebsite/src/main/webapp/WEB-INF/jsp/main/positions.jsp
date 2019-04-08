@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 ﻿<!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb"><head>
 <script async="" src="style/js/analytics.js"></script><script type="text/javascript" async="" src="style/js/conversion.js"></script><script src="style/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script><style type="text/css"></style>
@@ -47,7 +48,8 @@ var youdao_conv_id = 271546;
     			<li><a target="_blank" href="http://www.lagou.com/toForum.html">论坛</a></li>
     				    			<li><a rel="nofollow" href="jianli.html">我的简历</a></li>
 	    						    		</ul>
-        	        	<dl class="collapsible_menu">
+	    						    		<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
+        	      <!--   	<dl class="collapsible_menu">
             	<dt>
            			<span>jason&nbsp;</span> 
             		<span class="red" id="noticeDot-0"></span>
@@ -60,7 +62,7 @@ var youdao_conv_id = 271546;
                 	<dd><a href="create.html">我要招人</a></dd>
                                                 <dd><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
-            </dl>
+            </dl>--> 
                                     <div id="noticeTip">
             	<span class="bot"></span>
 				<span class="top"></span>
@@ -71,7 +73,7 @@ var youdao_conv_id = 271546;
     </div><!-- end #header -->
     <div id="container">
                 	<div class="sidebar">
-            	<a class="btn_create" href="create.html">发布新职位</a>
+            	<a class="btn_create" href="tocreate.controller">发布新职位</a>
                 <dl class="company_center_aside">
 		<dt>我收到的简历</dt>
 		<dd>
@@ -93,10 +95,10 @@ var youdao_conv_id = 271546;
 <dl class="company_center_aside">
 		<dt>我发布的职位</dt>
 			<dd class="current">
-		<a href="positions.html">有效职位</a>
+		<a href="queryByOstateController.controller?ostate=0&pk=${companys.cid}">有效职位</a>
 	</dd>
 	<dd>
-		<a href="positions.html">已下线职位</a>
+		<a href="queryByOstateController.controller?ostate=1&pk=${companys.cid}">已下线职位</a>
 	</dd>
 	</dl>
             </div><!-- end .sidebar -->
@@ -105,28 +107,48 @@ var youdao_conv_id = 271546;
                     <dt>
                         <h1>
                             <em></em>
-                           有效职位 <span>（共<i style="color:#fff;font-style:normal" id="positionNumber">1</i>个）</span>                        </h1>
+                        <c:if test="${ostate eq '1'}">已下线</c:if><c:if test="${ostate eq '0'}">有效</c:if>职位 <span>（共<i style="color:#fff;font-style:normal" id="positionNumber">${size}</i>个）</span>                        </h1>
                     </dt>
                     <dd>
                     		                    	<form id="searchForm">
 	                    		<input type="hidden" value="Publish" name="type">
 			                	<ul class="reset my_jobs">
+			                				<c:forEach items="${Occupation}" var="occ">
 				                			                            	<li data-id="149594">
 		                                    <h3>
-		                                        <a target="_blank" title="随便写" href="http://www.lagou.com/jobs/149594.html">随便写</a> 
-		                                        <span>[上海]</span>
+		                                        <a target="_blank" title="随便写" href="http://www.lagou.com/jobs/149594.html">${occ.oname}</a> 
+		                                        <span>[${occ.ocity}]</span>
 		                                        						                        		                                    </h3>
-		                                    		                                  		<span class="receivedResumeNo"><a href="unHandleResumes.html?positionId=149594">应聘简历（1）</a></span>
-		                                  			                                    <div>兼职 / 1k-2k / 1-3年 / 硕士及以上</div>
-		                                    		                                    				                                    <div class="c9">发布时间： 2014-07-01 17:07:01</div>
+		                                    		                                  		<span class="receivedResumeNo"><a href="unHandleResumes.html?positionId=149594">应聘简历</a></span>
+		                                  			                                    <div><c:if test="${occ.onature eq '1'}">全职</c:if>
+		                                  			                                    	 <c:if test="${occ.onature eq '2'}">兼职</c:if>
+		                                  			                                    	 <c:if test="${occ.onature eq '3'}">实习</c:if>/ 
+		                                  			                                    	 ${occ.ominsalary}k-${occ.omaxsalary}k/ 
+		                                  			                                    	 ${occ.olog} /
+		                                  			                                    	 <c:if test="${occ.oeducation eq '1'}">不限</c:if>
+		                                  			                                    	 <c:if test="${occ.oeducation eq '2'}">大专</c:if>
+		                                  			                                    	 <c:if test="${occ.oeducation eq '3'}">本科</c:if>
+		                                  			                                    	 <c:if test="${occ.oeducation eq '4'}">硕士</c:if>
+		                                  			                                    	 <c:if test="${occ.oeducation eq '5'}">博士</c:if>
+		                                  			                                    	 
+		                                  			                                    	 </div>
+		                                    		                                    				                                    <div class="c9">发布时间： ${occ.orelease}</div>
 			                                    		                                    		                                    		                                    <div class="links">
 		                                    			                                       	<a class="job_refresh" href="javascript:void(0)">刷新<span>每个职位7天内只能刷新一次</span></a>
 		                                       			                                       	<a target="_blank" class="job_edit" href="create.html?positionId=149594">编辑</a>
-		                                       	<a class="job_offline" href="javascript:void(0)">下线</a>                      
-		                                        <a class="job_del" href="javascript:void(0)">删除</a>
+		                                       	<c:if test="${ostate eq '0'}">
+		                                       	<a onclick="return confirm('确认下线职位吗?下线后他人无法查看该职位!')" href="updateOstate.controller?oid=${occ.oid}&ostates=1&pk=${companys.cid}&ostate=${ostate}">下线</a>   
+		                                       	</c:if>
+		                                       	 <c:if test="${ostate eq '1'}">
+		                                       	<a onclick="return confirm('确认上线职位吗?上线后他人可以查看该职位!')" href="updateOstate.controller?oid=${occ.oid}&ostates=0&pk=${companys.cid}&ostate=${ostate}">上线</a>   
+		                                       	</c:if>                  
+		                                        <a onclick="return confirm('确认删除职位吗?')" href="deleteOccupation.controller?oid=${occ.oid}&pk=${companys.cid}&ostate=${ostate}">删除</a>
 		                                    </div>
 		                                    		                                </li>
+		                                    </c:forEach>
 	                                	                           	</ul>
+	                                	                           	<input name="ostate" value="${ostate}" type="hidden">
+		                                  			                <input name="pk" value="${companys.cid}" type="hidden">
 			                    			                </form>
 		                                    </dd>
                 </dl>

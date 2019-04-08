@@ -8,19 +8,22 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Product;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.utilEmail.CEmail;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.product.service.ProductService;
 
 
 @Controller
 public class CompanyController {
 	@Resource
 	private CompanyService service;
-	
+	@Resource
+	private ProductService proservice;
 	
 	
 	//跳转到公司页面
@@ -119,9 +122,17 @@ public class CompanyController {
 		String taglist[]=tag.split(",");
 		model.addAttribute("taglist", taglist);
 		model.addAttribute("listCompany",this.service.qyeryAllCompany(user.getUserid()));
-		
-		
-		
 		return "main/myhome";
 	}
+	//修改公司主页的产品
+	@ResponseBody
+	@RequestMapping("updateProductController")
+	public Company updateProduct(Product pro,HttpSession session) {
+		int row=this.proservice.updateProduct(pro);
+		RecruitingUsers user=(RecruitingUsers) session.getAttribute("loginUser");
+		return this.service.qyeryAllCompany(user.getUserid());
+	}
+	
+	
+	
 }

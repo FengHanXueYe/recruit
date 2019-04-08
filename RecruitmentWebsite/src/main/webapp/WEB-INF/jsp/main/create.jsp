@@ -1512,10 +1512,10 @@ div.BMap_cmLstItem {
 				<dl class="company_center_aside">
 					<dt>我发布的职位</dt>
 					<dd>
-						<a href="positions.html">有效职位</a>
+						<a href="queryByOstateController.controller?ostate=0&pk=${companys.cid}">有效职位</a>
 					</dd>
 					<dd>
-						<a href="positions.html">已下线职位</a>
+						<a href="queryByOstateController.controller?ostate=1&pk=${companys.cid}">已下线职位</a>
 					</dd>
 				</dl>
 				<div class="subscribe_side mt20">
