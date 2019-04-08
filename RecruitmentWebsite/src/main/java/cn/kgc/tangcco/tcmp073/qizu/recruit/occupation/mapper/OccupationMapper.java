@@ -15,5 +15,6 @@ public interface OccupationMapper {
 	
 	
 	Occupation queryOccupation(@Param("oid")Integer oid);
+	List<Occupation> querylike(String oname);
 	
 }

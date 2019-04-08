@@ -42,17 +42,15 @@ public class MainController {
 
 	@Resource
 	private WorksdisplayService ws;
-	
+
 	@Resource
 	private OconeService os;
-	
+
 	@Resource
 	private CompanyService com;
-	
+
 	@Resource
 	private OccupationService occupationService;
-	
-	
 
 	@RequestMapping("toIndex")
 	public String toIndex(Model model) {
@@ -62,26 +60,28 @@ public class MainController {
 		}
 		List<Company> queryalltoFounder = com.queryalltoFounder();
 		for (Company company : queryalltoFounder) {
-			System.err.println(company+"/n");
+			System.err.println(company + "/n");
 		}
-		
-		model.addAttribute("com",queryalltoFounder );
+
+		model.addAttribute("com", queryalltoFounder);
 		model.addAttribute("coo", com.queryalltozuixin());
 
 		return "main/index";
 	}
+
 	/**
 	 * 跳转职位详情页面
+	 * 
 	 * @param cccname
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("toxiangqing")
-	public String toxiangqing(String cccname,Model model) {
-		System.out.println("-------------------->>>>>>>"+cccname);
-		//查询职业详情
+	public String toxiangqing(String cccname, Model model) {
+		System.out.println("-------------------->>>>>>>" + cccname);
+		// 查询职业详情
 		Occupation queryOccupation = occupationService.queryOccupation(Integer.parseInt(cccname));
-		//查询职业所在的公司
+		// 查询职业所在的公司
 		Company queryCompanyByCid = com.queryCompanyByCid(queryOccupation.getOcid());
 		model.addAttribute("queryOccupation", queryOccupation);
 		model.addAttribute("queryCompanyByCid", queryCompanyByCid);
@@ -194,9 +194,11 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("toListOoccupation")
-	public String toListOoccupation(String kd,Model model) {
-		System.out.println("这是kd------》"+kd);
-		model.addAttribute("kd", kd);
+	public String toListOoccupation(String oname, Model model) {
+
+		List<Company> querylikeoname = com.querylikeoname(oname);
+		model.addAttribute("oname", querylikeoname);
+		model.addAttribute("kd", oname);
 		return "main/list";
 	}
 }
