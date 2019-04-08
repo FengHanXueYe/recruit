@@ -20,4 +20,7 @@
 	</select>
 	
 	
+	<select id="queryBystate" parameterType="int" resultMap="Occupation">
+		SELECT * FROM occupation WHERE ocid=#{ocid} AND ostate=#{ostate}
+	</select>
 </mapper>

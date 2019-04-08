@@ -1,5 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -20,7 +22,11 @@ public class OccupationController {
 	@Resource
 	private CompanyService comservice;
 	@RequestMapping("tocreate")
-	public String tocreate() {
+	public String tocreate(Model model,HttpSession session) {
+		RecruitingUsers user=(RecruitingUsers) session.getAttribute("loginUser");
+		Company con=(Company) this.comservice.queryByUid(user.getUserid());
+		session.setAttribute("companys",this.comservice.queryByUid(user.getUserid()));
+		
 		return "main/create";
 	}
 	
@@ -52,9 +58,37 @@ public class OccupationController {
 		}
 		
 	}
-	
-	
-	
+	//查看状态已下线和未下线的职位
+	@RequestMapping("queryByOstateController")
+	public String queryByOstate(int pk,int ostate,Model model) {
+		List<Occupation> occ=this.service.queryBystate(pk, ostate);
+		int size=occ.size();
+		model.addAttribute("ostate", ostate);
+		model.addAttribute("size", size);
+		model.addAttribute("Occupation", this.service.queryBystate(pk, ostate));
+		return "main/positions";
+	}
+	@RequestMapping("deleteOccupation")
+	public String deleteOccupation(int oid,int ostate,int pk,Model model) {
+		this.service.deleteOccupation(oid);
+		List<Occupation> occ=this.service.queryBystate(pk, ostate);
+		int size=occ.size();
+		model.addAttribute("ostate", ostate);
+		model.addAttribute("size", size);
+		model.addAttribute("Occupation", this.service.queryBystate(pk, ostate));
+		
+		return "main/positions";
+	}
+	@RequestMapping("updateOstate")
+	public String updateOstate(int oid,int ostates,Model model,int pk,int ostate) {
+		this.service.updateOccupation(oid,ostates);
+		List<Occupation> occ=this.service.queryBystate(pk, ostate);
+		int size=occ.size();
+		model.addAttribute("ostate", ostate);
+		model.addAttribute("size", size);
+		model.addAttribute("Occupation", this.service.queryBystate(pk, ostate));
+		return "main/positions";
+	}
 	
 	
 }

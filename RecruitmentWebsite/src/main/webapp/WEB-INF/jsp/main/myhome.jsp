@@ -44,7 +44,7 @@ var youdao_conv_id = 271546;
     		</a>
     		<ul id="navheader" class="reset">
     			<li><a href="index.html">首页</a></li>
-    			<li class="current"><a href="companylist.html">公司</a></li>
+    			<li class="current"><a href="tocompanylist.controller">公司</a></li>
     			<li><a target="_blank" href="">论坛</a></li>
     				    			<li>
 	    				<a rel="nofollow" href="">简历管理</a>
@@ -184,9 +184,9 @@ var youdao_conv_id = 271546;
 							                    </div>
 					                            
 					                            <div class="cp_intro">
-					                               	<input type="text" placeholder="请输入产品名称" value="${listCompany.product.pname}" name="product">	
-					                                <input type="text" placeholder="请输入产品网址" value="${listCompany.product.paddress}" name="productUrl">	
-					                                <textarea placeholder="请简短描述该产品定位、产品特色、用户群体等" maxlength="500" value="${listCompany.product.pdetail}" class="s_textarea" name="productProfile">${listCompany.product.pdetail}</textarea>	
+					                               	<input type="text" placeholder="请输入产品名称" value="${listCompany.product.pname}" name="pname">	
+					                                <input type="text" placeholder="请输入产品网址" value="${listCompany.product.paddress}" name="paddress">	
+					                                <textarea placeholder="请简短描述该产品定位、产品特色、用户群体等" maxlength="500" value="${listCompany.product.pdetail}" class="s_textarea" name="pdetail">${listCompany.product.pdetail}</textarea>	
 					                                <div class="word_count fr">你还可以输入 <span>500</span> 字</div>
 					                                <div class="clear"></div>
 					                                <input type="submit" value="保存" class="btn_small">
@@ -607,6 +607,20 @@ var youdao_conv_id = 271546;
 <!------------------------------------- end ----------------------------------------->
 
 <script src="style/js/company.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".btn_small").click(function(){
+			
+			
+		})
+		
+		
+	})
+
+
+
+</script>
+
 <script>
 var avatar = {};
 avatar.uploadComplate = function( data ){
