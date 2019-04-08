@@ -21,14 +21,15 @@
 		order by d.dtime desc
 	</select>
 	
-	<update id="" parameterType="Deliverypost">
+	<update id="updateDeliverypost" parameterType="Deliverypost">
 		update Deliverypost 
 		<set>
 			<if test="dp.dstatus!=null and dp.dstatus!=''"> dstatus=#{dp.dstatus},</if>
 			<if test="dp.texttz!=null and dp.texttz!=''"> texttz=#{dp.texttz},</if>
 			dxytime=NOW()
 		</set>
-		set dstatus=#{dp.status},dxytime=NOW() where did=#{dp.did}
+		where did=#{dp.did}
+		<!-- set dstatus=#{dp.dstatus},dxytime=NOW() where did=#{dp.did} -->
 	</update>
 	
 	<select id="detailDeliverypost" resultMap="deliverypostMap" parameterType="Deliverypost">

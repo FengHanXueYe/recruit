@@ -6,7 +6,8 @@
 		<set>
 			<if test="cr.dstatus!=null and cr.dstatus!=''"> dstatus=#{cr.dstatus},</if>
 			<if test="cr.ctime!=null and cr.ctime!=''"> ctime=#{cr.ctime},</if>
-			<if test="cr.ctext!=null and cr.ctext!=''"> ctext=#{cr.ctext}</if>
+			<if test="cr.ctext!=null and cr.ctext!=''"> ctext=#{cr.ctext},</if>
+			ctime=NOW()
 		</set>
 		where crid=#{cr.crid}
 	</update>
@@ -36,5 +37,10 @@
 	<select id="queryOccuotion" resultMap="companyresumeMap" parameterType="int">
 		SELECT * FROM companyresume c,`company` j,`occupation` o,`recruitingusers` r WHERE c.`userid`=r.`userid` AND c.`cid`=j.`cid` AND c.`oid`=o.`oid` AND j.`cuid`=#{cuid} limit 1
 	</select>
+	
+	<select id="detailCompanyresume" resultMap="companyresumeMap" parameterType="int">
+		SELECT * FROM companyresume c,`company` j,`occupation` o,`recruitingusers` r WHERE c.`userid`=r.`userid` AND c.`cid`=j.`cid` AND c.`oid`=o.`oid` AND c.crid=#{crid}
+	</select>
+
 
 </mapper>
