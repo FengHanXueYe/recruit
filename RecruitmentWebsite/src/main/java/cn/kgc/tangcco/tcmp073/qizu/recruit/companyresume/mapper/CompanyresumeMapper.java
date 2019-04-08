@@ -21,6 +21,7 @@ public interface CompanyresumeMapper {
 	
 	List<Companyresume> queryAllCompanyresume(@Param("cr")Companyresume cr);
 	
+	Companyresume detailCompanyresume(@Param("crid")Integer crid);
 	
 	Companyresume queryOccuotion(@Param("cuid")Integer cuid);
 }
