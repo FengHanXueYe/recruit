@@ -254,14 +254,49 @@ var youdao_conv_id = 271546;
 				                               	+"</span>"
 				                            +"</div>"
 				                        +"</div>"
-				                        +"<div class='links'>"
-				                            +"<a data-deliverid='1686182' data-name='jason' data-positionid='149594' data-email='888888888@qq.com' class='resume_notice' href='javascript:void(0)' onclick='updateStatus(3,"+item.companyresume.crid+")'>通知面试</a>"
-				                            +"<a data-deliverid='1686182' class='resume_refuse' href='javascript:void(0)' onclick='updateStatus(4,"+item.companyresume.crid+")'>不合适</a>"
-				                       		+"<a data-resumename='+item.companyresume.cuser.username +的简历' data-positionname='随便写' data-deliverid='1686182' data-positionid='149594' data-resumekey='1ccca806e13637f7b1a4560f80f08057' data-forwardcount='1' class='resume_forward' href='javascript:void(0)'>"
-				                            	+"转发<span>(1人)</span>"
-				                            +"</a>"
-				                        +"</div>"
-				                    +"</div>"
+				                        if(item.companyresume.dstatus==5){
+					                        html+="<div class='links'>"
+							                            +"<a data-deliverid='1686182' data-name='jason' data-positionid='149594' data-email='888888888@qq.com' class='resume_notice' href='javascript:void(0)' onclick='updateStatus(1,"+item.companyresume.crid+")'>忽略</a>"
+							                            +"<a data-deliverid='1686182' data-name='jason' data-positionid='149594' data-email='888888888@qq.com' class='resume_notice' href='javascript:void(0)' onclick='updateStatus(2,"+item.companyresume.crid+")'>待定</a>"
+							                            +"<a data-deliverid='1686182' data-name='jason' data-positionid='149594' data-email='888888888@qq.com' class='resume_notice' href='javascript:void(0)' onclick='updateStatus(3,"+item.companyresume.crid+")'>通知面试</a>"
+							                            +"<a data-deliverid='1686182' class='resume_refuse' href='javascript:void(0)' onclick='updateStatus(4,"+item.companyresume.crid+")'>不合适</a>"
+							                       		+"<a data-resumename='+item.companyresume.cuser.username +的简历' data-positionname='随便写' data-deliverid='1686182' data-positionid='149594' data-resumekey='1ccca806e13637f7b1a4560f80f08057' data-forwardcount='1' class='resume_forward' href='javascript:void(0)'>"
+					                            		+"转发<span>(1人)</span>"
+					                            		+"</a>"
+					                        	  +"</div>";
+				                        }else if(item.companyresume.dstatus==2){
+					                        html+="<div class='links'>"
+					                            +"<a data-deliverid='1686182' data-name='jason' data-positionid='149594' data-email='888888888@qq.com' class='resume_notice' href='javascript:void(0)' onclick='updateStatus(4,"+item.companyresume.crid+")'>不合适</a>"
+					                            +"<a data-deliverid='1686182' class='resume_refuse' href='javascript:void(0)' onclick='updateStatus(3,"+item.companyresume.crid+")'>通知面试</a>"
+					                       		+"<a data-resumename='+item.companyresume.cuser.username +的简历' data-positionname='随便写' data-deliverid='1686182' data-positionid='149594' data-resumekey='1ccca806e13637f7b1a4560f80f08057' data-forwardcount='1' class='resume_forward' href='javascript:void(0)'>"
+			                            		+"转发<span>(1人)</span>"
+			                            		+"</a>"
+			                        	  +"</div>";
+		                        		}else if(item.companyresume.dstatus==3){
+					                        html+="<div class='links'>"
+					                            +"<a data-deliverid='1686182' data-name='jason' data-positionid='149594' data-email='888888888@qq.com' class='resume_notice' href='javascript:void(0)' >已标记通知面试，请及时发送面试信息！</a>"
+					                       		+"<a data-resumename='+item.companyresume.cuser.username +的简历' data-positionname='随便写' data-deliverid='1686182' data-positionid='149594' data-resumekey='1ccca806e13637f7b1a4560f80f08057' data-forwardcount='1' class='resume_forward' href='javascript:void(0)'>"
+			                            		+"转发<span>(1人)</span>"
+			                            		+"</a>"
+			                        	  +"</div>";
+		                        		}else if(item.companyresume.dstatus==4){
+					                        html+="<div class='links'>"
+					                        	+"<a data-deliverid='1686182' data-name='jason' data-positionid='149594' data-email='888888888@qq.com' class='resume_notice' href='javascript:void(0)' onclick='updateStatus(5,"+item.companyresume.crid+")'>标记为待处理</a>"
+					                            +"<a data-deliverid='1686182' class='resume_refuse' href='javascript:void(0)' )'>不合适</a>"
+					                       		+"<a data-resumename='+item.companyresume.cuser.username +的简历' data-positionname='随便写' data-deliverid='1686182' data-positionid='149594' data-resumekey='1ccca806e13637f7b1a4560f80f08057' data-forwardcount='1' class='resume_forward' href='javascript:void(0)'>"
+			                            		+"转发<span>(1人)</span>"
+			                            		+"</a>"
+			                        	  +"</div>";
+		                        		}else{
+					                        html+="<div class='links'>"
+					                            +"<a data-deliverid='1686182' data-name='jason' data-positionid='149594' data-email='888888888@qq.com' class='resume_notice' href='javascript:void(0)' onclick='updateStatus(1,"+item.companyresume.crid+")'>已过滤</a>"
+					                            +"<a data-deliverid='1686182' data-name='jason' data-positionid='149594' data-email='888888888@qq.com' class='resume_notice' href='javascript:void(0)' onclick='updateStatus(3,"+item.companyresume.crid+")'>通知面试</a>"
+					                       		+"<a data-resumename='+item.companyresume.cuser.username +的简历' data-positionname='随便写' data-deliverid='1686182' data-positionid='149594' data-resumekey='1ccca806e13637f7b1a4560f80f08057' data-forwardcount='1' class='resume_forward' href='javascript:void(0)'>"
+			                            		+"转发<span>(1人)</span>"
+			                            		+"</a>"
+			                        	  +"</div>";
+		                        		}
+				                    html+="</div>"
 				                    +"<div class='contactInfo'>"
 				                    	+"<span class='c9'>电话：</span>"+item.companyresume.cuser.telephone +  " &nbsp;&nbsp;&nbsp;  " 
 				                        +"<span class='c9'>邮箱：</span><a href='mailto:888888888@qq.com'>"+item.companyresume.cuser.email +"</a>"
@@ -284,12 +319,18 @@ var youdao_conv_id = 271546;
  	}) 
  
  	function updateStatus(z,crid){
- 		alert(z+"-----------"+crid);
+ 		//alert(z+"-----------"+crid);
  		var zhi = "";
  		if(z==3){
  			zhi = "确定要通知面试吗？";
- 		}else{
+ 		}else if(z==2){
+ 			zhi = "确定要标记为待定吗？";
+ 		}else if(z==4){
  			zhi = "确定要标记为不合适吗？";
+ 		}else if(z==5){
+ 			zhi = "确定要标记为待处理吗？";
+ 		}else{
+ 			zhi = "确定要标记为过滤吗？";
  		}
  		var flg = confirm(zhi);
  		if(flg){
@@ -300,7 +341,7 @@ var youdao_conv_id = 271546;
  				success:function(resultDate,status){
  					if("success"==status){
  						if(resultDate){
- 							alert("true");
+ 							//alert("true");
  							$("li#"+crid).slideUp(500).remove();
  						}else{
  							alert("false");
