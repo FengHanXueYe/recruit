@@ -53,17 +53,20 @@
 					alt="拉勾招聘-专注互联网招聘" />
 				</a>
 				<ul class="reset" id="navheader">
-					<li><a href="index.html">首页</a></li>
+					<li><a href="toIndex.controller">首页</a></li>
 					<li><a href="companylist.html">公司</a></li>
 					<li><a href="h/toForum.html" target="_blank">论坛</a></li>
 					<li><a href="jianli.html" rel="nofollow">我的简历</a></li>
 					<li><a href="create.html" rel="nofollow">发布职位</a></li>
 				</ul>
-				<ul class="loginTop">
-					<li><a href="login.html" rel="nofollow">登录</a></li>
-					<li>|</li>
-					<li><a href="register.html" rel="nofollow">注册</a></li>
-				</ul>
+				<c:choose>
+					<c:when test="${empty loginUser }">
+						<jsp:include page="/mainjsp/login/registerSignin.jsp"></jsp:include>
+					</c:when>
+					<c:otherwise>
+						<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<!-- end #header -->
