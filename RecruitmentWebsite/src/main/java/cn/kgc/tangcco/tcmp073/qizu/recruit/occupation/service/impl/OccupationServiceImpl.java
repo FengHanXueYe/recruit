@@ -44,5 +44,10 @@ public class OccupationServiceImpl implements OccupationService {
 	public int updateOccupation(int oid,int ostate) {
 		return mapper.updateOccupation(oid,ostate);
 	}
+	//编辑职位信息使用的方法
+	@Override
+	public Occupation queryByoid(int oid) {
+		return mapper.queryByoid(oid);
+	}
 	
 }

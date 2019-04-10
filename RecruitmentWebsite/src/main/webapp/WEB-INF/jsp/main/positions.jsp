@@ -43,8 +43,8 @@ var youdao_conv_id = 271546;
     			<img width="229" height="43" alt="拉勾招聘-专注互联网招聘" src="style/images/logo.png">
     		</a>
     		<ul id="navheader" class="reset">
-    			<li><a href="index.html">首页</a></li>
-    			<li><a href="companylist.html">公司</a></li>
+    			<li><a href="toIndex.controller">首页</a></li>
+    			<li><a href="tocompanylist.controller">公司</a></li>
     			<li><a target="_blank" href="http://www.lagou.com/toForum.html">论坛</a></li>
     				    			<li><a rel="nofollow" href="jianli.html">我的简历</a></li>
 	    						    		</ul>
@@ -135,7 +135,7 @@ var youdao_conv_id = 271546;
 		                                    		                                    				                                    <div class="c9">发布时间： ${occ.orelease}</div>
 			                                    		                                    		                                    		                                    <div class="links">
 		                                    			                                       	<a class="job_refresh" href="javascript:void(0)">刷新<span>每个职位7天内只能刷新一次</span></a>
-		                                       			                                       	<a target="_blank" class="job_edit" href="create.html?positionId=149594">编辑</a>
+		                                       			                                       	<a target="_blank" class="job_edit" href="queryByoid.controller?oid=${occ.oid}">编辑</a>
 		                                       	<c:if test="${ostate eq '0'}">
 		                                       	<a onclick="return confirm('确认下线职位吗?下线后他人无法查看该职位!')" href="updateOstate.controller?oid=${occ.oid}&ostates=1&pk=${companys.cid}&ostate=${ostate}">下线</a>   
 		                                       	</c:if>

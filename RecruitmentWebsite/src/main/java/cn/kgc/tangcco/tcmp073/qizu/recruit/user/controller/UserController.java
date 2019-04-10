@@ -67,6 +67,7 @@ public class UserController {
 			return "main/login";
 		} else {
 			session.setAttribute("loginUser", loginRecruitingUsers);
+			session.setAttribute("companys",this.cs.queryByUid(loginRecruitingUsers.getUserid()));
 			if(autoLogin!=null) {
 				Cookie cookiename = new Cookie("cookiename",ruser.getEmail());
 				cookiename.setMaxAge(60 * 60 * 24 * 3);
