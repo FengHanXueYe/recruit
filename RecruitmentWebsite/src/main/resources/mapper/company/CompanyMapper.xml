@@ -28,14 +28,14 @@
 	<select id="queryalltoFounder" resultMap="CompanyMaps">
 		SELECT *FROM company
 		co,founder f,occupation o,education e WHERE f.cfid=co.cid AND
-		e.eid=o.oeducation AND co.cid=o.ocid AND o.ostate=0
+		e.eid=o.oeducation AND co.cid=o.ocid AND o.ostate=0 limit 10
 	</select>
 	<select id="queryalltozuixin" resultMap="CompanyMaps">
 		SELECT *FROM company
 		co,founder f,occupation o,education e WHERE
 		f.cfid=co.cid AND
 		e.eid=o.oeducation AND co.cid=o.ocid AND o.ostate=0 ORDER BY
-		o.orelease DESC
+		o.orelease DESC limit 10
 	</select>
 	<select id="querylikeoname" resultMap="CompanyMaps"
 		parameterType="String">
