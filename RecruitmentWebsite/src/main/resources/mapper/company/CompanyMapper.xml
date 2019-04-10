@@ -76,9 +76,7 @@
 	</select>
 	<select id="querylikeorelease" resultMap="CompanyMaps"
 		parameterType="int">
-		SELECT * FROM occupation WHERE
-		DATEDIFF(orelease,NOW())&lt;=0 AND
-		DATEDIFF(orelease,NOW())&gt;-#{orelease}
+		SELECT *FROM company co,founder f,occupation o,education e WHERE f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid AND DATEDIFF(orelease,NOW())&lt;=0 AND DATEDIFF(orelease,NOW())&gt;#{orelease}
 
 	</select>
 	<select id="queryByUid" parameterType="int" resultMap="CompanyMaps">

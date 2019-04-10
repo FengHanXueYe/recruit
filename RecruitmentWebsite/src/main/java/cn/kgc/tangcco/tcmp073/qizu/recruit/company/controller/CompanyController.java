@@ -163,8 +163,10 @@ public class CompanyController {
 	@RequestMapping("toorelease")
 	@ResponseBody
 	public List<Company> querylikeolog(int orelease) {
+		System.err.println(orelease);
+		System.err.println(service.querylikeorelease(-30));
 		return service.querylikeorelease(orelease);
-	}
+	}										
 	//修改公司主页的产品
 	@ResponseBody
 	@RequestMapping("updateProductController")

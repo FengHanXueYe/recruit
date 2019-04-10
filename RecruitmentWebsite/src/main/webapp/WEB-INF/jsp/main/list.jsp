@@ -178,13 +178,13 @@
 							})
 						
 					})
-					$(".ajaxdian").click(function() {
+					$(".ajaxdian1").click(function() {
 							//location.href="tosalary.controller"
 							var zhi = $.trim($(this).html());
-							alert(zhi);
+							//alert(zhi);
 							var olog = "";
 							if (zhi == "不限") {
-								olog="";
+								olog="不限";
 							} else if (zhi == "应届毕业生") {
 								olog="应届毕业生";
 							} else if (zhi == "1年以下") {
@@ -274,6 +274,238 @@
 							})
 						
 					})
+					$(".ajaxdian2").click(function() {
+							var zhi = $.trim($(this).html());
+							//alert(zhi);
+							var ename = "";
+							if (zhi == "不限") {
+								ename="不限";
+							} else if (zhi == "大专") {
+								ename="大专";
+							} else if (zhi == "本科") {
+								ename="本科";
+							} else if (zhi == "硕士") {
+								ename="硕士";
+							} else if (zhi = "博士") {
+								ename="博士";
+								}
+						   $.ajax({
+								type:"post",
+								url:"toename.controller",
+								data:{"ename":ename},
+								success:function(data){
+									$("#ajax").html("");
+									var html = "";
+									$.each(data,function(index,item){
+										var z = "";
+										var x = "";
+										var y = "";
+										var xl = "";	
+										var yh = "";
+										var sj = "";
+										var oname = "";
+										$.each(item.occupation,function(i,t){
+											z = t.ominsalary;
+											x = t.omaxsalary;
+											y = t.olog;
+											oname = t.oname;
+											yh = t.owelfare;
+											sj = t.orelease;
+											$.each(t.education,function(ii,tt){
+												xl = tt.ename;
+											})
+										})
+										var date1 = new Date(sj);
+					    				var dd = date1.getFullYear() + "-" + (Number(date1.getMonth())+Number(1)) + "-" + date1.getDate() + " " + date1.getHours() + ":" + date1.getMinutes() + ":" + date1.getSeconds();
+										html+="<li class='odd clearfix'>"
+													+"<div class='hot_pos_l'>"
+														+"<div class='mb10'>"
+															+"<a href='toxiangqing.controller?cccname=1'>"+item.cname+"</a>"
+															+"&nbsp; <span class='c9'>["+item.caddress+"]</span>"
+														+"</div>"
+														+"<span><em class='c7'>月薪：</em>"+z+"--"+x+"</span>"
+														+"<span><em class='c7'>经验：</em>"+y+"</span>"
+															+"<span><em class='c7'>最低学历： </em>"+xl+"</span>"
+														+"<br /><span><em class='c7'>职位诱惑：</em>"+yh+"</span>"
+														+"<br /><span>发布时间:"+sj+"</span>"
+													+"</div>"
+													+"<div class='hot_pos_r'>"
+														+"<div class='apply'>"
+															+"<a href='toudi.html' target='_blank'>投个简历</a>"
+														+"</div>"
+														+"<div class='mb10'>"
+															+"<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"+oname+"</a>"
+														+"</div>"
+														+"<span><em class='c7'>领域：</em>"+item.cfield+"</span><span><em class='c7'>创始人：</em>"+item.founder.fname+"</span> <br />"
+														+"<span><em class='c7'>阶段： </em>"+item.cfs+"</span><span><em class='c7'>规模：</em>"+item.cscale+"</span>"
+														+"<ul class='companyTags reset'>"
+															+"<li>五险一金</li>"
+															+"<li>股票期权</li>"
+															+"<li>年度旅游</li>"
+														+"</ul>"
+													+"</div>"
+											+"</li>";
+										
+									})
+									$("#ajax").html(html).hide().slideDown(500);
+								}
+								
+						   
+						   })
+					})
+					$(".ajaxdian3").click(function() {
+							var zhi = $.trim($(this).html());
+							//alert(zhi);
+							var onature=0;
+							if (zhi == "全职") {
+								onature=1;
+							} else if (zhi == "兼职") {
+								onature=2;
+							} else if (zhi == "实习") {
+								onature=3;
+							} 
+						   $.ajax({
+								type:"post",
+								url:"toonature.controller",
+								data:{"onature":onature},
+								success:function(data){
+									$("#ajax").html("");
+									var html = "";
+									$.each(data,function(index,item){
+										var z = "";
+										var x = "";
+										var y = "";
+										var xl = "";	
+										var yh = "";
+										var sj = "";
+										var oname = "";
+										$.each(item.occupation,function(i,t){
+											z = t.ominsalary;
+											x = t.omaxsalary;
+											y = t.olog;
+											oname = t.oname;
+											yh = t.owelfare;
+											sj = t.orelease;
+											$.each(t.education,function(ii,tt){
+												xl = tt.ename;
+											})
+										})
+										var date1 = new Date(sj);
+					    				var dd = date1.getFullYear() + "-" + (Number(date1.getMonth())+Number(1)) + "-" + date1.getDate() + " " + date1.getHours() + ":" + date1.getMinutes() + ":" + date1.getSeconds();
+										html+="<li class='odd clearfix'>"
+													+"<div class='hot_pos_l'>"
+														+"<div class='mb10'>"
+															+"<a href='toxiangqing.controller?cccname=1'>"+item.cname+"</a>"
+															+"&nbsp; <span class='c9'>["+item.caddress+"]</span>"
+														+"</div>"
+														+"<span><em class='c7'>月薪：</em>"+z+"--"+x+"</span>"
+														+"<span><em class='c7'>经验：</em>"+y+"</span>"
+															+"<span><em class='c7'>最低学历： </em>"+xl+"</span>"
+														+"<br /><span><em class='c7'>职位诱惑：</em>"+yh+"</span>"
+														+"<br /><span>发布时间:"+sj+"</span>"
+													+"</div>"
+													+"<div class='hot_pos_r'>"
+														+"<div class='apply'>"
+															+"<a href='toudi.html' target='_blank'>投个简历</a>"
+														+"</div>"
+														+"<div class='mb10'>"
+															+"<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"+oname+"</a>"
+														+"</div>"
+														+"<span><em class='c7'>领域：</em>"+item.cfield+"</span><span><em class='c7'>创始人：</em>"+item.founder.fname+"</span> <br />"
+														+"<span><em class='c7'>阶段： </em>"+item.cfs+"</span><span><em class='c7'>规模：</em>"+item.cscale+"</span>"
+														+"<ul class='companyTags reset'>"
+															+"<li>五险一金</li>"
+															+"<li>股票期权</li>"
+															+"<li>年度旅游</li>"
+														+"</ul>"
+													+"</div>"
+											+"</li>";
+										
+									})
+									$("#ajax").html(html).hide().slideDown(500);
+								}
+								
+						   
+						   })
+					})
+					$(".ajaxdian4").click(function() {
+							var zhi = $.trim($(this).html());
+							//alert(zhi);
+							var orelease=0;
+							if (zhi == "今天") {
+								orelease=-1;
+							} else if (zhi == "3天之内") {
+								orelease=-3;
+							} else if (zhi == "一周内") {
+								orelease=-7;
+							} else if (zhi == "一月内") {
+								orelease=-30;
+							} 
+						   $.ajax({
+								type:"post",
+								url:"toorelease.controller",
+								data:{"orelease":orelease},
+								success:function(data){
+									$("#ajax").html("");
+									var html = "";
+									$.each(data,function(index,item){
+										var z = "";
+										var x = "";
+										var y = "";
+										var xl = "";	
+										var yh = "";
+										var sj = "";
+										var oname = "";
+										$.each(item.occupation,function(i,t){
+											z = t.ominsalary;
+											x = t.omaxsalary;
+											y = t.olog;
+											oname = t.oname;
+											yh = t.owelfare;
+											sj = t.orelease;
+											$.each(t.education,function(ii,tt){
+												xl = tt.ename;
+											})
+										})
+										var date1 = new Date(sj);
+					    				var dd = date1.getFullYear() + "-" + (Number(date1.getMonth())+Number(1)) + "-" + date1.getDate() + " " + date1.getHours() + ":" + date1.getMinutes() + ":" + date1.getSeconds();
+										html+="<li class='odd clearfix'>"
+													+"<div class='hot_pos_l'>"
+														+"<div class='mb10'>"
+															+"<a href='toxiangqing.controller?cccname=1'>"+item.cname+"</a>"
+															+"&nbsp; <span class='c9'>["+item.caddress+"]</span>"
+														+"</div>"
+														+"<span><em class='c7'>月薪：</em>"+z+"--"+x+"</span>"
+														+"<span><em class='c7'>经验：</em>"+y+"</span>"
+															+"<span><em class='c7'>最低学历： </em>"+xl+"</span>"
+														+"<br /><span><em class='c7'>职位诱惑：</em>"+yh+"</span>"
+														+"<br /><span>发布时间:"+sj+"</span>"
+													+"</div>"
+													+"<div class='hot_pos_r'>"
+														+"<div class='apply'>"
+															+"<a href='toudi.html' target='_blank'>投个简历</a>"
+														+"</div>"
+														+"<div class='mb10'>"
+															+"<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"+oname+"</a>"
+														+"</div>"
+														+"<span><em class='c7'>领域：</em>"+item.cfield+"</span><span><em class='c7'>创始人：</em>"+item.founder.fname+"</span> <br />"
+														+"<span><em class='c7'>阶段： </em>"+item.cfs+"</span><span><em class='c7'>规模：</em>"+item.cscale+"</span>"
+														+"<ul class='companyTags reset'>"
+															+"<li>五险一金</li>"
+															+"<li>股票期权</li>"
+															+"<li>年度旅游</li>"
+														+"</ul>"
+													+"</div>"
+											+"</li>";
+										
+									})
+									$("#ajax").html(html).hide().slideDown(500);
+								}
+								
+						   
+						   })
+					})
+					
 			}) 
 		</script>
 		<div id="container">
@@ -299,35 +531,35 @@
 							工作经验 <em></em>
 						</dt>
 						<dd>
-							<div class="ajaxdian">不限</div>
-							<div class="ajaxdian">应届毕业生</div>
-							<div class="ajaxdian">1年以下</div>
-							<div class="ajaxdian">1-3年</div>
-							<div class="ajaxdian">3-5年</div>
-							<div class="ajaxdian">5-10年</div>
-							<div class="ajaxdian">10年以上</div>
+							<div class="ajaxdian1">不限</div>
+							<div class="ajaxdian1">应届毕业生</div>
+							<div class="ajaxdian1">1年以下</div>
+							<div class="ajaxdian1">1-3年</div>
+							<div class="ajaxdian1">3-5年</div>
+							<div class="ajaxdian1">5-10年</div>
+							<div class="ajaxdian1">10年以上</div>
 						</dd>    
 					</dl>
 					<dl>
 						<dt>
 							最低学历 <em></em>
 						</dt>
-						<dd>
-							<div>不限</div>
-							<div>大专</div>
-							<div>本科</div>
-							<div>硕士</div>
-							<div>博士</div>
-						</dd>
+						<dd>    
+							<div class="ajaxdian2">不限</div>
+							<div class="ajaxdian2">大专</div>
+							<div class="ajaxdian2">本科</div>
+							<div class="ajaxdian2">硕士</div>
+							<div class="ajaxdian2">博士</div>
+						</dd>   
 					</dl>
 					<dl>
 						<dt>
 							工作性质 <em></em>
 						</dt>
 						<dd>
-							<div>全职</div>
-							<div>兼职</div>
-							<div>实习</div>
+							<div class="ajaxdian3">全职</div>
+							<div class="ajaxdian3">兼职</div>
+							<div class="ajaxdian3">实习</div>
 						</dd>
 					</dl>
 					<dl>
@@ -335,10 +567,10 @@
 							发布时间 <em></em>
 						</dt>
 						<dd>
-							<div>今天</div>
-							<div>3天内</div>
-							<div>一周内</div>
-							<div>一月内</div>
+							<div class="ajaxdian4">今天</div>
+							<div class="ajaxdian4">3天内</div>
+							<div class="ajaxdian4">一周内</div>
+							<div class="ajaxdian4">一月内</div>
 						</dd>
 					</dl>
 				</div>
