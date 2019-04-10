@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 
 public interface CompanyMapper {
 	@Insert("INSERT INTO recruitdb.company (cid,cuid,cphone, cemail ) VALUES(DEFAULT,#{cuid},#{cphone},#{cemail});")
@@ -37,7 +38,7 @@ public interface CompanyMapper {
 
 	List<Company> querylikeoname(@Param("oname") String oname);
 
-	List<Company> querylikeomaxsalary(double omaxsalary, double ominsalary);
+	List<Company> querylikeomaxsalary(Occupation occ);
 
 	List<Company> querylikeolog(String olog);
 

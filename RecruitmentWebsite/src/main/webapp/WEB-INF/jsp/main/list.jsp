@@ -71,17 +71,111 @@
 		<!-- ------------------------------------------------------------------------------------------- -->
 		<script type="text/javascript">
 			$(function() {
-				$(".ajaxdian").click(function() {
-					var zhi = $.trim($(this).html());
-					alert(zhi);
-					var num = 1;
-					if (zhi == "2k以下") {
-						num = 2;
-						alert(num);
-					}
-
-				})
-			})
+					$(".ajaxdian").click(function() {
+							//location.href="tosalary.controller"
+							var zhi = $.trim($(this).html());
+							//alert(zhi);
+							var omaxsalary = 0;
+							 var ominsalary = 0;
+							if (zhi == "2k以下") {
+								omaxsalary = 2;
+								ominsalary = 0;
+							} else if (zhi == "2k-5k") {
+								omaxsalary = 5;
+								ominsalary = 2;
+							} else if (zhi == "5k-10k") {
+								omaxsalary = 10;
+								ominsalary = 5;
+							} else if (zhi == "10k-15k") {
+								omaxsalary = 15;
+								ominsalary = 10;
+							} else if (zhi = "15k-25k") {
+								omaxsalary = 25;
+								ominsalary = 15;
+							} else if (zhi = "25k-50k") {
+								omaxsalary = 50;
+								ominsalary = 25;
+							} else if (zhi = "50k以上") {
+								omaxsalary = 100;
+								ominsalary = 50;
+							}
+							
+							
+						   $.ajax({
+								type:"post",
+								url:"tosalary.controller",
+								data:{"omaxsalary":omaxsalary,"ominsalary":ominsalary},
+								success:function(data){
+									$("#ajax").html("");
+									var html = "";
+									$.each(data,function(index,item){
+										var z = "";
+										var x = "";
+										var y = "";
+										var xl = "";	
+										var yh = "";
+										var sj = "";
+										var oname = "";
+										$.each(item.occupation,function(i,t){
+											z = t.ominsalary;
+											x = t.omaxsalary;
+											y = t.olog;
+											oname = t.oname;
+											yh = t.owelfare;
+											sj = t.orelease;
+											$.each(t.education,function(ii,tt){
+												xl = tt.ename;
+											})
+										})
+										var date1 = new Date(sj);
+					    				var dd = date1.getFullYear() + "-" + (Number(date1.getMonth())+Number(1)) + "-" + date1.getDate() + " " + date1.getHours() + ":" + date1.getMinutes() + ":" + date1.getSeconds();
+										html+="<li class='odd clearfix'>"
+													+"<div class='hot_pos_l'>"
+														+"<div class='mb10'>"
+															+"<a href='toxiangqing.controller?cccname=1'>"+item.cname+"</a>"
+															+"&nbsp; <span class='c9'>["+item.caddress+"]</span>"
+														+"</div>"
+														+"<span><em class='c7'>月薪：</em>"+z+"--"+x+"</span>"
+														+"<span><em class='c7'>经验：</em>"+y+"</span>"
+															+"<span><em class='c7'>最低学历： </em>"+xl+"</span>"
+														+"<br /><span><em class='c7'>职位诱惑：</em>"+yh+"</span>"
+														+"<br /><span>发布时间:"+sj+"</span>"
+													+"</div>"
+													+"<div class='hot_pos_r'>"
+														+"<div class='apply'>"
+															+"<a href='toudi.html' target='_blank'>投个简历</a>"
+														+"</div>"
+														+"<div class='mb10'>"
+															+"<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"+oname+"</a>"
+														+"</div>"
+														+"<span><em class='c7'>领域：</em>"+item.cfield+"</span><span><em class='c7'>创始人：</em>"+item.founder.fname+"</span> <br />"
+														+"<span><em class='c7'>阶段： </em>"+item.cfs+"</span><span><em class='c7'>规模：</em>"+item.cscale+"</span>"
+														+"<ul class='companyTags reset'>"
+															+"<li>五险一金</li>"
+															+"<li>股票期权</li>"
+															+"<li>年度旅游</li>"
+														+"</ul>"
+													+"</div>"
+											+"</li>";
+										
+									})
+									$("#ajax").html(html).hide().slideDown(500);
+									
+									
+								},
+								error: function (XMLHttpRequest, textStatus, errorThrown) {
+				                    // 状态码
+				                    console.log(XMLHttpRequest.status);
+				                    // 状态
+				                    console.log(XMLHttpRequest.readyState);
+				                    // 错误信息   
+				                    console.log(textStatus);
+				                }
+								
+							})
+					
+					})
+			}) 
 		</script>
 		<div id="container">
 
@@ -182,7 +276,7 @@
 
 			<div class="content">
 				<div id="search_box">
-					<form id="searchForm" name="searchForm" method="get">
+					<form id="searchForm1" name="searchForm" method="get">
 						<ul id="searchType">
 							<li data-searchtype="1" class="type_selected">职位</li>
 							<li data-searchtype="4">公司</li>
@@ -373,7 +467,7 @@
 					<span>亲，“嘀嘀打车”已更名为“滴滴打车”了哦，我们已帮您自动跳转~</span> <a href="javascript:;">我知道了</a>
 				</div>
 
-				<ul class="hot_pos reset">
+				<ul class="hot_pos reset" id="ajax">
 					<c:forEach items="${oname}" var="oname">
 						<c:forEach items="${oname.occupation}" var="ooname">
 							<li class="odd clearfix">
@@ -411,8 +505,8 @@
 										<li>年度旅游</li>
 									</ul>
 								</div>
-						</c:forEach>
 						</li>
+						</c:forEach>
 					</c:forEach>
 				</ul>
 				<div class="Pagination"></div>

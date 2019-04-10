@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Product;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
@@ -136,8 +137,9 @@ public class CompanyController {
 
 	@RequestMapping("tosalary")
 	@ResponseBody
-	public List<Company> querylikesalary(double omaxsalary, double ominsalary) {
-		return service.querylikeomaxsalary(omaxsalary, ominsalary);
+	public List<Company> querylikesalary(Occupation occ,Model model) {
+		System.out.println(occ);
+		return service.querylikeomaxsalary(occ);
 	}
 
 	@RequestMapping("toolog")

@@ -771,7 +771,7 @@
 				<script type="text/javascript">
 					function search() {
 						var oname = $("input[name='oname']").val();
-						alert(oname);
+						//alert(oname);
 						$("#searchForm1").attr("action",
 								"toListOoccupation.controller").submit();
 

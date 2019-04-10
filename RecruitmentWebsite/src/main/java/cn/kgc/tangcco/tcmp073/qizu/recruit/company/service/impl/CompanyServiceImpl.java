@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.mapper.CompanyMapper;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
 
@@ -78,8 +79,8 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
-	public List<Company> querylikeomaxsalary(double omaxsalary, double ominsalary) {
-		return mapper.querylikeomaxsalary(omaxsalary, ominsalary);
+	public List<Company> querylikeomaxsalary(Occupation occ) {
+		return mapper.querylikeomaxsalary(occ);
 	}
 
 	@Override

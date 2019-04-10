@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 
 public interface CompanyService {
 	int addCompanyOne(Company com);
@@ -31,7 +32,7 @@ public interface CompanyService {
 
 	Company queryByUid(int userid);
 
-	List<Company> querylikeomaxsalary(double omaxsalary, double ominsalary);
+	List<Company> querylikeomaxsalary(Occupation occ);
 
 	List<Company> querylikeolog(String olog);
 
