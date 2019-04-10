@@ -804,7 +804,7 @@
 							<li class="odd clearfix">
 								<div class="hot_pos_l">
 									<div class="mb10">
-										<a href="toxiangqing.controller?cccname=${ooname.oid }">${oname.cname}</a>
+										<a href="toxiangqing.controller?cccname=${ooname.oid }">${ooname.oname}</a>
 										&nbsp; <span class="c9">[${ooname.ocity}]</span>
 									</div>
 									<span><em class="c7">月薪：</em> <fmt:formatNumber
@@ -825,9 +825,10 @@
 									</div>
 									<div class="mb10">
 
+									
+
 										<a href="h/c/1712.html" title="紫色医疗" target="_blank">${oname.cname}</a>
 
-							
 									</div>
 									<span><em class="c7">领域： </em>${oname.cfield}</span> <span><em
 										class="c7">创始人：</em> ${oname.founder.fname}</span> <br /> <span><em
