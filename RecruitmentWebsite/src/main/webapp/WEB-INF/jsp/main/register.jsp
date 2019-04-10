@@ -117,7 +117,7 @@ var youdao_conv_id = 271546;
     		}
     	})
     	$("form").submit(function(){
-			        		alert("123123");
+			        		//alert("123123");
 			        		var type =$('input[type="radio"]:checked').val();
 			        		var email =$('#email').val();
 			        		var password =$('#password').val();
@@ -137,9 +137,9 @@ var youdao_conv_id = 271546;
 			        	           	data: {"email":email},
 			        	           	url:"ajaxQueryEmail.controller",
 			        	          		success:function(data){
-			        	          			alert(data);
+			        	          			//alert(data);
 			        	          			if(data=="0"){
-			        	          				alert("能");
+			        	          				alert("正在注册！");
 			        	          			}else{
 			        	          				alert("不能");
 			        	          				return false;
