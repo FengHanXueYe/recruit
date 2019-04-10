@@ -956,7 +956,7 @@
 										</div>
 
 										<span><em class="c7">月薪： </em>
-										<fmt:formatNumber value="${cooo.omaxsalary}" pattern="#.0k"></fmt:formatNumber>--<fmt:formatNumber value="${cooo.ominsalary}" pattern="#.0k"></fmt:formatNumber></span>
+										<fmt:formatNumber value="${cooo.ominsalary}" pattern="#.0k"></fmt:formatNumber>-<fmt:formatNumber value="${cooo.omaxsalary}" pattern="#.0k"></fmt:formatNumber></span>
 										<span><em class="c7">经验：</em> ${cooo.olog}</span>
 										<c:forEach items="${cooo.education}" var="coooo">
 											<span><em class="c7">最低学历： </em>${coooo.ename}</span>
@@ -1412,7 +1412,7 @@
 							</li>
 						</c:forEach>  --%>
 
-						<c:forEach items="${com}" var="com">
+						<c:forEach items="${coo}" var="com">
 							<c:forEach items="${com.occupation}" var="cooo">
 								<li class="clearfix">
 
@@ -1422,7 +1422,7 @@
 											&nbsp; <span class="c9">[ ${cooo.ocity} ]</span>
 										</div>
 
-										<span><em class="c7">月薪： </em>${cooo.omaxsalary}</span> <span><em
+										<span><em class="c7">月薪： </em>${cooo.ominsalary}k-${cooo.omaxsalary}k</span> <span><em
 											class="c7">经验：</em> ${cooo.olog}</span>
 										<c:forEach items="${cooo.education}" var="coooo">
 											<span><em class="c7">最低学历： </em>${coooo.ename}</span>
