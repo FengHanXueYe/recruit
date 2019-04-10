@@ -971,7 +971,7 @@
 
 									<div class="hot_pos_r">
 										<div class="mb10 recompany">
-											<a href="h/c/399.html" target="_blank">节操精选</a>
+											<a href="h/c/399.html" target="_blank">${com.cname}</a>
 										</div>
 										<span><em class="c7">领域：</em> ${com.cfield}</span> <span><em
 											class="c7">创始人：</em>${com.founder.fname}</span> <br /> <span><em
@@ -1435,7 +1435,7 @@
 									</div>
 									<div class="hot_pos_r">
 										<div class="mb10 recompany">
-											<a href="h/c/399.html" target="_blank">节操精选</a>
+											<a href="h/c/399.html" target="_blank">${com.cname}</a>
 										</div>
 										<span><em class="c7">领域：</em> ${com.cfield}</span> <span><em
 											class="c7">创始人：</em>${com.founder.fname}</span> <br /> <span><em
