@@ -138,6 +138,102 @@
 															+"<a href='toxiangqing.controller?cccname=1'>"+item.cname+"</a>"
 															+"&nbsp; <span class='c9'>["+item.caddress+"]</span>"
 														+"</div>"
+														+"<span><em class='c7'>月薪：</em>"+z+"k--"+x+"k</span>"
+														+"<span><em class='c7'>经验：</em>"+y+"</span>"
+															+"<span><em class='c7'>最低学历： </em>"+xl+"</span>"
+														+"<br /><span><em class='c7'>职位诱惑：</em>"+yh+"</span>"
+														+"<br /><span>发布时间:"+sj+"</span>"
+													+"</div>"
+													+"<div class='hot_pos_r'>"
+														+"<div class='apply'>"
+															+"<a href='toudi.html' target='_blank'>投个简历</a>"
+														+"</div>"
+														+"<div class='mb10'>"
+															+"<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"+oname+"</a>"
+														+"</div>"
+														+"<span><em class='c7'>领域：</em>"+item.cfield+"</span><span><em class='c7'>创始人：</em>"+item.founder.fname+"</span> <br />"
+														+"<span><em class='c7'>阶段： </em>"+item.cfs+"</span><span><em class='c7'>规模：</em>"+item.cscale+"</span>"
+														+"<ul class='companyTags reset'>"
+															+"<li>五险一金</li>"
+															+"<li>股票期权</li>"
+															+"<li>年度旅游</li>"
+														+"</ul>"
+													+"</div>"
+											+"</li>";
+										
+									})
+									$("#ajax").html(html).hide().slideDown(500);
+									
+									
+								},
+								error: function (XMLHttpRequest, textStatus, errorThrown) {
+				                    // 状态码
+				                    console.log(XMLHttpRequest.status);
+				                    // 状态
+				                    console.log(XMLHttpRequest.readyState);
+				                    // 错误信息   
+				                    console.log(textStatus);
+				                }
+								
+							})
+						
+					})
+					$(".ajaxdian").click(function() {
+							//location.href="tosalary.controller"
+							var zhi = $.trim($(this).html());
+							alert(zhi);
+							var olog = "";
+							if (zhi == "不限") {
+								olog="";
+							} else if (zhi == "应届毕业生") {
+								olog="应届毕业生";
+							} else if (zhi == "1年以下") {
+								olog="1年以下";
+							} else if (zhi == "1-3年") {
+								olog="1-3年";
+							} else if (zhi = "3-5年") {
+								olog="3-5年";
+							} else if (zhi = "5-10年") {
+								olog="5-10年";
+							} else if (zhi = "10年以上") {
+								olog="10年以上";
+							}
+							
+							
+						   $.ajax({
+								type:"post",
+								url:"toolog.controller",
+								data:{"olog":olog},
+								success:function(data){
+									$("#ajax").html("");
+									var html = "";
+									$.each(data,function(index,item){
+										var z = "";
+										var x = "";
+										var y = "";
+										var xl = "";	
+										var yh = "";
+										var sj = "";
+										var oname = "";
+										$.each(item.occupation,function(i,t){
+											z = t.ominsalary;
+											x = t.omaxsalary;
+											y = t.olog;
+											oname = t.oname;
+											yh = t.owelfare;
+											sj = t.orelease;
+											$.each(t.education,function(ii,tt){
+												xl = tt.ename;
+											})
+										})
+										var date1 = new Date(sj);
+					    				var dd = date1.getFullYear() + "-" + (Number(date1.getMonth())+Number(1)) + "-" + date1.getDate() + " " + date1.getHours() + ":" + date1.getMinutes() + ":" + date1.getSeconds();
+										html+="<li class='odd clearfix'>"
+													+"<div class='hot_pos_l'>"
+														+"<div class='mb10'>"
+															+"<a href='toxiangqing.controller?cccname=1'>"+item.cname+"</a>"
+															+"&nbsp; <span class='c9'>["+item.caddress+"]</span>"
+														+"</div>"
 														+"<span><em class='c7'>月薪：</em>"+z+"--"+x+"</span>"
 														+"<span><em class='c7'>经验：</em>"+y+"</span>"
 															+"<span><em class='c7'>最低学历： </em>"+xl+"</span>"
@@ -176,7 +272,7 @@
 				                }
 								
 							})
-					
+						
 					})
 			}) 
 		</script>
@@ -203,14 +299,14 @@
 							工作经验 <em></em>
 						</dt>
 						<dd>
-							<div>不限</div>
-							<div>应届毕业生</div>
-							<div>1年以下</div>
-							<div>1-3年</div>
-							<div>3-5年</div>
-							<div>5-10年</div>
-							<div>10年以上</div>
-						</dd>
+							<div class="ajaxdian">不限</div>
+							<div class="ajaxdian">应届毕业生</div>
+							<div class="ajaxdian">1年以下</div>
+							<div class="ajaxdian">1-3年</div>
+							<div class="ajaxdian">3-5年</div>
+							<div class="ajaxdian">5-10年</div>
+							<div class="ajaxdian">10年以上</div>
+						</dd>    
 					</dl>
 					<dl>
 						<dt>
