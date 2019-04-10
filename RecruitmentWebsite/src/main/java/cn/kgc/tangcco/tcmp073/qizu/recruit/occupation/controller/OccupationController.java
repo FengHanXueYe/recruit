@@ -25,7 +25,6 @@ public class OccupationController {
 	public String tocreate(Model model,HttpSession session) {
 		RecruitingUsers user=(RecruitingUsers) session.getAttribute("loginUser");
 		Company con=(Company) this.comservice.queryByUid(user.getUserid());
-		session.setAttribute("companys",this.comservice.queryByUid(user.getUserid()));
 		
 		return "main/create";
 	}
@@ -68,6 +67,7 @@ public class OccupationController {
 		model.addAttribute("Occupation", this.service.queryBystate(pk, ostate));
 		return "main/positions";
 	}
+	//删除已发布的职位
 	@RequestMapping("deleteOccupation")
 	public String deleteOccupation(int oid,int ostate,int pk,Model model) {
 		this.service.deleteOccupation(oid);
@@ -79,6 +79,7 @@ public class OccupationController {
 		
 		return "main/positions";
 	}
+	//修改已发布部职位的状态
 	@RequestMapping("updateOstate")
 	public String updateOstate(int oid,int ostates,Model model,int pk,int ostate) {
 		this.service.updateOccupation(oid,ostates);
@@ -89,6 +90,11 @@ public class OccupationController {
 		model.addAttribute("Occupation", this.service.queryBystate(pk, ostate));
 		return "main/positions";
 	}
-	
+	//编辑已发布职位的信息
+	@RequestMapping("queryByoid")
+	public String queryByoid(int oid,Model model) {
+		model.addAttribute("OccupationToCreate", this.service.queryByoid(oid));
+		return "main/create";
+	}
 	
 }
