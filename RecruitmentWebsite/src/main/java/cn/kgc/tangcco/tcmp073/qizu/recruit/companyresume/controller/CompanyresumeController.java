@@ -61,37 +61,39 @@ public class CompanyresumeController {
 		Companyresume cr = new Companyresume();
 
 		Companyresume queryOccuotion = cs.queryOccuotion(attribute.getUserid());
-
+		
 		System.out.println(queryOccuotion + "--------------------" + attribute.getUserid());
-		cr.setCompany(queryOccuotion.getCompany());
+		if(queryOccuotion!=null) {
+			cr.setCompany(queryOccuotion.getCompany());
+			if (dstatus != null) {
+				cr.setDstatus(Integer.parseInt(dstatus));
+			} else {
+				cr.setDstatus(5);
+			}
+			List<Companyresume> queryAllCompanyresume = cs.queryAllCompanyresume(cr);
+			for (Companyresume companyresume : queryAllCompanyresume) {
+				core = new CoRe();
+				Educationalbackground queryEducationalbackground = ebService
+						.queryEducationalbackground(companyresume.getCuser().getUserid());
+				if (queryEducationalbackground != null) {
+					core.setEb(queryEducationalbackground);
+				}
+				Selfdescription querySelfdescription = ss.querySelfdescription(companyresume.getCuser().getUserid());
+				if (querySelfdescription != null) {
+					core.setSelfdescription(querySelfdescription);
+				}
+				Worksdisplay queryWorksdisplay = ws.queryWorksdisplay(companyresume.getCuser().getUserid());
+				if (queryWorksdisplay != null) {
+					core.setWorksdisplay(queryWorksdisplay);
+				}
+				core.setCompanyresume(companyresume);
+				coreList.add(core);
+			}
+			System.err.println("我是公司查看----》" + queryAllCompanyresume);
+			model.addAttribute("queryAllCompanyresume", coreList);
+			model.addAttribute("queryAllCompanyresumeCount", queryAllCompanyresume.size());
+		}
 
-		if (dstatus != null) {
-			cr.setDstatus(Integer.parseInt(dstatus));
-		} else {
-			cr.setDstatus(5);
-		}
-		List<Companyresume> queryAllCompanyresume = cs.queryAllCompanyresume(cr);
-		for (Companyresume companyresume : queryAllCompanyresume) {
-			core = new CoRe();
-			Educationalbackground queryEducationalbackground = ebService
-					.queryEducationalbackground(companyresume.getCuser().getUserid());
-			if (queryEducationalbackground != null) {
-				core.setEb(queryEducationalbackground);
-			}
-			Selfdescription querySelfdescription = ss.querySelfdescription(companyresume.getCuser().getUserid());
-			if (querySelfdescription != null) {
-				core.setSelfdescription(querySelfdescription);
-			}
-			Worksdisplay queryWorksdisplay = ws.queryWorksdisplay(companyresume.getCuser().getUserid());
-			if (queryWorksdisplay != null) {
-				core.setWorksdisplay(queryWorksdisplay);
-			}
-			core.setCompanyresume(companyresume);
-			coreList.add(core);
-		}
-		System.err.println("我是公司查看----》" + queryAllCompanyresume);
-		model.addAttribute("queryAllCompanyresume", coreList);
-		model.addAttribute("queryAllCompanyresumeCount", queryAllCompanyresume.size());
 
 		return "main/canInterviewResumes";
 	}
