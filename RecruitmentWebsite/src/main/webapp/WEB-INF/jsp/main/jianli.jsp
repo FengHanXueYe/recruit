@@ -114,13 +114,18 @@ var youdao_conv_id = 271546;
             			</span>
             			<div class="m_portrait">
 	                    	<div></div>
-	                    	<img width="120" height="120" alt="jason" src="style/images/default_headpic.png">
+	                    	<c:if test="${empty loginUser.userpicture }">
+	                    		<img width="120" height="120" alt="jason" src="style/images/default_headpic.png">
+	                    	</c:if>
+	                    	<c:if test="${!empty loginUser.userpicture }">
+	                    		<img width="120" height="120" alt="jason" src="${loginUser.userpicture }">
+	                    	</c:if>
 	                    </div>
             		</div><!--end .basicShow-->
 
             		<div class="basicEdit dn">
             		<!-- <form id="kkkkkkk" action="doUpdateResumename.controller" method="post"> -->
-            			<form  method="post" id="profileForm" onsubmit="false">
+            			<form  method="post" id="profileForm" onsubmit="false" enctype="multipart/form-data">
 						  <table>
 						    <tbody><tr>
 						      <td valign="top">
@@ -142,6 +147,11 @@ var youdao_conv_id = 271546;
 						              	<input type="radio"  <c:if test="${loginUser.gender eq '1' }">checked</c:if> name="gender" value="1"> 
 						            </li>
 						          </ul>  
+						      </td>
+						      
+						      <td rowspan="2"><div style="margin-left:30px;width:120px;height:120px;border-radius: 50%;background-image:url(/images/timg.jpg);overflow: hidden " >
+						      					<c:if test="${!empty loginUser.userpicture }"><img src="${loginUser.userpicture }" alt="正在加载。。。" width="120px" height="120px" /></c:if></div><p id = "miaoshipicture" style="cursor:pointer;width:120px;height:30px;line-height:30px; text-align: center;background-color: rgba(0,0,0,0.5);color:white;margin-left:30px;" >上传头像</p>
+						      				  <input type="file" value="" style="display:none" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="updatepictureuser()" name="file" id="filekuang">
 						      </td>
 						    </tr>
 						    <tr>
@@ -213,6 +223,7 @@ var youdao_conv_id = 271546;
 						        								        	 </ul> 
 						          </div>   -->
 						      </td>
+						       
 						    </tr>
 						    <tr>
 						      <td valign="top">
@@ -221,6 +232,7 @@ var youdao_conv_id = 271546;
 						      <td colspan="3">
 						          <input type="text" placeholder="手机号码" value="${loginUser.telephone }" name="telephone" id="tel">
 						      </td>
+						       
 						   	</tr>
 						   	<tr>
 						      <td valign="top">
@@ -229,6 +241,7 @@ var youdao_conv_id = 271546;
 						      <td colspan="3">
 						          <input type="text" placeholder="接收面试通知的邮箱" value="${loginUser.email }" name="email" id="email">
 						      </td>
+						      
 						    </tr>
 						    <tr>
 						      <td valign="top"> </td> 
@@ -244,6 +257,7 @@ var youdao_conv_id = 271546;
 						        								        	  </ul>
 						          </div>  
 						      </td>
+						       <td></td>
 						    </tr>
 						    <tr>
 						      <td></td> 
@@ -252,28 +266,40 @@ var youdao_conv_id = 271546;
 						          <a class="btn_profile_cancel" href="javascript:;">取 消</a>
 						          <!-- <input type="button" value="保 存" onclick="jianli()"> --> 
 						      </td>
+						       <td></td>
 						    </tr>
 						  </tbody></table>
 						 <input type="hidden" name="xueli" />
 						 <input type="hidden" name="jingyan" />
 						</form><!--end #profileForm-->
 						<!-- </form> -->
-						<div class="new_portrait">
+						<!-- <div class="new_portrait">
 						  <div class="portrait_upload" id="portraitNo">
 						      <span>上传自己的头像</span>
 						  </div>
 						  <div class="portraitShow dn" id="portraitShow">
 						    <img width="120" height="120" src="">
-						    <span>更换头像</span>
+						    <span id="miaoshipicture">更换头像</span>
 						  </div>
-						  <input type="file" value="" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="img_check(this,'h/resume/uploadPhoto.json','headPic');" name="userpicture" id="headPic" class="myfiles">
-							<!-- <input type="hidden" id="headPicHidden" /> -->
+						  <input type="file" value="" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="updatepictureuser()" name="file" id="headPic" class="myfiles">
+							<input type="hidden" id="headPicHidden" />
 						  	<em>
 						                  尺寸：120*120px <br>   
 						                  大小：小于5M
 						  	</em>
 						  	<span style="display:none;" id="headPic_error" class="error"></span>
-						</div><!--end .new_portrait-->
+						</div>end .new_portrait -->
+						<script type="text/javascript">
+							function updatepictureuser(){
+								$("#miaoshipicture").html("加载中...");
+							}
+							$(function(){
+								$("#miaoshipicture").click(function(){
+									$("#filekuang").click();
+								})
+								
+							})
+						</script>
             		</div><!--end .basicEdit-->
             		<input type="hidden" id="nameVal" value="${loginUser.username }">
             		<input type="hidden" id="genderVal" value="<c:if test="${loginUser.gender eq '2' }">男</c:if><c:if test="${loginUser.gender eq '1' }">女</c:if>">
