@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,4 +31,6 @@ public class RecruitingUsers {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Timestamp registrationTime;
 	private String currentstate;
+	private MultipartFile file;
+	
 }
