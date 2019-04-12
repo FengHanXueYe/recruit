@@ -149,7 +149,7 @@ var youdao_conv_id = 271546;
 						          </ul>  
 						      </td>
 						      
-						      <td rowspan="2"><div style="margin-left:30px;width:120px;height:120px;border-radius: 50%;background-image:url(/images/timg.jpg);overflow: hidden " >
+						      <td rowspan="2"><div style="margin-left:30px;width:120px;height:120px;border-radius: 50%;background-image:url(/images/timg1.jpg);overflow: hidden " >
 						      					<c:if test="${!empty loginUser.userpicture }"><img src="${loginUser.userpicture }" alt="正在加载。。。" width="120px" height="120px" /></c:if></div><p id = "miaoshipicture" style="cursor:pointer;width:120px;height:30px;line-height:30px; text-align: center;background-color: rgba(0,0,0,0.5);color:white;margin-left:30px;" >上传头像</p>
 						      				  <input type="file" value="" style="display:none" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="updatepictureuser()" name="file" id="filekuang">
 						      </td>
