@@ -501,7 +501,7 @@ var youdao_conv_id = 271546;
 	                    					<a title="编辑创始人" class="c_edit member_edit" href="javascript:void(0)"></a>
 				                        	<div class="m_portrait">
 				                            	<div></div>
-				                            	<a href="${listCompany.founder.flang}"><img width="120" height="120" alt="孙泰英" src="style/images/leader_default.png"></a>
+				                            	<a href="${listCompany.founder.flang}"><c:if test="${!empty listCompany.founder.fhead}"><img width="120" height="120" alt="孙泰英" src="${listCompany.founder.fhead}"></c:if></a>
 					                        </div>
 				                            <div class="m_name">
 				                            	${listCompany.founder.fname}
