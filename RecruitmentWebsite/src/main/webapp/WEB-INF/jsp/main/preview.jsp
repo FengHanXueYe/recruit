@@ -65,7 +65,12 @@ $(function(){
             		</span> -->
            			<div class="m_portrait">
                     	<div></div>
-                    	<img width="120" height="120" alt="jason" src="style/images/default_headpic.png">
+                    	<c:if test="${empty loginUser.userpicture }">
+	                    		<img width="120" height="120" alt="jason" src="style/images/default_headpic.png">
+	                    	</c:if>
+	                    	<c:if test="${!empty loginUser.userpicture }">
+	                    		<img width="120" height="120" alt="jason" src="${loginUser.userpicture }">
+	                    	</c:if>
                     </div>
                 </div><!--end .basicShow-->
             </div><!--end #basicInfo-->

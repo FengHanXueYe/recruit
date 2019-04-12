@@ -81,7 +81,7 @@ var youdao_conv_id = 271546;
 	            			<c:if test="${empty loginUser.resumeName }">${loginUser.email }</c:if>
 	            			<c:if test="${!empty loginUser.resumeName }">${loginUser.resumeName }</c:if>
 	            		</h1>
-	            		<span class="rename">重命名</span> | <a target="_blank" href="h/resume/preview.html">预览</a>
+	            		<span class="rename">重命名</span> | <a target="_blank" href="doCheckView.controller?userid=${loginUser.userid }">预览</a>
             		</div>
             		<form class="fl dn"  method="post" action="doUpdateResumename.controller">
             			<input type="text" value="<c:if test="${empty loginUser.resumeName }">${loginUser.email }</c:if><c:if test="${!empty loginUser.resumeName }">${loginUser.resumeName }</c:if>" name="resumeName" class="nameEdit c9">	
