@@ -959,9 +959,9 @@
 										<span><em class="c7">月薪： </em>
 										<fmt:formatNumber value="${cooo.ominsalary}" pattern="#.0k"></fmt:formatNumber>-<fmt:formatNumber value="${cooo.omaxsalary}" pattern="#.0k"></fmt:formatNumber></span>
 										<span><em class="c7">经验：</em> ${cooo.olog}</span>
+										<br>
 										<c:forEach items="${cooo.education}" var="coooo">
 											<span><em class="c7">最低学历： </em>${coooo.ename}</span>
-											<br />
 										</c:forEach>
 										<span><em class="c7">职位诱惑：</em>${cooo.owelfare}</span> <br />
 										<span>发布时间:<fmt:formatDate value="${cooo.orelease}"
@@ -1425,10 +1425,12 @@
 
 										<span><em class="c7">月薪： </em>${cooo.ominsalary}k-${cooo.omaxsalary}k</span> <span><em
 											class="c7">经验：</em> ${cooo.olog}</span>
+											<br>
 										<c:forEach items="${cooo.education}" var="coooo">
 											<span><em class="c7">最低学历： </em>${coooo.ename}</span>
+											
 										</c:forEach>
-										<br /> <span><em class="c7">职位诱惑：</em>${cooo.owelfare}</span>
+										<span><em class="c7">职位诱惑：</em>${cooo.owelfare}</span>
 
 										<br /> <span>发布时间:<fmt:formatDate
 												value="${cooo.orelease}" pattern="yyyy-MM-dd" /></span>
