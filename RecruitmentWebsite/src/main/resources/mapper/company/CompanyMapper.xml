@@ -3,7 +3,7 @@
 <mapper
 	namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.company.mapper.CompanyMapper">
 	<select id="queryListCompany" parameterType="String" resultMap="CompanyMaps">
-		select com.*,occ.* from company com,occupation occ where com.cid=occ.ocid 
+		select com.*,occ.* from company com,occupation occ  where com.cid=occ.ocid and occ.ostate=0
 		<if test="ocity!='' and ocity!=null and ocity!='全国'">
 			and occ.ocity=#{ocity}
 		</if>
@@ -14,7 +14,7 @@
 		<if test="cfield!=null and cfield!=''">
 			and com.cfield like concat("%",#{cfield},"%")
 		</if>
-		
+		limit 9;
 	</select>
 	
 	<select id="qyeryAllCompany" parameterType="int" resultMap="CompanyMaps">

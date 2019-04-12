@@ -44,7 +44,7 @@ var youdao_conv_id = 271546;
     		</a>
     		<ul id="navheader" class="reset">
     			<li><a href="toIndex.controller">首页</a></li>
-    			<li><a href="tocompanylist.controller">公司</a></li>
+    			<li><a href="queryListCompany.controller">公司</a></li>
     			<li><a target="_blank" href="http://www.lagou.com/toForum.html">论坛</a></li>
     				    			<li><a rel="nofollow" href="jianli.html">我的简历</a></li>
 	    						    		</ul>

@@ -273,10 +273,13 @@ var youdao_conv_id = 271546;
 	                        </dl> -->
 	                    </dd>
 	                </dl>
-	               	                	<ul class="hc_list reset">
+	               					
+	               	                	<ul class="hc_list reset" >
 	               	                	<c:if test="${empty ListCompanys}"><span >没有查询到相关信息</span></c:if>
+	               	                	 
+	               	                	
 	               	                	<c:forEach items="${ListCompanys}" var="com">
-		                  		                  		                        <li  style="clear:both;" >
+		                  		                  		                        <li >
 			                        <a href="h/c/25829.html" target="_blank">
 			                        	<h3 title="${com.cname}">${com.cname}</h3>
 			                        	<div class="comLogo">
@@ -300,7 +303,9 @@ var youdao_conv_id = 271546;
 																							                        				                        	<li>交通补助</li>-->
 																						                        </ul>
 			                    </li>
-			                    </c:forEach>
+			                   
+			                   </c:forEach>
+			                   
 		                        		  <!--                  		                        <li >
 			                        <a href="h/c/25836.html" target="_blank">
 			                        	<h3 title="MOMO">MOMO</h3>
@@ -617,7 +622,7 @@ var youdao_conv_id = 271546;
 																						                        </ul>
 			                    </li>-->  
 		                        		                    		                </ul>
-		                
+		                 
 		                		               	<div class="Pagination"></div>
 		               		                                </form>
             </div>	
