@@ -102,6 +102,11 @@ public class CompanyServiceImpl implements CompanyService {
 	public List<Company> querylikeorelease(int orelease) {
 		return mapper.querylikeorelease(orelease);
 	}
+	@Override
+	public List<Company> queryListCompany(String ocity, String cfs, String cfield) {
+		
+		return mapper.queryListCompany(ocity, cfs, cfield);
+	}
 
 	// 1232
 }

@@ -57,5 +57,7 @@ public interface CompanyMapper {
 	 * 许茂峰（查询公司详情根据公司id）
 	 */
 	Company queryCompanyByCid(@Param("cid") Integer cid);
-
+	//公司页面查询方法
+	List<Company> queryListCompany(@Param("ocity")String ocity,@Param("cfs")String cfs,@Param("cfield")String cfield);
+	
 }

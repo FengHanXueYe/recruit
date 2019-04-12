@@ -209,6 +209,22 @@ public class CompanyController {
 		return this.service.qyeryAllCompany(user.getUserid());
 	}
 	
-	
+	@RequestMapping("queryListCompany")
+	public String queryListCompany(String ocity, String cfs,String cfield,Model model) {
+		System.err.println("_________________+>"+ocity);
+		System.err.println("_________________+>"+cfs);
+		System.err.println("_________________+>"+cfield);
+		if(cfs!=null || cfs!="") {
+		model.addAttribute("cfs", cfs);
+		}
+		if(ocity!=null || ocity!="") {
+		model.addAttribute("ocity", ocity);
+		}
+		if(cfield!=null || cfield!="") {
+		model.addAttribute("cfield", cfield);
+		}
+		model.addAttribute("ListCompanys", this.service.queryListCompany(ocity, cfs, cfield));
+		return "main/companylist";
+	}
 	
 }

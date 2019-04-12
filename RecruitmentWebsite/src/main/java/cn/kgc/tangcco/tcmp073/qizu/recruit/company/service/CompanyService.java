@@ -50,5 +50,7 @@ public interface CompanyService {
 	 * @return
 	 */
 	Company queryCompanyByCid(Integer cid);
-
+	//公司页面查询方法
+	List<Company> queryListCompany(String ocity,String cfs,String cfield);
+	
 }

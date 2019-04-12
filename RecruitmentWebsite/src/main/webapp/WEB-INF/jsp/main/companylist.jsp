@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 ﻿<!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -45,7 +46,7 @@ var youdao_conv_id = 271546;
     		</a>
     		<ul class="reset" id="navheader">
     			<li ><a href="index.html">首页</a></li>
-    			<li class="current"><a href="companylist.html" >公司</a></li>
+    			<li class="current"><a href="queryListCompany.controller" >公司</a></li>
     			<li ><a href="h/toForum.html" target="_blank">论坛</a></li>
     				    			<li ><a href="jianli.html" rel="nofollow">我的简历</a></li>
 	    							    			<li ><a href="create.html" rel="nofollow">发布职位</a></li>
@@ -78,7 +79,7 @@ var youdao_conv_id = 271546;
 	                    <dt>
 	                       <!--  <h2 class="fl">热门公司</h2> -->
 	                        <ul class="workplace reset fr" id="workplaceSelect">
-	                        	                                <li >
+	                        	                                <li>
                                 	<a href="javascript:void(0)"  class="current" >全国</a> 
                                 	                                	|
                                 	                                </li>
@@ -204,16 +205,18 @@ var youdao_conv_id = 271546;
 	                    <dd>
 	                        <dl>
 	                            <dt>发展阶段：</dt>
-	                            <dd>
-	                            			                            			                                <a href="javascript:void(0)">初创型</a>
+	                            <dd id="cssss">
+	                            <a href="javascript:void(0)">未融资</a><a href="javascript:void(0)">天使轮</a><a href="javascript:void(0)">A轮</a>
+	                            <a href="javascript:void(0)">B轮</a><a href="javascript:void(0)">C轮</a><a href="javascript:void(0)">D轮及以上</a><a href="javascript:void(0)">上市公司</a>
+	                            			                            			                        <!--     <a href="javascript:void(0)">初创型</a>
 		                                	                                		                            			                                <a href="javascript:void(0)">成长型</a>
 		                                	                                		                            			                                <a href="javascript:void(0)">成熟型</a>
-		                                	                                		                            			                                <a href="javascript:void(0)">已上市</a>
+		                                	                                		                            			                                <a href="javascript:void(0)">已上市</a>-->
 		                                	                                	                            </dd>
 	                        </dl>
 	                        <dl>
 	                            <dt>行业领域：</dt>
-	                            <dd>
+	                            <dd id="lingyu">
 	                                	                                			                                <a href="javascript:void(0)">移动互联网</a>
 		                                	                                	                                			                                <a href="javascript:void(0)">电子商务</a>
 		                                	                                	                                			                                <a href="javascript:void(0)">社交</a>
@@ -271,30 +274,34 @@ var youdao_conv_id = 271546;
 	                    </dd>
 	                </dl>
 	               	                	<ul class="hc_list reset">
+	               	                	<c:if test="${empty ListCompanys}"><span >没有查询到相关信息</span></c:if>
+	               	                	<c:forEach items="${ListCompanys}" var="com">
 		                  		                  		                        <li  style="clear:both;" >
 			                        <a href="h/c/25829.html" target="_blank">
-			                        	<h3 title="CCIC">CCIC</h3>
+			                        	<h3 title="${com.cname}">${com.cname}</h3>
 			                        	<div class="comLogo">
-				                        	<img src="style/images/logo_default.png" width="190" height="190" alt="CCIC" />
+				                        	<img src="${com.comtuxiang}" width="190" height="190" alt="CCIC" />
 				                        	<ul>
-				                        		<li>安全</li>
-				                        		<li>深圳，D轮及以上</li>
+				                        		<li>${com.cfield}</li>
+				                        		<li>${com.caddress}，${com.cfs}</li>
 				                        	</ul>
 			                        	</div>
-			                        </a>
-			                        			                        	<a href="h/jobs/148928.html" target="_blank"> 环境监测工程师</a>
-			                        			                        	<a href="h/jobs/148919.html" target="_blank"> 电学校准工程师</a>
-			                        			                        	<a href="h/jobs/148931.html" target="_blank"> 能源管理项目经理</a>
+			                        </a>									<c:forEach items="${com.occupation}" var="occ">
+			                        			                        	<a href="h/jobs/148928.html" target="_blank"> ${occ.oname}</a>
+			                        			                        	<!--  <a href="h/jobs/148919.html" target="_blank"> 电学校准工程师</a>
+			                        			                        	<a href="h/jobs/148931.html" target="_blank"> 能源管理项目经理</a>-->
+			                        			                        	</c:forEach>	
 			                        			                        <ul class="reset ctags">
-			                        				                        				                        	<li>D轮及以上</li>
-																							                        				                        	<li>安全</li>
-																							                        				                        	<li>年终分红</li>
-																							                        				                        	<li>绩效奖金</li>
+			                        				                        				                        	<li>${com.cfs}</li>
+																							                        				                        	<li>${com.caddress}</li>
+																							                        				                        	<li>${com.cfinancing}</li>
+																							                        				                        	<!--  <li>绩效奖金</li>
 																							                        				                        	<li>五险一金</li>
-																							                        				                        	<li>交通补助</li>
+																							                        				                        	<li>交通补助</li>-->
 																						                        </ul>
 			                    </li>
-		                        		                    		                        <li >
+			                    </c:forEach>
+		                        		  <!--                  		                        <li >
 			                        <a href="h/c/25836.html" target="_blank">
 			                        	<h3 title="MOMO">MOMO</h3>
 			                        	<div class="comLogo">
@@ -608,7 +615,7 @@ var youdao_conv_id = 271546;
 																							                        				                        	<li>节日礼物</li>
 																							                        				                        	<li>定期体检</li>
 																						                        </ul>
-			                    </li>
+			                    </li>-->  
 		                        		                    		                </ul>
 		                
 		                		               	<div class="Pagination"></div>
@@ -644,10 +651,48 @@ var youdao_conv_id = 271546;
                	</a>
             </div>
        	</div>
-   	
+   		<form action="queryListCompany.controller" method="post" id="companyList">
+   			<input type="hidden" value="" name="ocity"  id="ocity"/>
+   			<input type="hidden" value="" name="cfs"  id="cfs"/>	
+   			<input type="hidden" value="" name="cfield" id="cfield"/>
+   		</form>
    	<input type="hidden" value="" name="userid" id="userid" />
       
 <script type="text/javascript" src="style/js/company_list.min.js"></script>
+<script type="text/javascript">
+	var ocity="";
+	var cfs="";
+	var cfield="";
+	$(function(){
+		$("#workplaceSelect li a").click(function(){
+			ocity=$(this).html();
+			
+			$("#ocity").val(ocity);
+			$("#companyList").submit();
+		})
+		$("#box_expectCity dd span").click(function(){
+			ocity=$(this).html();
+			
+			$("#ocity").val(ocity);
+			$("#companyList").submit();
+		})
+		$("#cssss a").click(function(){
+			cfs=$(this).html();
+			
+			$("#cfs").val(cfs);
+			$("#companyList").submit();
+		})
+		$("#lingyu a").click(function(){
+			cfield=$(this).html();
+			
+			$("#cfield").val(cfield);
+			$("#companyList").submit();
+		})
+		
+	})
+
+
+</script>
 <script>
 $(function(){
 	/*分页 */
