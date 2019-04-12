@@ -15,7 +15,7 @@ public interface CompanyService {
 	int updateCompany(Company com);
 
 	int updateCompanyTwo(String cabbreviation, String curl, String caddress, String cfield, String cfs, String cdetail,
-			String cscale, int cid);
+			String cscale, int cid,String comtuxiang);
 
 	int updateCompanyThree(String cfinancing, int cid);
 

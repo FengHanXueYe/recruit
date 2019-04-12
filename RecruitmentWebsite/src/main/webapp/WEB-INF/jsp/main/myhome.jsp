@@ -43,7 +43,7 @@ var youdao_conv_id = 271546;
     			<img width="229" height="43" alt="拉勾招聘-专注互联网招聘" src="style/images/logo.png">
     		</a>
     		<ul id="navheader" class="reset">
-    			<li><a href="index.html">首页</a></li>
+    			<li><a href="toIndex.controller">首页</a></li>
     			<li class="current"><a href="tocompanylist.controller">公司</a></li>
     			<li><a target="_blank" href="">论坛</a></li>
     				    			<li>
@@ -75,9 +75,9 @@ var youdao_conv_id = 271546;
 	                <div class="c_detail">
 	                	<div style="background-color:#fff;" class="c_logo">
 		                	<a title="上传公司LOGO" id="logoShow" class="inline cboxElement" href="#logoUploader">
-		                				                			<img width="190" height="190" alt="公司logo" src="style/images/logo_default.png">
+		                				                			<img width="190" height="190" alt="公司logo" src="${listCompany.comtuxiang}">
 	                        		                        	
-	                        	<span>更换公司图片<br>190px*190px 小于5M</span>
+	                        	<span></span>
 	                        </a>
 		                </div>
 		                

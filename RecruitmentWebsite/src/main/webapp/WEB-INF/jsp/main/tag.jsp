@@ -87,8 +87,8 @@ var youdao_conv_id = 271546;
 	                    <ul class="reset" id="labels">
 	                    		                    </ul>
 	                     
-	                    <input type="text" placeholder="请输入自定义标签" name="label" id="label">	
-	                    <input type="submit" value="贴上" id="add_label">
+	                  <!--    <input type="text" placeholder="请输入自定义标签" name="label" id="label">	
+	                    <input type="submit" value="贴上" id="add_label">-->
 	                   	<div class="clear"></div>
 	                    
 	                    <div id="box_labels">

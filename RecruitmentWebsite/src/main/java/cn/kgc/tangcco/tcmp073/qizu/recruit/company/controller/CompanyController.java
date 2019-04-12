@@ -1,6 +1,9 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.company.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -97,9 +100,39 @@ public class CompanyController {
 	//
 	// }
 	@RequestMapping("ajaxUpdateCompanyTwo")
-	public String ajaxUpdateCompanyTwo(Company com, Model model) {
+	public String ajaxUpdateCompanyTwo(Company com, Model model) throws IOException {
+		//保存数据库的路径  
+	      String sqlPath = null;   
+	      //定义文件保存的本地路径  
+	      File directory = new File("");// 参数为空
+	      String courseFile = directory.getCanonicalPath();
+	      System.out.println("---------------------------我是路径---》》》》"+courseFile);
+	      String localPath=courseFile+"\\src\\main\\webapp\\images\\";  
+	      //定义 文件名  
+	      String filename=null;    
+	      if(!com.getFile().isEmpty()){    
+	          //生成uuid作为文件名称    
+	          String uuid = UUID.randomUUID().toString().replaceAll("-","");    
+	          //获得文件类型（可以判断如果不是图片，禁止上传）    
+	          String contentType=com.getFile().getContentType();    
+	          //获得文件后缀名   
+	          String suffixName=contentType.substring(contentType.indexOf("/")+1);  
+	          //得到 文件名  
+	          filename=uuid+"."+suffixName;   
+	          System.out.println(filename);  
+	          //文件保存路径  
+	          try {
+	        	  com.getFile().transferTo(new File(localPath+filename));
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}    
+	      }  
+	      //把图片的相对路径保存至数据库  
+	      sqlPath = "/images/"+filename;  
+	      System.out.println(sqlPath);  
+	      com.setComtuxiang(sqlPath);
 		int row = this.service.updateCompanyTwo(com.getCabbreviation(), com.getCurl(), com.getCaddress(),
-				com.getCfield(), com.getCfs(), com.getCdetail(), com.getCscale(), com.getCid());
+				com.getCfield(), com.getCfs(), com.getCdetail(), com.getCscale(), com.getCid(),com.getComtuxiang());
 		model.addAttribute("company", this.service.queryByEmail(com.getCemail()));
 		return "main/tag";
 	}

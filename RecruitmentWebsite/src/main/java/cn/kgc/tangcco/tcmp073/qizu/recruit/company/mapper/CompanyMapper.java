@@ -21,10 +21,10 @@ public interface CompanyMapper {
 	@Update("update company set cname=#{cname} where cid=#{cid}")
 	int updateCompany(Company com);
 
-	@Update("update company set cabbreviation=#{cabbreviation},curl=#{curl},caddress=#{caddress},cfield=#{cfield},cfs=#{cfs},cdetail=#{cdetail},cscale=#{cscale} where cid=#{cid}")
+	@Update("update company set comtuxiang=#{comtuxiang},cabbreviation=#{cabbreviation},curl=#{curl},caddress=#{caddress},cfield=#{cfield},cfs=#{cfs},cdetail=#{cdetail},cscale=#{cscale} where cid=#{cid}")
 	int updateCompanyTwo(@Param("cabbreviation") String cabbreviation, @Param("curl") String curl,
 			@Param("caddress") String caddress, @Param("cfield") String cfield, @Param("cfs") String cfs,
-			@Param("cdetail") String cdetail, @Param("cscale") String cscale, @Param("cid") int cid);
+			@Param("cdetail") String cdetail, @Param("cscale") String cscale, @Param("cid") int cid,@Param("comtuxiang")String comtuxiang);
 
 	@Update("update company set cfinancing=#{cfinancing} where cid=#{cid}")
 	int updateCompanyThree(@Param("cfinancing") String cfinancing, @Param("cid") int cid);

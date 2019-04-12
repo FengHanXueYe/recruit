@@ -79,7 +79,7 @@ var youdao_conv_id = 271546;
                 </dt>
                 <dd>
                 <!-- id="stepForm"  -->
-	                <form  action="ajaxUpdateCompanyTwo.controller" >
+	                <form  action="ajaxUpdateCompanyTwo.controller" enctype="multipart/form-data" method="post">
 	                	<div class="c_text_1">基本信息为必填项，是求职者加速了解公司的窗口，认真填写吧！</div>
 	                 	<img width="668" height="56" class="c_steps" alt="第一步" src="style/images/step1.png">
 	                    
@@ -90,7 +90,24 @@ var youdao_conv_id = 271546;
 	                    <input type="text" placeholder="请输入公司简称，如:拉勾" value="" name="cabbreviation" id="name" class="valid">	
 	                    
 	                    <h3>公司LOGO</h3> <!--非必填改必填-->
-	                   	<div class="c_logo c_logo_pos">
+	                     <div class="new_product mt20">
+		                            <div id="productNo0" class="product_upload">
+		                                <div style="background-color: rgb(147, 183, 187);">
+		                                	<span>上传公司LOGO</span> 
+		                                    <br>	
+		                                   		 尺寸：380*220px  	大小：小于5M
+		                                </div>
+		                            </div>
+		                            <div id="productShow0" class="product_upload dn productShow">
+			                        	<img width="380" height="220" src="">
+			                        	<span>上传公司LOGO<br>380*220px 小于5M</span>
+			                        </div>
+			                        <input type="file" title="支持jpg、jpeg、gif、png格式，文件小于5M"  name="file" id="myfiles0">
+			                    	<input type="hidden" value="3" name="productInfos[0].type" id="type0"> 
+			                    	<input type="hidden" name="productInfos[0].productPicUrl" id="productInfos0">   
+			                    </div>
+		                        
+	                  <!--  	<div class="c_logo c_logo_pos">
 	                    	<a title="上传公司LOGO" class="inline cboxElement" href="#logoUploader">
 		                        <div id="logoNo">
 		                    		<span>上传公司LOGO</span> <br>
@@ -102,8 +119,8 @@ var youdao_conv_id = 271546;
 	                        		<span>更换公司LOGO<br>190px*190px 小于5M</span>
 		                        </div>
 							</a>  
-	                    </div>
-	                    
+	                    </div>--> 
+	                   
 	                    <h3>公司网址</h3>
 	                    <input type="text" placeholder="请输入公司网址" value="" name="curl" id="website">	
 	                    
@@ -178,7 +195,7 @@ var youdao_conv_id = 271546;
 		                        		                   
 		                        		                    
 	                    </div>
-	                    
+	                <!--    
 	               <h3>投资机构</h3>
 	                    <ul id="stagesList" class="reset">
 	                    	<li>
@@ -211,7 +228,7 @@ var youdao_conv_id = 271546;
 	                        </ul>
 		                    </div>	
 		                    <input type="text" placeholder="请输入投资机构，如真格基金，创新工场" name="stageorg">
-	                    </div>
+	                    </div>-->  
 	                    
 	                    <h3>一句话介绍</h3> 
 	                    <input type="text" placeholder="一句话概括公司亮点，如公司愿景、领导团队等，限50字" maxlength="50" name="cdetail" id="temptation">	

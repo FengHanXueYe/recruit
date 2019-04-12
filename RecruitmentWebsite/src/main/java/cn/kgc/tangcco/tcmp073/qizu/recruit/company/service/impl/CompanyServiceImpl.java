@@ -34,8 +34,8 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public int updateCompanyTwo(String cabbreviation, String curl, String caddress, String cfield, String cfs,
-			String cdetail, String cscale, int cid) {
-		return mapper.updateCompanyTwo(cabbreviation, curl, caddress, cfield, cfs, cdetail, cscale, cid);
+			String cdetail, String cscale, int cid,String comtuxiang) {
+		return mapper.updateCompanyTwo(cabbreviation, curl, caddress, cfield, cfs, cdetail, cscale, cid,comtuxiang);
 	}
 
 	@Override
