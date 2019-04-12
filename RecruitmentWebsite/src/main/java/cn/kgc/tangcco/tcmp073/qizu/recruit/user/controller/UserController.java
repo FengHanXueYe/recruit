@@ -186,6 +186,7 @@ public class UserController {
 		} else {
 			ruser.setUserlog(detailUser.getUserlog());
 		}
+		
 		//保存数据库的路径  
 	      String sqlPath = null;   
 	      //定义文件保存的本地路径  
@@ -215,8 +216,9 @@ public class UserController {
 	      //把图片的相对路径保存至数据库  
 	      sqlPath = "/images/"+filename;  
 	      System.out.println(sqlPath);  
-	      ruser.setUserpicture(sqlPath); 
-	      
+	      if(ruser.getUserpicture()!=null) {
+	    	  ruser.setUserpicture(sqlPath); 
+	      }
 	      
 		// 将用户的id赋值给ruser（因为前台没传用户id）
 		ruser.setUserid(attribute.getUserid());

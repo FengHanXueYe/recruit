@@ -137,14 +137,14 @@ var youdao_conv_id = 271546;
 						      <td valign="top"></td> 
 						      <td>
 						          <ul class="profile_radio clearfix reset">
-						            <li class="current">
+						            <li  <c:if test="${loginUser.gender eq '2' }">class="current"</c:if> >
 						           	  	 男<em></em>
 						           	  	 
-						              	<input type="radio"  <c:if test="${loginUser.gender eq '2' }">checked</c:if>  name="gender" value="2"> 
+						              	<input type="radio" name="gender" value="2"> 
 						            </li>
-						            <li>
+						            <li <c:if test="${loginUser.gender eq '1' }">class="current"</c:if>>
 						            	  女<em></em>
-						              	<input type="radio"  <c:if test="${loginUser.gender eq '1' }">checked</c:if> name="gender" value="1"> 
+						              	<input type="radio" name="gender" value="1"> 
 						            </li>
 						          </ul>  
 						      </td>
