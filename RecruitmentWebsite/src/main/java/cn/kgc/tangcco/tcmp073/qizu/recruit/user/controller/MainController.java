@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Educationalbackground;
+import cn.kgc.tangcco.tcmp073.qizu.entity.HopeJob;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Selfdescription;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Worksdisplay;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.eb.service.EbService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.hopejob.service.HopeJobService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.service.OccupationService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.ocone.service.OconeService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.selfdescription.service.SelfdescriptionService;
@@ -51,6 +53,9 @@ public class MainController {
 
 	@Resource
 	private OccupationService occupationService;
+	
+	@Resource
+	private HopeJobService hopeJobService;
 
 	@RequestMapping("toIndex")
 	public String toIndex(Model model) {
@@ -112,6 +117,10 @@ public class MainController {
 			Worksdisplay queryWorksdisplay = ws.queryWorksdisplay(attribute.getUserid());
 			if (queryWorksdisplay != null) {
 				model.addAttribute("worksdisplayMapperModel", queryWorksdisplay);
+			}
+			HopeJob detailHopeJob = hopeJobService.detailHopeJob(attribute.getUserid());			
+			if(detailHopeJob!=null) {
+				model.addAttribute("detailHopeJob", detailHopeJob);
 			}
 			// System.out.println("-------------------------------");
 			// System.err.println(queryWorksdisplay.getWlink());

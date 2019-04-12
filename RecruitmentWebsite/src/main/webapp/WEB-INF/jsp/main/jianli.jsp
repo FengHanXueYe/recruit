@@ -358,12 +358,17 @@ var youdao_conv_id = 271546;
             		            			<span></span>
             		</div><!--end .expectShow-->
             		<div class="expectEdit dn">
-            			<form id="expectForm">
+            			<form id="expectForm1" onsubmit="false" method="post" action="doAddUpdateHopeJon.controller">
 	            			<table>
 	            				<tbody><tr>
 	            					<td>
 	            						<input type="hidden" id="expectCity" value="" name="expectCity">
-	            													        	<input type="button" value="期望城市，如：北京" id="select_expectCity" class="profile_select_287 profile_select_normal">
+	            																<c:if test="${!empty detailHopeJob.hcity }">
+		            													        	<input type="button" value="${detailHopeJob.hcity }" name="hcityx" id="select_expectCity" class="profile_select_287 profile_select_normal">
+	            																</c:if>
+	            																<c:if test="${empty detailHopeJob.hcity }">
+		            													        	<input type="button" value="期望城市，如：北京" name="hcityx" id="select_expectCity" class="profile_select_287 profile_select_normal">
+	            																</c:if>
 																				<div class="boxUpDown boxUpDown_596 dn" id="box_expectCity" style="display: none;">
 								          									        		<dl>
 								        			<dt>热门城市</dt>
@@ -457,28 +462,36 @@ var youdao_conv_id = 271546;
 	            					</td>
 	            					<td>
 	            						<ul class="profile_radio clearfix reset">
-	            								            								<li class="current">
+	            							
+	            								<li <c:if test="${detailHopeJob.htype eq '1' }">class="current"</c:if> >
 									             	 全职<em></em>
-									              	<input type="radio" checked="" name="type" value="全职"> 
+									              	<input type="radio" name="type" value="全职"> 
 									            </li>
-									            <li>
+									            <li <c:if test="${detailHopeJob.htype eq '2' }">class="current"</c:if>>
 									              	兼职<em></em>
 									              	<input type="radio" name="type" value="兼职"> 
 									            </li>
-									            <li>
+						 			            <li <c:if test="${detailHopeJob.htype eq '3' }">class="current"</c:if>>
 									            	  实习<em></em>
 									              	<input type="radio" name="type" value="实习"> 
+									              	<input type="hidden" name="htype"  />
 									            </li>
-								            								        </ul> 
+								        </ul> 
 	            					</td>
 	            				</tr>
 	            				<tr>
 	            					<td>
-							        	<input type="text" placeholder="期望职位，如：产品经理" value="" name="expectPosition" id="expectPosition">
+	            						<c:if test="${!empty detailHopeJob.hname }">
+								        	<input type="text" placeholder="" value="${detailHopeJob.hname }" name="hname" id="expectPosition">
+	            						</c:if>
+	            						<c:if test="${empty detailHopeJob.hname }">
+								        	<input type="text" placeholder="期望工作 如：产品经理" value="" name="hname" id="expectPosition">
+	            						</c:if>
 									</td>
 	            					<td>
 	            						<input type="hidden" id="expectSalary" value="" name="expectSalary">
-	            							            						<input type="button" value="期望月薪" id="select_expectSalary" class="profile_select_287 profile_select_normal">
+	            						
+	            							            						<input type="button" value="期望月薪" name="hmoneyx" id="select_expectSalary" class="profile_select_287 profile_select_normal">
 	            													        	<div class="boxUpDown boxUpDown_287 dn" id="box_expectSalary" style="display: none;">
 								          	  <ul>
 								        										        			<li>2k以下</li>
@@ -488,17 +501,20 @@ var youdao_conv_id = 271546;
 								        										        			<li>15k-25k</li>
 								        										        			<li>25k-50k</li>
 								        										        			<li>50k以上</li>
+								        										        			
 								        										        	  </ul>
 								         </div>  
 	            					</td>
 	            				</tr>
 	            				<tr>
 	            					<td colspan="2">
-										<input type="submit" value="保 存" class="btn_profile_save">
+										<input type="submit" value="保 存" onclick="updateHobiect()" class="btn_profile_save">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
 	            			</tbody></table>
+	            			<input type="hidden" name="hmoney" />
+	            			<input type="hidden" name="hcity" />
             			</form><!--end #expectForm-->
             		</div><!--end .expectEdit-->
             		            		<div class="expectAdd pAdd">
@@ -513,7 +529,66 @@ var youdao_conv_id = 271546;
             		<input type="hidden" id="expectPositionVal" value="">
             		<input type="hidden" id="expectSalaryVal" value="">
             	</div><!--end #expectJob-->
-            		
+            	<!-- 期望工作 -->
+            	<script type="text/javascript">
+            		$(function(){
+            			var qian = '${detailHopeJob.hmoney}';
+            			var qianxp = "";
+            			if(qian==2){
+            				qianxp = "2k以下";
+            			}else if(qian==5){
+            				qianxp = "2k-5k";
+            			}else if(qian==10){
+            				qianxp = "5k-10k";
+            			}else if(qian==15){
+            				qianxp = "10k-15k";
+            			}else if(qian==25){
+            				qianxp = "15k-25k";
+            			}else if(qian==50){
+            				qianxp = "25k-50k";
+            			}else{
+            				qianxp = "50k以上";
+            			}
+            			$("form#expectForm1 input[name='hmoneyx']").val(qianxp);
+            		})
+            		function updateHobiect(){
+            			var zhi = $("form#expectForm1 .current input[type='radio']").val();
+            			var htype = 0;
+            			if(zhi=="全职"){
+            				htype = 1;
+            			}else if(zhi=="兼职"){
+            				htype = 2;
+            			}else{
+            				htype = 3;
+            			}
+            			var money = $("form#expectForm1 input[name='hmoneyx']").val();
+            			var m = 0;
+            			if(money=="2k以下"){
+            				m=2;
+            			}else if(money=="2k-5k"){
+            				m=5;
+            			}else if(money=="5k-10k"){
+            				m=10;
+            			}else if(money=="10k-15k"){
+            				m=15;
+            			}else if(money=="15k-25k"){
+            				m=25;
+            			}else if(money=="25k-50k"){
+            				m=50;
+            			}else{
+            				m=100;
+            			} 
+            			
+            			$("form#expectForm1 input[name='hcity']").val($("form#expectForm1 input[name='hcityx']").val());
+            			
+            			$("form#expectForm1 input[name='hmoney']").val(m);
+            			alert(m);
+            			$("input[name='htype']").val(htype);
+            			$("form#expectForm1").submit();
+            			
+            		}
+            	</script>	
+            	
             	<div class="profile_box" id="workExperience">
             		<h2>工作经历  <span> （投递简历时必填）</span></h2>
             		            		<span class="c_add dn"></span>

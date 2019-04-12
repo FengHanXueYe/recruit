@@ -78,6 +78,19 @@ $(function(){
 				            <div class="profile_box" id="expectJob">
 	                <h2>期望工作</h2>
 	                <div class="expectShow">
+	                	${detailHopeJob.hcity } ,
+	                	<c:if test="${detailHopeJob.htype eq '1' }">全职</c:if>
+	                	<c:if test="${detailHopeJob.htype eq '2' }">兼职</c:if>
+	                	<c:if test="${detailHopeJob.htype eq '3' }">实习</c:if> ,
+	                	<c:if test="${detailHopeJob.hmoney eq '2' }">2k以下</c:if> 
+	                	<c:if test="${detailHopeJob.hmoney eq '5' }">2k-5k</c:if> 
+	                	<c:if test="${detailHopeJob.hmoney eq '10' }">5k-10k</c:if> 
+	                	<c:if test="${detailHopeJob.hmoney eq '15' }">10k-15k</c:if> 
+	                	<c:if test="${detailHopeJob.hmoney eq '25' }">15k-25k</c:if> 
+	                	<c:if test="${detailHopeJob.hmoney eq '50' }">25k-50k</c:if> 
+	                	<c:if test="${detailHopeJob.hmoney eq '100' }">50k以上</c:if> ,
+	                	${detailHopeJob.hname }
+	                	
 	                	<!-- 广州，全职，月薪5k-10k，产品经理 -->
 	                </div><!--end .expectShow-->
 	            </div><!--end #expectJob-->
