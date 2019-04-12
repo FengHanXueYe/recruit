@@ -1,5 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.entity;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,8 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Product {
 	private Integer pid;
-	private String pname,paddress,pdetail;
-	
-	
+	private String pname,paddress,pdetail,ptuxiang;
 	private Integer pcid;
+	private MultipartFile file;
 }

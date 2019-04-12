@@ -79,7 +79,7 @@ var youdao_conv_id = 271546;
                 	<div class="c_text">展示强劲的创始团队，让求职者跟随而来吧！</div>
                  	<img width="668" height="56" class="c_steps" alt="第三步" src="style/images/step3.png">
                     
-                    <form method="post" action="http://www.lagou.com/cl/saveLeaderInfos.json" id="memberForm">
+                    <form method="post" action="http://www.lagou.com/cl/saveLeaderInfos.json" id="memberForm" enctype="multipart/form-data">
                     	<input type="hidden" name="cfid" value="${company.cid}">
                     	<input type="hidden" name="cemail" value="${company.cemail}">
                     	<input type="hidden" value="52346c62232045a8ab1d45cb3e0540b7" name="resubmitToken">
@@ -95,7 +95,8 @@ var youdao_conv_id = 271546;
 			                        	<img width="120" height="120" src="">
 			                        	<span>更换头像</span>
 			                        </div>
-			                        <input type="file" value="" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="img_check(this,'http://www.lagou.com/c/upload.json',120,120,5,'myfiles0','myfiles0_error','portraitNo0','portraitShow0','type0','leaderInfos0');" name="myfiles" id="myfiles0" class="myfiles">
+			                        <!-- onchange="img_check(this,'http://www.lagou.com/c/upload.json',120,120,5,'myfiles0','myfiles0_error','portraitNo0','portraitShow0','type0','leaderInfos0');"  -->
+			                        <input type="file" value="" title="支持jpg、jpeg、gif、png格式，文件小于5M" name="file" id="myfiles0" class="myfiles">
 			                    	<input type="hidden" value="7" name="type" id="type0">
 			                    	<input type="hidden" name="leaderInfos[0].photo" id="leaderInfos0">
 		                            <em>
