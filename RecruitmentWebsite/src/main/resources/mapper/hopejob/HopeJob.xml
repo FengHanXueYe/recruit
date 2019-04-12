@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.hopejob.mapper.HopeJobMapper">
+	<update id="updateHopeJob" parameterType="HopeJob">
+		update HopeJob
+		<set>
+			<if test="hm.hcity!=null and hm.hcity!=''"> hcity=#{hm.hcity},</if>
+			<if test="hm.htype!=null and hm.htype!=''"> htype=#{hm.htype},</if>
+			<if test="hm.hname!=null and hm.hname!=''"> hname=#{hm.hname},</if>
+			<if test="hm.hmoney!=0"> hmoney=#{hm.hmoney}</if>
+		</set>
+		where hid=#{hm.hid}
+	</update>
+
+</mapper>

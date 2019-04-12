@@ -16,6 +16,7 @@ import cn.kgc.tangcco.tcmp073.qizu.entity.Companyresume;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Deliverypost;
 import cn.kgc.tangcco.tcmp073.qizu.entity.DpCy;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Educationalbackground;
+import cn.kgc.tangcco.tcmp073.qizu.entity.HopeJob;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Selfdescription;
@@ -24,6 +25,7 @@ import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.companyresume.service.CompanyresumeService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.deliverypost.service.DeliverypostService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.eb.service.EbService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.hopejob.service.HopeJobService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.service.OccupationService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.selfdescription.service.SelfdescriptionService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
@@ -55,6 +57,9 @@ public class DeliverypostController {
 	
 	@Resource
 	private OccupationService occupationService;
+	
+	@Resource
+	private HopeJobService hopeJobService;
 	/**
 	 * 查询所有的投递的职位
 	 * @param userid
@@ -150,6 +155,11 @@ public class DeliverypostController {
 			if (queryWorksdisplay != null) {
 				model.addAttribute("worksdisplayMapperModel", queryWorksdisplay);
 			}
+			HopeJob detailHopeJob = hopeJobService.detailHopeJob(Integer.parseInt(userid));			
+			if(detailHopeJob!=null) {
+				model.addAttribute("detailHopeJob", detailHopeJob);
+			}
+			
 		}
 		
 		
@@ -220,8 +230,15 @@ public class DeliverypostController {
 			return "redirect:toLogin.controller";
 		}
 	}
-	
-	
+	/**
+	 * 去我的推荐职位页面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("toMyList")
+	public String toMyList(Model model) {
+		return "main/mList";
+	}
 	
 	
 }
