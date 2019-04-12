@@ -220,8 +220,15 @@ public class DeliverypostController {
 			return "redirect:toLogin.controller";
 		}
 	}
-	
-	
+	/**
+	 * 去我的推荐职位页面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("toMyList")
+	public String toMyList(Model model) {
+		return "main/mList";
+	}
 	
 	
 }
