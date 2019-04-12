@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 ﻿<!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb"><head>
 </script><script type="text/javascript" async="" src="style/js/conversion.js"></script><script src="style/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script><style type="text/css"></style>
@@ -47,7 +49,8 @@ var youdao_conv_id = 271546;
     			<li><a target="_blank" href="">论坛</a></li>
     				    			<li><a rel="nofollow" href="jianli.html">我的简历</a></li>
 	    						    		</ul>
-        	        	<dl class="collapsible_menu">
+	    						    		<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
+        	        	<!-- <dl class="collapsible_menu">
             	<dt>
            			<span>jason&nbsp;</span> 
             		<span class="red dn" id="noticeDot-0"></span>
@@ -60,7 +63,7 @@ var youdao_conv_id = 271546;
                 	<dd><a href="create.html">我要招人</a></dd>
                                                 <dd><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
-            </dl>
+            </dl> -->
                                     <div class="dn" id="noticeTip">
             	<span class="bot"></span>
 				<span class="top"></span>
@@ -76,40 +79,43 @@ var youdao_conv_id = 271546;
             	<h2>拉勾网根据你的个人简历为你推荐以下职位： <a class="more" href="jianli.html">修改简历信息&gt;&gt;</a></h2>
             	
             	<ul class="hot_pos reset">
-	            		            		            				            		<li class="clearfix">
-		            			            						            						            					                	<div class="hot_pos_l">
+            	
+            			<c:forEach items="${queryRecommendVO }" var="item">
+	            		   <li class="clearfix">
+		            			 <div class="hot_pos_l">
 			                    	<div class="mb10">
-			                        	<a target="_blank" href="http://www.lagou.com/jobs/22194.html">产品经理</a> 
+			                        	<a target="_blank" href="http://www.lagou.com/jobs/22194.html">${item.occupation.oname }</a> 
 			                            &nbsp;
-			                            <span class="c9">[广州]</span>
-			                            			                        </div>
-			                        <span><em class="c7">月薪：</em> 8k-15k</span>
-			                        <span><em class="c7">经验：</em> 1-3年</span>
-			                        <span><em class="c7">最低学历：</em> 本科</span>
+			                            <span class="c9">[${item.occupation.oaddress }]</span>
+			                        </div>
+			                        <span><em class="c7">月薪：</em> ${item.occupation.ominscalary }k-${item.occupation.omaxscalary }k</span>
+			                        <span><em class="c7">经验：</em> ${item.occupation.olog }</span>
+			                        <span><em class="c7">最低学历：</em> <c:if test="${item.occupation.oeducation eq '1' }">大专</c:if><c:if test="${item.occupation.oeducation eq '2' }">本科</c:if><c:if test="${item.occupation.oeducation eq '3' }">硕士</c:if><c:if test="${item.occupation.oeducation eq '4' }">博士</c:if><c:if test="${item.occupation.oeducation eq '5' }">其它</c:if> </span>
 			                        <br>
-			                        <span><em class="c7">职位诱惑：</em> 上市公司，快速发展空间，产品的话语权</span>
+			                        <span><em class="c7">职位诱惑：</em> ${item.occupation.owelfare }</span>
 			                        <br>
-				                    <span>1天前发布</span>
+				                    <span><fmt:formatDate value="${item.occupation.orelease }" pattern="yyyy-MM-dd"/></span>
 			                        <!-- <a  class="wb">分享到微博</a> -->
 			                    </div>
 			                	<div class="hot_pos_r">
-			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/5004.html">广州百田</a></div>
-			                        <span><em class="c7">领域：</em> 移动互联网,游戏</span>
-			                        			                        <br>
-			                        <span><em class="c7">阶段：</em> 上市公司</span>
-			                        <span><em class="c7">规模：</em> 500-2000人</span>
+			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/5004.html">${item.company.cname }</a></div>
+				                        <span><em class="c7">领域：</em> ${item.company.cfield }</span><br>
+				                        <span><em class="c7">阶段：</em> ${item.company.cfs }</span>
+				                        <span><em class="c7">规模：</em> ${item.company.cscale }</span>
 			                        <ul class="companyTags reset">
-			                        				                        					                        			<li>股票期权</li>
-			                        					                        				                        					                        			<li>专项奖金</li>
-			                        					                        				                        					                        			<li>年底双薪</li>
-			                        					                        				                        </ul>
+				                   		<li>股票期权</li>
+				                    	<li>专项奖金</li>
+				                        <li>年底双薪</li>
+			                  		</ul>
 			                    </div>
 			                    <div class="recommend">
 			                    	92%
 			                    	<span>该职位与你的简历匹配度是92%  </span>
 			                    </div>
 			                </li>
-	                		                	            				            		<li class="odd clearfix">
+	                	</c:forEach>    
+	                	
+	                	<!-- <li class="odd clearfix">
 		            			            						            						            					                	<div class="hot_pos_l">
 			                    	<div class="mb10">
 			                        	<a target="_blank" href="http://www.lagou.com/jobs/148004.html">产品经理</a> 
@@ -123,7 +129,7 @@ var youdao_conv_id = 271546;
 			                        <span><em class="c7">职位诱惑：</em> 年底双薪、绩效奖金、良好的职业晋升机制。</span>
 			                        <br>
 				                    <span>1天前发布</span>
-			                        <!-- <a  class="wb">分享到微博</a> -->
+			                        <a  class="wb">分享到微博</a>
 			                    </div>
 			                	<div class="hot_pos_r">
 			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/25725.html">短讯神州</a></div>
@@ -156,7 +162,7 @@ var youdao_conv_id = 271546;
 			                        <span><em class="c7">职位诱惑：</em> 200亿市场，3.5亿用户，0同类产品。</span>
 			                        <br>
 				                    <span>10:29发布</span>
-			                        <!-- <a  class="wb">分享到微博</a> -->
+			                        <a  class="wb">分享到微博</a>
 			                    </div>
 			                	<div class="hot_pos_r">
 			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/112.html">爱拍</a></div>
@@ -189,7 +195,7 @@ var youdao_conv_id = 271546;
 			                        <span><em class="c7">职位诱惑：</em> 快乐工作</span>
 			                        <br>
 				                    <span>1天前发布</span>
-			                        <!-- <a  class="wb">分享到微博</a> -->
+			                        <a  class="wb">分享到微博</a>
 			                    </div>
 			                	<div class="hot_pos_r">
 			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/3392.html">一彩票</a></div>
@@ -223,7 +229,7 @@ var youdao_conv_id = 271546;
 			                        <span><em class="c7">职位诱惑：</em> 年终分红，项目奖金，物流版“滴滴打车”</span>
 			                        <br>
 				                    <span>3天前发布</span>
-			                        <!-- <a  class="wb">分享到微博</a> -->
+			                        <a  class="wb">分享到微博</a>
 			                    </div>
 			                	<div class="hot_pos_r">
 			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/24323.html">林安集团</a></div>
@@ -256,7 +262,7 @@ var youdao_conv_id = 271546;
 			                        <span><em class="c7">职位诱惑：</em> 中国领先的高保真音乐平台和智能音响</span>
 			                        <br>
 				                    <span>15:12发布</span>
-			                        <!-- <a  class="wb">分享到微博</a> -->
+			                        <a  class="wb">分享到微博</a>
 			                    </div>
 			                	<div class="hot_pos_r">
 			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/25286.html">鼎梵数码科技</a></div>
@@ -289,7 +295,7 @@ var youdao_conv_id = 271546;
 			                        <span><em class="c7">职位诱惑：</em> 互联网公司凝聚部门，老城区上班交通便利</span>
 			                        <br>
 				                    <span>09:56发布</span>
-			                        <!-- <a  class="wb">分享到微博</a> -->
+			                        <a  class="wb">分享到微博</a>
 			                    </div>
 			                	<div class="hot_pos_r">
 			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/4126.html">POCO.CN</a></div>
@@ -322,7 +328,7 @@ var youdao_conv_id = 271546;
 			                        <span><em class="c7">职位诱惑：</em> 行业前景好，人际关系简单，工作氛围轻松…</span>
 			                        <br>
 				                    <span>14:45发布</span>
-			                        <!-- <a  class="wb">分享到微博</a> -->
+			                        <a  class="wb">分享到微博</a>
 			                    </div>
 			                	<div class="hot_pos_r">
 			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/13289.html">光大软件</a></div>
@@ -356,7 +362,7 @@ var youdao_conv_id = 271546;
 			                        <span><em class="c7">职位诱惑：</em> 福利丰厚，五险一金</span>
 			                        <br>
 				                    <span>11:19发布</span>
-			                        <!-- <a  class="wb">分享到微博</a> -->
+			                        <a  class="wb">分享到微博</a>
 			                    </div>
 			                	<div class="hot_pos_r">
 			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/24481.html">广州嘉盛</a></div>
@@ -390,7 +396,7 @@ var youdao_conv_id = 271546;
 			                        <span><em class="c7">职位诱惑：</em> 有竞争力的薪资待遇、办公环境及成长空间</span>
 			                        <br>
 				                    <span>11:15发布</span>
-			                        <!-- <a  class="wb">分享到微博</a> -->
+			                        <a  class="wb">分享到微博</a>
 			                    </div>
 			                	<div class="hot_pos_r">
 			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/809.html">礼德财富</a></div>
@@ -424,7 +430,7 @@ var youdao_conv_id = 271546;
 			                        <span><em class="c7">职位诱惑：</em> 提供具有竞争力的薪资福利待遇</span>
 			                        <br>
 				                    <span>1天前发布</span>
-			                        <!-- <a  class="wb">分享到微博</a> -->
+			                        <a  class="wb">分享到微博</a>
 			                    </div>
 			                	<div class="hot_pos_r">
 			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/8727.html">易杰</a></div>
@@ -457,7 +463,7 @@ var youdao_conv_id = 271546;
 			                        <span><em class="c7">职位诱惑：</em> 快银支付期待您的加入！</span>
 			                        <br>
 				                    <span>2014-06-24</span>
-			                        <!-- <a  class="wb">分享到微博</a> -->
+			                        <a  class="wb">分享到微博</a>
 			                    </div>
 			                	<div class="hot_pos_r">
 			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/7184.html">快银支付</a></div>
@@ -487,7 +493,7 @@ var youdao_conv_id = 271546;
 			                        <span><em class="c7">职位诱惑：</em> 带薪年假 发展前景好</span>
 			                        <br>
 				                    <span>2014-06-24</span>
-			                        <!-- <a  class="wb">分享到微博</a> -->
+			                        <a  class="wb">分享到微博</a>
 			                    </div>
 			                	<div class="hot_pos_r">
 			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/22065.html">汉草荟</a></div>
@@ -520,7 +526,7 @@ var youdao_conv_id = 271546;
 			                        <span><em class="c7">职位诱惑：</em> 福利待遇还行</span>
 			                        <br>
 				                    <span>2014-06-23</span>
-			                        <!-- <a  class="wb">分享到微博</a> -->
+			                        <a  class="wb">分享到微博</a>
 			                    </div>
 			                	<div class="hot_pos_r">
 			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/22406.html">极米网络</a></div>
@@ -554,7 +560,7 @@ var youdao_conv_id = 271546;
 			                        <span><em class="c7">职位诱惑：</em> 极高奖励制度</span>
 			                        <br>
 				                    <span>09:03发布</span>
-			                        <!-- <a  class="wb">分享到微博</a> -->
+			                        <a  class="wb">分享到微博</a>
 			                    </div>
 			                	<div class="hot_pos_r">
 			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/23877.html">集首饰的设计、生产、经营于一体的国际珠宝商</a></div>
@@ -573,7 +579,7 @@ var youdao_conv_id = 271546;
 			                    	84%
 			                    	<span>该职位与你的简历匹配度是84%  </span>
 			                    </div>
-			                </li>
+			                </li> -->
 	                		                	            </ul>
 	            
 	            <form id="searchForm"></form>

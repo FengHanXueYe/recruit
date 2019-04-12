@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.recommendVO.mapper.RecommendVOMapper">
+	
+	<resultMap type="RecommendVO" id="recommendVOMap">
+		<association property="ruser" resultMap="ruserMap"></association>
+		<association property="occupation" resultMap="occupationMap"></association>
+		<association property="company" resultMap="companyMap"></association>
+		<association property="hopeJob" resultMap="hopeJobMap"></association>
+	</resultMap>
+	<resultMap type="RecruitingUsers" id="ruserMap" autoMapping="true">
+		<id column="userid" property="userid"/>
+	</resultMap>
+	<resultMap type="Occupation" id="occupationMap" autoMapping="true">
+		<id column="oid" property="oid"/>
+	</resultMap>
+	<resultMap type="Company" id="companyMap" autoMapping="true">
+		<id column="cid" property="cid"/>
+	</resultMap>
+	<resultMap type="HopeJob" id="hopeJobMap" autoMapping="true">
+		<id column="hid" property="hid"/>
+	</resultMap>
+	
+	<select id="queryRecommendVO" resultMap="recommendVOMap" parameterType="RecommendVO">
+		SELECT c.*,o.* FROM `recruitingusers` r, `occupation` o,`hopejob` h,`company` c WHERE r.userid=c.cuid AND o.ocid=c.cid AND h.huserid=r.userid  
+		<if test="rvo.ruser.education !=null and rvo.ruser.education!=''"> AND o.oeducation=#{rvo.ruser.education}</if>
+		<if test="rvo.occupation.olog!=null and rvo.occupation.olog!=''"> and o.olog LIKE concat('%',#{rvo.occupation.olog},'%') </if>
+		<if test="rvo.hopeJob.hname!=null and rvo.hopeJob.hname!=''"> AND o.oname LIKE concat('%',#{rvo.hopeJob.hname},'%')</if>
+	</select>
+	
+	
+	
+</mapper>

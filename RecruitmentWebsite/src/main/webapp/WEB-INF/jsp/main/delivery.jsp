@@ -511,7 +511,7 @@ var youdao_conv_id = 271546;
             		<br>
             		            		<a target="_blank" href="subscribe.html">我订阅的职位</a>
             		            		<br>
-            		<a target="_blank" href="toMyList.controller">我的职位推荐</a>
+            		<a href="doQueryRecommendVO.controller">我的职位推荐</a>
             		            	</div><!--end #myInfo-->
             					<div class="mycenterR" id="myRecommend">
             		<h2>可能适合你的职位 <i>匹配度</i></h2>
