@@ -43,6 +43,11 @@ public class Email {
 		String resultCode = achieveCode();
 		Date date = new Date();SimpleDateFormat df = new SimpleDateFormat("yyyy年M月dd日 HH时mm分ss秒");
 		String format = df.format(new Date());
+		
+		StringBuffer sb = new  StringBuffer();
+		sb.append("<a href='http://www.lagouxp.com/verEmail.controller?email="+email+"'>请点击</a>");
+		
+		
 		try {
 			send.setHostName("smtp.163.com");//发送服务
 //			send.setHostName("smtp.qq.com");//发送服务
@@ -55,7 +60,7 @@ public class Email {
 //			send.setFrom("505385234@qq.com");
 //			send.setAuthentication("505385234@qq.com", "okmmzaqgniykcbdi");
 			send.setSubject("拉勾网注册通知！");
-			send.setMsg("尊敬的用户您好！\n您于" + format + "成功注册成为拉勾网用户！");
+			send.setMsg("尊敬的用户您好！\n您于" + format + "注册拉勾网用户！"+sb+"完成注册！");
 			send.send(); //发送
 			/**
 			 *  send.addTo(“这里面放的接收人的QQ邮箱”);
