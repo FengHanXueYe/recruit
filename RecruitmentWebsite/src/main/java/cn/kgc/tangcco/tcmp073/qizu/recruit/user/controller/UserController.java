@@ -113,37 +113,48 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("doRegister")
-	public String doRegister(RecruitingUsers ruser, Model model) {
-		// 得到注册时的密码
-		String password = ruser.getPassword();
-		// 再次储存方便转发到登录界面
-		String password1 = ruser.getPassword();
-		// MD5
-		password = Encryption.md5Encode(password.getBytes());
-		// base64
-		password = Encryption.base64Encode(password.getBytes());
-		System.out.println("====注册====>" + password);
-		// 赋值给password
-		ruser.setPassword(password);
-		Email email = new Email();
-		// 实现邮箱发送
-		String sendEamilCode = email.sendEamilCode(ruser.getEmail());
-		// 判断是否成功
-		if (sendEamilCode == "成功") {
+	public String doRegister(RecruitingUsers ruser,String veremail,HttpServletRequest request, Model model) {
+		System.out.println("______>"+ruser);
+		System.out.println("______>"+veremail);
+		
+		
+		
+		if(!"".equals(veremail)) {
+			System.out.println("55555555555555555555555555555555555555555555555555555555555555");
+			// 得到注册时的密码
+			String password = ruser.getPassword();
+			// 再次储存方便转发到登录界面
+			String password1 = ruser.getPassword();
+			// MD5
+			password = Encryption.md5Encode(password.getBytes());
+			// base64
+			password = Encryption.base64Encode(password.getBytes());
+			System.out.println("====注册====>" + password);
+			// 赋值给password
+			ruser.setPassword(password);
 			// 增加一个用户
 			userService.addUser(ruser);
 			// 将注册时的密码储存
 			ruser.setPassword(password1);
-			// 储存发闪送到登录界面
-			model.addAttribute("userEmail", "邮箱已发送！");
-			model.addAttribute("ruser", ruser);
+			request.setAttribute("username", ruser.getEmail());
+			request.setAttribute("password", password1);
 			return "main/login";
-		} else {
-			model.addAttribute("ruser", ruser);
-			model.addAttribute("errorEmail", "邮件发送失败！请稍后重试");
-			return "main/register";
+			/*Email email = new Email();
+			// 实现邮箱发送
+			String sendEamilCode = email.sendEamilCode(ruser.getEmail());
+			// 判断是否成功
+			if (sendEamilCode == "成功") {
+			} else {
+				model.addAttribute("errorEmail", "邮件发送失败！请稍后重试");
+			}*/
+		}else {
+			Email email = new Email();
+			// 实现邮箱发送
+			String sendEamilCode = email.sendEamilCode(ruser.getEmail());
+			// 储存发闪送到登录界面
+			model.addAttribute("userEmail", "邮箱已发送！请到邮箱中点击！");
 		}
-
+		return "main/register";
 	}
 
 	/**

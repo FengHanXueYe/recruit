@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -47,11 +48,11 @@ var youdao_conv_id = 271546;
 		<div class="login_box">
         	<form id="loginForm" method="post" action="doRegister.controller">
         		<ul class="register_radio clearfix">
-		            <li>
+		            <li <c:if test="${zt eq '0' }">class="current"</c:if>>
 		            	找工作
 		              	<input type="radio" value="0" name="jurisdiction" /> 
 		            </li>
-		            <li>
+		            <li <c:if test="${zt eq '1' }">class="current"</c:if>>
 		           	           招人
 		              	<input type="radio" value="1" name="jurisdiction" /> 
 		            </li>
@@ -139,9 +140,9 @@ var youdao_conv_id = 271546;
 			        	          		success:function(data){
 			        	          			//alert(data);
 			        	          			if(data=="0"){
-			        	          				alert("正在注册！");
+			        	          				//alert("正在注册！");
 			        	          			}else{
-			        	          				alert("不能");
+			        	          				alert("账户已存在！");
 			        	          				return false;
 			        	          			}
 			        	          		}

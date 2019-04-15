@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -64,9 +65,10 @@ var youdao_conv_id = 271546;
     	<input type="hidden" id="resubmitToken" value="" />		
 		 <div class="login_box">
         	<form id="loginForm" action="userLogin.controller" method="post">
-				<input type="text" id="email" name="email" value="<%=username %>" tabindex="1" placeholder="请输入登录邮箱地址" />
+        		
+				<input type="text" id="email" name="email" <c:if test="${empty username }">value="<%=username %>"</c:if><c:if test="${!empty username }">value="${username }"</c:if>  tabindex="1" placeholder="请输入登录邮箱地址" />
 				<span></span>
-			  	<input type="password" id="password" name="password" tabindex="2" value="<%=password %>" placeholder="请输入密码" />
+			  	<input type="password" id="password" name="password" tabindex="2" <c:if test="${empty password }">value="<%=password %>"</c:if><c:if test="${!empty password }">value="${password }"</c:if> placeholder="请输入密码" />
 			  	<span></span>
 				<!-- <span class="error" style="display:none;" id="beError"></span> -->
 			    <label class="fl" for="remember"><input type="checkbox" id="remember" value="yes" checked="checked" name="autoLogin" /> 记住我</label>
