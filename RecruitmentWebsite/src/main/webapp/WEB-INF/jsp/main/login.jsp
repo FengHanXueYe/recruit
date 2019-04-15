@@ -107,6 +107,11 @@ $(function(){
 	if(userEmail.length>0){
 		alert(userEmail);
 	}
+	var loginCuowu = '${loginCuowu}';
+	if(loginCuowu.length>0){
+		alert(loginCuowu);
+	}
+	
 	
 	$("form#loginForm").submit(function(){
 		

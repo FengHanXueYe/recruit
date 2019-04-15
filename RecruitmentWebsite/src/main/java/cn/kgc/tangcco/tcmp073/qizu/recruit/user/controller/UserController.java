@@ -68,6 +68,7 @@ public class UserController {
 		session.setAttribute("ruserpwd", ruserpwd);
 		if (loginRecruitingUsers == null) {
 			model.addAttribute("ruser", ruser);
+			model.addAttribute("loginCuowu", "密码账号错误！");
 			return "main/login";
 		} else {
 			session.setAttribute("loginUser", loginRecruitingUsers);
