@@ -1,5 +1,6 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.user.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -206,6 +207,25 @@ public class MainController {
 	public String toListOoccupation(String oname, Model model) {
 
 		List<Company> querylikeoname = com.querylikeoname(oname);
+		for (Company c : querylikeoname) {
+			System.err.println(c.getCfinancing());
+			String num = c.getCfinancing();
+			//已盗号隔开
+			String[] zz = num.split("\\,");
+			//声明list集合
+			List<String> bq = new ArrayList<>();
+			//遍历数组将每一个元素加到list集合中
+			for(int a=0;a<zz.length;a++) {
+				System.out.println("-------这是数组------->"+zz[a]);
+				bq.add(zz[a]);
+			}
+			for (String string : bq) {
+				System.out.println("----这是集合----->"+string);
+			}
+			c.setBiaoqian(bq);
+
+		}
+		
 		model.addAttribute("oname", querylikeoname);
 		model.addAttribute("kd", oname);
 		return "main/list";

@@ -30,5 +30,6 @@ public class Company {
 	private Product product;//产品实体
 	private List<Occupation> occupation;
 	private MultipartFile file;
+	private List<String> biaoqian;
 	
 }

@@ -835,9 +835,12 @@
 										class="c7">阶段： </em> ${oname.cfs}</span> <span><em class="c7">规模：
 									</em>${oname.cscale}</span>
 									<ul class="companyTags reset">
-										<li>五险一金</li>
-										<li>股票期权</li>
-										<li>年度旅游</li>
+									<c:forEach items="${oname.biaoqian}" var="biaoqian">
+									<li>${biaoqian}</li>
+										
+									</c:forEach>
+										<!-- <li>股票期权</li>
+										<li>年度旅游</li> -->
 									</ul>
 								</div>
 						</li>
