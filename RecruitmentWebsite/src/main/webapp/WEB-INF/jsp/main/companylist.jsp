@@ -45,11 +45,11 @@ var youdao_conv_id = 271546;
     			<img src="style/images/logo.png" width="229" height="43" alt="拉勾招聘-专注互联网招聘" />
     		</a>
     		<ul class="reset" id="navheader">
-    			<li ><a href="index.html">首页</a></li>
+    			<li ><a href="toIndex.controller">首页</a></li>
     			<li class="current"><a href="queryListCompany.controller" >公司</a></li>
     			<li ><a href="h/toForum.html" target="_blank">论坛</a></li>
     				    			<li ><a href="jianli.html" rel="nofollow">我的简历</a></li>
-	    							    			<li ><a href="create.html" rel="nofollow">发布职位</a></li>
+	    							    			<li ><a href="tocreate.controller" rel="nofollow">发布职位</a></li>
 	    		    		</ul>
 	    		    		<c:choose>
 	    		    			<c:when test="${empty loginUser }">
