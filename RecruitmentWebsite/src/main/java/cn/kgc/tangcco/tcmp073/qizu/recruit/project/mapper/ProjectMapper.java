@@ -16,15 +16,16 @@ public interface ProjectMapper {
 //	private Integer puserid;
 	
 	
-	@Insert(value = "insert into project value(null,#{pro.pname},#{pro.pposition},#{pro.pyear},#{pro.pyearover},#{pro.pdescribe},#{pro.puserid})")
+	@Insert(value = "insert into project values(null,#{pro.pname},#{pro.ppostition},#{pro.pyear},#{pro.pyearover},#{pro.pdescribe},#{pro.puserid})")
 	int addProject(@Param("pro")Project pro);
 
-	int updateProject(@Param("pro") Project pro);
+	int updateProject(Project pro);
 
 	@Delete(value = "delete from project where pid=#{proid}")
-	int deleteProject(@Param("proid") Integer proid);
+	int deleteProject(Integer proid);
 	
-	@Select(value="SELECT * FROM `Project` e,`recruitingusers` r WHERE r.userid=e.puserid AND r.userid=#{puserid} LIMIT 1;")
+	/*@Select(value="SELECT * FROM `Project` e,`recruitingusers` r WHERE r.userid=e.puserid AND r.userid=#{puserid} LIMIT 1;")*/
+	@Select("select * from project where pid=#{puserid}")
 	Project queryProject(@Param("puserid")Integer puserid);
 
 }

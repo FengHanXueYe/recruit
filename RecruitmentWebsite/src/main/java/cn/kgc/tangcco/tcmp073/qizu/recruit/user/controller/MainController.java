@@ -11,17 +11,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Corporate;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Educationalbackground;
 import cn.kgc.tangcco.tcmp073.qizu.entity.HopeJob;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Project;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Selfdescription;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Worksdisplay;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.Corporate.service.CorporateService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.eb.service.EbService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.hopejob.service.HopeJobService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.service.OccupationService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.ocone.service.OconeService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.project.service.ProjectService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.selfdescription.service.SelfdescriptionService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.worksdisplay.service.WorksdisplayService;
@@ -57,7 +61,17 @@ public class MainController {
 	
 	@Resource
 	private HopeJobService hopeJobService;
+	
+	@Resource 
+	private CorporateService corporateService;
 
+	@Resource
+	private ProjectService projectService;
+	
+	
+	
+	
+	
 	@RequestMapping("toIndex")
 	public String toIndex(Model model) {
 		model.addAttribute("ocone", os.queryType());
@@ -105,24 +119,44 @@ public class MainController {
 		RecruitingUsers attribute = (RecruitingUsers) session.getAttribute("loginUser");
 		System.err.println(attribute.getUserid());
 		/* 储存教育背景 */
+		
+		
+		Integer jindutiao=0;
+		
 		if (attribute != null) {
-			Educationalbackground queryEducationalbackground = ebService
-					.queryEducationalbackground(attribute.getUserid());
+			Educationalbackground queryEducationalbackground = ebService.queryEducationalbackground(attribute.getUserid());
+			
 			if (queryEducationalbackground != null) {
 				model.addAttribute("educationalbackground", queryEducationalbackground);
+				jindutiao+=15;
 			}
 			Selfdescription querySelfdescription = ss.querySelfdescription(attribute.getUserid());
 			if (querySelfdescription != null) {
 				model.addAttribute("selfdescriptionModel", querySelfdescription.getSdescription());
+				jindutiao+=15;
 			}
 			Worksdisplay queryWorksdisplay = ws.queryWorksdisplay(attribute.getUserid());
 			if (queryWorksdisplay != null) {
 				model.addAttribute("worksdisplayMapperModel", queryWorksdisplay);
+				jindutiao+=15;
 			}
 			HopeJob detailHopeJob = hopeJobService.detailHopeJob(attribute.getUserid());			
 			if(detailHopeJob!=null) {
 				model.addAttribute("detailHopeJob", detailHopeJob);
+				jindutiao+=15;
 			}
+			Corporate corporate =corporateService.queryAll(attribute.getUserid());
+			if(corporate!=null) {
+				model.addAttribute("queryAllCorporate",corporate);
+				jindutiao+=15;
+			}
+			Project project=projectService.queryProject(attribute.getUserid());
+			if(project!=null) {
+				model.addAttribute("queryAllProject",project);
+				jindutiao+=15;
+			}
+			
+			model.addAttribute("jindutiao", jindutiao);
 			// System.out.println("-------------------------------");
 			// System.err.println(queryWorksdisplay.getWlink());
 			// System.out.println("-------------------------------");

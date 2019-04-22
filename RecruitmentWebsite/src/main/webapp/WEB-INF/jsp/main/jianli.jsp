@@ -28,6 +28,14 @@ console.log(1);
 <script src="style/js/jquery.lib.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="style/js/ajaxfileupload.js"></script>
 <script src="style/js/additional-methods.js" type="text/javascript"></script>
+
+<!-- sk -->
+<link href="alertDemo/css/style.css" rel="stylesheet" />
+<!-- <script src="alertDemo/js/jquery-1.7.1.min.js"></script> -->
+<script src="alertDemo/js/ui.js"></script>
+
+
+
 <!--[if lte IE 8]>
     <script type="text/javascript" src="style/js/excanvas.js"></script>
 <![endif]-->
@@ -89,12 +97,80 @@ var youdao_conv_id = 271546;
             		</form>
             	</div><!--end #resume_name-->
             	<div class="fr c5" id="lastChangedTime">最后一次更新：<span><fmt:formatDate value="${loginUser.registrationTime}" pattern="yyyy年MM月dd日 HH时mm分ss秒" /></span></div><!--end #lastChangedTime-->
+            	
+            	<!-- ----------------------------------- -->
+            	
             	<div id="resumeScore">
             		<div class="score fl">
             			<canvas height="120" width="120" id="doughnutChartCanvas" style="width: 120px; height: 120px;"></canvas>
-           				<div style="" class="scoreVal"><span>15</span>分</div>
-            		</div>	
+           				<div style="" class="scoreVal"><span id="jindutiao">${jindutiao}</span>分</div>
+               </div>	
             		
+            		
+            		<script type="text/javascript">
+                            $(function(){
+                                 $("#jindutiao").text(parseInt($("#jindutiao").text())+10);
+
+                                 var jindu= $("#jindutiao").text();
+                                 alert(jindu);
+                                 if(jindu==100){
+
+                                	 mizhu.alert('提示','信息已完善,快去投个简历吧!','alert_red');
+                                    }
+                                 
+
+                                 /* $('#profileForm').submit(function() {
+                                    
+                                	 $("#jindutiao").text(parseInt($("#jindutiao").text())+10);
+                                	});     */
+
+
+                                 
+                                 /* 28 100  3   自我描述作品展示20 25  3  75 */
+                                     
+                                     /* if(jianli()==false){
+
+                                     return false;
+                                     }else{
+                                    	 alert("提交成功！"); 
+                                        
+                                     }
+                                     
+                                     return true;
+                                    } */
+                               
+                            
+                            /* 	$("#jindutiao").text(parseInt($("#jindutiao").text())+15); */
+                              /*   var edu=$("select[name='education']").val();
+                                if(edu!=null &&edu!=''){
+                					$("#jindutiao").text(parseInt($("#jindutiao").text())+5);
+                					alert('1')
+                    				}
+                				var log=$("select[name='userlog']").val();
+                				var eedu=$("select[name='eeducation']").val();
+                				var py=$("select[name='pyear']").val();
+                				var pye=$("select[name='pyearover']").val();
+                				
+                				else if(log!=null &&log!=''){
+                					$("#jindutiao").text(parseInt($("#jindutiao").text())+5);
+                    				}
+                				else if(eedu!=null &&eedu!=''){
+                					$("#jindutiao").text(parseInt($("#jindutiao").text())+5);
+                    				}
+                				else if(py!=null &&py!=''){
+                					$("#jindutiao").text(parseInt($("#jindutiao").text())+5);
+                    				}
+                				else if(pye!=null &&pye!=''){
+                					$("#jindutiao").text(parseInt($("#jindutiao").text())+5);
+                    				} */
+                            	
+                                })
+
+            		</script>
+            		
+            		
+            		
+               <!-- ----------------------------------- -->	
             		<div class="which fl">
             			<div>工作经历最能体现自己的工作能力，且完善后才可投递简历哦！</div>
             										<span rel="workExperience"><a>马上去完善</a></span>
@@ -136,7 +212,7 @@ var youdao_conv_id = 271546;
 						      </td>
 						      <td valign="top"></td> 
 						      <td>
-						          <ul class="profile_radio clearfix reset">
+						          <ul class="profile_radio clearfix reset" id="sex">
 						            <li  <c:if test="${loginUser.gender eq '2' }">class="current"</c:if> >
 						           	  	 男<em></em>
 						           	  	 
@@ -308,6 +384,11 @@ var youdao_conv_id = 271546;
             		<input type="hidden" id="currentStateVal" value="${loginUser.currentstate }">
             		<input type="hidden" id="emailVal" value="${loginUser.email }">
             		<input type="hidden" id="telVal" value="${loginUser.telephone }">
+            		
+            		
+            		
+            		
+            		
             		<script type="text/javascript">
         /* --------------------------自制js-------------------------- */    		
             			$(function(){
@@ -332,20 +413,30 @@ var youdao_conv_id = 271546;
             			})
             			/* 简历 */
             			function jianli(){
+
 								$('#profileForm').attr("action","doUpdateResumename.controller");
 								$('#profileForm').submit();
 						}
         				/* 教育背景 */
-        				function jiaoyu(){
-        					alert("jiaoyu");
-        					$('#jiaoyuform').attr("action","doAddEb.controller");
-							$('#jiaoyuform').submit();
-        				}
+        				
         				/* 作品展示 */
         				function zhanshi(){
-        					alert("zhanshi");
-        					$('#zhanshiform').attr("action","doAddUpdateWorksdisplay.controller");
-							$('#zhanshiform').submit();
+	            			  mizhu.alert('提示', '信息完善成功','alert_blue');
+//	            			alert('1');
+    
+	           			 $.ajax({  
+	    			            type: "POST", 
+	    			            url:"doAddUpdateWorksdisplay.controller",
+	    			            data:$('#zhanshiform').serialize(),
+	    			            error: function(request) {  
+	    			            },  
+	    			            success: function(data) {
+	    			              
+	    			               mizhu.alert('提示', '信息完善成功','alert_blue');
+	    			               $("#jindutiao").text(parseInt($("#jindutiao").text())+15);
+	    			            }  
+	    			         });
+							
         				}
             		</script>
             		<input type="hidden" id="pageType" value="1"> 
@@ -358,7 +449,7 @@ var youdao_conv_id = 271546;
             		            			<span></span>
             		</div><!--end .expectShow-->
             		<div class="expectEdit dn">
-            			<form id="expectForm1" onsubmit="false" method="post" action="doAddUpdateHopeJon.controller">
+            			<form id="expectForm1" onsubmit="false">
 	            			<table>
 	            				<tbody><tr>
 	            					<td>
@@ -508,14 +599,15 @@ var youdao_conv_id = 271546;
 	            				</tr>
 	            				<tr>
 	            					<td colspan="2">
-										<input type="submit" value="保 存" onclick="updateHobiect()" class="btn_profile_save">
+										<input type="button" value="保 存" onclick="updateHobiect()" class="btn_profile_save">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
 	            			</tbody></table>
 	            			<input type="hidden" name="hmoney" />
 	            			<input type="hidden" name="hcity" />
-            			</form><!--end #expectForm-->
+            			</form>
+            			<!--end #expectForm-->
             		</div><!--end .expectEdit-->
             		            		<div class="expectAdd pAdd">
             		            			填写准确的期望工作能大大提高求职成功率哦…<br>
@@ -584,29 +676,55 @@ var youdao_conv_id = 271546;
             			$("form#expectForm1 input[name='hmoney']").val(m);
             			alert(m);
             			$("input[name='htype']").val(htype);
-            			$("form#expectForm1").submit();
+
+            			  mizhu.alert('提示', '信息完善成功','alert_blue');
+//            			alert('1');
+           			 $.ajax({  
+    			            type: "POST", 
+    			            url:"doAddUpdateHopeJon.controller",
+    			            data:$('#expectForm1').serialize(),
+    			            error: function(request) {  
+    			                 alert("失败");  
+    			            },  
+    			            success: function(data) {
+    			              
+    			               mizhu.alert('提示', '信息完善成功','alert_blue');
+    			               $("#jindutiao").text(parseInt($("#jindutiao").text())+15);
+    			            }  
+    			         });
+            			
             			
             		}
             	</script>	
+            	
+<!-- -------------------------------------------------------------------工作经历----------------------------------------------------------------------------------------------  -->
+<!-- -----------------------------------------------------------------------------------------------------------------------------------------------------------------  -->
+            	
+            	
+            	
             	
             	<div class="profile_box" id="workExperience">
             		<h2>工作经历  <span> （投递简历时必填）</span></h2>
             		            		<span class="c_add dn"></span>
             		<div class="experienceShow dn">
-            		            			<form class="experienceForm borderBtm dn">
+            		     
 	            			<table>
-	            				<tbody><tr>
+	            				<tbody>
+	            				<tr>
+	            				    
 							      	<td valign="top">
 							        	<span class="redstar">*</span>
 							      	</td> 
 							      	<td>
-							        	<input type="text" placeholder="公司名称" name="companyName" class="companyName">
+							      	<input type="hidden" name="cname" >
+							        	<input type="text" placeholder="公司名称" name="companyName" class="companyName"  value="${queryAllCorporate.cname}">
 							      	</td>
 							      	<td valign="top">
 							        	<span class="redstar">*</span>
 							      	</td> 
 							      	<td>
-							          	<input type="text" placeholder="职位名称，如：产品经理" name="positionName" class="positionName">
+							      	<input type="hidden" name="cposition" >
+							          	<input type="text" placeholder="职位名称，如：产品经理" name="positionName" class="positionName" value="${queryAllCorporate.cposition}">
 							      	</td>
 							    </tr>
 	            				<tr>
@@ -763,23 +881,26 @@ var youdao_conv_id = 271546;
             				            				            			</ul>
             		</div><!--end .experienceShow-->
             		<div class="experienceEdit dn">
-            			<form class="experienceForm">
+            			<form id="expectForm2" onsubmit="false" method="post" action="">
 	            			<table>
-	            				<tbody><tr>
-							      	<td valign="top">
-							        	<span class="redstar">*</span>
-							      	</td> 
-							      	<td>
-							        	<input type="text" placeholder="公司名称" name="companyName" class="companyName">
-							      	</td>
-							      	<td valign="top">
-							        	<span class="redstar">*</span>
-							      	</td> 
-							      	<td>
-							          	<input type="text" placeholder="职位名称，如：产品经理" name="positionName" class="positionName">
-							      	</td>
-							    </tr>
+	            				
 	            				<tr>
+							      
+							      	<td>
+							      	<span>公司名称</span>
+							        	<input type="text" placeholder="公司名称" name="companyName" value="${queryAllCorporate.cname}"  style="width:150px">
+							          	
+							      	</td>
+							      
+							      	<td>
+							      	<span>职位名称，如：产品经理</span>
+							          	<input type="text" placeholder="职位名称，如：产品经理" name="positionName" value="${queryAllCorporate.cposition}" style="width:150px">
+							          
+							      	</td>
+							      	
+							    </tr>
+							    
+	            				<%-- <tr>
 	            					<td valign="top">
 							        	<span class="redstar">*</span>
 							      	</td> 
@@ -856,7 +977,9 @@ var youdao_conv_id = 271546;
 		            						<input type="hidden" class="companyYearEnd" value="" name="companyYearEnd">
 								        	<input type="button" value="结束年份" class="profile_select_139 profile_select_normal select_companyYearEnd">
 											<div class="box_companyYearEnd  boxUpDown boxUpDown_139 dn" style="display: none;">
-									            <ul>
+											
+											<input type="date" name="pyearover" value="${queryAllCorporate.}" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:15px;margin-top:-40px;margin-left:152px">
+									            <!-- <ul>
 									            	<li>至今</li>
 									        											        			<li>2014</li>
 									        											        			<li>2013</li>
@@ -903,7 +1026,7 @@ var youdao_conv_id = 271546;
 									        											        			<li>1972</li>
 									        											        			<li>1971</li>
 									        											        			<li>1970</li>
-									        											        	</ul>
+									        											        	</ul> -->
 									        </div>
 										</div>
 										<div class="fl">
@@ -917,15 +1040,28 @@ var youdao_conv_id = 271546;
 								        </div>
 								        <div class="clear"></div>
 	            					</td>
-	            				</tr>
+	            				</tr> --%>
 	            				<tr>
-	            					<td></td>
+	            				 <td>
+	            				 <span>开始时间</span>
+	            				 	<input type="date" name="cyear" value="${queryAllCorporate.cyear }" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:15px;">
+	            				 </td>
+	            				 <td> 
+	            				 <span>结束时间</span>
+	            				    <input type="date" name="cyearover" value="${queryAllCorporate.cyearover }" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:15px;">
+	            				 </td>
+	            				</tr>
+	            				
+	            				<tr>
 	            					<td colspan="3">
-										<input type="submit" value="保 存" class="btn_profile_save">
+										<input type="button" value="保 存" onclick="workspaces()" class="btn_profile_save">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
-	            			</tbody></table>
+	            				
+	            			</table>
+	            				<input type="hidden" name="cname" />
+	            			   <input type="hidden" name="cposition" />
 	            			<input type="hidden" class="expId" value="">
             			</form><!--end .experienceForm-->
             		</div><!--end .experienceEdit-->
@@ -936,6 +1072,62 @@ var youdao_conv_id = 271546;
 						<span>添加工作经历</span>
             		</div><!--end .experienceAdd-->
             	</div><!--end #workExperience-->
+            	
+            	<script type="text/javascript">
+
+                       $(function(){
+                    	   
+                                 
+                           })
+                           
+                        function  workspaces(){
+                    		   alert('1');
+                    			
+                        			var zhi = $("form#expectForm2 input[name='companyName']").val();
+                        			
+                        			var cposi = $("form#expectForm2 input[name='positionName']").val();
+                        			$("form#expectForm2 input[name='cname']").val(zhi);
+                        			$("form#expectForm2 input[name='cposition']").val(cposi);
+
+                                 mizhu.alert('提示', '信息完善成功','alert_blue');
+//                    			alert('1');
+                   			 $.ajax({  
+            			            type: "POST", 
+            			            url:"doAddUpdateCorporate.controller",
+            			            data:$('#expectForm2').serialize(),
+            			            error: function(request) {  
+            			                 alert("失败");  
+            			            },  
+            			            success: function(data) {
+            			              
+            			               mizhu.alert('提示', '信息完善成功!','alert_blue');
+            			               $("#jindutiao").text(parseInt($("#jindutiao").text())+15);
+            			            }  
+            			         });
+                                  
+
+
+
+
+                                 
+                        	   }
+
+
+
+                	   
+                           
+            	</script>
+            	
+            	
+            	
+<!-- -------------------------------------------------------------------项目经验----------------------------------------------------------------------------------------------  -->
+<!-- -----------------------------------------------------------------------------------------------------------------------------------------------------------------  -->
+          	
+            	
+            	
+            	
+            	
+            	
 
             	<div class="profile_box" id="projectExperience">
             		<h2>项目经验</h2>
@@ -945,23 +1137,26 @@ var youdao_conv_id = 271546;
 	            			            			</ul>
             		</div><!--end .projectShow-->
             		<div class="projectEdit dn">
-            			<form class="projectForm">
+            		
+            		
+            		
+            			<form id="expectForm3" onsubmit="false" >
 	            			<table>
-	            				<tbody><tr>
-	            					<td valign="top">
-							        	<span class="redstar">*</span>
-							      	</td> 
+	            				<tr>
 							      	<td>
-							        	<input type="text" placeholder="项目名称" name="projectName" class="projectName">
+							      	<input type="hidden" value="${queryAllProject.pid}">
+							      	<input type="hidden" name="pname" >
+							     <span>项目名称</span>
+							        	<input type="text" placeholder="${queryAllProject.pname}" name="projectName" class="projectName" value="${queryAllProject.pname}"  style="width:150px">
 							      	</td>
-	            					<td valign="top">
-							        	<span class="redstar">*</span>
-							      	</td> 
+	            					
 							      	<td>
-							          	<input type="text" placeholder="担任职务，如：产品负责人" name="thePost" class="thePost">
+							      	<input type="hidden" name="ppostition" >
+							      	 <span>担任职务:</span>
+							          	<input type="text" placeholder="${queryAllProject.ppostition}" name="thePost" class="thePost" value="${queryAllProject.ppostition}"  style="width:150px">
 							      	</td>
 							    </tr>
-	            				<tr>
+	            				<!-- <tr>
 	            					<td valign="top">
 							        	<span class="redstar">*</span>
 							      	</td> 
@@ -1099,11 +1294,24 @@ var youdao_conv_id = 271546;
 								        </div>
 								        <div class="clear"></div>
 	            					</td>
-	            				</tr>
+	            				</tr> -->
+	            				
 	            				<tr>
-	            					<td valign="top"></td> 
+	            				 <td>
+	            				 <span>开始时间</span>
+	            				 	<input type="date" name="pyear" value="${queryAllProject.pyear }" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:15px;">
+	            				 </td>
+	            				 <td> 
+	            				 <span>结束时间</span>
+	            				    <input type="date" name="pyearover" value="${queryAllProject.pyearover}" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:15px;">
+	            				 </td>
+	            				</tr>
+	            				
+	            				
+	            				<tr>
 									<td colspan="3">
-										<textarea class="projectDescription s_textarea" name="projectDescription" placeholder="项目描述"></textarea>
+									<input type="hidden" name="pdescription"> 
+										<textarea class="projectDescription s_textarea" name="projectDescription" placeholder="${queryAllProject.pdescribe}" value="${queryAllProject.pdescribe}"></textarea>
 										<div class="word_count">你还可以输入 <span>500</span> 字</div>
 									</td>
 	            				</tr>
@@ -1116,11 +1324,17 @@ var youdao_conv_id = 271546;
 	            				<tr>
 	            					<td valign="top"></td> 
 	            					<td colspan="3">
-										<input type="submit" value="保 存" class="btn_profile_save">
+										<input type="button" value="保 存"  onclick="workJY()" class="btn_profile_save">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
-	            			</tbody></table>
+	            			</table>
+	            			<input type="hidden" name="pname" />
+	            			<input type="hidden" name="pposition" />
+	            			
+	            			
+	            			
+	            			
 			            	<input type="hidden" value="" class="projectId">
             			</form><!--end .projectForm-->
             		</div><!--end .projectEdit-->
@@ -1130,6 +1344,115 @@ var youdao_conv_id = 271546;
 						<span>添加项目经验</span>
             		</div><!--end .projectAdd-->
             	</div><!--end #projectExperience-->
+
+
+               
+               
+               <script type="text/javascript">
+
+                       $(function(){
+                    	   
+                                 
+                           })
+                           
+                        function  workJY(){
+                    		   alert('1');
+                    			 
+                        			var zhi = $("form#expectForm3 input[name='projectName']").val();
+                        			
+                        			var cposi = $("form#expectForm3 input[name='thePost']").val();
+
+                        			var desc = $("form#expectForm3 textarea[name='projectDescription']").val();
+
+                        			
+                        			$("form#expectForm3 input[name='pname']").val(zhi);
+                        			$("form#expectForm3 input[name='ppostition']").val(cposi);
+                        			$("form#expectForm3 input[name='pdescription']").val(desc);
+                    		   
+
+                                 mizhu.alert('提示', '信息完善成功','alert_blue');
+//                   			alert('1');
+                  			 $.ajax({  
+           			            type: "POST", 
+           			            url:"doAddProject.controller",
+           			            data:$('#expectForm3').serialize(),
+           			            error: function(request) {  
+           			                 alert("失败");  
+           			            },  
+           			            success: function(data) {
+           			              
+           			               mizhu.alert('提示', '信息完善成功!','alert_blue');
+           			               $("#jindutiao").text(parseInt($("#jindutiao").text())+15);
+           			            }  
+           			         });
+                                 
+                        	   }
+                           
+            	</script>
+
+
+
+<!-- -------------------------------------------------教育背景------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------------------------------------------------------- -->
+
+
+          <!--  <script type="text/javascript">
+		   $(function(){
+			//alert("asdadsdasdasda");
+			//mizhu.confirm("提示","确定要删除吗？");
+			//mizhu.toast('已取消关注');
+			//mizhu.toast('已取消关注', 6000);
+			//mizhu.alert('提示', '不行');
+			mizhu.alert('提示', '有图了','alert_green');
+			
+		   })
+	     </script> -->
+           
+
+
+                 <script type="text/javascript">
+
+
+                 function jiaoyu(){
+ 					
+						/* 简历 */
+         			  mizhu.alert('提示', '信息完善成功','alert_blue');
+//              			alert('1');
+             			 $.ajax({  
+      			            type: "POST", 
+      			            url:"doAddEb.controller",
+      			            data:$('#jiaoyuform').serialize(),
+      			            error: function(request) {  
+      			                 alert("失败");  
+      			            },  
+      			            success: function(data) {
+      			              
+      			               mizhu.alert('提示', '信息完善成功','alert_blue');
+      			               $("#jindutiao").text(parseInt($("#jindutiao").text())+15);
+      			            }  
+      			         });
+         			   
+						
+ 				}
+                 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             	<div class="profile_box" id="educationalBackground">
             		<h2>教育背景<span>（投递简历时必填）</span></h2>
@@ -1303,7 +1626,7 @@ var youdao_conv_id = 271546;
             					            			            			</ul>
             		</div> <!--end .educationalShow-->
             		<div class="educationalEdit dn"><!-- class="educationalForm" -->
-            			<form id="jiaoyuform" method="post" onsubmit="false" >
+            			<form id="jiaoyuform"  onsubmit="false" >
 	            			<table >
 	            				<tbody><tr>
 							      	<td valign="top">
@@ -1461,7 +1784,7 @@ var youdao_conv_id = 271546;
 										</div> -->
 										<div class="fl">
 										<div>
-										<input type="date" name="pyearover" value="${educationalbackground.pyearover }" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:15px;margin-top:-40px;margin-left:152px">
+										<input type="date" name=" " value="${educationalbackground.pyearover }" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:15px;margin-top:-40px;margin-left:152px">
 						         	  <!-- <select name="pyearover" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:18px">
 								  			<option value="2014">2014</option>
 								  			<option value="2013">2013</option>
@@ -1567,7 +1890,7 @@ var youdao_conv_id = 271546;
 	            				<tr>
 	            					<td></td>
 	            					<td colspan="3">
-										<input type="submit" value="保 存" onclick="jiaoyu()" class="btn_profile_save">
+										<input type="button" value="保 存" onclick="jiaoyu()" class="btn_profile_save" id="myform">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
@@ -1584,9 +1907,27 @@ var youdao_conv_id = 271546;
 				<script type="text/javascript">
 					/* 自我描述 */
 					function zishu(){
-						alert("zishu");
-						$('#zishuform').attr("action","doAddSelfdescription.controller");
-						$('#zishuform').submit();
+					       mizhu.alert('提示', '信息完善成功','alert_blue');
+//               			alert('1');
+              			 $.ajax({  
+       			            type: "POST", 
+       			            url:"doAddSelfdescription.controller",
+       			            data:$('#zishuform').serialize(),
+       			            error: function(request) {  
+       			                 alert("失败");  
+       			            },  
+       			            success: function(data) {
+       			              
+       			               mizhu.alert('提示', '信息完善成功!','alert_blue');
+       			               $("#jindutiao").text(parseInt($("#jindutiao").text())+15);
+       			            }  
+       			         });
+                   
+
+
+
+
+						
 						/* class="descriptionForm" */
 					}
 				</script>
@@ -1597,7 +1938,7 @@ var youdao_conv_id = 271546;
             		            			
             		</div><!--end .descriptionShow-->
             		<div class="descriptionEdit dn">
-            			<form  id="zishuform" method="post" onsubmit="false">
+            			<form  id="zishuform" onsubmit="false">
 	            			<table>
 	            				<tbody><tr>
 									<td colspan="2">
@@ -1607,7 +1948,7 @@ var youdao_conv_id = 271546;
 	            				</tr>
 	            				<tr>
 	            					<td colspan="2">
-										<input type="submit" value="保 存" onclick="zishu()"  class="btn_profile_save">
+										<input type="button" value="保 存" onclick="zishu()"  class="btn_profile_save">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
@@ -1629,22 +1970,22 @@ var youdao_conv_id = 271546;
             				            			</ul>
             		</div><!--end .workShow-->
             		<div class="workEdit dn">
-            			<form id="zhanshiform"   method="post" onsubmit="false">
+            			<form id="zhanshiform" onsubmit="false">
 	            			<table>
 	            				<tbody><tr>
 							      	<td>
-							        	<input type="text" placeholder="${worksdisplayMapperModel.wlink }" name="wlink" value="${worksdisplayMapperModel.wlink }" style="width:540px;height:30px" class="workLink">
+							        	<input type="text" placeholder="${worksdisplayMapperModel.wlink }" name="wlink" value="${worksdisplayMapperModel.wlink }" style="width:540px;height:30px" class="workLink" name="zuoping">
 							      	</td>
 							    </tr>
 	            				<tr>
 									<td>
-										<textarea maxlength="100" class="workDescription s_textarea" name="wexplain" style="width:540px;height:120px"  placeholder="${worksdisplayMapperModel.wexplain }">${worksdisplayMapperModel.wexplain }</textarea>
+										<textarea maxlength="100" id="wexplai" class="workDescription s_textarea" name="wexplain" style="width:540px;height:120px"  placeholder="${worksdisplayMapperModel.wexplain }">${worksdisplayMapperModel.wexplain }</textarea>
 										<div class="word_count">你还可以输入 <span>100</span> 字</div>
 									</td>
 	            				</tr>
 	            				<tr>
 	            					<td>
-										<input type="submit" value="保 存" onclick="zhanshi()" class="btn_profile_save">
+										<input type="button" value="保 存" onclick="zhanshi()" class="btn_profile_save">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
