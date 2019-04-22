@@ -35,6 +35,123 @@ var youdao_conv_id = 271546;
 </script> 
 <script src="style/js/conv.js" type="text/javascript"></script>
 <script src="style/js/ajaxCross.json" charset="UTF-8"></script></head>
+<script type="text/javascript">
+	$(function(){
+		$(".occupactions").click(function(){
+			var state=$(this).html();
+			var ostate=$(this).attr("ostate");
+			var pk=$(this).attr("pk");
+			
+			$.ajax({
+				type:"post",
+				url:"ajaxqueryByOstateController.controller",
+				data:{"pk":pk,"ostate":ostate},
+				success:function(returnData){
+					$(".content").html("");
+					var sss="";
+					var html="";
+					var companySS=$("#companyid").val();	
+					var number=returnData.length;
+					var ostate=returnData.ostate;
+					if(ostate=="0"){
+						alert("123");
+					}
+					html+="<div class='company_center_content'><dt><h1><em></em>"+state+"<span>（共<i style='color:#fff;font-style:normal' id='positionNumber'>"+number+"</i>个）</span></h1></dt>";
+					html+="<dd><form id='searchForm'><input type='hidden' value='Publish' name='type'>";
+					html+="<ul class='reset my_jobs'>";
+					$.each(returnData,function(index,data){
+						html+="<li data-id='149594'>";
+						html+=" <h3>";
+						html+="<a target='_blank' title='随便写' href='http://www.lagou.com/jobs/149594.html'>"+data.oname+"</a>";
+						html+=" <span>["+data.ocity+"]</span>";
+						html+="  </h3>";
+						html+="<a target='_blank' title='随便写' href=''></a> ";
+						/*html+=" <span>"+[data.ocity]+"</span>";*/
+						html+="<span class='receivedResumeNo'><a href=''>应聘简历</a></span>";
+						if(data.onature==1){
+							html+="  <div>全职";	
+						}
+						if(data.onature==2){
+							html+="  <div>兼职";	
+						}
+						if(data.onature==3){
+							html+="  <div>实习";	
+						}
+						var oeducation="";
+						if(data.oeducation==1){
+							oeducation="不限";
+						}
+						if(data.oeducation==2){
+							oeducation="大专";
+						}
+						if(data.oeducation==3){
+							oeducation="本科";
+						}
+						if(data.oeducation==4){
+							oeducation="硕士";
+						}
+						if(data.oeducation==5){
+							oeducation="博士";
+						}
+						
+						html+="/"+data.ominsalary+"k-"+data.omaxsalary+"k/"+data.olog +"/"+oeducation;
+						html+=" </div>";
+						html+="<div class='c9'>发布时间："+ data.orelease+"</div>";
+						html+="<div class='links'>";
+										
+						html+="<a class='job_refresh' href=''>刷新<span>每个职位7天内只能刷新一次</span></a><a target='_blank' class='job_edit' href='queryByoid.controller?oid='"+data.oid+"'>编辑</a>";
+						
+						if(state=="有效职位"){
+							sss=0;
+							html+="	<a  class='xiaxian' oid='"+data.oid+"' onclick='xiaxian("+data.oid+","+companySS+","+sss+",1)' href='javascript:void(0)'>下线</a>";
+							
+							/* onclick='return confirm('确认下线职位吗?下线后他人无法查看该职位!')' href='updateOstate.controller?oid='"+data.oid+"'&ostates=1&pk='"+company+"'&ostate=0'*/
+						}
+						if(state=="已下线职位"){
+							sss=1;
+							html+="<a class='shanxian' onclick='shangxian("+data.oid+","+companySS+","+sss+",0)'  oid='"+data.oid+"' href='javascript:void(0)'>上线</a>";
+							
+						}
+						
+						html+="<a class='deletes' onclick='deleteocc("+data.oid+","+companySS+","+sss+")' href='javascript:void(0)'>删除</a>";
+						
+					})
+					html+="</div>";
+					$(".content").html(html).hide().slideDown(1000);	
+				}
+			})	
+		})	
+	})
+	 	function shangxian(oid,company,sss,ostate){
+		$(".shanxian").attr("href","updateOstate.controller?oid="+oid+"&pk="+company+"&ostate="+sss+"&ostates="+ostate).click();
+		
+	}
+	function xiaxian(oid,company,sss,ostate){
+		$(".xiaxian").attr("href","updateOstate.controller?oid="+oid+"&pk="+company+"&ostate="+sss+"&ostates="+ostate).click();
+		
+	}
+		function deleteocc(oid,company,sss){
+		$(".deletes").attr("href","deleteOccupation.controller?oid="+oid+"&pk="+company+"&ostate="+sss).click();
+		}
+	/*$("#shanxian").click(function(){
+			if(confirm("确认下线职位吗?下线后他人无法查看该职位!2")){
+				var oid=$(this).attr("oid");
+				var company=$("#companyid").val();		
+				$(this).attr("href","updateOstate.controller?oid="+oid+"&ostates=0&pk="+company+"&ostate=0");
+				$(this).click();
+			}
+			
+		})
+		$("#xiaxian").click(function(){
+			if(confirm("确认下线职位吗?上线后他人无法查看该职位!1")){
+				var oid=$(this).attr("oid");
+				var company=$("#companyid").val();		
+				$(this).attr("href","updateOstate.controller?oid="+oid+"&ostates=0&pk="+company+"&ostate=1").click();
+			}
+			
+		})*/
+	
+</script>
 <body>
 <div id="body">
 	<div id="header">
@@ -73,6 +190,7 @@ var youdao_conv_id = 271546;
     </div><!-- end #header -->
     <div id="container">
                 	<div class="sidebar">
+                	<input type="hidden" id="companyid" value="${companys.cid}">
             	<a class="btn_create" href="tocreate.controller">发布新职位</a>
                 <dl class="company_center_aside">
 		<dt>我收到的简历</dt>
@@ -95,20 +213,16 @@ var youdao_conv_id = 271546;
 <dl class="company_center_aside">
 		<dt>我发布的职位</dt>
 			<dd class="current">
-		<a href="queryByOstateController.controller?ostate=0&pk=${companys.cid}">有效职位</a>
+		<a href="javascript:void(0)" pk="${companys.cid}" ostate="0" class="occupactions"  >有效职位</a>
 	</dd>
 	<dd>
-		<a href="queryByOstateController.controller?ostate=1&pk=${companys.cid}">已下线职位</a>
+		<a href="javascript:void(0)" pk="${companys.cid}" ostate="1" class="occupactions" >已下线职位</a>
 	</dd>
 	</dl>
             </div><!-- end .sidebar -->
             <div class="content">
             	<dl class="company_center_content">
-                    <dt>
-                        <h1>
-                            <em></em>
-                        <c:if test="${ostate eq '1'}">已下线</c:if><c:if test="${ostate eq '0'}">有效</c:if>职位 <span>（共<i style="color:#fff;font-style:normal" id="positionNumber">${size}</i>个）</span>                        </h1>
-                    </dt>
+                    <dt><h1><em></em><c:if test="${ostate eq '1'}">已下线</c:if><c:if test="${ostate eq '0'}">有效</c:if>职位 <span>（共<i style="color:#fff;font-style:normal" id="positionNumber">${size}</i>个）</span></h1></dt>
                     <dd>
                     		                    	<form id="searchForm">
 	                    		<input type="hidden" value="Publish" name="type">
