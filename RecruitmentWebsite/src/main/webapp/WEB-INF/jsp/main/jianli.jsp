@@ -112,7 +112,6 @@ var youdao_conv_id = 271546;
                                  $("#jindutiao").text(parseInt($("#jindutiao").text())+10);
 
                                  var jindu= $("#jindutiao").text();
-                                 alert(jindu);
                                  if(jindu==100){
 
                                 	 mizhu.alert('提示','信息已完善,快去投个简历吧!','alert_red');
@@ -724,7 +723,7 @@ var youdao_conv_id = 271546;
 							      	</td> 
 							      	<td>
 							      	<input type="hidden" name="cposition" >
-							          	<input type="text" placeholder="职位名称，如：产品经理" name="positionName" class="positionName" value="${queryAllCorporate.cposition}">
+							          	<input type="text" placeholder="职位名称:" name="positionName" class="positionName" value="${queryAllCorporate.cposition}">
 							      	</td>
 							    </tr>
 	            				<tr>
@@ -893,8 +892,8 @@ var youdao_conv_id = 271546;
 							      	</td>
 							      
 							      	<td>
-							      	<span>职位名称，如：产品经理</span>
-							          	<input type="text" placeholder="职位名称，如：产品经理" name="positionName" value="${queryAllCorporate.cposition}" style="width:150px">
+							      	<span>职位名称：</span>
+							          	<input type="text" placeholder="如：产品经理" name="positionName" value="${queryAllCorporate.cposition}" style="width:150px">
 							          
 							      	</td>
 							      	
@@ -1043,11 +1042,11 @@ var youdao_conv_id = 271546;
 	            				</tr> --%>
 	            				<tr>
 	            				 <td>
-	            				 <span>开始时间</span>
+	            				 <span>开始时间:</span>
 	            				 	<input type="date" name="cyear" value="${queryAllCorporate.cyear }" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:15px;">
 	            				 </td>
 	            				 <td> 
-	            				 <span>结束时间</span>
+	            				 <span>结束时间:</span>
 	            				    <input type="date" name="cyearover" value="${queryAllCorporate.cyearover }" style="width:150px;border:2px solid #EEE9E9;height:40px;font-size:15px;">
 	            				 </td>
 	            				</tr>
