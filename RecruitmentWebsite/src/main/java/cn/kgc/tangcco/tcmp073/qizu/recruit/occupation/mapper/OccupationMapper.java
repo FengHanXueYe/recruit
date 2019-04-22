@@ -18,7 +18,7 @@ public interface OccupationMapper {
 	
 	Occupation queryOccupation(@Param("oid")Integer oid);
 	List<Occupation> querylike(String oname);
-	
+	List<Occupation> querytooccname(String oname);
 	List<Occupation> queryBystate(@Param("ocid")int ocid,@Param("ostate")int ostate);//查看已发布的职位
 	@Delete("delete from occupation where oid=#{oid}")
 	int deleteOccupation(int oid);//删除发布的职位

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+2<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 ﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -73,440 +73,857 @@
 
 		<!-- ------------------------------------------------------------------------------------------- -->
 		<script type="text/javascript">
-			$(function() {
-					$(".ajaxdian").click(function() {
-							//location.href="tosalary.controller"
-							var zhi = $.trim($(this).html());
-							//alert(zhi);
-							var omaxsalary = 0;
-							 var ominsalary = 0;
-							if (zhi == "2k以下") {
-								omaxsalary = 2;
-								ominsalary = 0;
-							} else if (zhi == "2k-5k") {
-								omaxsalary = 5;
-								ominsalary = 2;
-							} else if (zhi == "5k-10k") {
-								omaxsalary = 10;
-								ominsalary = 5;
-							} else if (zhi == "10k-15k") {
-								omaxsalary = 15;
-								ominsalary = 10;
-							} else if (zhi = "15k-25k") {
-								omaxsalary = 25;
-								ominsalary = 15;
-							} else if (zhi = "25k-50k") {
-								omaxsalary = 50;
-								ominsalary = 25;
-							} else if (zhi = "50k以上") {
-								omaxsalary = 100;
-								ominsalary = 50;
-							}
-							
-							
-						   $.ajax({
-								type:"post",
-								url:"tosalary.controller",
-								data:{"omaxsalary":omaxsalary,"ominsalary":ominsalary},
-								success:function(data){
-									$("#ajax").html("");
-									var html = "";
-									$.each(data,function(index,item){
-										var z = "";
-										var x = "";
-										var y = "";
-										var xl = "";	
-										var yh = "";
-										var sj = "";
-										var oname = "";
-										$.each(item.occupation,function(i,t){
-											z = t.ominsalary;
-											x = t.omaxsalary;
-											y = t.olog;
-											oname = t.oname;
-											yh = t.owelfare;
-											sj = t.orelease;
-											$.each(t.education,function(ii,tt){
-												xl = tt.ename;
-											})
+			$(
+					function() {
+						$(".ajaxdian")
+								.click(
+										function() {
+											//location.href="tosalary.controller"
+											var zhi = $.trim($(this).html());
+											//alert(zhi);
+											var omaxsalary = 0;
+											var ominsalary = 0;
+											if (zhi == "2k以下") {
+												omaxsalary = 2;
+												ominsalary = 0;
+											} else if (zhi == "2k-5k") {
+												omaxsalary = 5;
+												ominsalary = 2;
+											} else if (zhi == "5k-10k") {
+												omaxsalary = 10;
+												ominsalary = 5;
+											} else if (zhi == "10k-15k") {
+												omaxsalary = 15;
+												ominsalary = 10;
+											} else if (zhi = "15k-25k") {
+												omaxsalary = 25;
+												ominsalary = 15;
+											} else if (zhi = "25k-50k") {
+												omaxsalary = 50;
+												ominsalary = 25;
+											} else if (zhi = "50k以上") {
+												omaxsalary = 100;
+												ominsalary = 50;
+											}
+
+											
+			$
+													.ajax({
+														type : "post",
+														url : "tosalary.controller",
+														data : {
+															"omaxsalary" : omaxsalary,
+															"ominsalary" : ominsalary
+														},
+														success : function(data) {
+															$("#ajax").html("");
+															var html = "";
+															$
+																	.each(
+																			data,
+																			function(
+																					index,
+																					item) {
+																				var z = "";
+																				var x = "";
+																				var y = "";
+																				var xl = "";
+																				var yh = "";
+																				var sj = "";
+																				var oname = "";
+																				var biaoqian = "";
+																				var ooid = "";
+																				//alert(item.biaoqian)
+																				$
+																						.each(
+																								item.biaoqian,
+																								function(
+																										iii,
+																										ttt) {
+																									biaoqian += "<li>"
+																											+ ttt
+																											+ "</li>";
+																								})
+																				$
+																						.each(
+																								item.occupation,
+																								function(
+																										i,
+																										t) {
+																									z = t.ominsalary;
+																									x = t.omaxsalary;
+																									y = t.olog;
+																									oname = t.oname;
+																									yh = t.owelfare;
+																									sj = t.orelease;
+																									ooid = t.oid;
+
+																									$
+																											.each(
+																													t.education,
+																													function(
+																															ii,
+																															tt) {
+																														xl = tt.ename;
+																													})
+
+																								})
+																				alert(ooid);
+																				var date1 = new Date(
+																						sj);
+																				var dd = date1
+																						.getFullYear()
+																						+ "-"
+																						+ (Number(date1
+																								.getMonth()) + Number(1))
+																						+ "-"
+																						+ date1
+																								.getDate()
+																						+ " "
+																						+ date1
+																								.getHours()
+																						+ ":"
+																						+ date1
+																								.getMinutes()
+																						+ ":"
+																						+ date1
+																								.getSeconds();
+																				html += "<li class='odd clearfix'>"
+																						+ "<div class='hot_pos_l'>"
+																						+ "<div class='mb10'>"
+																						+ "<a href='toxiangqing.controller?cccname="
+																						+ ooid
+																						+ "'>"
+																						+ oname
+																						+ "</a>"
+																						+ "&nbsp; <span class='c9'>["
+																						+ item.caddress
+																						+ "]</span>"
+																						+ "</div>"
+																						+ "<span><em class='c7'>月薪：</em>"
+																						+ z
+																						+ "k--"
+																						+ x
+																						+ "k</span>"
+																						+ "<span><em class='c7'>经验：</em>"
+																						+ y
+																						+ "</span>"
+																						+ "<span><em class='c7'>最低学历： </em>"
+																						+ xl
+																						+ "</span>"
+																						+ "<br /><span><em class='c7'>职位诱惑：</em>"
+																						+ yh
+																						+ "</span>"
+																						+ "<br /><span>发布时间:"
+																						+ sj
+																						+ "</span>"
+																						+ "</div>"
+																						+ "<div class='hot_pos_r'>"
+																						+ "<div class='apply'>"
+																						+ "<a href='toxiangqing.controller?cccname="
+																						+ ooid
+																						+ "'>投个简历</a>"
+																						+ "</div>"
+																						+ "<div class='mb10'>"
+																						+ "<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"
+																						+ item.cname
+																						+ "</a>"
+																						+ "</div>"
+																						+ "<span><em class='c7'>领域：</em>"
+																						+ item.cfield
+																						+ "</span><span><em class='c7'>创始人：</em>"
+																						+ item.founder.fname
+																						+ "</span> <br />"
+																						+ "<span><em class='c7'>阶段： </em>"
+																						+ item.cfs
+																						+ "</span><span><em class='c7'>规模：</em>"
+																						+ item.cscale
+																						+ "</span>"
+																						+ "<ul class='companyTags reset'>";
+																				html += biaoqian;
+																				html += "</ul>"
+																						+ "</div>"
+																						+ "</li>";
+
+																			})
+															$("#ajax")
+																	.html(html)
+																	.hide()
+																	.slideDown(
+																			500);
+
+														},
+														error : function(
+																XMLHttpRequest,
+																textStatus,
+																errorThrown) {
+															// 状态码
+															console
+																	.log(XMLHttpRequest.status);
+															// 状态
+															console
+																	.log(XMLHttpRequest.readyState);
+															// 错误信息   
+															console
+																	.log(textStatus);
+														}
+
+													})
+
 										})
-										var date1 = new Date(sj);
-					    				var dd = date1.getFullYear() + "-" + (Number(date1.getMonth())+Number(1)) + "-" + date1.getDate() + " " + date1.getHours() + ":" + date1.getMinutes() + ":" + date1.getSeconds();
-										html+="<li class='odd clearfix'>"
-													+"<div class='hot_pos_l'>"
-														+"<div class='mb10'>"
-															+"<a href='toxiangqing.controller?cccname=1'>"+oname+"</a>"
-															+"&nbsp; <span class='c9'>["+item.caddress+"]</span>"
-														+"</div>"
-														+"<span><em class='c7'>月薪：</em>"+z+"k--"+x+"k</span>"
-														+"<span><em class='c7'>经验：</em>"+y+"</span>"
-															+"<span><em class='c7'>最低学历： </em>"+xl+"</span>"
-														+"<br /><span><em class='c7'>职位诱惑：</em>"+yh+"</span>"
-														+"<br /><span>发布时间:"+sj+"</span>"
-													+"</div>"
-													+"<div class='hot_pos_r'>"
-														+"<div class='apply'>"
-															+"<a href='toudi.html' target='_blank'>投个简历</a>"
-														+"</div>"
-														+"<div class='mb10'>"
-															+"<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"+item.cname+"</a>"
-														+"</div>"
-														+"<span><em class='c7'>领域：</em>"+item.cfield+"</span><span><em class='c7'>创始人：</em>"+item.founder.fname+"</span> <br />"
-														+"<span><em class='c7'>阶段： </em>"+item.cfs+"</span><span><em class='c7'>规模：</em>"+item.cscale+"</span>"
-														+"<ul class='companyTags reset'>"
-															+"<li>五险一金</li>"
-															+"<li>股票期权</li>"
-															+"<li>年度旅游</li>"
-														+"</ul>"
-													+"</div>"
-											+"</li>";
-										
-									})
-									$("#ajax").html(html).hide().slideDown(500);
-									
-									
-								},
-								error: function (XMLHttpRequest, textStatus, errorThrown) {
-				                    // 状态码
-				                    console.log(XMLHttpRequest.status);
-				                    // 状态
-				                    console.log(XMLHttpRequest.readyState);
-				                    // 错误信息   
-				                    console.log(textStatus);
-				                }
-								
-							})
-						
-					})
-					$(".ajaxdian1").click(function() {
-							//location.href="tosalary.controller"
-							var zhi = $.trim($(this).html());
-							//alert(zhi);
-							var olog = "";
-							if (zhi == "不限") {
-								olog="不限";
-							} else if (zhi == "应届毕业生") {
-								olog="应届毕业生";
-							} else if (zhi == "1年以下") {
-								olog="1年以下";
-							} else if (zhi == "1-3年") {
-								olog="1-3年";
-							} else if (zhi = "3-5年") {
-								olog="3-5年";
-							} else if (zhi = "5-10年") {
-								olog="5-10年";
-							} else if (zhi = "10年以上") {
-								olog="10年以上";
-							}
-							
-							
-						   $.ajax({
-								type:"post",
-								url:"toolog.controller",
-								data:{"olog":olog},
-								success:function(data){
-									$("#ajax").html("");
-									var html = "";
-									$.each(data,function(index,item){
-										var z = "";
-										var x = "";
-										var y = "";
-										var xl = "";	
-										var yh = "";
-										var sj = "";
-										var oname = "";
-										$.each(item.occupation,function(i,t){
-											z = t.ominsalary;
-											x = t.omaxsalary;
-											y = t.olog;
-											oname = t.oname;
-											yh = t.owelfare;
-											sj = t.orelease;
-											$.each(t.education,function(ii,tt){
-												xl = tt.ename;
-											})
+						$(".ajaxdian1")
+								.click(
+										function() {
+											//location.href="tosalary.controller"
+											var zhi = $.trim($(this).html());
+											//alert(zhi);
+											var olog = "";
+											if (zhi == "不限") {
+												olog = "不限";
+											} else if (zhi == "应届毕业生") {
+												olog = "应届毕业生";
+											} else if (zhi == "1年以下") {
+												olog = "1年以下";
+											} else if (zhi == "1-3年") {
+												olog = "1-3年";
+											} else if (zhi = "3-5年") {
+												olog = "3-5年";
+											} else if (zhi = "5-10年") {
+												olog = "5-10年";
+											} else if (zhi = "10年以上") {
+												olog = "10年以上";
+											}
+
+											$
+													.ajax({
+														type : "post",
+														url : "toolog.controller",
+														data : {
+															"olog" : olog
+														},
+														success : function(data) {
+															$("#ajax").html("");
+															var html = "";
+															$
+																	.each(
+																			data,
+																			function(
+																					index,
+																					item) {
+																				var z = "";
+																				var x = "";
+																				var y = "";
+																				var xl = "";
+																				var yh = "";
+																				var sj = "";
+																				var oname = "";
+																				var biaoqian = "";
+																				var ooid = "";
+																				$
+																						.each(
+																								item.biaoqian,
+																								function(
+																										iii,
+																										ttt) {
+																									biaoqian += "<li>"
+																											+ ttt
+																											+ "</li>";
+																								})
+																				$
+																						.each(
+																								item.occupation,
+																								function(
+																										i,
+																										t) {
+																									z = t.ominsalary;
+																									x = t.omaxsalary;
+																									y = t.olog;
+																									oname = t.oname;
+																									yh = t.owelfare;
+																									sj = t.orelease;
+																									ooid = t.oid;
+																									$
+																											.each(
+																													t.education,
+																													function(
+																															ii,
+																															tt) {
+																														xl = tt.ename;
+																													})
+																								})
+																				var date1 = new Date(
+																						sj);
+																				var dd = date1
+																						.getFullYear()
+																						+ "-"
+																						+ (Number(date1
+																								.getMonth()) + Number(1))
+																						+ "-"
+																						+ date1
+																								.getDate()
+																						+ " "
+																						+ date1
+																								.getHours()
+																						+ ":"
+																						+ date1
+																								.getMinutes()
+																						+ ":"
+																						+ date1
+																								.getSeconds();
+																				html += "<li class='odd clearfix'>"
+																						+ "<div class='hot_pos_l'>"
+																						+ "<div class='mb10'>"
+																						+ "<a href='toxiangqing.controller?cccname="
+																						+ ooid
+																						+ "'>"
+																						+ oname
+																						+ "</a>"
+																						+ "&nbsp; <span class='c9'>["
+																						+ item.caddress
+																						+ "]</span>"
+																						+ "</div>"
+																						+ "<span><em class='c7'>月薪：</em>"
+																						+ z
+																						+ "--"
+																						+ x
+																						+ "</span>"
+																						+ "<span><em class='c7'>经验：</em>"
+																						+ y
+																						+ "</span>"
+																						+ "<span><em class='c7'>最低学历： </em>"
+																						+ xl
+																						+ "</span>"
+																						+ "<br /><span><em class='c7'>职位诱惑：</em>"
+																						+ yh
+																						+ "</span>"
+																						+ "<br /><span>发布时间:"
+																						+ sj
+																						+ "</span>"
+																						+ "</div>"
+																						+ "<div class='hot_pos_r'>"
+																						+ "<div class='apply'>"
+																						+ "<a href='toxiangqing.controller?cccname="
+																						+ ooid
+																						+ "'>投个简历</a>"
+																						+ "</div>"
+																						+ "<div class='mb10'>"
+																						+ "<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"
+																						+ item.cname
+																						+ "</a>"
+																						+ "</div>"
+																						+ "<span><em class='c7'>领域：</em>"
+																						+ item.cfield
+																						+ "</span><span><em class='c7'>创始人：</em>"
+																						+ item.founder.fname
+																						+ "</span> <br />"
+																						+ "<span><em class='c7'>阶段： </em>"
+																						+ item.cfs
+																						+ "</span><span><em class='c7'>规模：</em>"
+																						+ item.cscale
+																						+ "</span>"
+																						+ "<ul class='companyTags reset'>"
+																				html += biaoqian;
+																				html += "</ul>"
+																						+ "</div>"
+																						+ "</li>";
+
+																			})
+															$("#ajax")
+																	.html(html)
+																	.hide()
+																	.slideDown(
+																			500);
+
+														},
+														error : function(
+																XMLHttpRequest,
+																textStatus,
+																errorThrown) {
+															// 状态码
+															console
+																	.log(XMLHttpRequest.status);
+															// 状态
+															console
+																	.log(XMLHttpRequest.readyState);
+															// 错误信息   
+															console
+																	.log(textStatus);
+														}
+
+													})
+
 										})
-										var date1 = new Date(sj);
-					    				var dd = date1.getFullYear() + "-" + (Number(date1.getMonth())+Number(1)) + "-" + date1.getDate() + " " + date1.getHours() + ":" + date1.getMinutes() + ":" + date1.getSeconds();
-										html+="<li class='odd clearfix'>"
-													+"<div class='hot_pos_l'>"
-														+"<div class='mb10'>"
-															+"<a href='toxiangqing.controller?cccname=1'>"+oname+"</a>"
-															+"&nbsp; <span class='c9'>["+item.caddress+"]</span>"
-														+"</div>"
-														+"<span><em class='c7'>月薪：</em>"+z+"--"+x+"</span>"
-														+"<span><em class='c7'>经验：</em>"+y+"</span>"
-															+"<span><em class='c7'>最低学历： </em>"+xl+"</span>"
-														+"<br /><span><em class='c7'>职位诱惑：</em>"+yh+"</span>"
-														+"<br /><span>发布时间:"+sj+"</span>"
-													+"</div>"
-													+"<div class='hot_pos_r'>"
-														+"<div class='apply'>"
-															+"<a href='toudi.html' target='_blank'>投个简历</a>"
-														+"</div>"
-														+"<div class='mb10'>"
-															+"<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"+item.cname+"</a>"
-														+"</div>"
-														+"<span><em class='c7'>领域：</em>"+item.cfield+"</span><span><em class='c7'>创始人：</em>"+item.founder.fname+"</span> <br />"
-														+"<span><em class='c7'>阶段： </em>"+item.cfs+"</span><span><em class='c7'>规模：</em>"+item.cscale+"</span>"
-														+"<ul class='companyTags reset'>"
-															+"<li>五险一金</li>"
-															+"<li>股票期权</li>"
-															+"<li>年度旅游</li>"
-														+"</ul>"
-													+"</div>"
-											+"</li>";
-										
-									})
-									$("#ajax").html(html).hide().slideDown(500);
-									
-									
-								},
-								error: function (XMLHttpRequest, textStatus, errorThrown) {
-				                    // 状态码
-				                    console.log(XMLHttpRequest.status);
-				                    // 状态
-				                    console.log(XMLHttpRequest.readyState);
-				                    // 错误信息   
-				                    console.log(textStatus);
-				                }
-								
-							})
-						
-					})
-					$(".ajaxdian2").click(function() {
-							var zhi = $.trim($(this).html());
-							//alert(zhi);
-							var ename = "";
-							if (zhi == "不限") {
-								ename="不限";
-							} else if (zhi == "大专") {
-								ename="大专";
-							} else if (zhi == "本科") {
-								ename="本科";
-							} else if (zhi == "硕士") {
-								ename="硕士";
-							} else if (zhi = "博士") {
-								ename="博士";
-								}
-						   $.ajax({
-								type:"post",
-								url:"toename.controller",
-								data:{"ename":ename},
-								success:function(data){
-									$("#ajax").html("");
-									var html = "";
-									$.each(data,function(index,item){
-										var z = "";
-										var x = "";
-										var y = "";
-										var xl = "";	
-										var yh = "";
-										var sj = "";
-										var oname = "";
-										$.each(item.occupation,function(i,t){
-											z = t.ominsalary;
-											x = t.omaxsalary;
-											y = t.olog;
-											oname = t.oname;
-											yh = t.owelfare;
-											sj = t.orelease;
-											$.each(t.education,function(ii,tt){
-												xl = tt.ename;
-											})
+						$(".ajaxdian2")
+								.click(
+										function() {
+											var zhi = $.trim($(this).html());
+											//alert(zhi);
+											var ename = "";
+											if (zhi == "不限") {
+												ename = "不限";
+											} else if (zhi == "大专") {
+												ename = "大专";
+											} else if (zhi == "本科") {
+												ename = "本科";
+											} else if (zhi == "硕士") {
+												ename = "硕士";
+											} else if (zhi = "博士") {
+												ename = "博士";
+											}
+											$
+													.ajax({
+														type : "post",
+														url : "toename.controller",
+														data : {
+															"ename" : ename
+														},
+														success : function(data) {
+															$("#ajax").html("");
+															var html = "";
+															$
+																	.each(
+																			data,
+																			function(
+																					index,
+																					item) {
+																				var z = "";
+																				var x = "";
+																				var y = "";
+																				var xl = "";
+																				var yh = "";
+																				var sj = "";
+																				var oname = "";
+																				var biaoqian = "";
+																				var ooid = "";
+																				//alert(item.biaoqian)
+																				$
+																						.each(
+																								item.biaoqian,
+																								function(
+																										iii,
+																										ttt) {
+																									biaoqian += "<li>"
+																											+ ttt
+																											+ "</li>";
+																								})
+																				$
+																						.each(
+																								item.occupation,
+																								function(
+																										i,
+																										t) {
+																									z = t.ominsalary;
+																									x = t.omaxsalary;
+																									y = t.olog;
+																									oname = t.oname;
+																									yh = t.owelfare;
+																									sj = t.orelease;
+																									ooid = t.oid;
+																									$
+																											.each(
+																													t.education,
+																													function(
+																															ii,
+																															tt) {
+																														xl = tt.ename;
+																													})
+																								})
+																				var date1 = new Date(
+																						sj);
+																				var dd = date1
+																						.getFullYear()
+																						+ "-"
+																						+ (Number(date1
+																								.getMonth()) + Number(1))
+																						+ "-"
+																						+ date1
+																								.getDate()
+																						+ " "
+																						+ date1
+																								.getHours()
+																						+ ":"
+																						+ date1
+																								.getMinutes()
+																						+ ":"
+																						+ date1
+																								.getSeconds();
+																				html += "<li class='odd clearfix'>"
+																						+ "<div class='hot_pos_l'>"
+																						+ "<div class='mb10'>"
+																						+ "<a href='toxiangqing.controller?cccname="
+																						+ ooid
+																						+ "'>"
+																						+ oname
+																						+ "</a>"
+																						+ "&nbsp; <span class='c9'>["
+																						+ item.caddress
+																						+ "]</span>"
+																						+ "</div>"
+																						+ "<span><em class='c7'>月薪：</em>"
+																						+ z
+																						+ "--"
+																						+ x
+																						+ "</span>"
+																						+ "<span><em class='c7'>经验：</em>"
+																						+ y
+																						+ "</span>"
+																						+ "<span><em class='c7'>最低学历： </em>"
+																						+ xl
+																						+ "</span>"
+																						+ "<br /><span><em class='c7'>职位诱惑：</em>"
+																						+ yh
+																						+ "</span>"
+																						+ "<br /><span>发布时间:"
+																						+ sj
+																						+ "</span>"
+																						+ "</div>"
+																						+ "<div class='hot_pos_r'>"
+																						+ "<div class='apply'>"
+																						+ "<a href='toxiangqing.controller?cccname="
+																						+ ooid
+																						+ "'>投个简历</a>"
+																						+ "</div>"
+																						+ "<div class='mb10'>"
+																						+ "<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"
+																						+ item.cname
+																						+ "</a>"
+																						+ "</div>"
+																						+ "<span><em class='c7'>领域：</em>"
+																						+ item.cfield
+																						+ "</span><span><em class='c7'>创始人：</em>"
+																						+ item.founder.fname
+																						+ "</span> <br />"
+																						+ "<span><em class='c7'>阶段： </em>"
+																						+ item.cfs
+																						+ "</span><span><em class='c7'>规模：</em>"
+																						+ item.cscale
+																						+ "</span>"
+																						+ "<ul class='companyTags reset'>"
+																				html += biaoqian;
+																				html += "</ul>"
+																						+ "</div>"
+																						+ "</li>";
+
+																			})
+															$("#ajax")
+																	.html(html)
+																	.hide()
+																	.slideDown(
+																			500);
+														}
+
+													})
 										})
-										var date1 = new Date(sj);
-					    				var dd = date1.getFullYear() + "-" + (Number(date1.getMonth())+Number(1)) + "-" + date1.getDate() + " " + date1.getHours() + ":" + date1.getMinutes() + ":" + date1.getSeconds();
-										html+="<li class='odd clearfix'>"
-													+"<div class='hot_pos_l'>"
-														+"<div class='mb10'>"
-															+"<a href='toxiangqing.controller?cccname=1'>"+oname+"</a>"
-															+"&nbsp; <span class='c9'>["+item.caddress+"]</span>"
-														+"</div>"
-														+"<span><em class='c7'>月薪：</em>"+z+"--"+x+"</span>"
-														+"<span><em class='c7'>经验：</em>"+y+"</span>"
-															+"<span><em class='c7'>最低学历： </em>"+xl+"</span>"
-														+"<br /><span><em class='c7'>职位诱惑：</em>"+yh+"</span>"
-														+"<br /><span>发布时间:"+sj+"</span>"
-													+"</div>"
-													+"<div class='hot_pos_r'>"
-														+"<div class='apply'>"
-															+"<a href='toudi.html' target='_blank'>投个简历</a>"
-														+"</div>"
-														+"<div class='mb10'>"
-															+"<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"+item.cname+"</a>"
-														+"</div>"
-														+"<span><em class='c7'>领域：</em>"+item.cfield+"</span><span><em class='c7'>创始人：</em>"+item.founder.fname+"</span> <br />"
-														+"<span><em class='c7'>阶段： </em>"+item.cfs+"</span><span><em class='c7'>规模：</em>"+item.cscale+"</span>"
-														+"<ul class='companyTags reset'>"
-															+"<li>五险一金</li>"
-															+"<li>股票期权</li>"
-															+"<li>年度旅游</li>"
-														+"</ul>"
-													+"</div>"
-											+"</li>";
-										
-									})
-									$("#ajax").html(html).hide().slideDown(500);
-								}
-								
-						   
-						   })
-					})
-					$(".ajaxdian3").click(function() {
-							var zhi = $.trim($(this).html());
-							//alert(zhi);
-							var onature=0;
-							if (zhi == "全职") {
-								onature=1;
-							} else if (zhi == "兼职") {
-								onature=2;
-							} else if (zhi == "实习") {
-								onature=3;
-							} 
-						   $.ajax({
-								type:"post",
-								url:"toonature.controller",
-								data:{"onature":onature},
-								success:function(data){
-									$("#ajax").html("");
-									var html = "";
-									$.each(data,function(index,item){
-										var z = "";
-										var x = "";
-										var y = "";
-										var xl = "";	
-										var yh = "";
-										var sj = "";
-										var oname = "";
-										$.each(item.occupation,function(i,t){
-											z = t.ominsalary;
-											x = t.omaxsalary;
-											y = t.olog;
-											oname = t.oname;
-											yh = t.owelfare;
-											sj = t.orelease;
-											$.each(t.education,function(ii,tt){
-												xl = tt.ename;
-											})
+						$(".ajaxdian3")
+								.click(
+										function() {
+											var zhi = $.trim($(this).html());
+											//alert(zhi);
+											var onature = 0;
+											if (zhi == "全职") {
+												onature = 1;
+											} else if (zhi == "兼职") {
+												onature = 2;
+											} else if (zhi == "实习") {
+												onature = 3;
+											}
+											$
+													.ajax({
+														type : "post",
+														url : "toonature.controller",
+														data : {
+															"onature" : onature
+														},
+														success : function(data) {
+															$("#ajax").html("");
+															var html = "";
+															$
+																	.each(
+																			data,
+																			function(
+																					index,
+																					item) {
+																				var z = "";
+																				var x = "";
+																				var y = "";
+																				var xl = "";
+																				var yh = "";
+																				var sj = "";
+																				var oname = "";
+																				var biaoqian = "";
+																				var ooid = "";
+																				//alert(item.biaoqian)
+																				$
+																						.each(
+																								item.biaoqian,
+																								function(
+																										iii,
+																										ttt) {
+																									biaoqian += "<li>"
+																											+ ttt
+																											+ "</li>";
+																								})
+																				$
+																						.each(
+																								item.occupation,
+																								function(
+																										i,
+																										t) {
+																									z = t.ominsalary;
+																									x = t.omaxsalary;
+																									y = t.olog;
+																									oname = t.oname;
+																									yh = t.owelfare;
+																									sj = t.orelease;
+																									ooid = t.oid;
+																									$
+																											.each(
+																													t.education,
+																													function(
+																															ii,
+																															tt) {
+																														xl = tt.ename;
+																													})
+																								})
+																				var date1 = new Date(
+																						sj);
+																				var dd = date1
+																						.getFullYear()
+																						+ "-"
+																						+ (Number(date1
+																								.getMonth()) + Number(1))
+																						+ "-"
+																						+ date1
+																								.getDate()
+																						+ " "
+																						+ date1
+																								.getHours()
+																						+ ":"
+																						+ date1
+																								.getMinutes()
+																						+ ":"
+																						+ date1
+																								.getSeconds();
+																				html += "<li class='odd clearfix'>"
+																						+ "<div class='hot_pos_l'>"
+																						+ "<div class='mb10'>"
+																						+ "<a href='toxiangqing.controller?cccname="
+																						+ ooid
+																						+ "'>"
+																						+ oname
+																						+ "</a>"
+																						+ "&nbsp; <span class='c9'>["
+																						+ item.caddress
+																						+ "]</span>"
+																						+ "</div>"
+																						+ "<span><em class='c7'>月薪：</em>"
+																						+ z
+																						+ "--"
+																						+ x
+																						+ "</span>"
+																						+ "<span><em class='c7'>经验：</em>"
+																						+ y
+																						+ "</span>"
+																						+ "<span><em class='c7'>最低学历： </em>"
+																						+ xl
+																						+ "</span>"
+																						+ "<br /><span><em class='c7'>职位诱惑：</em>"
+																						+ yh
+																						+ "</span>"
+																						+ "<br /><span>发布时间:"
+																						+ sj
+																						+ "</span>"
+																						+ "</div>"
+																						+ "<div class='hot_pos_r'>"
+																						+ "<div class='apply'>"
+																						+ "<a href='toxiangqing.controller?cccname="
+																						+ ooid
+																						+ "'>投个简历</a>"
+																						+ "</div>"
+																						+ "<div class='mb10'>"
+																						+ "<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"
+																						+ item.cname
+																						+ "</a>"
+																						+ "</div>"
+																						+ "<span><em class='c7'>领域：</em>"
+																						+ item.cfield
+																						+ "</span><span><em class='c7'>创始人：</em>"
+																						+ item.founder.fname
+																						+ "</span> <br />"
+																						+ "<span><em class='c7'>阶段： </em>"
+																						+ item.cfs
+																						+ "</span><span><em class='c7'>规模：</em>"
+																						+ item.cscale
+																						+ "</span>"
+																						+ "<ul class='companyTags reset'>"
+																				html += biaoqian;
+																				html += "</ul>"
+																						+ "</div>"
+																						+ "</li>";
+
+																			})
+															$("#ajax")
+																	.html(html)
+																	.hide()
+																	.slideDown(
+																			500);
+														}
+
+													})
 										})
-										var date1 = new Date(sj);
-					    				var dd = date1.getFullYear() + "-" + (Number(date1.getMonth())+Number(1)) + "-" + date1.getDate() + " " + date1.getHours() + ":" + date1.getMinutes() + ":" + date1.getSeconds();
-										html+="<li class='odd clearfix'>"
-													+"<div class='hot_pos_l'>"
-														+"<div class='mb10'>"
-															+"<a href='toxiangqing.controller?cccname=1'>"+oname+"</a>"
-															+"&nbsp; <span class='c9'>["+item.caddress+"]</span>"
-														+"</div>"
-														+"<span><em class='c7'>月薪：</em>"+z+"--"+x+"</span>"
-														+"<span><em class='c7'>经验：</em>"+y+"</span>"
-															+"<span><em class='c7'>最低学历： </em>"+xl+"</span>"
-														+"<br /><span><em class='c7'>职位诱惑：</em>"+yh+"</span>"
-														+"<br /><span>发布时间:"+sj+"</span>"
-													+"</div>"
-													+"<div class='hot_pos_r'>"
-														+"<div class='apply'>"
-															+"<a href='toudi.html' target='_blank'>投个简历</a>"
-														+"</div>"
-														+"<div class='mb10'>"
-															+"<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"+item.cname+"</a>"
-														+"</div>"
-														+"<span><em class='c7'>领域：</em>"+item.cfield+"</span><span><em class='c7'>创始人：</em>"+item.founder.fname+"</span> <br />"
-														+"<span><em class='c7'>阶段： </em>"+item.cfs+"</span><span><em class='c7'>规模：</em>"+item.cscale+"</span>"
-														+"<ul class='companyTags reset'>"
-															+"<li>五险一金</li>"
-															+"<li>股票期权</li>"
-															+"<li>年度旅游</li>"
-														+"</ul>"
-													+"</div>"
-											+"</li>";
-										
-									})
-									$("#ajax").html(html).hide().slideDown(500);
-								}
-								
-						   
-						   })
-					})
-					$(".ajaxdian4").click(function() {
-							var zhi = $.trim($(this).html());
-							//alert(zhi);
-							var orelease=0;
-							if (zhi == "今天") {
-								orelease=-1;
-							} else if (zhi == "3天之内") {
-								orelease=-3;
-							} else if (zhi == "一周内") {
-								orelease=-7;
-							} else if (zhi == "一月内") {
-								orelease=-30;
-							} 
-						   $.ajax({
-								type:"post",
-								url:"toorelease.controller",
-								data:{"orelease":orelease},
-								success:function(data){
-									$("#ajax").html("");
-									var html = "";
-									$.each(data,function(index,item){
-										var z = "";
-										var x = "";
-										var y = "";
-										var xl = "";	
-										var yh = "";
-										var sj = "";
-										var oname = "";
-										$.each(item.occupation,function(i,t){
-											z = t.ominsalary;
-											x = t.omaxsalary;
-											y = t.olog;
-											oname = t.oname;
-											yh = t.owelfare;
-											sj = t.orelease;
-											$.each(t.education,function(ii,tt){
-												xl = tt.ename;
-											})
+						$(".ajaxdian4")
+								.click(
+										function() {
+											var zhi = $.trim($(this).html());
+											//alert(zhi);
+											var orelease = 0;
+											if (zhi == "今天") {
+												orelease = -1;
+											} else if (zhi == "3天之内") {
+												orelease = -3;
+											} else if (zhi == "一周内") {
+												orelease = -7;
+											} else if (zhi == "一月内") {
+												orelease = -30;
+											}
+											$
+													.ajax({
+														type : "post",
+														url : "toorelease.controller",
+														data : {
+															"orelease" : orelease
+														},
+														success : function(data) {
+															$("#ajax").html("");
+															var html = "";
+															$
+																	.each(
+																			data,
+																			function(
+																					index,
+																					item) {
+																				var z = "";
+																				var x = "";
+																				var y = "";
+																				var xl = "";
+																				var yh = "";
+																				var sj = "";
+																				var oname = "";
+																				var ooid = "";
+																				var biaoqian = "";
+
+																				$
+																						.each(
+																								item.occupation,
+																								function(
+																										i,
+																										t) {
+																									z = t.ominsalary;
+																									x = t.omaxsalary;
+																									y = t.olog;
+																									oname = t.oname;
+																									yh = t.owelfare;
+																									sj = t.orelease;
+																									ooid = t.oid;
+																									$
+																											.each(
+																													t.education,
+																													function(
+																															ii,
+																															tt) {
+																														xl = tt.ename;
+																													})
+																								})
+																				var date1 = new Date(
+																						sj);
+																				var dd = date1
+																						.getFullYear()
+																						+ "-"
+																						+ (Number(date1
+																								.getMonth()) + Number(1))
+																						+ "-"
+																						+ date1
+																								.getDate()
+																						+ " "
+																						+ date1
+																								.getHours()
+																						+ ":"
+																						+ date1
+																								.getMinutes()
+																						+ ":"
+																						+ date1
+																								.getSeconds();
+																				html += "<li class='odd clearfix'>"
+																						+ "<div class='hot_pos_l'>"
+																						+ "<div class='mb10'>"
+																						+ "<a href='toxiangqing.controller?cccname="
+																						+ ooid
+																						+ "'>"
+																						+ oname
+																						+ "</a>"
+																						+ "&nbsp; <span class='c9'>["
+																						+ item.caddress
+																						+ "]</span>"
+																						+ "</div>"
+																						+ "<span><em class='c7'>月薪：</em>"
+																						+ z
+																						+ "--"
+																						+ x
+																						+ "</span>"
+																						+ "<span><em class='c7'>经验：</em>"
+																						+ y
+																						+ "</span>"
+																						+ "<span><em class='c7'>最低学历： </em>"
+																						+ xl
+																						+ "</span>"
+																						+ "<br /><span><em class='c7'>职位诱惑：</em>"
+																						+ yh
+																						+ "</span>"
+																						+ "<br /><span>发布时间:"
+																						+ sj
+																						+ "</span>"
+																						+ "</div>"
+																						+ "<div class='hot_pos_r'>"
+																						+ "<div class='apply'>"
+																						+ "<a href='toxiangqing.controller?cccname="
+																						+ ooid
+																						+ "'>投个简历</a>"
+																						+ "</div>"
+																						+ "<div class='mb10'>"
+																						+ "<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"
+																						+ item.cname
+																						+ "</a>"
+																						+ "</div>"
+																						+ "<span><em class='c7'>领域：</em>"
+																						+ item.cfield
+																						+ "</span><span><em class='c7'>创始人：</em>"
+																						+ item.founder.fname
+																						+ "</span> <br />"
+																						+ "<span><em class='c7'>阶段： </em>"
+																						+ item.cfs
+																						+ "</span><span><em class='c7'>规模：</em>"
+																						+ item.cscale
+																						+ "</span>"
+																						+ "<ul class='companyTags reset'>"
+																						+ "<li>五险一金</li>"
+																						+ "<li>股票期权</li>"
+																						+ "<li>年度旅游</li>"
+																						+ "</ul>"
+																						+ "</div>"
+																						+ "</li>";
+
+																			})
+															$("#ajax")
+																	.html(html)
+																	.hide()
+																	.slideDown(
+																			500);
+														}
+
+													})
 										})
-										var date1 = new Date(sj);
-					    				var dd = date1.getFullYear() + "-" + (Number(date1.getMonth())+Number(1)) + "-" + date1.getDate() + " " + date1.getHours() + ":" + date1.getMinutes() + ":" + date1.getSeconds();
-										html+="<li class='odd clearfix'>"
-													+"<div class='hot_pos_l'>"
-														+"<div class='mb10'>"
-															+"<a href='toxiangqing.controller?cccname=1'>"+oname+"</a>"
-															+"&nbsp; <span class='c9'>["+item.caddress+"]</span>"
-														+"</div>"
-														+"<span><em class='c7'>月薪：</em>"+z+"--"+x+"</span>"
-														+"<span><em class='c7'>经验：</em>"+y+"</span>"
-															+"<span><em class='c7'>最低学历： </em>"+xl+"</span>"
-														+"<br /><span><em class='c7'>职位诱惑：</em>"+yh+"</span>"
-														+"<br /><span>发布时间:"+sj+"</span>"
-													+"</div>"
-													+"<div class='hot_pos_r'>"
-														+"<div class='apply'>"
-															+"<a href='toudi.html' target='_blank'>投个简历</a>"
-														+"</div>"
-														+"<div class='mb10'>"
-															+"<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"+item.cname+"</a>"
-														+"</div>"
-														+"<span><em class='c7'>领域：</em>"+item.cfield+"</span><span><em class='c7'>创始人：</em>"+item.founder.fname+"</span> <br />"
-														+"<span><em class='c7'>阶段： </em>"+item.cfs+"</span><span><em class='c7'>规模：</em>"+item.cscale+"</span>"
-														+"<ul class='companyTags reset'>"
-															+"<li>五险一金</li>"
-															+"<li>股票期权</li>"
-															+"<li>年度旅游</li>"
-														+"</ul>"
-													+"</div>"
-											+"</li>";
-										
-									})
-									$("#ajax").html(html).hide().slideDown(500);
-								}
-								
-						   
-						   })
+
 					})
-					
-			}) 
 		</script>
 		<div id="container">
 
@@ -538,19 +955,19 @@
 							<div class="ajaxdian1">3-5年</div>
 							<div class="ajaxdian1">5-10年</div>
 							<div class="ajaxdian1">10年以上</div>
-						</dd>    
+						</dd>
 					</dl>
 					<dl>
 						<dt>
 							最低学历 <em></em>
 						</dt>
-						<dd>    
+						<dd>
 							<div class="ajaxdian2">不限</div>
 							<div class="ajaxdian2">大专</div>
 							<div class="ajaxdian2">本科</div>
 							<div class="ajaxdian2">硕士</div>
 							<div class="ajaxdian2">博士</div>
-						</dd>   
+						</dd>
 					</dl>
 					<dl>
 						<dt>
@@ -607,13 +1024,13 @@
 
 			<div class="content">
 				<div id="search_box">
-					<form id="searchForm1" name="searchForm" method="get">
+					<form id="searchForm1" name="searchForm1" method="get">
 						<ul id="searchType">
 							<li data-searchtype="1" class="type_selected">职位</li>
 							<li data-searchtype="4">公司</li>
 						</ul>
 						<div class="searchtype_arrow"></div>
-						<input type="text" id="search_input" name="kd" tabindex="1"
+						<input type="text" id="search_input" name="oname" tabindex="1"
 							value="${kd}" placeholder="请输入职位名称，如：产品经理" /> <input
 							type="hidden" name="spc" id="spcInput" value="1" /> <input
 							type="hidden" name="pl" id="plInput" value="" /> <input
@@ -631,8 +1048,10 @@
 				</div>
 				<script type="text/javascript">
 					function search() {
+
 						var oname = $("input[name='oname']").val();
-						$("#searchForm").attr("action",
+
+						$("#searchForm1").attr("action",
 								"toListOoccupation.controller").submit();
 
 					}
@@ -677,37 +1096,46 @@
 }
 </style>
 				<script type="text/javascript" src="style/js/search.min.js"></script>
+				<script type="text/javascript">
+				$(function() {
+					$(".remen").click(function() {
+						var ocname=$.trim($(this).html());
+						location.href="toListOoccupation.controller?oname="+ocname;
+					})
+				})
+				
+				</script>
 				<dl class="hotSearch">
 					<dt>热门搜索：</dt>
 					<dd>
-						<a href="list.htmlJava?labelWords=label&city=全国">Java</a>
+						<a href="#" class="remen">Java</a>
 					</dd>
 					<dd>
-						<a href="list.htmlPHP?labelWords=label&city=全国">PHP</a>
+						<a href="#" class="remen">PHP</a>
 					</dd>
 					<dd>
-						<a href="list.htmlAndroid?labelWords=label&city=全国">Android</a>
+						<a href="#" class="remen">Android</a>
 					</dd>
 					<dd>
-						<a href="list.htmliOS?labelWords=label&city=全国">iOS</a>
+						<a href="#" class="remen">iOS</a>
 					</dd>
 					<dd>
-						<a href="list.html前端?labelWords=label&city=全国">前端</a>
+						<a href="#" class="remen">前端</a>
 					</dd>
 					<dd>
-						<a href="list.html产品经理?labelWords=label&city=全国">产品经理</a>
+						<a href="#" class="remen">产品经理</a>
 					</dd>
 					<dd>
-						<a href="list.htmlUI?labelWords=label&city=全国">UI</a>
+						<a href="#" class="remen">UI</a>
 					</dd>
 					<dd>
-						<a href="list.html运营?labelWords=label&city=全国">运营</a>
+						<a href="#" class="remen">运营</a>
 					</dd>
 					<dd>
-						<a href="list.htmlBD?labelWords=label&city=全国">BD</a>
+						<a href="#" class="remen">BD</a>
 					</dd>
 					<dd>
-						<a href="list.html?gx=实习&city=全国">实习</a>
+						<a href="#" class="remen">实习</a>
 					</dd>
 				</dl>
 				<div class="breakline"></div>
@@ -804,7 +1232,7 @@
 							<li class="odd clearfix">
 								<div class="hot_pos_l">
 									<div class="mb10">
-										<a href="toxiangqing.controller?cccname=${ooname.oid }">${ooname.oname}</a>
+										<a href="toxiangqing.controller?cccname=${ooname.oid }" >${ooname.oname}</a>
 										&nbsp; <span class="c9">[${ooname.ocity}]</span>
 									</div>
 									<span><em class="c7">月薪：</em> <fmt:formatNumber
@@ -821,11 +1249,11 @@
 								</div>
 								<div class="hot_pos_r">
 									<div class="apply">
-										<a href="toudi.html" target="_blank">投个简历</a>
+										<a href="toxiangqing.controller?cccname=${ooname.oid}">投个简历</a>
 									</div>
 									<div class="mb10">
 
-									
+
 
 										<a href="h/c/1712.html" title="紫色医疗" target="_blank">${oname.cname}</a>
 
@@ -835,15 +1263,15 @@
 										class="c7">阶段： </em> ${oname.cfs}</span> <span><em class="c7">规模：
 									</em>${oname.cscale}</span>
 									<ul class="companyTags reset">
-									<c:forEach items="${oname.biaoqian}" var="biaoqian">
-									<li>${biaoqian}</li>
-										
-									</c:forEach>
+										<c:forEach items="${oname.biaoqian}" var="biaoqian">
+											<li>${biaoqian}</li>
+
+										</c:forEach>
 										<!-- <li>股票期权</li>
 										<li>年度旅游</li> -->
 									</ul>
 								</div>
-						</li>
+							</li>
 						</c:forEach>
 					</c:forEach>
 				</ul>

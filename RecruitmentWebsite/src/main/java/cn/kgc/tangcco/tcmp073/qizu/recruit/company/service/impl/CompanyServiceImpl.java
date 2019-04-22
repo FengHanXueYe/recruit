@@ -107,6 +107,10 @@ public class CompanyServiceImpl implements CompanyService {
 		
 		return mapper.queryListCompany(ocity, cfs, cfield);
 	}
+	@Override
+	public List<Company> querytooccname(String ocname) {
+		return mapper.querytooccname(ocname);
+	}
 
 	// 1232
 }

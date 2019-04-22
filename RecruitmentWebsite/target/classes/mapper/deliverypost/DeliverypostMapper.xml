@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.deliverypost.mapper.DeliverypostMapper">
+	<resultMap type="Deliverypost" id="deliverypostMap" autoMapping="true">
+		<id column="did" property="did"/>
+		<association property="ruser" resultMap="recruitingUsersMap"></association>
+		<collection property="occupation" resultMap="occupationMap"></collection>
+	</resultMap>
+	<resultMap type="RecruitingUsers" id="recruitingUsersMap" autoMapping="true">
+		<id column="userid" property="userid"/>
+	</resultMap>
+	<resultMap type="Occupation" id="occupationMap" autoMapping="true">
+		<id property="oid" column="oid"/>
+	</resultMap>
+
+	<select id="queryAllDeliverypost" resultMap="deliverypostMap" parameterType="Deliverypost">
+		SELECT * FROM `recruitingusers` r,`occupation` o,`deliverypost` d WHERE r.`userid`=d.`userid` AND o.`oid`=d.`oid`  and d.userid=#{dp.ruser.userid}
+		<if test="dp.dstatus!=null and dp.dstatus!=''">
+			and d.dstatus=#{dp.dstatus}
+		</if>	
+		order by d.dtime desc
+	</select>
+	
+	<update id="updateDeliverypost" parameterType="Deliverypost">
+		update Deliverypost 
+		<set>
+			<if test="dp.dstatus!=null and dp.dstatus!=''"> dstatus=#{dp.dstatus},</if>
+			<if test="dp.texttz!=null and dp.texttz!=''"> texttz=#{dp.texttz},</if>
+			dxytime=NOW()
+		</set>
+		where did=#{dp.did}
+		<!-- set dstatus=#{dp.dstatus},dxytime=NOW() where did=#{dp.did} -->
+	</update>
+	
+	<select id="detailDeliverypost" resultMap="deliverypostMap" parameterType="Deliverypost">
+		SELECT * FROM `recruitingusers` r,`occupation` o,`deliverypost` d WHERE r.`userid`=d.`userid` AND o.`oid`=d.`oid` AND r.`userid`=#{dp.ruser.userid} AND o.`oid`=#{dp.occupation.oid}
+	</select>
+	
+	
+</mapper>

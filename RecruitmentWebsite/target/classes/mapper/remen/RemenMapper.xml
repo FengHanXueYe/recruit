@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.remen.mapper.RemenMapper">
+
+<resultMap type="Remen" id="Remen" autoMapping="true">
+<association property=""></association>
+
+</resultMap>
+	<select id="queryall" resultMap="Remen">
+		SELECT *FROM company co,founder f,occupation o,education e WHERE
+		f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid
+	</select>
+</mapper>

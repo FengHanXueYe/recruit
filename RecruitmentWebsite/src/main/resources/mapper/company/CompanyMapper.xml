@@ -92,7 +92,6 @@
 	<select id="querylikeorelease" resultMap="CompanyMaps"
 		parameterType="int">
 		SELECT *FROM company co,founder f,occupation o,education e WHERE f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid AND DATEDIFF(orelease,NOW())&lt;=0 AND DATEDIFF(orelease,NOW())&gt;#{orelease}
-
 	</select>
 	<select id="queryByUid" parameterType="int" resultMap="CompanyMaps">
 		select *
@@ -103,6 +102,11 @@
 		parameterType="int">
 		SELECT * FROM `company` WHERE cid=#{cid}
 	</select>
-
-
+	<select id="querytooccname" resultMap="CompanyMaps" parameterType="String">
+	SELECT *FROM company co,founder f,occupation o,education
+	        e WHERE
+		f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid AND
+		o.oname=#{ocname}
+	
+	</select>
 </mapper>

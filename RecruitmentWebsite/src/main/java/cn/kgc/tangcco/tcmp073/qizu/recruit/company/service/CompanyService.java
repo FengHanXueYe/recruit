@@ -41,6 +41,7 @@ public interface CompanyService {
 	List<Company> querylikeonature(int onature);
 
 	List<Company> querylikeorelease(int orelease);
+	List<Company> querytooccname(String ocname);
 
 	// 123
 	/**

@@ -53,7 +53,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-		$(function(){
+		/* $(function(){
 			//alert("asdadsdasdasda");
 			//mizhu.confirm("提示","确定要删除吗？");
 			//mizhu.toast('已取消关注');
@@ -61,10 +61,11 @@
 			//mizhu.alert('提示', '不行');
 			mizhu.alert('提示', '有图了','alert_green');
 			
-		})
+		}) */
 	</script>
 	<div id="body">
-		<div id="header">
+			<jsp:include page="/mainjsp/daohang/daohang.jsp"></jsp:include>
+		<%-- <div id="header">
 			<div class="wrapper">
 				<a href="index.html" class="logo"> <img
 					src="style/images/logo.png" width="229" height="43"
@@ -91,7 +92,7 @@
             	<li><a href="register.html" rel="nofollow">注册</a></li>
             </ul> -->
 			</div>
-		</div>
+		</div> --%>
 		<!-- end #header -->
 		<div id="container">
 
@@ -114,7 +115,7 @@
 
 											<c:forEach items="${ooc.octhree}" var="oooc">
 
-												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+												<a href="#" class="remen">${oooc.hname}</a>
 
 											</c:forEach>
 
@@ -129,7 +130,7 @@
 
 											<c:forEach items="${ooc.octhree}" var="oooc">
 
-												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+												<a href="#" class="remen">${oooc.hname}</a>
 
 											</c:forEach>
 
@@ -144,7 +145,7 @@
 
 											<c:forEach items="${ooc.octhree}" var="oooc">
 
-												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+												<a href="#" class="remen">${oooc.hname}</a>
 
 											</c:forEach>
 
@@ -159,7 +160,7 @@
 
 											<c:forEach items="${ooc.octhree}" var="oooc">
 
-												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+												<a href="#" class="remen">${oooc.hname}</a>
 
 											</c:forEach>
 
@@ -174,7 +175,7 @@
 
 											<c:forEach items="${ooc.octhree}" var="oooc">
 
-												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+												<a href="#" class="remen">${oooc.hname}</a>
 
 											</c:forEach>
 
@@ -189,7 +190,7 @@
 
 											<c:forEach items="${ooc.octhree}" var="oooc">
 
-												<a href="h/jobs/list_Java?labelWords=label">${oooc.hname}</a>
+												<a href="#" class="remen">${oooc.hname}</a>
 
 											</c:forEach>
 
@@ -221,12 +222,12 @@
 										<dt>
 											<!-- //页面 -->
 
-											<a href="h/jobs/list_后端开发?labelWords=label">${oo.wname}</a>
+											<a href="#" class="remen">${oo.wname}</a>
 										</dt>
 
 										<dd>
 											<c:forEach items="${oo.octhree}" var="ooo">
-												<a href="h/jobs/list_Java?labelWords=label" class="curr">${ooo.hname}</a>
+												<a href="#" class="remen">${ooo.hname}</a>
 											</c:forEach>
 
 
@@ -842,9 +843,8 @@
 				
 				$(function() {
 					$(".remen").click(function() {
-						alert(1);
 						var ocname=$.trim($(this).html());
-						location.href="toListOoccupation.controller?ocname="+ocname;
+						location.href="toListOoccupation.controller?oname="+ocname;
 					})
 				})
 				</script>
@@ -1009,7 +1009,7 @@
 
 									<div class="hot_pos_r">
 										<div class="mb10 recompany">
-											<a href="h/c/399.html" target="_blank">${com.cname}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>公司log</span>
+											<a href="h/c/399.html" target="_blank">${com.cname}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="width:10px">${com.comtuxiang}</span>
 										</div>
 										<span><em class="c7">领域：</em> ${com.cfield}</span> <span><em
 											class="c7">创始人：</em>${com.founder.fname}</span> <br /> <span><em
@@ -1461,7 +1461,7 @@
 
 									<div class="hot_pos_l">
 										<div class="mb10">
-											<a href="toxiangqing.controller?cccname=${cooo.oid }" >${cooo.oname}</a>
+											<a href="toxiangqing.controller?cccname=${cooo.oid }" >${cooo.oname}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="width:10px">${com.comtuxiang}</span>
 											&nbsp; <span class="c9">[ ${cooo.ocity} ]</span>
 										</div>
 

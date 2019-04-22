@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.mapper.OccupationMapper">
+	<resultMap type="Occupation" id="Occupation" autoMapping="true">
+		<id column="oid" property="oid" />
+		<association property="education" resultMap="Education"></association>
+	</resultMap>
+	<resultMap type="Education" id="Education" autoMapping="true">
+		<id column="eid" property="eid" />
+	</resultMap>
+	<!-- //热门搜索 -->
+	<select id="queryall" resultMap="Occupation">
+		SELECT *FROM occupation
+		o,education e WHERE o.oeducation=e.eid 	
+	</select>
+	
+	<select id="queryOccupation" parameterType="int" resultMap="Occupation">
+		SELECT * FROM `occupation` WHERE oid=#{oid}
+	</select>
+	
+	
+	<select id="queryBystate" parameterType="int" resultMap="Occupation">
+		SELECT * FROM occupation WHERE ocid=#{ocid} AND ostate=#{ostate}
+	</select>
+	<!-- 编辑职位信息用的方法 -->
+	<select id="queryByoid" parameterType="int" resultMap="Occupation">
+		select * from occupation where oid=#{oid}
+	</select>
+	
+</mapper>

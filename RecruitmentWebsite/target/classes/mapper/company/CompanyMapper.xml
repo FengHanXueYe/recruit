@@ -1,20 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.company.mapper.CompanyMapper">
+<mapper
+	namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.company.mapper.CompanyMapper">
+	<select id="queryListCompany" parameterType="String" resultMap="CompanyMaps">
+		select com.*,occ.* from company com,occupation occ  where com.cid=occ.ocid and occ.ostate=0
+		<if test="ocity!='' and ocity!=null and ocity!='全国'">
+			and occ.ocity=#{ocity}
+		</if>
+		<if test="cfs!=null and cfs!=''">
+			AND com.cfs=#{cfs}
+		</if>
+		
+		<if test="cfield!=null and cfield!=''">
+			and com.cfield like concat("%",#{cfield},"%")
+		</if>
+		limit 9;
+	</select>
+	
 	<select id="qyeryAllCompany" parameterType="int" resultMap="CompanyMaps">
-		SELECT c.*,f.*,p.*  FROM company c,founder f,product p WHERE c.cid=f.cfid AND c.cid=p.pcid AND c.cuid=#{cuid}
+		SELECT c.*,f.*,p.* FROM company c,founder f,product p WHERE
+		c.cid=f.cfid AND c.cid=p.pcid AND c.cuid=#{cuid}
 	</select>
 	<resultMap type="Company" id="CompanyMaps" autoMapping="true">
-		<id column="cid" property="cid"/>
+		<id column="cid" property="cid" />
 		<collection property="founder" resultMap="FounderMap"></collection>
 		<collection property="product" resultMap="ProductMap"></collection>
+		<collection property="occupation" resultMap="occupationMap"></collection>
+	</resultMap>
+	<resultMap type="Occupation" id="occupationMap" autoMapping="true">
+		<id column="oid" property="oid" />
+		<collection property="education" resultMap="educationMap"></collection>
+	</resultMap>
+	<resultMap type="Education" id="educationMap" autoMapping="true">
+		<id column="eid" property="eid" />
 	</resultMap>
 	<resultMap type="Founder" id="FounderMap" autoMapping="true">
-		<id column="fid" property="fid"/>
+		<id column="fid" property="fid" />
 	</resultMap>
 	<resultMap type="Product" id="ProductMap" autoMapping="true">
-		<id column="pid" property="pid"/>
+		<id column="pid" property="pid" />
 	</resultMap>
+	<select id="queryalltoFounder" resultMap="CompanyMaps">
+		SELECT *FROM company
+		co,founder f,occupation o,education e WHERE f.cfid=co.cid AND
+		e.eid=o.oeducation AND co.cid=o.ocid AND o.ostate=0 limit 10
+	</select>
+	<select id="queryalltozuixin" resultMap="CompanyMaps">
+		SELECT *FROM company
+		co,founder f,occupation o,education e WHERE
+		f.cfid=co.cid AND
+		e.eid=o.oeducation AND co.cid=o.ocid AND o.ostate=0 ORDER BY
+		o.orelease DESC limit 10
+	</select>
+	<select id="querylikeoname" resultMap="CompanyMaps"
+		parameterType="String">
+		SELECT *FROM company
+		co,founder f,occupation o,education e WHERE
+		f.cfid=co.cid AND
+		e.eid=o.oeducation AND co.cid=o.ocid
+		<if test="oname!=null and oname!=''">
+			and o.oname like concat('%',#{oname},'%')
+		</if>
+	</select>
+	<select id="querylikeomaxsalary" parameterType="double"
+		resultMap="CompanyMaps">
+		SELECT *FROM company co,founder f,occupation o,education e
+		WHERE f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid AND
+		o.omaxsalary &lt;=#{omaxsalary} AND o.ominsalary &gt;=#{ominsalary}
+	</select>
+	<select id="querylikeolog" parameterType="String" resultMap="CompanyMaps">
+		SELECT *FROM company co,founder f,occupation o,education e WHERE
+		f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid AND
+		o.olog=#{olog}
 
-
+	</select>
+	<select id="querylikeename" resultMap="CompanyMaps"
+		parameterType="String">
+		SELECT *FROM company co,founder f,occupation o,education
+		e WHERE
+		f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid AND
+		e.ename=#{ename}
+	</select>
+	<!-- aaa -->
+	<select id="querylikeonature" resultMap="CompanyMaps"
+		parameterType="int">
+		SELECT *FROM company co,founder f,occupation o,education
+		e WHERE
+		f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid AND
+		o.onature=#{onature}
+	</select>
+	<select id="querylikeorelease" resultMap="CompanyMaps"
+		parameterType="int">
+		SELECT *FROM company co,founder f,occupation o,education e WHERE f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid AND DATEDIFF(orelease,NOW())&lt;=0 AND DATEDIFF(orelease,NOW())&gt;#{orelease}
+	</select>
+	<select id="queryByUid" parameterType="int" resultMap="CompanyMaps">
+		select *
+		from company where cuid=#{cuid}
+	</select>
+	<!-- 许茂峰 -->
+	<select id="queryCompanyByCid" resultMap="CompanyMaps"
+		parameterType="int">
+		SELECT * FROM `company` WHERE cid=#{cid}
+	</select>
+	<select id="querytooccname" resultMap="CompanyMaps" parameterType="String">
+	SELECT *FROM company co,founder f,occupation o,education
+	        e WHERE
+		f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid AND
+		o.oname=#{ocname}
+	
+	</select>
 </mapper>

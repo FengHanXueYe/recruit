@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.companyresume.mapper.CompanyresumeMapper">
+	<update id="updateCompanyresume" parameterType="Companyresume">
+		update Companyresume 
+		<set>
+			<if test="cr.dstatus!=null and cr.dstatus!=''"> dstatus=#{cr.dstatus},</if>
+			<if test="cr.ctime!=null and cr.ctime!=''"> ctime=#{cr.ctime},</if>
+			<if test="cr.ctext!=null and cr.ctext!=''"> ctext=#{cr.ctext},</if>
+			ctime=NOW()
+		</set>
+		where crid=#{cr.crid}
+	</update>
+	
+	
+	<resultMap type="Companyresume" id="companyresumeMap" autoMapping="true">
+		<id column="crid" property="crid"/>
+		<collection property="company" resultMap="companyMap"></collection>
+		<collection property="occupation" resultMap="occupationMap"></collection>
+		<collection property="cuser" resultMap="cuserMap"></collection>
+	</resultMap>
+	<resultMap type="Company" id="companyMap" autoMapping="true">
+		<id column="cid" property="cid"/>
+	</resultMap>
+	<resultMap type="Occupation" id="occupationMap" autoMapping="true">
+		<id column="oid" property="oid"/>
+	</resultMap>
+	<resultMap type="RecruitingUsers" id="cuserMap" autoMapping="true">
+		<id column="userid" property="userid"/>
+	</resultMap>
+	
+	<select id="queryAllCompanyresume" resultMap="companyresumeMap" parameterType="Companyresume">
+		SELECT * FROM companyresume c,`company` j,`occupation` o,`recruitingusers` r WHERE c.`userid`=r.`userid` AND c.`cid`=j.`cid` AND c.`oid`=o.`oid` AND j.`cid`=#{cr.company.cid}
+		<if test="cr.dstatus!=null and cr.dstatus!=''"> and dstatus=#{cr.dstatus}</if>
+	</select>
+
+	<select id="queryOccuotion" resultMap="companyresumeMap" parameterType="int">
+		SELECT * FROM companyresume c,`company` j,`occupation` o,`recruitingusers` r WHERE c.`userid`=r.`userid` AND c.`cid`=j.`cid` AND c.`oid`=o.`oid` AND j.`cuid`=#{cuid} limit 1
+	</select>
+	
+	<select id="detailCompanyresume" resultMap="companyresumeMap" parameterType="int">
+		SELECT * FROM companyresume c,`company` j,`occupation` o,`recruitingusers` r WHERE c.`userid`=r.`userid` AND c.`cid`=j.`cid` AND c.`oid`=o.`oid` AND c.crid=#{crid}
+	</select>
+
+
+</mapper>

@@ -2,6 +2,7 @@ package cn.kgc.tangcco.tcmp073.qizu.recruit.company.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,9 +29,8 @@ public class CompanyController {
 
 	@Resource
 	private ProductService proservice;
-	
-	
-	//跳转到公司页面
+
+	// 跳转到公司页面
 	@RequestMapping("tocompanlist")
 	public String companylist() {
 
@@ -101,38 +101,38 @@ public class CompanyController {
 	// }
 	@RequestMapping("ajaxUpdateCompanyTwo")
 	public String ajaxUpdateCompanyTwo(Company com, Model model) throws IOException {
-		//保存数据库的路径  
-	      String sqlPath = null;   
-	      //定义文件保存的本地路径  
-	      File directory = new File("");// 参数为空
-	      String courseFile = directory.getCanonicalPath();
-	      System.out.println("---------------------------我是路径---》》》》"+courseFile);
-	      String localPath=courseFile+"\\src\\main\\webapp\\images\\";  
-	      //定义 文件名  
-	      String filename=null;    
-	      if(!com.getFile().isEmpty()){    
-	          //生成uuid作为文件名称    
-	          String uuid = UUID.randomUUID().toString().replaceAll("-","");    
-	          //获得文件类型（可以判断如果不是图片，禁止上传）    
-	          String contentType=com.getFile().getContentType();    
-	          //获得文件后缀名   
-	          String suffixName=contentType.substring(contentType.indexOf("/")+1);  
-	          //得到 文件名  
-	          filename=uuid+"."+suffixName;   
-	          System.out.println(filename);  
-	          //文件保存路径  
-	          try {
-	        	  com.getFile().transferTo(new File(localPath+filename));
+		// 保存数据库的路径
+		String sqlPath = null;
+		// 定义文件保存的本地路径
+		File directory = new File("");// 参数为空
+		String courseFile = directory.getCanonicalPath();
+		System.out.println("---------------------------我是路径---》》》》" + courseFile);
+		String localPath = courseFile + "\\src\\main\\webapp\\images\\";
+		// 定义 文件名
+		String filename = null;
+		if (!com.getFile().isEmpty()) {
+			// 生成uuid作为文件名称
+			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+			// 获得文件类型（可以判断如果不是图片，禁止上传）
+			String contentType = com.getFile().getContentType();
+			// 获得文件后缀名
+			String suffixName = contentType.substring(contentType.indexOf("/") + 1);
+			// 得到 文件名
+			filename = uuid + "." + suffixName;
+			System.out.println(filename);
+			// 文件保存路径
+			try {
+				com.getFile().transferTo(new File(localPath + filename));
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
-			}    
-	      }  
-	      //把图片的相对路径保存至数据库  
-	      sqlPath = "/images/"+filename;  
-	      System.out.println(sqlPath);  
-	      com.setComtuxiang(sqlPath);
+			}
+		}
+		// 把图片的相对路径保存至数据库
+		sqlPath = "/images/" + filename;
+		System.out.println(sqlPath);
+		com.setComtuxiang(sqlPath);
 		int row = this.service.updateCompanyTwo(com.getCabbreviation(), com.getCurl(), com.getCaddress(),
-				com.getCfield(), com.getCfs(), com.getCdetail(), com.getCscale(), com.getCid(),com.getComtuxiang());
+				com.getCfield(), com.getCfs(), com.getCdetail(), com.getCscale(), com.getCid(), com.getComtuxiang());
 		model.addAttribute("company", this.service.queryByEmail(com.getCemail()));
 		return "main/tag";
 	}
@@ -170,61 +170,150 @@ public class CompanyController {
 
 	@RequestMapping("tosalary")
 	@ResponseBody
-	public List<Company> querylikesalary(Occupation occ,Model model) {
+	public List<Company> querylikesalary(Occupation occ, Model model) {
+		List<Company> querylikeoname = service.querylikeomaxsalary(occ);
+		for (Company c : querylikeoname) {
+			System.err.println(c.getCfinancing());
+			String num = c.getCfinancing();
+			// 已盗号隔开
+			String[] zz = num.split("\\,");
+			// 声明list集合
+			List<String> bq = new ArrayList<>();
+			// 遍历数组将每一个元素加到list集合中
+			for (int a = 0; a < zz.length; a++) {
+				System.out.println("-------这是数组------->" + zz[a]);
+				bq.add(zz[a]);
+			}
+			for (String string : bq) {
+				System.out.println("----这是集合----->" + string);
+			}
+			c.setBiaoqian(bq);
+
+		}
 		System.out.println(occ);
-		return service.querylikeomaxsalary(occ);
+		System.out.println("_____________________<>>>>" + querylikeoname);
+		return querylikeoname;
 	}
 
 	@RequestMapping("toolog")
 	@ResponseBody
 	public List<Company> querylikeolog(String olog) {
-		return service.querylikeolog(olog);
+		List<Company> querylikeoname = service.querylikeolog(olog);
+		for (Company c : querylikeoname) {
+			System.err.println(c.getCfinancing());
+			String num = c.getCfinancing();
+			// 已盗号隔开
+			String[] zz = num.split("\\,");
+			// 声明list集合
+			List<String> bq = new ArrayList<>();
+			// 遍历数组将每一个元素加到list集合中
+			for (int a = 0; a < zz.length; a++) {
+				System.out.println("-------这是数组------->" + zz[a]);
+				bq.add(zz[a]);
+			}
+			for (String string : bq) {
+				System.out.println("----这是集合----->" + string);
+			}
+			c.setBiaoqian(bq);
+
+		}
+
+		System.out.println("_____________________<>>>>" + querylikeoname);
+		return querylikeoname;
 	}
 
 	@RequestMapping("toename")
 	@ResponseBody
 	public List<Company> querylikeename(String ename) {
-		return service.querylikeename(ename);
+		List<Company> querylikeoname = service.querylikeename(ename);
+		for (Company c : querylikeoname) {
+			System.err.println(c.getCfinancing());
+			String num = c.getCfinancing();
+			// 已盗号隔开
+			String[] zz = num.split("\\,");
+			// 声明list集合
+			List<String> bq = new ArrayList<>();
+			// 遍历数组将每一个元素加到list集合中
+			for (int a = 0; a < zz.length; a++) {
+				System.out.println("-------这是数组------->" + zz[a]);
+				bq.add(zz[a]);
+			}
+			for (String string : bq) {
+				System.out.println("----这是集合----->" + string);
+			}
+			c.setBiaoqian(bq);
+
+		}
+
+		System.out.println("_____________________<>>>>" + querylikeoname);
+		return querylikeoname;
 	}
 
 	@RequestMapping("toonature")
 	@ResponseBody
 	public List<Company> querylikeonature(int onature) {
-		return service.querylikeonature(onature);
+		List<Company> querylikeoname = service.querylikeonature(onature);
+		for (Company c : querylikeoname) {
+			System.err.println(c.getCfinancing());
+			String num = c.getCfinancing();
+			// 已盗号隔开
+			String[] zz = num.split("\\,");
+			// 声明list集合
+			List<String> bq = new ArrayList<>();
+			// 遍历数组将每一个元素加到list集合中
+			for (int a = 0; a < zz.length; a++) {
+				System.out.println("-------这是数组------->" + zz[a]);
+				bq.add(zz[a]);
+			}
+			for (String string : bq) {
+				System.out.println("----这是集合----->" + string);
+			}
+			c.setBiaoqian(bq);
+
+		}
+     System.err.println(querylikeoname);
+		System.out.println("_____________________<>>>>" + querylikeoname);
+		return querylikeoname;
 	}
 
 	@RequestMapping("toorelease")
 	@ResponseBody
 	public List<Company> querylikeolog(int orelease) {
-		System.err.println(orelease);
-		System.err.println(service.querylikeorelease(-30));
-		return service.querylikeorelease(orelease);
-	}										
-	//修改公司主页的产品
+		List<Company> querylikeorelease = service.querylikeorelease(orelease);
+		for (Company company : querylikeorelease) {
+			System.err.println(company+"\t\t");
+			System.out.println();
+		}
+		System.out.println(querylikeorelease);
+		/*System.err.println(orelease);
+		System.err.println(service.querylikeorelease(-30));*/
+		return querylikeorelease;
+	}
+
+	// 修改公司主页的产品
 	@ResponseBody
 	@RequestMapping("updateProductController")
-	public Company updateProduct(Product pro,HttpSession session) {
-//		int row=this.proservice.updateProduct(pro);
-		RecruitingUsers user=(RecruitingUsers) session.getAttribute("loginUser");
+	public Company updateProduct(Product pro, HttpSession session) {
+		RecruitingUsers user = (RecruitingUsers) session.getAttribute("loginUser");
 		return this.service.qyeryAllCompany(user.getUserid());
 	}
-	
+
 	@RequestMapping("queryListCompany")
-	public String queryListCompany(String ocity, String cfs,String cfield,Model model) {
-		System.err.println("_________________+>"+ocity);
-		System.err.println("_________________+>"+cfs);
-		System.err.println("_________________+>"+cfield);
-		if(cfs!=null || cfs!="") {
-		model.addAttribute("cfs", cfs);
+	public String queryListCompany(String ocity, String cfs, String cfield, Model model) {
+		System.err.println("_________________+>" + ocity);
+		System.err.println("_________________+>" + cfs);
+		System.err.println("_________________+>" + cfield);
+		if (cfs != null || cfs != "") {
+			model.addAttribute("cfs", cfs);
 		}
-		if(ocity!=null || ocity!="") {
-		model.addAttribute("ocity", ocity);
+		if (ocity != null || ocity != "") {
+			model.addAttribute("ocity", ocity);
 		}
-		if(cfield!=null || cfield!="") {
-		model.addAttribute("cfield", cfield);
+		if (cfield != null || cfield != "") {
+			model.addAttribute("cfield", cfield);
 		}
 		model.addAttribute("ListCompanys", this.service.queryListCompany(ocity, cfs, cfield));
 		return "main/companylist";
 	}
-	
+
 }

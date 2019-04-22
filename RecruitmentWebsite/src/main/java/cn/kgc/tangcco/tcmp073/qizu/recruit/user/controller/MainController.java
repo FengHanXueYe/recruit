@@ -68,9 +68,49 @@ public class MainController {
 		for (Company company : queryalltoFounder) {
 			System.err.println(company + "/n");
 		}
+		
+		List<Company> querylikeoname = com.queryalltoFounder();
+		for (Company c : querylikeoname) {
+			System.err.println(c.getCfinancing());
+			String num = c.getCfinancing();
+			//已盗号隔开
+			String[] zz = num.split("\\,");
+			//声明list集合
+			List<String> bq = new ArrayList<>();
+			//遍历数组将每一个元素加到list集合中
+			for(int a=0;a<zz.length;a++) {
+				System.out.println("-------这是数组------->"+zz[a]);
+				bq.add(zz[a]);
+			}
+			for (String string : bq) {
+				System.out.println("----这是集合----->"+string);
+			}
+			c.setBiaoqian(bq);
 
-		model.addAttribute("com", queryalltoFounder);
-		model.addAttribute("coo", com.queryalltozuixin());
+		}
+		List<Company> querylikeoname2 = com.queryalltozuixin();
+		for (Company c : querylikeoname2) {
+			System.err.println(c.getCfinancing());
+			String num = c.getCfinancing();
+			//已盗号隔开
+			String[] zz = num.split("\\,");
+			//声明list集合
+			List<String> bq = new ArrayList<>();
+			//遍历数组将每一个元素加到list集合中
+			for(int a=0;a<zz.length;a++) {
+				System.out.println("-------这是数组------->"+zz[a]);
+				bq.add(zz[a]);
+			}
+			for (String string : bq) {
+				System.out.println("----这是集合----->"+string);
+			}
+			c.setBiaoqian(bq);
+
+		}
+		
+
+		model.addAttribute("com", querylikeoname);
+		model.addAttribute("coo", querylikeoname2);
 
 		return "main/index";
 	}
@@ -205,10 +245,10 @@ public class MainController {
 	 */
 	@RequestMapping("toListOoccupation")
 	public String toListOoccupation(String oname, Model model) {
-
+        
 		List<Company> querylikeoname = com.querylikeoname(oname);
 		for (Company c : querylikeoname) {
-			System.err.println(c.getCfinancing());
+			//System.err.println(c.getCfinancing());
 			String num = c.getCfinancing();
 			//已盗号隔开
 			String[] zz = num.split("\\,");
@@ -228,6 +268,8 @@ public class MainController {
 		
 		model.addAttribute("oname", querylikeoname);
 		model.addAttribute("kd", oname);
+		System.err.println("_____________---------->>>>>.."+com.querytooccname(oname));
+		model.addAttribute("ocname",com.querytooccname(oname));
 		return "main/list";
 		//aaa
 	}

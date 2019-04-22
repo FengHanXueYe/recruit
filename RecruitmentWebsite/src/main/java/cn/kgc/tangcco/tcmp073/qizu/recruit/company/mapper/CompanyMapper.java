@@ -48,6 +48,7 @@ public interface CompanyMapper {
 
 	List<Company> querylikeorelease(int orelease);
 	//aa
+	List<Company> querytooccname(String ocnames);
 
 	Company qyeryAllCompany(int cuid);
 
