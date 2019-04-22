@@ -2,6 +2,8 @@ package cn.kgc.tangcco.tcmp073.qizu.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +19,14 @@ import lombok.NoArgsConstructor;
 public class Corporate {
 	private Integer cid;
 	private String cname,cposition;
-	private Date cyear,cmonth,cyearover,cmonthover;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private String cyear;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private String cmonth;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private String cyearover;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private String cmonthover;
+	
 	private Integer cuserid;
 }

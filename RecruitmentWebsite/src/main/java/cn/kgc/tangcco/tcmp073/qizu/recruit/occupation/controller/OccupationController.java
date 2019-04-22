@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
@@ -59,14 +60,29 @@ public class OccupationController {
 	}
 	//查看状态已下线和未下线的职位
 	@RequestMapping("queryByOstateController")
-	public String queryByOstate(int pk,int ostate,Model model) {
+	public String queryByOstate(int pk,int ostate,Model model,HttpSession session) {
 		List<Occupation> occ=this.service.queryBystate(pk, ostate);
 		int size=occ.size();
-		model.addAttribute("ostate", ostate);
-		model.addAttribute("size", size);
+		session.setAttribute("ostate", ostate);
+		session.setAttribute("size", size);
+//		model.addAttribute("ostate", ostate);
+//		model.addAttribute("size", size);
 		model.addAttribute("Occupation", this.service.queryBystate(pk, ostate));
 		return "main/positions";
 	}
+	//ajax查看状态已下线和未下线的职位
+		@ResponseBody
+		@RequestMapping("ajaxqueryByOstateController")
+		public List<Occupation> ajaxqueryByOstate(int pk,int ostate,Model model,HttpSession session) {
+			List<Occupation> occ=this.service.queryBystate(pk, ostate);
+			int size=occ.size();
+			session.setAttribute("ostate", ostate);
+			session.setAttribute("size", size);
+			return this.service.queryBystate(pk, ostate);
+		}
+	
+	
+	
 	//删除已发布的职位
 	@RequestMapping("deleteOccupation")
 	public String deleteOccupation(int oid,int ostate,int pk,Model model) {
@@ -82,6 +98,10 @@ public class OccupationController {
 	//修改已发布部职位的状态
 	@RequestMapping("updateOstate")
 	public String updateOstate(int oid,int ostates,Model model,int pk,int ostate) {
+		System.err.println("-------------->"+oid);
+		System.err.println("-------------->"+ostates);
+		System.err.println("-------------->"+pk);
+		System.err.println("-------------->"+ostate);
 		this.service.updateOccupation(oid,ostates);
 		List<Occupation> occ=this.service.queryBystate(pk, ostate);
 		int size=occ.size();

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.Corporate.mapper.CorporateMapper">
+  <update id="updateCorporate" parameterType="Corporate">
+		update corporate
+		<set>
+			<if test="cname!=null and cname!=''"> cname=#{cname},</if>
+			<if test="cposition!=null and cposition!=''">cposition=#{cposition},</if>
+			<if test="cyear!=null and cyear!=''"> cyear=#{cyear},</if>
+			<if test="cyearover!=null and cyearover!=''">cyearover=#{cyearover},</if>
+			<if test="cuserid!=null and cuserid!=''"> cuserid=#{cuserid}</if>
+		</set>
+		where cid=#{cid}
+	</update>
+</mapper>
