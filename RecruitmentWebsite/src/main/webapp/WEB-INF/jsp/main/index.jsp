@@ -814,38 +814,51 @@
 	overflow: hidden;
 }
 </style>
-				<script type="text/javascript" src="style/js/search.min.js"></script>
+				<script type="text/javascript" src="style/js/search.min.js">
+				
+				
+				</script>
+				<script type="text/javascript">
+				
+				$(function() {
+					$(".remen").click(function() {
+						alert(1);
+						var ocname=$.trim($(this).html());
+						location.href="toListOoccupation.controller?ocname="+ocname;
+					})
+				})
+				</script>
 				<dl class="hotSearch">
 					<dt>热门搜索：</dt>
 					<dd>
-						<a href="list.htmlJava?labelWords=label&city=">Java</a>
+						<a href="#" class="remen">Java</a>
 					</dd>
 					<dd>
-						<a href="list.htmlPHP?labelWords=label&city=">PHP</a>
+						<a href="#" class="remen">PHP</a>
 					</dd>
 					<dd>
-						<a href="list.htmlAndroid?labelWords=label&city=">Android</a>
+						<a href="#" class="remen">Android</a>
 					</dd>
 					<dd>
-						<a href="list.htmliOS?labelWords=label&city=">iOS</a>
+						<a href="#" class="remen">iOS</a>
 					</dd>
 					<dd>
-						<a href="list.html前端?labelWords=label&city=">前端</a>
+						<a href="#" class="remen">前端</a>
 					</dd>
 					<dd>
-						<a href="list.html产品经理?labelWords=label&city=">产品经理</a>
+						<a href="#" class="remen">产品经理</a>
 					</dd>
 					<dd>
-						<a href="list.htmlUI?labelWords=label&city=">UI</a>
+						<a href="#" class="remen">UI</a>
 					</dd>
 					<dd>
-						<a href="list.html运营?labelWords=label&city=">运营</a>
+						<a href="#" class="remen">运营</a>
 					</dd>
 					<dd>
-						<a href="list.htmlBD?labelWords=label&city=">BD</a>
+						<a href="#" class="remen">BD</a>
 					</dd>
 					<dd>
-						<a href="list.html?gx=实习&city=">实习</a>
+						<a href="#">实习</a>
 					</dd>
 				</dl>
 				<div id="home_banner">
@@ -978,9 +991,12 @@
 											class="c7">创始人：</em>${com.founder.fname}</span> <br /> <span><em
 											class="c7">阶段：</em> ${com.cfs}</span> <span><em class="c7">规模：</em>${com.cscale}</span>
 										<ul class="companyTags reset">
-											<li>移动互联网</li>
+										<c:forEach items="${com.biaoqian}" var="biaoqian">
+										<li>${biaoqian}</li>
+										</c:forEach>
+											<!-- <li>移动互联网</li>
 											<li>五险一金</li>
-											<li>扁平管理</li>
+											<li>扁平管理</li> -->
 										</ul>
 									</div>
 							</c:forEach>
@@ -1444,9 +1460,9 @@
 											class="c7">创始人：</em>${com.founder.fname}</span> <br /> <span><em
 											class="c7">阶段：</em> ${com.cfs}</span> <span><em class="c7">规模：</em>${com.cscale}</span>
 										<ul class="companyTags reset">
-											<li>移动互联网</li>
-											<li>五险一金</li>
-											<li>扁平管理</li>
+										<c:forEach items="${com.biaoqian}" var="biaoqian">
+										<li>${biaoqian}</li>
+										</c:forEach>
 										</ul>
 									</div>
 								</li>
