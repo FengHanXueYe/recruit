@@ -184,53 +184,58 @@ public class UserController {
 	@RequestMapping("doUpdateResumename")
 	public String doUpdateResumename(RecruitingUsers ruser, String xueli, String jingyan, HttpSession session,
 			Model model) throws IOException {
+		
 		// 从session中取用户
 		RecruitingUsers attribute = (RecruitingUsers) session.getAttribute("loginUser");
 		// 查询该用户的详细信息
 		RecruitingUsers detailUser = userService.detailRecruitingUsers(attribute.getUserid());
-		if (xueli != null) {
-			ruser.setEducation(Integer.parseInt(xueli));
-		} else {
-			ruser.setEducation(detailUser.getEducation());
-		}
-		if (jingyan != null) {
-			ruser.setUserlog(Integer.parseInt(jingyan));
-		} else {
-			ruser.setUserlog(detailUser.getUserlog());
+		if(ruser.getResumeName()==null) {
+			if (xueli != null) {
+				ruser.setEducation(Integer.parseInt(xueli));
+			} else {
+				ruser.setEducation(detailUser.getEducation());
+			}
+			if (jingyan != null) {
+				ruser.setUserlog(Integer.parseInt(jingyan));
+			} else {
+				ruser.setUserlog(detailUser.getUserlog());
+			}
+			
+			//保存数据库的路径  
+			String sqlPath = null;   
+			//定义文件保存的本地路径  
+			File directory = new File("");// 参数为空
+			String courseFile = directory.getCanonicalPath();
+			System.out.println("---------------------------我是路径---》》》》"+courseFile);
+			String localPath=courseFile+"\\src\\main\\webapp\\images\\";  
+			//定义 文件名  
+			String filename=null;    
+			if(!ruser.getFile().isEmpty()){    
+				//生成uuid作为文件名称    
+				String uuid = UUID.randomUUID().toString().replaceAll("-","");    
+				//获得文件类型（可以判断如果不是图片，禁止上传）    
+				String contentType=ruser.getFile().getContentType();    
+				//获得文件后缀名   
+				String suffixName=contentType.substring(contentType.indexOf("/")+1);  
+				//得到 文件名  
+				filename=uuid+"."+suffixName;   
+				System.out.println(filename);  
+				//文件保存路径  
+				try {
+					ruser.getFile().transferTo(new File(localPath+filename));
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}    
+			}  
+			//把图片的相对路径保存至数据库  
+			sqlPath = "/images/"+filename;  
+			System.out.println(sqlPath); 
+			System.out.println(ruser.getUserpicture()); 
+			if(filename!=null) {
+				ruser.setUserpicture(sqlPath); 
+			}
 		}
 		
-		//保存数据库的路径  
-	      String sqlPath = null;   
-	      //定义文件保存的本地路径  
-	      File directory = new File("");// 参数为空
-	      String courseFile = directory.getCanonicalPath();
-	      System.out.println("---------------------------我是路径---》》》》"+courseFile);
-	      String localPath=courseFile+"\\src\\main\\webapp\\images\\";  
-	      //定义 文件名  
-	      String filename=null;    
-	      if(!ruser.getFile().isEmpty()){    
-	          //生成uuid作为文件名称    
-	          String uuid = UUID.randomUUID().toString().replaceAll("-","");    
-	          //获得文件类型（可以判断如果不是图片，禁止上传）    
-	          String contentType=ruser.getFile().getContentType();    
-	          //获得文件后缀名   
-	          String suffixName=contentType.substring(contentType.indexOf("/")+1);  
-	          //得到 文件名  
-	          filename=uuid+"."+suffixName;   
-	          System.out.println(filename);  
-	          //文件保存路径  
-	          try {
-				ruser.getFile().transferTo(new File(localPath+filename));
-			} catch (IllegalStateException | IOException e) {
-				e.printStackTrace();
-			}    
-	      }  
-	      //把图片的相对路径保存至数据库  
-	      sqlPath = "/images/"+filename;  
-	      System.out.println(sqlPath);  
-	      if(ruser.getUserpicture()!=null) {
-	    	  ruser.setUserpicture(sqlPath); 
-	      }
 	      
 		// 将用户的id赋值给ruser（因为前台没传用户id）
 		ruser.setUserid(attribute.getUserid());

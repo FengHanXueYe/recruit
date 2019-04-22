@@ -26,6 +26,15 @@
 	var ctx = "h";
 	console.log(1);
 </script>
+<!-- 许茂峰 -->
+<!-- <link rel="stylesheet" type="text/css" href="alertDemo/css/style.css" />
+<script type="text/javascript" src="alertDemo/js/ui.js"></script>
+<script type="text/javascript" src="alertDemo/js/jquery-1.7.1.min.js"></script> -->
+<link href="alertDemo/css/style.css" rel="stylesheet" />
+<script src="alertDemo/js/jquery-1.7.1.min.js"></script>
+<script src="alertDemo/js/ui.js"></script>
+
+
 <link rel="Shortcut Icon" href="h/images/favicon.ico">
 <link rel="stylesheet" type="text/css" href="style/css/style.css" />
 <link rel="stylesheet" type="text/css" href="style/css/external.min.css" />
@@ -43,6 +52,17 @@
 <script type="text/javascript" src="style/js/conv.js"></script>
 </head>
 <body>
+	<script type="text/javascript">
+		$(function(){
+			//alert("asdadsdasdasda");
+			//mizhu.confirm("提示","确定要删除吗？");
+			//mizhu.toast('已取消关注');
+			//mizhu.toast('已取消关注', 6000);
+			//mizhu.alert('提示', '不行');
+			mizhu.alert('提示', '有图了','alert_green');
+			
+		})
+	</script>
 	<div id="body">
 		<div id="header">
 			<div class="wrapper">
@@ -963,6 +983,10 @@
 						<c:forEach items="${com}" var="com">
 							<c:forEach items="${com.occupation}" var="cooo">
 								<li class="clearfix">
+									<!-- <tr>
+										<td></td>
+										<td></td>
+									</tr> -->
 									<div class="hot_pos_l">
 										<div class="mb10">
 											<a href="toxiangqing.controller?cccname=${cooo.oid }">${cooo.oname}</a>
@@ -985,7 +1009,7 @@
 
 									<div class="hot_pos_r">
 										<div class="mb10 recompany">
-											<a href="h/c/399.html" target="_blank">${com.cname}</a>
+											<a href="h/c/399.html" target="_blank">${com.cname}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>公司log</span>
 										</div>
 										<span><em class="c7">领域：</em> ${com.cfield}</span> <span><em
 											class="c7">创始人：</em>${com.founder.fname}</span> <br /> <span><em
@@ -998,9 +1022,11 @@
 											<li>五险一金</li>
 											<li>扁平管理</li> -->
 										</ul>
+										
 									</div>
-							</c:forEach>
+									
 							</li>
+							</c:forEach>
                         </c:forEach>
 
 							<%-- <c:if test="${com.size()%2==0}">
