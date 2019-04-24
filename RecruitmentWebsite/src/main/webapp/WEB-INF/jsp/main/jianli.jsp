@@ -169,6 +169,26 @@ var youdao_conv_id = 271546;
             		
             		
             		
+<script type="text/javascript">
+//JS file 图片 即选即得 显示
+//创建一个FileReader对象
+var reader = new FileReader();
+function updatepictureuser(file){
+	var img = document.getElementById('imgSdf');
+	//读取File对象的数据
+	reader.onload = function(evt){
+		//data:img base64 编码数据显示
+		img.width  =  "120";
+        img.height =  "120";
+		img.src = evt.target.result;
+	}
+    reader.readAsDataURL(file.files[0]);
+}
+ 
+ 
+ 
+</script>
+ 		
                <!-- ----------------------------------- -->	
             		<div class="which fl">
             			<div>工作经历最能体现自己的工作能力，且完善后才可投递简历哦！</div>
@@ -224,9 +244,12 @@ var youdao_conv_id = 271546;
 						          </ul>  
 						      </td>
 						      
+						      <!-- --------touxiang-------- -->
+						      
+						      
 						      <td rowspan="2"><div style="margin-left:30px;width:120px;height:120px;border-radius: 50%;background-image:url(/images/timg1.jpg);overflow: hidden " >
-						      					<c:if test="${!empty loginUser.userpicture }"><img src="${loginUser.userpicture }" alt="正在加载。。。" width="120px" height="120px" /></c:if></div><p id = "miaoshipicture" style="cursor:pointer;width:120px;height:30px;line-height:30px; text-align: center;background-color: rgba(0,0,0,0.5);color:white;margin-left:30px;" >上传头像</p>
-						      				  <input type="file" value="" style="display:none" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="updatepictureuser()" name="file" id="filekuang">
+						      					<c:if test="${!empty loginUser.userpicture }"><img src="${loginUser.userpicture }" id="imgSdf" alt="" width="120px" height="120px" /></c:if></div><p id = "miaoshipicture" style="cursor:pointer;width:120px;height:30px;line-height:30px; text-align: center;background-color: rgba(0,0,0,0.5);color:white;margin-left:30px;" >上传头像</p>
+						      				  <input type="file" value="" style="display:none" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="updatepictureuser(this)" name="file" id="filekuang">
 						      </td>
 						    </tr>
 						    <tr>
@@ -365,9 +388,9 @@ var youdao_conv_id = 271546;
 						  	<span style="display:none;" id="headPic_error" class="error"></span>
 						</div>end .new_portrait -->
 						<script type="text/javascript">
-							function updatepictureuser(){
+							/* function updatepictureuser(){
 								$("#miaoshipicture").html("加载中...");
-							}
+							} */
 							$(function(){
 								$("#miaoshipicture").click(function(){
 									$("#filekuang").click();
@@ -2006,15 +2029,17 @@ var youdao_conv_id = 271546;
             		<a  href="doListCollectionp.controller">我收藏的职位</a>
             		<!-- target="_blank" -->
             		<br>
-            		            		            		<a target="_blank" href="subscribe.html">我订阅的职位</a>
+            		            		            		<a target="_blank" href="doListsubscribe.controller">我订阅的职位</a>
             	</div><!--end #myInfo-->
 
 				<div class="mycenterR" id="myResume">
+				
             		<h2>我的附件简历 
+            		
             			            			<a title="上传附件简历" href="#uploadFile" class="inline cboxElement">上传简历</a>
             			            		</h2>
             		<div class="resumeUploadDiv">
-	            			            		暂无附件简历
+	            			            		<span></span>
 	            		            		</div>
             	</div><!--end #myResume-->
 
@@ -2057,12 +2082,13 @@ var youdao_conv_id = 271546;
 	    <table width="100%">
 	    	<tbody><tr>
 	        	<td align="center">
-	                <form>
-	                    <a class="btn_addPic" href="javascript:void(0);">
-	                    	<span>选择上传文件</span>
-	                        <input type="file" onchange="file_check(this,'h/nearBy/updateMyResume.json','resumeUpload')" class="filePrew" id="resumeUpload" name="newResume" size="3" title="支持word、pdf、ppt、txt、wps格式文件，大小不超过10M" tabindex="3">
-	                    </a>
-	                </form>
+	        	  
+	        	<form action="upload.controller"
+      method="post" enctype="multipart/form-data">
+    选择文件:<input type="file" name="file" width="120px"> <input
+        type="submit" value="上传">
+</form>
+
 	            </td>
 	        </tr>
 	    	<tr>
