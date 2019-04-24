@@ -60,5 +60,6 @@ public interface CompanyMapper {
 	Company queryCompanyByCid(@Param("cid") Integer cid);
 	//公司页面查询方法
 	List<Company> queryListCompany(@Param("ocity")String ocity,@Param("cfs")String cfs,@Param("cfield")String cfield);
-	
+	//ajax查询公司
+	List<Company> queryListCompanylimit(@Param("ocity")String ocity,@Param("cfs")String cfs,@Param("cfield")String cfield);
 }

@@ -6,6 +6,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.mapper.CompanyMapper;
@@ -111,6 +114,13 @@ public class CompanyServiceImpl implements CompanyService {
 	public List<Company> querytooccname(String ocname) {
 		return mapper.querytooccname(ocname);
 	}
-
+	@Override
+	public PageInfo<Company> queryListCompanylimit(String ocity, String cfs, String cfield, int PageSize, int PageNum) {
+		PageHelper.startPage(PageNum, PageSize);
+		List<Company> list = mapper.queryListCompanylimit(ocity, cfs, cfield);
+		PageInfo<Company> pageInfo = new PageInfo<>(list);
+		
+		return pageInfo;
+	}
 	// 1232
 }

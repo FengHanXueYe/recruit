@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 ﻿<!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -36,6 +35,12 @@ console.log(1);
 var youdao_conv_id = 271546; 
 </script> 
 <script type="text/javascript" src="style/js/conv.js"></script>
+<script type="text/javascript">
+
+
+	
+
+</script>
 </head>
 <body>
 <div id="body">
@@ -273,21 +278,20 @@ var youdao_conv_id = 271546;
 	                        </dl> -->
 	                    </dd>
 	                </dl>
-	               					
+	               					<div class="hdiv" id="hdiv">
 	               	                	<ul class="hc_list reset" >
+	               	                	
 	               	                	<c:if test="${empty ListCompanys}"><span >没有查询到相关信息</span></c:if>
 	               	                	 
 	               	                	
 	               	                	<c:forEach items="${ListCompanys}" var="com">
+	               	                	
+	               	                	
 		                  		                  		                        <li >
 			                        <a href="h/c/25829.html" target="_blank">
 			                        	<h3 title="${com.cname}">${com.cname}</h3>
-			                        	<div class="comLogo">
-				                        	<img src="${com.comtuxiang}" width="190" height="190" alt="CCIC" />
-				                        	<ul>
-				                        		<li>${com.cfield}</li>
-				                        		<li>${com.caddress}，${com.cfs}</li>
-				                        	</ul>
+			                        	<div class="comLogo"><img src="${com.comtuxiang}" width="190" height="190" alt="CCIC" />
+				                        	<ul><li>${com.cfield}</li><li>${com.caddress}，${com.cfs}</li></ul>
 			                        	</div>
 			                        </a>									<c:forEach items="${com.occupation}" var="occ">
 			                        			                        	<a href="h/jobs/148928.html" target="_blank"> ${occ.oname}</a>
@@ -305,7 +309,7 @@ var youdao_conv_id = 271546;
 			                    </li>
 			                   
 			                   </c:forEach>
-			                   
+			                 
 		                        		  <!--                  		                        <li >
 			                        <a href="h/c/25836.html" target="_blank">
 			                        	<h3 title="MOMO">MOMO</h3>
@@ -622,8 +626,16 @@ var youdao_conv_id = 271546;
 																						                        </ul>
 			                    </li>-->  
 		                        		                    		                </ul>
-		                 
-		                		               	<div class="Pagination1">上的是法国v地方v给对方vDVD法国</div> 
+		                 	  </div>
+		                		               	<div class="Pagination1" align="center">
+		                		               	<a href="javascript:void(0)" class="limita" num="1">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		                		               	<a href="javascript:void(0)" class="limita" num="2">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		                		               	<input id="pagenum"><input type="button" value="跳转到" id="pagenumss">
+		                		               	
+		                		               	<a href="javascript:void(0)" class="limita" num="3">下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		                		               	<a href="javascript:void(0)" class="limita" num="4">尾页</a>
+		                		               
+		                		               	</div> 
 		               		                                </form>
             </div>	
             <div class="content_r">
@@ -663,9 +675,210 @@ var youdao_conv_id = 271546;
    		</form>
    	<input type="hidden" value="" name="userid" id="userid" />
       
-<script type="text/javascript" src="style/js/company_list.min.js"></script>
+<!--  <script type="text/javascript" src="style/js/company_list.min.js"></script>-->
 <script type="text/javascript">
+$(function(){
 	var ocity="";
+	var cfs="";
+	var cfield="";
+	var PageSize="";
+	var PageNum="";
+	$("#cssss a").click(function(){
+		cfs=$(this).html();
+		$.ajax({
+			  type:"post",
+			  url:"queryListCompanyLimit.controller",
+			  data:{"ocity":ocity,"cfs":cfs,"cfield":cfield},
+			  success:function(returnData){
+				  	$(".hdiv").html("");
+				  	var html="<ul class='hc_list reset'>";
+				  $.each(returnData.list,function(index,data){
+					html+="<li>";	  
+					html+=" <a href='h/c/25829.html' target='_blank'>";  
+					html+="<h3 title=''>"+data.cname+"</h3>";
+					html+="<div class='comLogo'><img src='"+data.comtuxiang+"' width='190' height='190' alt='CCIC' />";
+					html+="<ul><li>"+data.cfield+"</li><li>"+data.caddress+"，"+data.cfs+"</li></ul>";
+					html+="</div>";
+					html+=" </a>";
+					$.each(data.occupation,function(index,occ){
+					html+="<a href='h/jobs/148928.html' target='_blank'>"+occ.oname+"</a>";		
+					})
+					html+=" <ul class='reset ctags'>";
+					html+="<li>"+data.cfs+"</li>";
+					html+="<li>"+data.caddress+"</li>";
+                  html+="<li>"+data.cfinancing+"</li>";
+                  html+="</ul>";
+					html+="</li>";
+				  })
+				 html+="</ul>";
+				  $(".hdiv").html(html).hide().slideDown(1000);
+			  }
+		})
+	})
+	$("#lingyu a").click(function(){
+		cfield=$(this).html();
+		$.ajax({
+			  type:"post",
+			  url:"queryListCompanyLimit.controller",
+			  data:{"ocity":ocity,"cfs":cfs,"cfield":cfield},
+			  success:function(returnData){
+				  	$(".hdiv").html("");
+				  	var html="<ul class='hc_list reset'>";
+				  $.each(returnData.list,function(index,data){
+					html+="<li>";	  
+					html+=" <a href='h/c/25829.html' target='_blank'>";  
+					html+="<h3 title=''>"+data.cname+"</h3>";
+					html+="<div class='comLogo'><img src='"+data.comtuxiang+"' width='190' height='190' alt='CCIC' />";
+					html+="<ul><li>"+data.cfield+"</li><li>"+data.caddress+"，"+data.cfs+"</li></ul>";
+					html+="</div>";
+					html+=" </a>";
+					$.each(data.occupation,function(index,occ){
+					html+="<a href='h/jobs/148928.html' target='_blank'>"+occ.oname+"</a>";		
+					})
+					html+=" <ul class='reset ctags'>";
+					html+="<li>"+data.cfs+"</li>";
+					html+="<li>"+data.caddress+"</li>";
+                  html+="<li>"+data.cfinancing+"</li>";
+                  html+="</ul>";
+					html+="</li>";
+				  })
+				 html+="</ul>";
+				  $(".hdiv").html(html).hide().slideDown(1000);
+			  }
+		})
+	})
+	$("#workplaceSelect li a").click(function(){
+		ocity=$(this).html();		
+		alert(ocity);
+		$.ajax({
+			  type:"post",
+			  url:"queryListCompanyLimit.controller",
+			  data:{"ocity":ocity,"cfs":cfs,"cfield":cfield},
+			  success:function(returnData){
+				  	$(".hdiv").html("");
+				  	var html="<ul class='hc_list reset'>";
+				  $.each(returnData.list,function(index,data){
+					html+="<li>";	  
+					html+=" <a href='h/c/25829.html' target='_blank'>";  
+					html+="<h3 title=''>"+data.cname+"</h3>";
+					html+="<div class='comLogo'><img src='"+data.comtuxiang+"' width='190' height='190' alt='CCIC' />";
+					html+="<ul><li>"+data.cfield+"</li><li>"+data.caddress+"，"+data.cfs+"</li></ul>";
+					html+="</div>";
+					html+=" </a>";
+					$.each(data.occupation,function(index,occ){
+					html+="<a href='h/jobs/148928.html' target='_blank'>"+occ.oname+"</a>";		
+					})
+					html+=" <ul class='reset ctags'>";
+					html+="<li>"+data.cfs+"</li>";
+					html+="<li>"+data.caddress+"</li>";
+                    html+="<li>"+data.cfinancing+"</li>";
+                    html+="</ul>";
+					html+="</li>";
+				  })
+				 html+="</ul>";
+				  $(".hdiv").html(html).hide().slideDown(1000);
+			  }
+		})
+ 		
+		
+	})
+	$(".limita").click(function(){
+		var num=$(this).attr("num")
+		alert(num);
+		$.ajax({
+			  type:"post",
+			  url:"queryListCompanyLimits.controller",
+			  data:{"PageNum":num},
+			  success:function(returnData){
+				  	$(".hdiv").html("");
+				  	var html="<ul class='hc_list reset'>";
+				  $.each(returnData.list,function(index,data){
+					html+="<li>";	  
+					html+=" <a href='h/c/25829.html' target='_blank'>";  
+					html+="<h3 title=''>"+data.cname+"</h3>";
+					html+="<div class='comLogo'><img src='"+data.comtuxiang+"' width='190' height='190' alt='CCIC' />";
+					html+="<ul><li>"+data.cfield+"</li><li>"+data.caddress+"，"+data.cfs+"</li></ul>";
+					html+="</div>";
+					html+=" </a>";
+					$.each(data.occupation,function(index,occ){
+					html+="<a href='h/jobs/148928.html' target='_blank'>"+occ.oname+"</a>";		
+					})
+					html+=" <ul class='reset ctags'>";
+					html+="<li>"+data.cfs+"</li>";
+					html+="<li>"+data.caddress+"</li>";
+                  html+="<li>"+data.cfinancing+"</li>";
+                  html+="</ul>";
+					html+="</li>";
+				  })
+				 html+="</ul>";
+				  $(".hdiv").html(html).hide().slideDown(1000);
+			  }
+		})
+	})
+	
+	$("#pagenumss").click(function(){
+		
+		var page=$("#pagenum").val();
+		alert(page);
+		$.ajax({
+			  type:"post",
+			  url:"queryListCompanyLimitss.controller",
+			  data:{"PageNum2":page},
+			  success:function(returnData){
+				  	$(".hdiv").html("");
+				  	var html="<ul class='hc_list reset'>";
+				  $.each(returnData.list,function(index,data){
+					html+="<li>";	  
+					html+=" <a href='h/c/25829.html' target='_blank'>";  
+					html+="<h3 title=''>"+data.cname+"</h3>";
+					html+="<div class='comLogo'><img src='"+data.comtuxiang+"' width='190' height='190' alt='CCIC' />";
+					html+="<ul><li>"+data.cfield+"</li><li>"+data.caddress+"，"+data.cfs+"</li></ul>";
+					html+="</div>";
+					html+=" </a>";
+					$.each(data.occupation,function(index,occ){
+					html+="<a href='h/jobs/148928.html' target='_blank'>"+occ.oname+"</a>";		
+					})
+					html+=" <ul class='reset ctags'>";
+					html+="<li>"+data.cfs+"</li>";
+					html+="<li>"+data.caddress+"</li>";
+                html+="<li>"+data.cfinancing+"</li>";
+                html+="</ul>";
+					html+="</li>";
+				  })
+				 html+="</ul>";
+				  $(".hdiv").html(html).hide().slideDown(1000);
+			  }
+		})
+	})
+	
+	
+	
+	/*$("#box_expectCity dd span").click(function(){
+		ocity=$(this).html();
+		
+		$("#ocity").val(ocity);
+		$("#companyList").submit();
+	})
+	$("#cssss a").click(function(){
+		cfs=$(this).html();
+		
+		$("#cfs").val(cfs);
+		$("#companyList").submit();
+	})
+	$("#lingyu a").click(function(){
+		cfield=$(this).html();
+		
+		$("#cfield").val(cfield);
+		$("#companyList").submit();
+	})*/
+	
+})
+	
+	
+	
+	
+	
+	/*var ocity="";
 	var cfs="";
 	var cfield="";
 	$(function(){
@@ -694,13 +907,11 @@ var youdao_conv_id = 271546;
 			$("#companyList").submit();
 		})
 		
-	})
-
-
+	})*/
 </script>
-<script>
+<!--  <script>
 $(function(){
-	/*分页 */
+	分页 
  	 	 				 		$('.Pagination').pager({
 	      currPage: 1,
 	      pageNOName: "pn",
@@ -709,7 +920,7 @@ $(function(){
 	      pageSize: 5
 	});	
 })
-</script>       	
+</script> -->     	
 			<div class="clear"></div>
 			<input type="hidden" id="resubmitToken" value="" />
 	    	<a id="backtop" title="回到顶部" rel="nofollow"></a>

@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageInfo;
+
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Product;
@@ -315,5 +317,57 @@ public class CompanyController {
 		model.addAttribute("ListCompanys", this.service.queryListCompany(ocity, cfs, cfield));
 		return "main/companylist";
 	}
-
+	//条件查询
+		@ResponseBody
+		@RequestMapping("queryListCompanyLimit")
+		public PageInfo<Company> querylimit(String ocity, String cfs,String cfield,HttpSession session) {
+			session.setAttribute("limitocity", ocity);
+			session.setAttribute("limitcfs", cfs);
+			session.setAttribute("limitcfield", cfield);
+			int PageSize=2,PageNum=1;
+			
+			return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize, PageNum);
+		
+		}
+		//输入框页数
+		@ResponseBody
+		@RequestMapping("queryListCompanyLimitss")
+		public PageInfo<Company> querylimits(int PageNum2,HttpSession session) {
+			String ocity=(String) session.getAttribute("limitocity");
+			String cfs=(String) session.getAttribute("limitcfs");
+			String cfield=(String) session.getAttribute("limitcfield");
+			int PageSize=2;
+			return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize,PageNum2);
+		
+		}
+		//上下页
+		@ResponseBody
+		@RequestMapping("queryListCompanyLimits")
+		public PageInfo<Company> querylimit(int PageNum,HttpSession session) {
+			String ocity=(String) session.getAttribute("limitocity");
+			String cfs=(String) session.getAttribute("limitcfs");
+			String cfield=(String) session.getAttribute("limitcfield");
+			int PageSize=2;
+			int PageNum2=1;
+			PageInfo<Company> list=this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize,1);
+			if(PageNum==1) {
+				PageNum2=1;
+				list.setPageNum(PageNum2);
+			}else if(PageNum==2) {
+				PageNum2=list.getPrePage();
+				list.setPageNum(PageNum2);
+			}else if(PageNum==3) {
+				PageNum2=list.getNextPage();
+				list.setPageNum(PageNum2);
+				if(PageNum2==list.getPageNum()) {
+					PageNum2=PageNum2+1;
+				}
+			}else if(PageNum==4) {
+				PageNum2=list.getPages();
+				list.setPageNum(PageNum2);
+			}	
+			
+			return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize,PageNum2);
+		
+		}
 }

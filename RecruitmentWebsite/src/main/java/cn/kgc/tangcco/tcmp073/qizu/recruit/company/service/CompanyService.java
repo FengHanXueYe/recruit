@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.github.pagehelper.PageInfo;
+
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 
@@ -53,5 +55,5 @@ public interface CompanyService {
 	Company queryCompanyByCid(Integer cid);
 	//公司页面查询方法
 	List<Company> queryListCompany(String ocity,String cfs,String cfield);
-	
+	PageInfo<Company> queryListCompanylimit(String ocity,String cfs,String cfield,int PageSize,int PageNum);
 }
