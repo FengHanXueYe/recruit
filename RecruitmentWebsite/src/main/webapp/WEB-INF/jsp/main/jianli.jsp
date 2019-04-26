@@ -262,8 +262,10 @@ function updatepictureuser(file){
 						        <span class="redstar">*</span>
 						      </td> 
 						      <td colspan="3">
+						     <!--  <input type="hidden" name="identyId" > -->
 						     <!--  style="margin-left:30px;width:120px;height:120px;border-radius: 50%; -->
-						      <input type="text" value="" placeholder="请填写您真实身份证件号"  style="width:385px" maxlength="18" name="identyId">
+						      <input type="text" value="${loginUser.identity }" placeholder="请填写您真实身份证件号"  style="width:385px" maxlength="18" name="identity">
+						      
 						      </td>
 						       
 						   	</tr>
@@ -384,6 +386,7 @@ function updatepictureuser(file){
 						       <td></td>
 						    </tr>
 						  </tbody></table>
+						 <!--  <input type="hidden" name="identyId" > -->
 						 <input type="hidden" name="xueli" />
 						 <input type="hidden" name="jingyan" />
 						</form><!--end #profileForm-->
@@ -490,6 +493,15 @@ function updatepictureuser(file){
             			})
             			/* 简历 */
             			function jianli(){
+        	                    
+            		/* 		var idapplic = $("form#profileForm input[name='identyId']").val();
+                			
+                			
+
+                			
+                			$("form#profileForm input[name='identyId']").val(idapplic);
+        	 */
+        	
 
 								$('#profileForm').attr("action","doUpdateResumename.controller");
 								$('#profileForm').submit();
