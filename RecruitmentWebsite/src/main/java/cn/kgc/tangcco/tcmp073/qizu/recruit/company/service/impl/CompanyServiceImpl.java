@@ -106,9 +106,12 @@ public class CompanyServiceImpl implements CompanyService {
 		return mapper.querylikeorelease(orelease);
 	}
 	@Override
-	public List<Company> queryListCompany(String ocity, String cfs, String cfield) {
-		
-		return mapper.queryListCompany(ocity, cfs, cfield);
+	public PageInfo<Company> queryListCompany(String ocity, String cfs, String cfield) {
+		PageHelper.startPage(1, 9);
+		List<Company> list = mapper.queryListCompanylimit(ocity, cfs, cfield);
+		PageInfo<Company> pageInfo = new PageInfo<>(list);
+		return pageInfo;
+	
 	}
 	@Override
 	public List<Company> querytooccname(String ocname) {
@@ -119,7 +122,6 @@ public class CompanyServiceImpl implements CompanyService {
 		PageHelper.startPage(PageNum, PageSize);
 		List<Company> list = mapper.queryListCompanylimit(ocity, cfs, cfield);
 		PageInfo<Company> pageInfo = new PageInfo<>(list);
-		
 		return pageInfo;
 	}
 	// 1232
