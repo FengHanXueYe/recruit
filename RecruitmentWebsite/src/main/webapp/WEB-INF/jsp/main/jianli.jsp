@@ -423,7 +423,7 @@ function updatepictureuser(file){
 								
 								
 							    $("input[name='identity']").blur(function(){
-							    	var ilength=$("input[name='identyId']").val();
+							    	var ilength=$("input[name='identity']").val();
 							    	var name=$("input[name='username']").val();
 							    	if(ilength.length<18){
 							    		 mizhu.alert('提示', '身份证号格式有误','alert_red');
