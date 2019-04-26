@@ -422,7 +422,7 @@ function updatepictureuser(file){
 								
 								
 								
-							    $("input[name='identyId']").blur(function(){
+							    $("input[name='identity']").blur(function(){
 							    	var ilength=$("input[name='identyId']").val();
 							    	var name=$("input[name='username']").val();
 							    	if(ilength.length<18){
