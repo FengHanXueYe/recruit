@@ -244,6 +244,10 @@ function updatepictureuser(file){
 						          </ul>  
 						      </td>
 						      
+						      
+						      
+						      
+						      
 						      <!-- --------touxiang-------- -->
 						      
 						      
@@ -252,6 +256,19 @@ function updatepictureuser(file){
 						      				  <input type="file" value="" style="display:none" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="updatepictureuser(this)" name="file" id="filekuang">
 						      </td>
 						    </tr>
+						    
+						      <tr>
+						      <td valign="top">
+						        <span class="redstar">*</span>
+						      </td> 
+						      <td colspan="3">
+						     <!--  style="margin-left:30px;width:120px;height:120px;border-radius: 50%; -->
+						      <input type="text" value="" placeholder="请填写您真实身份证件号"  style="width:385px" maxlength="18" name="identyId">
+						      </td>
+						       
+						   	</tr>
+						    
+						    
 						    <tr>
 						      <td valign="top">
 						        <span class="redstar">*</span>
@@ -395,7 +412,45 @@ function updatepictureuser(file){
 								$("#miaoshipicture").click(function(){
 									$("#filekuang").click();
 								})
+								$("input[name='username']").blur(function(){
+									var name=$("input[name='username']").val();
+// 									alert(name);
+								})
 								
+								
+								
+							    $("input[name='identyId']").blur(function(){
+							    	var ilength=$("input[name='identyId']").val();
+							    	var name=$("input[name='username']").val();
+							    	if(ilength.length<18){
+							    		 mizhu.alert('提示', '身份证号格式有误','alert_red');
+							    	}
+							    	
+							    	
+							    	
+							    	$.ajax({  
+			    			            type: "POST", 
+			    			            url:"doidentyIdYanzheng.controller",
+			    			            data:{
+			    			            	"number":ilength,
+			    			            	"name":name
+			    			            },
+			    			            error: function(request) {  
+			    			            },  
+			    			            success: function(data) {
+			    			              
+			    			            	if(data=="true"){
+			    			            		 mizhu.alert('提示', '身份信息验证成功','alert_blue');
+			    			            	}else{
+			    			            		 mizhu.alert('提示', '身份信息验证失败','alert_red');
+			    			            	}
+			    			            }  
+			    			         });
+							    		
+							    	
+							    	
+							    	
+							    })
 							})
 						</script>
             		</div><!--end .basicEdit-->
@@ -406,7 +461,7 @@ function updatepictureuser(file){
             		<input type="hidden" id="currentStateVal" value="${loginUser.currentstate }">
             		<input type="hidden" id="emailVal" value="${loginUser.email }">
             		<input type="hidden" id="telVal" value="${loginUser.telephone }">
-            		
+            		<%-- <input type="hidden" id="identyIdval" value="${loginUser.identyId}"/> --%>
             		
             		
             		
@@ -2029,7 +2084,7 @@ function updatepictureuser(file){
             		<a  href="doListCollectionp.controller">我收藏的职位</a>
             		<!-- target="_blank" -->
             		<br>
-            		            		            		<a target="_blank" href="doListsubscribe.controller">我订阅的职位</a>
+            		            		            		<a target="_blank" href="toListsubscribe.controller">我订阅的职位</a>
             	</div><!--end #myInfo-->
 
 				<div class="mycenterR" id="myResume">
