@@ -54,6 +54,6 @@ public interface CompanyService {
 	 */
 	Company queryCompanyByCid(Integer cid);
 	//公司页面查询方法
-	List<Company> queryListCompany(String ocity,String cfs,String cfield);
+	PageInfo<Company> queryListCompany(String ocity,String cfs,String cfield);
 	PageInfo<Company> queryListCompanylimit(String ocity,String cfs,String cfield,int PageSize,int PageNum);
 }

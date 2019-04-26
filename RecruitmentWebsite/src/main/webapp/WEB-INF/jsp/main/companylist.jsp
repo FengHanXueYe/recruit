@@ -284,7 +284,7 @@ var youdao_conv_id = 271546;
 	               	                	<c:if test="${empty ListCompanys}"><span >没有查询到相关信息</span></c:if>
 	               	                	 
 	               	                	
-	               	                	<c:forEach items="${ListCompanys}" var="com">
+	               	                	<c:forEach items="${ListCompanys.list}" var="com">
 	               	                	
 	               	                	
 		                  		                  		                        <li >
@@ -630,7 +630,7 @@ var youdao_conv_id = 271546;
 		                		               	<div class="Pagination1" align="center">
 		                		               	<a href="javascript:void(0)" class="limita" num="1">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		                		               	<a href="javascript:void(0)" class="limita" num="2">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		                		               	<input id="pagenum"><input type="button" value="跳转到" id="pagenumss">
+		                		               	<input id="pagenum" size="1" ><input type="button" value="跳转到" id="pagenumss">
 		                		               	
 		                		               	<a href="javascript:void(0)" class="limita" num="3">下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		                		               	<a href="javascript:void(0)" class="limita" num="4">尾页</a>
