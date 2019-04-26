@@ -14,5 +14,6 @@ public class ZuHe {
 	private int onature;
 	private int orelease;
 	private String oname;
+	//a
 
 }
