@@ -38,6 +38,16 @@ var youdao_conv_id = 271546;
 <body>
 <div id="body">
 	<div id="header">
+	
+	<!--
+	
+		private Integer subid,subweek;
+	private String subname,subemail,subcity,substate,subrealm,subprice;
+	
+	
+	  -->
+	
+	
     	<div class="wrapper">
     		<a href="index.html" class="logo">
     			<img src="style/images/logo.png" width="229" height="43" alt="拉勾招聘-专注互联网招聘" />
@@ -65,7 +75,8 @@ var youdao_conv_id = 271546;
 	           <!--      -->
           		<input type="hidden" id="orderCount" value="0" />
           	
-                <form id="subForm"  >
+                <!-- <form id="subForm"  > -->
+                <form   method="post">
                 	<input type="hidden" value="" name="id" id="orderId" />
 	                <div class="s_form">
 	                	<p>筛选下面的职位订阅条件，实现精准匹配的个性化职位定制，我们帮你挑工作！</p>
@@ -79,7 +90,7 @@ var youdao_conv_id = 271546;
 	                        </dd>
 	                        <dd>
 	                        	<input type="hidden" id="select_day_hidden" name="sendMailPer" value="" />
-	                       		<ul class="s_radio clearfix">
+	                       		<ul class="s_radio clearfix" id="week">
 	                       				                            		<li title="3">3天</li>
 	                            		                            		<li title="7">7天</li>
 	                            		                            </ul> 	
@@ -428,7 +439,7 @@ var youdao_conv_id = 271546;
 	                        </dt>
 	                        <dd>
 	                        	<input type="hidden" id="select_city_hidden" name="city" value="" />
-	                            <ul class="s_radio clearfix">
+	                            <ul class="s_radio clearfix" id="city">
 	                            		                            			                            		<li title="北京">北京</li>
 	                            			                            		                            			                            		<li title="上海">上海</li>
 	                            			                            		                            			                            		<li title="广州">广州</li>
@@ -445,7 +456,7 @@ var youdao_conv_id = 271546;
 	                        </dt>
 	                        <dd>
 	                        	<input type="hidden" id="select_stage_hidden" name="financeStage" value="" />
-	                        	<ul class="s_tips clearfix s_radio_sp">
+	                        	<ul  class="s_tips clearfix s_radio_sp" id="type">
 	                            		                            		<li title="初创型">初创型<span class="dn">刚成立或已获得天使投资</span></li>
 	                            		                            		<li title="成长型">成长型<span class="dn">已获得A轮/B轮/C轮融资</span></li>
 	                            		                            		<li title="成熟型">成熟型<span class="dn">有D轮及以上的融资</span></li>
@@ -461,7 +472,7 @@ var youdao_conv_id = 271546;
 	                        <dd>
 	                        	<input type="hidden" id="select_industry_hidden" name="industryField" value="" />
 	                            <input type="button" class="select" id="select_industry" value="请选择行业领域" />
-	                            <div id="box_industry" class="dn">
+	                            <div id="box_industry"  class="dn" >
 	                            	<ul class="reset">
 	                                		                                		<li>移动互联网</li>
 	                                		                                		<li>电子商务</li>
@@ -500,7 +511,7 @@ var youdao_conv_id = 271546;
 	                        <dd>
 	                        	<input type="hidden" id="select_salary_hidden" name="salary" value="" />
 	                            <input type="button" class="select" id="select_salary" value="请选择月薪范围" />
-	                            <div id="box_salary" class="dn">
+	                            <div id="box_salary"   class="dn" >
 	                            	<ul class="reset">
 	                                		                                		<li>2k以下</li>
 	                                		                                		<li>2k-5k</li>
@@ -524,10 +535,15 @@ var youdao_conv_id = 271546;
 	                        </dd>
 	                    </dl>
 	                    <span id="commonError" class="error" style="display:none;">系统异常</span>
-	                    <input type="submit" class="btn_big" id="subSubmit" value="保 存" />
+	                    <input type="button" class="btn_big" id="subSubmit" value="保 存" />
 	                    <a href="javascript:void(0)" class="btn_cancel">取 消</a>
 	                </div>
+	                
+	                <input type="hidden" name="emailval">
+	                
 	        	</form>
+	        	
+	        	
             </div>	
             <div class="content_r">
             	<div class="subscribe_side mb20 c5">
@@ -541,6 +557,86 @@ var youdao_conv_id = 271546;
             </div>
        	</div>
       <input type="hidden" value="" name="userid" id="userid" />
+
+<script type="text/javascript">
+
+             $(function(){
+            	 
+            	 var email=$("input[name='email']").val();
+            	if(email!=null){
+            		$("input[name='emailval']").val(email);
+            	} 
+             })
+
+</script>
+
+
+<script type="text/javascript">
+          $(function(){
+        	  
+        	  
+        	  
+        	  
+        	  alert("1");
+        	  
+        	  
+        	  $("#week li").each(function(){
+            	  $(this).click(function(){
+            	  var week=$(this).text();
+            	  alert(week);
+            		})
+            	})
+        	  
+        	  
+        	  $("#sub_box_job  li ul li").each(function(){
+            	  $(this).click(function(){
+            	  var zhi=$(this).text();
+            	  alert(zhi);
+            		})
+            	})
+        	  $("#city li").each(function(){
+            	  $(this).click(function(){
+            	  var city=$(this).text();
+            	  alert(city);
+            		})
+            	})
+            	
+              
+        	  $("#type li").each(function(){
+            	  $(this).click(function(){
+            	  alert($(this).text());
+            		})
+            	})
+        	  
+        	  $("#box_industry li").each(function(){
+            	  $(this).click(function(){
+            	
+            	  alert($(this).text());
+            		})
+            	})
+        	  
+        	  $("#box_salary ul li").each(function(){
+        	  $(this).click(function(){
+        	  alert($(this).text());
+        		})
+        	  })
+        		$("input[id='subSubmit']").click(function() {
+							
+							$("form").attr("action","doListsubscribe.controller").submit();
+						})
+						
+        	  
+  		   })
+        	
+       
+     
+
+</script>  
+
+
+
+
+
 
 <!------------------------------------- 弹窗lightbox ----------------------------------------->
 <div style="display:none;">	
