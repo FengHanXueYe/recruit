@@ -55,8 +55,8 @@
 				<ul class="reset" id="navheader">
 					<li><a href="toIndex.controller">首页</a></li>
 					<li><a href="companylist.html">公司</a></li>
-					<li><a href="#" target="_blank">论坛</a></li>
-					<li><a href="toResume.controller" rel="nofollow">我的简历</a></li>
+					<li><a href="h/toForum.html" target="_blank">论坛</a></li>
+					<li><a href="jianli.html" rel="nofollow">我的简历</a></li>
 					<li><a href="create.html" rel="nofollow">发布职位</a></li>
 				</ul>
 				<c:choose>
@@ -73,7 +73,7 @@
 
 		<!-- ------------------------------------------------------------------------------------------- -->
 		<script type="text/javascript">
-			$(
+			/* $(
 					function() {
 						$(".ajaxdian")
 								.click(
@@ -791,7 +791,7 @@
 														type : "post",
 														url : "toorelease.controller",
 														data : {
-															"orelease" : orelease
+															"orelease" : oreleasea
 														},
 														success : function(data) {
 															$("#ajax").html("");
@@ -923,6 +923,150 @@
 													})
 										})
 
+					}) */
+					$(function() {
+						
+						$(".ajaxdian").click(function() {
+							
+							//location.href="tosalary.controller"
+							var zhi = $.trim($(this).html());
+							alert(zhi);
+							var omaxsalary = 0;
+							var ominsalary = 0;
+							if (zhi == "2k以下") {
+								omaxsalary = 2;
+								ominsalary = 0;
+							} else if (zhi == "2k-5k") {
+								omaxsalary = 5;
+								ominsalary = 2;
+							} else if (zhi == "5k-10k") {
+								omaxsalary = 10;
+								ominsalary = 5;
+							} else if (zhi == "10k-15k") {
+								omaxsalary = 15;
+								ominsalary = 10;
+							} else if (zhi = "15k-25k") {
+								omaxsalary = 25;
+								ominsalary = 15;
+							} else if (zhi = "25k-50k") {
+								omaxsalary = 50;
+								ominsalary = 25;
+							} else if (zhi = "50k以上") {
+								omaxsalary = 100;
+								ominsalary = 50;
+							}
+							var zhi = $.trim($(this).html());
+							//alert(zhi);
+							var olog = "";
+							if (zhi == "不限") {
+								olog = "不限";
+							} else if (zhi == "应届毕业生") {
+								olog = "应届毕业生";
+							} else if (zhi == "1年以下") {
+								olog = "1年以下";
+							} else if (zhi == "1-3年") {
+								olog = "1-3年";
+							} else if (zhi = "3-5年") {
+								olog = "3-5年";
+							} else if (zhi = "5-10年") {
+								olog = "5-10年";
+							} else if (zhi = "10年以上") {
+								olog = "10年以上";
+							}
+							var zhi = $.trim($(this).html());
+							var ename = "";
+							if (zhi == "不限") {
+								ename = "不限";
+							} else if (zhi == "大专") {
+								ename = "大专";
+							} else if (zhi == "本科") {
+								ename = "本科";
+							} else if (zhi == "硕士") {
+								ename = "硕士";
+							} else if (zhi = "博士") {
+								ename = "博士";
+							}
+							var zhi = $.trim($(this).html());
+							//alert(zhi);
+							var orelease = 0;
+							if (zhi == "今天") {
+								orelease = -1;
+							} else if (zhi == "3天之内") {
+								orelease = -3;
+							} else if (zhi == "一周内") {
+								orelease = -7;
+							} else if (zhi == "一月内") {
+								orelease = -30;
+							}
+							var zhi = $.trim($(this).html());
+							var onature = 0;
+							if (zhi == "全职") {
+								onature = 1;
+							} else if (zhi == "兼职") {
+								onature = 2;
+							} else if (zhi == "实习") {
+								onature = 3;
+							}
+							var zhi = $.trim($(this).html());
+							var ocity="";
+							if(zhi=="北京"){
+								ocity="北京";
+							}else if(zhi=="上海"){
+								occity="上海";
+							}else if(zhi=="广州"){
+								occity="广州";
+							}else if(zhi=="深圳"){
+								occity="深圳";
+							}else if(zhi=="成都"){
+								occity="成都";
+							}else if(zhi=="杭州"){
+								occity="杭州";
+							}
+							else if(zhi=="武汉"){
+								occity="武汉";
+							}
+							else if(zhi=="南京"){
+								occity="南京";
+							}
+							else if(zhi=="长春"){
+								occity="长春";
+							}else if(zhi=="重庆"){
+								occity="重庆";
+							}else if(zhi=="长沙"){
+								occity="长沙";
+							}else if(zhi=="常州"){
+								occity="常州";
+							}else if(zhi=="东莞"){
+								occity="东莞";
+							}else if(zhi=="大连"){
+								occity="大连";
+							}else if(zhi=="佛山"){
+								occity="佛山";
+							}else if(zhi=="福州"){
+								occity="福州";
+							}else if(zhi=="贵阳"){
+								occity="贵阳";
+							}
+							
+							$.ajax({
+								type : "post",
+								url : "qeryxuheController.controller",
+								data : {
+									"omaxsalary" : omaxsalary,
+									"ominsalary" : ominsalary,
+									"olog" : olog,
+									"ename" : ename,
+									"onature" : onature,
+									"orelease" : oreleasea
+								},
+								success : function(data) {
+									 
+								}
+								
+							})
+							
+						})
+						
 					})
 		</script>
 		<div id="container">
@@ -948,13 +1092,13 @@
 							工作经验 <em></em>
 						</dt>
 						<dd>
-							<div class="ajaxdian1">不限</div>
-							<div class="ajaxdian1">应届毕业生</div>
-							<div class="ajaxdian1">1年以下</div>
-							<div class="ajaxdian1">1-3年</div>
-							<div class="ajaxdian1">3-5年</div>
-							<div class="ajaxdian1">5-10年</div>
-							<div class="ajaxdian1">10年以上</div>
+							<div class="ajaxdian">不限</div>
+							<div class="ajaxdian">应届毕业生</div>
+							<div class="ajaxdian">1年以下</div>
+							<div class="ajaxdian">1-3年</div>
+							<div class="ajaxdian">3-5年</div>
+							<div class="ajaxdian">5-10年</div>
+							<div class="ajaxdian">10年以上</div>
 						</dd>
 					</dl>
 					<dl>
@@ -962,11 +1106,11 @@
 							最低学历 <em></em>
 						</dt>
 						<dd>
-							<div class="ajaxdian2">不限</div>
-							<div class="ajaxdian2">大专</div>
-							<div class="ajaxdian2">本科</div>
-							<div class="ajaxdian2">硕士</div>
-							<div class="ajaxdian2">博士</div>
+							<div class="ajaxdian">不限</div>
+							<div class="ajaxdian">大专</div>
+							<div class="ajaxdian">本科</div>
+							<div class="ajaxdian">硕士</div>
+							<div class="ajaxdian">博士</div>
 						</dd>
 					</dl>
 					<dl>
@@ -974,9 +1118,9 @@
 							工作性质 <em></em>
 						</dt>
 						<dd>
-							<div class="ajaxdian3">全职</div>
-							<div class="ajaxdian3">兼职</div>
-							<div class="ajaxdian3">实习</div>
+							<div class="ajaxdian">全职</div>
+							<div class="ajaxdian">兼职</div>
+							<div class="ajaxdian">实习</div>
 						</dd>
 					</dl>
 					<dl>
@@ -984,10 +1128,10 @@
 							发布时间 <em></em>
 						</dt>
 						<dd>
-							<div class="ajaxdian4">今天</div>
-							<div class="ajaxdian4">3天内</div>
-							<div class="ajaxdian4">一周内</div>
-							<div class="ajaxdian4">一月内</div>
+							<div class="ajaxdian">今天</div>
+							<div class="ajaxdian">3天内</div>
+							<div class="ajaxdian">一周内</div>
+							<div class="ajaxdian">一月内</div>
 						</dd>
 					</dl>
 				</div>
@@ -1145,28 +1289,28 @@
 						<a href="javascript:;" class="current">全国</a> |
 					</dd>
 					<dd>
-						<a href="javascript:;">北京</a> |
+						<a href="javascript:;" class="ajaxdian">北京</a> |
 					</dd>
 					<dd>
-						<a href="javascript:;">上海</a> |
+						<a href="javascript:;" class="ajaxdian">上海</a> |
 					</dd>
 					<dd>
-						<a href="javascript:;">广州</a> |
+						<a href="javascript:;" class="ajaxdian">广州</a> |
 					</dd>
 					<dd>
-						<a href="javascript:;">深圳</a> |
+						<a href="javascript:;" class="ajaxdian">深圳</a> |
 					</dd>
 					<dd>
-						<a href="javascript:;">成都</a> |
+						<a href="javascript:;" class="ajaxdian">成都</a> |
 					</dd>
 					<dd>
-						<a href="javascript:;">杭州</a> |
+						<a href="javascript:;" class="ajaxdian">杭州</a> |
 					</dd>
 					<dd>
-						<a href="javascript:;">武汉</a> |
+						<a href="javascript:;" class="ajaxdian">武汉</a> |
 					</dd>
 					<dd>
-						<a href="javascript:;">南京</a> |
+						<a href="javascript:;" class="ajaxdian">南京</a> |
 					</dd>
 					<dd class="more">
 						<a href="javascript:;">其他</a>
