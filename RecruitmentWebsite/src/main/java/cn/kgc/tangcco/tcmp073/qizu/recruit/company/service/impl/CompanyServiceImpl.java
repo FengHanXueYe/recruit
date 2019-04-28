@@ -124,5 +124,17 @@ public class CompanyServiceImpl implements CompanyService {
 		PageInfo<Company> pageInfo = new PageInfo<>(list);
 		return pageInfo;
 	}
-	// 1232
+	//公司页面的公司简称 介绍的修改
+	@Override
+	public int UpdateCompanyById(String cabbreviation, String companyProfile, int cid) {
+		return mapper.UpdateCompanyById(cabbreviation, companyProfile, cid);
+	}
+	@Override
+	public int updateCompanyProfileById(String companyProfile, int cid) {
+		return mapper.updateCompanyProfileById(companyProfile, cid);
+	}
+	@Override
+	public int updateCompanys(String caddress, String curl, String cfield, String cscale,int cid) {
+		return mapper.updateCompanys(caddress, curl, cfield, cscale,cid);
+	}
 }

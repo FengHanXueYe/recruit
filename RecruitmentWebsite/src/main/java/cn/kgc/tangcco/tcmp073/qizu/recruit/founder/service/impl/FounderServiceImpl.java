@@ -15,5 +15,9 @@ public class FounderServiceImpl implements FounderService {
 	public int addFounder(Founder founder) {
 		return mapper.addFounder(founder);
 	}
+	@Override
+	public int update(Founder fou) {
+		return mapper.update(fou);
+	}
 
 }
