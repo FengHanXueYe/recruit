@@ -14,6 +14,8 @@
     <script type="text/javascript" src="backstagestyle/Js/ckform.js"></script>
     <script type="text/javascript" src="backstagestyle/Js/common.js"></script>
 
+ 
+
     <style type="text/css">
         body {
             padding-bottom: 40px;
@@ -36,42 +38,34 @@
 </head>
 <body>
 <form action="index.html" method="post" class="definewidth m20">
-<input type="hidden" name="id" value="{$menu.id}" />
-<table class="table table-bordered table-hover m10">
+<table class="table table-bordered table-hover definewidth m10">
     <tr>
-        <td width="10%" class="tableleft">上级</td>
-        <td>
-            <select name="parentid">
-            <option value="0">一级菜单</option><option value='1'   />&nbsp;系统管理</option><option value='7'   />&nbsp;明信片管理</option>            </select>
-        </td>
+        <td width="10%" class="tableleft">登录名</td>
+        <td><input type="text" name="username"/></td>
     </tr>
     <tr>
-        <td class="tableleft">名称</td>
-        <td><input type="text" name="name"/></td>
+        <td class="tableleft">密码</td>
+        <td><input type="password" name="password"/></td>
     </tr>
-    <tr>
-        <td class="tableleft">Group</td>
-        <td><input type="text" name="group"/></td>
-    </tr>
-    <tr>
-        <td class="tableleft">Model</td>
-        <td><input type="text" name="module"/></td>
-    </tr>
-    <tr>
-        <td class="tableleft">Action</td>
-        <td><input type="text" name="action"/></td>
-    </tr>
-    <tr>
-        <td class="tableleft">备注</td>
-        <td><input type="text" name="remark"/></td>
-    </tr>
+   <!--  <tr>
+        <td class="tableleft">真实姓名</td>
+        <td><input type="text" name="realname"/></td>
+    </tr> -->
+    <!-- <tr>
+        <td class="tableleft">邮箱</td>
+        <td><input type="text" name="email"/></td>
+    </tr> -->
     <tr>
         <td class="tableleft">状态</td>
         <td>
-            <input type="radio" name="status" value="0" checked/> 启用
-            <input type="radio" name="status" value="1"/> 禁用
+            <input type="radio" name="status" value="1" checked/> 普通管理员
+           <input type="radio" name="status" value="0"/> 高级管理员
         </td>
     </tr>
+   <!--  <tr>
+        <td class="tableleft">角色</td>
+        <td>{$role_checkbox}</td>
+    </tr> -->
     <tr>
         <td class="tableleft"></td>
         <td>
@@ -85,7 +79,7 @@
 <script>
     $(function () {       
 		$('#backid').click(function(){
-				window.location.href="toMenuIndex.controller";
+				window.location.href="toUserIndex.controller";
 		 });
 
     });

@@ -5,18 +5,19 @@
 <head>
     <title>后台管理系统</title>
 	<meta charset="UTF-8">
-   <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
-    <script type="text/javascript" src="../Js/jquery.js"></script>
-    <script type="text/javascript" src="../Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="../Js/bootstrap.js"></script>
-    <script type="text/javascript" src="../Js/ckform.js"></script>
-    <script type="text/javascript" src="../Js/common.js"></script>
+   <link rel="stylesheet" type="text/css" href="backstagestyle/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="backstagestyle/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="backstagestyle/Css/style.css" />
+    <script type="text/javascript" src="backstagestyle/Js/jquery.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/ckform.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/common.js"></script>
     <style type="text/css">
         body {
-            padding-top: 40px;
+            padding-top: 140px;
             padding-bottom: 40px;
+            /* background-color: linear-gradient(top,bottom,#019875 50%,#f5f5f5 50%); */
             background-color: #f5f5f5;
         }
 
@@ -52,11 +53,11 @@
 <body>
 <div class="container">
 
-    <form class="form-signin" method="post" action="../index.html">
-        <h2 class="form-signin-heading">登录系统</h2>
-        <input type="text" name="username" class="input-block-level" placeholder="账号">
-        <input type="password" name="password" class="input-block-level" placeholder="密码">
-        <input type="text" name="verify" class="input-medium" placeholder="验证码">
+    <form class="form-signin" method="post" action="doLoginAdminUser.controller">
+        <h2 class="form-signin-heading">拉钩后台</h2>
+        <input type="text" name="ausername" class="input-block-level" placeholder="账号">
+        <input type="password" name="apassword" class="input-block-level" placeholder="密码">
+       <!--  <input type="text" name="verify" class="input-medium" placeholder="验证码"> -->
        
         <p><button class="btn btn-large btn-primary" type="submit">登录</button></p>
     </form>
