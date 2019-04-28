@@ -46,7 +46,7 @@ var youdao_conv_id = 271546;
     		<ul id="navheader" class="reset">
     			<li><a href="toIndex.controller">首页</a></li>
     			<li><a href="tomyhome.controller">公司</a></li>
-    			<li><a target="_blank" href="h/toForum.html">论坛</a></li>
+    			<li><a target="_blank" href="#">论坛</a></li>
     				    			<li><a rel="nofollow" href="toResume.controller">我的简历</a></li>
 	    						    		</ul>
 	    						 <jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
@@ -216,7 +216,7 @@ var youdao_conv_id = 271546;
             		<h2>我的信息</h2>
             		<a href="doListCollectionp.controller">我收藏的职位</a>
             		<br>
-            		            		<a target="_blank" href="subscribe.html">我订阅的职位</a>
+            		            		<a target="_blank" href="toListsubscribe.controller">我订阅的职位</a>
             		            	</div><!--end #myInfo-->
             					<div class="greybg qrcode mt20">
                 	<img width="242" height="242" alt="拉勾微信公众号二维码" src="style/images/qr_delivery.png">

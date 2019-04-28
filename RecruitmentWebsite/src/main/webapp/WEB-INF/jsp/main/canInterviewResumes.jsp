@@ -46,7 +46,7 @@ var youdao_conv_id = 271546;
     		<ul id="navheader" class="reset">
     			<li><a href="toIndex.controller">首页</a></li>
     			<li><a href="tomyhome.controller">公司</a></li>
-    			<li><a target="_blank" href="">论坛</a></li>
+    			<li><a target="_blank" href="#">论坛</a></li>
     				    			<li><a rel="nofollow" href="toResume.controller">我的简历</a></li>
 	    						    		</ul>
 	    			<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
