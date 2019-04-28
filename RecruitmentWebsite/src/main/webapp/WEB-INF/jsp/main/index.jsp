@@ -74,7 +74,7 @@
 				<ul class="reset" id="navheader">
 					<li class="current"><a href="toIndex.controller">首页</a></li>
 					<li><a href="queryListCompany.controller">公司</a></li>
-					<li><a href="h/toForum.html" target="_blank">论坛</a></li>
+					<li><a href="#" target="_blank">论坛</a></li>
 					<li><a href="toResume.controller" rel="nofollow">我的简历</a></li>
 					<li><a href="tocreate.controller" rel="nofollow">发布职位</a></li>
 				</ul>

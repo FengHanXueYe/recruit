@@ -284,7 +284,7 @@ var youdao_conv_id = 271546;
 	               	                	<c:if test="${empty ListCompanys}"><span >没有查询到相关信息</span></c:if>
 	               	                	 
 	               	                	
-	               	                	<c:forEach items="${ListCompanys}" var="com">
+	               	                	<c:forEach items="${ListCompanys.list}" var="com">
 	               	                	
 	               	                	
 		                  		                  		                        <li >
@@ -630,7 +630,7 @@ var youdao_conv_id = 271546;
 		                		               	<div class="Pagination1" align="center">
 		                		               	<a href="javascript:void(0)" class="limita" num="1">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		                		               	<a href="javascript:void(0)" class="limita" num="2">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		                		               	<input id="pagenum"><input type="button" value="跳转到" id="pagenumss">
+		                		               	<input id="pagenum" size="1" ><input type="button" value="跳转到" id="pagenumss">
 		                		               	
 		                		               	<a href="javascript:void(0)" class="limita" num="3">下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		                		               	<a href="javascript:void(0)" class="limita" num="4">尾页</a>
@@ -850,7 +850,41 @@ $(function(){
 			  }
 		})
 	})
-	
+	$("#box_expectCity dd span").click(function(){
+		var ocity= $(this).html()
+		alert(ocity);
+		$.ajax({
+			  type:"post",
+			  url:"queryListCompanyLimit.controller",
+			  data:{"ocity":ocity,"cfs":cfs,"cfield":cfield},
+			  success:function(returnData){
+				  	$(".hdiv").html("");
+				  	var html="<ul class='hc_list reset'>";
+				  $.each(returnData.list,function(index,data){
+					html+="<li>";	  
+					html+=" <a href='h/c/25829.html' target='_blank'>";  
+					html+="<h3 title=''>"+data.cname+"</h3>";
+					html+="<div class='comLogo'><img src='"+data.comtuxiang+"' width='190' height='190' alt='CCIC' />";
+					html+="<ul><li>"+data.cfield+"</li><li>"+data.caddress+"，"+data.cfs+"</li></ul>";
+					html+="</div>";
+					html+=" </a>";
+					$.each(data.occupation,function(index,occ){
+					html+="<a href='h/jobs/148928.html' target='_blank'>"+occ.oname+"</a>";		
+					})
+					html+=" <ul class='reset ctags'>";
+					html+="<li>"+data.cfs+"</li>";
+					html+="<li>"+data.caddress+"</li>";
+                html+="<li>"+data.cfinancing+"</li>";
+                html+="</ul>";
+					html+="</li>";
+				  })
+				 html+="</ul>";
+				  $(".hdiv").html(html).hide().slideDown(1000);
+			  }
+		})
+		
+		
+	})
 	
 	
 	/*$("#box_expectCity dd span").click(function(){

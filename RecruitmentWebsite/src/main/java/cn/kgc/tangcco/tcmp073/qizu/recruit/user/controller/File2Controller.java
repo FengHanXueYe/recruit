@@ -2,6 +2,7 @@ package cn.kgc.tangcco.tcmp073.qizu.recruit.user.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,14 +16,17 @@ public class File2Controller {
 	
 	
 	@RequestMapping("upload")
-    public String fileload(MultipartFile file, HttpServletRequest request) {
+    public String fileload(MultipartFile file, HttpServletRequest request) throws IOException {
 
         //获取文件名称
         String fileName = file.getOriginalFilename();
 
         //设置上传路径
-        String path =  request.getSession().getServletContext().getRealPath("/resources");
-
+        //String path =  request.getSession().getServletContext().getRealPath("/resources");
+        File directory = new File("");// 参数为空
+		String courseFile = directory.getCanonicalPath();
+		System.out.println("---------------------------我是路径---》》》》"+courseFile);
+		String path=courseFile+"\\src\\main\\webapp\\resources\\";  
         //文件上传
         File f = new File(path);
 

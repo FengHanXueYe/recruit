@@ -22,7 +22,7 @@
 		select com.*,occ.* from company com,occupation occ where
 		com.cid=occ.ocid and occ.ostate=0
 		<if test="ocity!='' and ocity!=null and ocity!='全国'">
-			and occ.ocity=#{ocity}
+			and com.caddress=#{ocity}
 		</if>
 		<if test="cfs!=null and cfs!=''">
 			AND com.cfs=#{cfs}

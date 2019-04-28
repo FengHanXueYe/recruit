@@ -9,4 +9,6 @@ import cn.kgc.tangcco.tcmp073.qizu.entity.RecommendVO;
 public interface RecommendVOService {
 	
 	List<RecommendVO> queryRecommendVO(@Param("rvo")RecommendVO rvo);
+	
+	int queryCount();
 }

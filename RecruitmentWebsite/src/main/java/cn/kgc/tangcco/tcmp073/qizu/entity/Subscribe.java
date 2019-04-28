@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Subscribe {
 	
 	
-	private Integer subid,subweek;
-	private String subname,subemail,subcity,substate,subrealm,subprice;
+	private Integer subid,sendMailPer,suserid;
+	private String positionName,email,city,financeStage,industryField,salary;
 
 }

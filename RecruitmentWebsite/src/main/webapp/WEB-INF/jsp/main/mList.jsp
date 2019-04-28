@@ -44,10 +44,10 @@ var youdao_conv_id = 271546;
     			<img width="229" height="43" alt="拉勾招聘-专注互联网招聘" src="style/images/logo.png">
     		</a>
     		<ul id="navheader" class="reset">
-    			<li><a href="index.html">首页</a></li>
-    			<li><a href="companylist.html">公司</a></li>
-    			<li><a target="_blank" href="">论坛</a></li>
-    				    			<li><a rel="nofollow" href="jianli.html">我的简历</a></li>
+    			<li><a href="toIndex.controller">首页</a></li>
+    			<li><a href="queryListCompany.controller">公司</a></li>
+    			<li><a target="_blank" href="#">论坛</a></li>
+    				    			<li><a rel="nofollow" href="toResume.controller">我的简历</a></li>
 	    						    		</ul>
 	    						    		<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
         	        	<!-- <dl class="collapsible_menu">
@@ -76,7 +76,7 @@ var youdao_conv_id = 271546;
         	  	
         <div class="clearfix">
             <div class="content_l recommend_list">
-            	<h2>拉勾网根据你的个人简历为你推荐以下职位： <a class="more" href="jianli.html">修改简历信息&gt;&gt;</a></h2>
+            	<h2>拉勾网根据你的个人简历为你推荐以下职位： <a class="more" href="toResume.controller">修改简历信息&gt;&gt;</a></h2>
             	
             	<ul class="hot_pos reset">
             	
@@ -587,17 +587,19 @@ var youdao_conv_id = 271546;
                             </div>	
             <div class="content_r">
             	<div class="subscribe_side">
-	            	<a target="_blank" href="subscribe.html">
+	            	<a target="_blank" href="toListsubscribe.controller">
 	                    <div class="subpos"><span>订阅</span> 职位</div>
 	                    <div class="c7">拉勾网会根据你的筛选条件，定期将符合你要求的职位信息发给你
 	                    </div>
-	                    <div class="count">已有
-	                    		                    		<em>3</em>
-	                    		                    		<em>4</em>
-	                    		                    		<em>2</em>
-	                    		                    		<em>1</em>
-	                    		                    		<em>0</em>
-	                    		                    	人订阅
+	                    
+	                    <div class="count">已订阅
+	                    <input type="hidden" id="shju" value="${count}" >
+	                    		                    		<em class="querycount" id="count1">0</em>
+	                    		                    		<em class="querycount" id="count2">0</em>
+	                    		                    		<em class="querycount" id="count3">0</em>
+	                    		                    		<em class="querycount" id="count4">${count0}</em>
+	                    		                    		<em class="querycount" id="count5">${count1}</em>
+	                    		                    	个职位
 	                    </div>
 	                    <i>我也要订阅职位</i>
 	            	</a>
@@ -609,6 +611,23 @@ var youdao_conv_id = 271546;
             </div>
        	</div>
       <input type="hidden" id="userid" name="userid" value="314873">
+      
+    <!--   <script type="text/javascript">
+              $(function(){
+            	  var shu=$("#shju").val();
+            	  /* alert(shu); */
+            	   
+            	  var count=$(".querycount").val();
+            	  if(count<=10){
+            		  $("#count5").val(count);
+            	  }
+            	  
+              })
+      
+      
+      </script>
+       -->
+      
 <script>
 $(function(){
 	

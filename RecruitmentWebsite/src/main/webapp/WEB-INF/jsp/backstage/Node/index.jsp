@@ -5,14 +5,14 @@
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
-    <script type="text/javascript" src="../Js/jquery.js"></script>
-    <script type="text/javascript" src="../Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="../Js/bootstrap.js"></script>
-    <script type="text/javascript" src="../Js/ckform.js"></script>
-    <script type="text/javascript" src="../Js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="backstagestyle/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="backstagestyle/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="backstagestyle/Css/style.css" />
+    <script type="text/javascript" src="backstagestyle/Js/jquery.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/ckform.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/common.js"></script>
 
     <style type="text/css">
         body {
@@ -67,7 +67,7 @@
         
 		$('#addnew').click(function(){
 
-				window.location.href="add.html";
+				window.location.href="toNodeAdd.controller";
 		 });
 
 
@@ -80,7 +80,7 @@
 		if(confirm("确定要删除吗？"))
 		{
 		
-			var url = "index.html";
+			var url = "toNodeIndex.controller";
 			
 			window.location.href=url;		
 		

@@ -63,4 +63,13 @@ public interface CompanyMapper {
 	List<Company> queryListCompany(@Param("ocity")String ocity,@Param("cfs")String cfs,@Param("cfield")String cfield);
 	//ajax查询公司
 	List<Company> queryListCompanylimit(@Param("ocity")String ocity,@Param("cfs")String cfs,@Param("cfield")String cfield);
+	//公司页面的公司简称 介绍的修改
+	@Update("update company set cabbreviation=#{cabbreviation},cdetail=#{cdetail}  where cid=#{cid}")
+	int UpdateCompanyById(@Param("cabbreviation")String cabbreviation,@Param("cdetail")String cdetail,@Param("cid")int cid);
+	//公司页面修改公司介绍
+	@Update("update company set companyProfile=#{companyProfile}  where cid=#{cid}")
+	int updateCompanyProfileById(@Param("companyProfile")String companyProfile,@Param("cid")int cid);
+	//公司页面修改 地址 网址 领域 规模
+	@Update("UPDATE company SET caddress=#{caddress},curl=#{curl},cfield=#{cfield},cscale=#{cscale} where cid=#{cid}")
+	int updateCompanys(@Param("caddress")String caddress,@Param("curl")String curl,@Param("cfield")String cfield,@Param("cscale")String cscale,@Param("cid")int cid);
 }

@@ -15,5 +15,8 @@ int addDeliverypost(Deliverypost dp);
 	
 	List<Deliverypost> queryAllDeliverypost(Deliverypost dp);
 	
+	
+	
+	
 	Deliverypost detailDeliverypost(Deliverypost dp);
 }

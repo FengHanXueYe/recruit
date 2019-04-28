@@ -54,8 +54,8 @@ var youdao_conv_id = 271546;
     		<ul id="navheader" class="reset">
     			<li><a href="toIndex.controller">首页</a></li>
     			<li><a href="queryListCompany.controller">公司</a></li>
-    			<li><a target="_blank" href="h/toForum.html">论坛</a></li>
-    				    			<li class="current"><a rel="nofollow" href="jianli.html">我的简历</a></li>
+    			<li><a target="_blank" href="#">论坛</a></li>
+    				    			<li class="current"><a rel="nofollow" href="toResume.controller">我的简历</a></li>
 	    						    		</ul>
 	    				<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>		    		
         	        	<!-- <dl class="collapsible_menu">
@@ -244,6 +244,10 @@ function updatepictureuser(file){
 						          </ul>  
 						      </td>
 						      
+						      
+						      
+						      
+						      
 						      <!-- --------touxiang-------- -->
 						      
 						      
@@ -252,6 +256,21 @@ function updatepictureuser(file){
 						      				  <input type="file" value="" style="display:none" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="updatepictureuser(this)" name="file" id="filekuang">
 						      </td>
 						    </tr>
+						    
+						      <tr>
+						      <td valign="top">
+						        <span class="redstar">*</span>
+						      </td> 
+						      <td colspan="3">
+						     <!--  <input type="hidden" name="identyId" > -->
+						     <!--  style="margin-left:30px;width:120px;height:120px;border-radius: 50%; -->
+						      <input type="text" value="${loginUser.identity }" placeholder="请填写您真实身份证件号"  style="width:385px" maxlength="18" name="identity">
+						      
+						      </td>
+						       
+						   	</tr>
+						    
+						    
 						    <tr>
 						      <td valign="top">
 						        <span class="redstar">*</span>
@@ -367,6 +386,7 @@ function updatepictureuser(file){
 						       <td></td>
 						    </tr>
 						  </tbody></table>
+						 <!--  <input type="hidden" name="identyId" > -->
 						 <input type="hidden" name="xueli" />
 						 <input type="hidden" name="jingyan" />
 						</form><!--end #profileForm-->
@@ -395,7 +415,45 @@ function updatepictureuser(file){
 								$("#miaoshipicture").click(function(){
 									$("#filekuang").click();
 								})
+								$("input[name='username']").blur(function(){
+									var name=$("input[name='username']").val();
+// 									alert(name);
+								})
 								
+								
+								
+							    $("input[name='identity']").blur(function(){
+							    	var ilength=$("input[name='identity']").val();
+							    	var name=$("input[name='username']").val();
+							    	if(ilength.length<18){
+							    		 mizhu.alert('提示', '身份证号格式有误','alert_red');
+							    	}
+							    	
+							    	
+							    	
+							    	$.ajax({  
+			    			            type: "POST", 
+			    			            url:"doidentyIdYanzheng.controller",
+			    			            data:{
+			    			            	"number":ilength,
+			    			            	"name":name
+			    			            },
+			    			            error: function(request) {  
+			    			            },  
+			    			            success: function(data) {
+			    			              
+			    			            	if(data=="true"){
+			    			            		 mizhu.alert('提示', '身份信息验证成功','alert_blue');
+			    			            	}else{
+			    			            		 mizhu.alert('提示', '身份信息验证失败','alert_red');
+			    			            	}
+			    			            }  
+			    			         });
+							    		
+							    	
+							    	
+							    	
+							    })
 							})
 						</script>
             		</div><!--end .basicEdit-->
@@ -406,7 +464,7 @@ function updatepictureuser(file){
             		<input type="hidden" id="currentStateVal" value="${loginUser.currentstate }">
             		<input type="hidden" id="emailVal" value="${loginUser.email }">
             		<input type="hidden" id="telVal" value="${loginUser.telephone }">
-            		
+            		<%-- <input type="hidden" id="identyIdval" value="${loginUser.identyId}"/> --%>
             		
             		
             		
@@ -435,6 +493,15 @@ function updatepictureuser(file){
             			})
             			/* 简历 */
             			function jianli(){
+        	                    
+            		/* 		var idapplic = $("form#profileForm input[name='identyId']").val();
+                			
+                			
+
+                			
+                			$("form#profileForm input[name='identyId']").val(idapplic);
+        	 */
+        	
 
 								$('#profileForm').attr("action","doUpdateResumename.controller");
 								$('#profileForm').submit();
@@ -691,12 +758,13 @@ function updatepictureuser(file){
             				m=50;
             			}else{
             				m=100;
-            			} 
+            			}
+            			
             			
             			$("form#expectForm1 input[name='hcity']").val($("form#expectForm1 input[name='hcityx']").val());
             			
             			$("form#expectForm1 input[name='hmoney']").val(m);
-            			alert(m);
+            			
             			$("input[name='htype']").val(htype);
 
             			  mizhu.alert('提示', '信息完善成功','alert_blue');
@@ -1378,7 +1446,7 @@ function updatepictureuser(file){
                            })
                            
                         function  workJY(){
-                    		   alert('1');
+                    		  
                     			 
                         			var zhi = $("form#expectForm3 input[name='projectName']").val();
                         			
@@ -2029,7 +2097,7 @@ function updatepictureuser(file){
             		<a  href="doListCollectionp.controller">我收藏的职位</a>
             		<!-- target="_blank" -->
             		<br>
-            		            		            		<a target="_blank" href="doListsubscribe.controller">我订阅的职位</a>
+            		            		            		<a target="_blank" href="toListsubscribe.controller">我订阅的职位</a>
             	</div><!--end #myInfo-->
 
 				<div class="mycenterR" id="myResume">

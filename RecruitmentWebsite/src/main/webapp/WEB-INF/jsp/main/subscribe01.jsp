@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 ﻿<!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb"><head>
 </script><script type="text/javascript" async="" src="style/js/conversion.js"></script><script src="style/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script><style type="text/css"></style>
@@ -44,8 +45,8 @@ var youdao_conv_id = 271546;
     		<ul id="navheader" class="reset">
     			<li><a href="index.html">首页</a></li>
     			<li><a href="companylist.html">公司</a></li>
-    			<li><a target="_blank" href="">论坛</a></li>
-    				    			<li><a rel="nofollow" href="jianli.html">我的简历</a></li>
+    			<li><a target="_blank" href="#">论坛</a></li>
+    				    			<li><a rel="nofollow" href="toResume.controller">我的简历</a></li>
 	    						    		</ul>
         	        	<dl class="collapsible_menu">
             	<dt>
@@ -74,27 +75,40 @@ var youdao_conv_id = 271546;
         <div class="clearfix">
             <div class="content_l">
             	<h1>我的职位订阅</h1>
+            	
+            	
+            	<c:forEach var="item" items="${subquery}">
+            	
+            	
             	            		                <div class="selected s1">
-	                	<h2>Java</h2>
+	                	<h2>${item.positionName}</h2>
 	                	<div class="sbox">
 	                    	<a rel="1" class="sclose" href="javascript:void(0)"></a>
 	                    	<a rel="1" class="sedit" href="javascript:void(0)"></a>
 	                    </div>
 	                   	<span>
-	                    	上海 
-	                    	/	                    	电子商务 
-	                    	/	                    	成长型 
-	                    	/	                    	5k-10k
+	                    	${item.city}
+	                    	/	                    	${item.industryField}
+	                    	/	                    	${item.financeStage}salary
+	                    	/	                    	${item.salary}
 	                    </span>
 	                    <input type="hidden" id="oi1" name="orderId" value="61028">
-	                    <input type="hidden" id="pn1" value="Java">
-	                    <input type="hidden" id="ci1" value="上海">
-	                    <input type="hidden" id="inf1" value="电子商务">
-	                    <input type="hidden" id="fs1" value="成长型">
-	                    <input type="hidden" id="sa1" value="5k-10k">
-	                    <input type="hidden" id="smp1" value="3">
-	                    <input type="hidden" id="em1" value="888888888@qq.com">
+	                    <input type="hidden" id="pn1" value="${item.positionName}">
+	                    <input type="hidden" id="ci1" value="${item.city}">
+	                    <input type="hidden" id="inf1" value="${item.industryField}">
+	                    <input type="hidden" id="fs1" value="${item.financeStage}salary">
+	                    <input type="hidden" id="sa1" value="${item.salary}">
+	                    <input type="hidden" id="smp1" value="${item.sendMailPer}">
+	                    <input type="hidden" id="em1" value="${item.email}">
 	                </div>
+                	             
+                	             
+                	             
+                	             
+                	             
+                </c:forEach>	             
+                	             
+                	             
                 	                	            
 	           <!--  	                <a href="javascript:void(0)"  class="btn_big"  id="subBtn">新建订阅</a>
 	                	                <div class="apply_num">共可创建 <span>2</span> 个，还可创建 <span>1</span> 个</div>
@@ -111,7 +125,7 @@ var youdao_conv_id = 271546;
 	                        	<h3>接收邮箱  <i class="rss_circle"></i>&nbsp; 发送周期 <em></em><span>（必填）</span></h3>
 	                        </dt>
 	                        <dd>
-	                        	<input type="text" value="888888888@qq.com" placeholder="请输入接收邮箱" name="email" id="subEmail">	
+	                        	<input type="text" value="" placeholder="请输入接收邮箱" name="email" id="subEmail">	
 	                        	<span style="display:none;" class="error" id="emailError">请输入接收邮箱</span>
 	                        </dd>
 	                        <dd>

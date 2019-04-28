@@ -7,6 +7,7 @@
 			<if test="ruser.username!=null and ruser.username!=''">username=#{ruser.username},</if>
 			<if test="ruser.email!=null and ruser.email!=''">email=#{ruser.email},</if>
 			<if test="ruser.password!=null and ruser.password!=''">password=#{ruser.password},</if>
+			<if test="ruser.identity!=null and ruser.identity!=''">identity=#{ruser.identity},</if>
 			<if test="ruser.gender!=null and ruser.gender!=''">gender=#{ruser.gender},</if>
 			<if test="ruser.education!=null and ruser.education">education=#{ruser.education},</if>
 			<if test="ruser.userlog!=null and ruser.userlog!=''">userlog=#{ruser.userlog},</if>

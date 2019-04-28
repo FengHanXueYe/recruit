@@ -1,5 +1,6 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.recommendVO.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -26,7 +27,7 @@ public final class RecommendVOController {
 	private HopeJobService hopeJobService;
 	
 	@RequestMapping("doQueryRecommendVO")
-	public String doQueryRecommendVO(HttpSession session,Model model) {
+	public String doQueryRecommendVO(HttpSession session,Integer count,Model model) {
 		RecruitingUsers attribute = (RecruitingUsers) session.getAttribute("loginUser");
 		RecommendVO rvo = new RecommendVO();
 		
@@ -73,6 +74,25 @@ public final class RecommendVOController {
 		}
 		List<RecommendVO> queryRecommendVO = recommendVOService.queryRecommendVO(rvo);
 		model.addAttribute("queryRecommendVO", queryRecommendVO);
+		
+		count=recommendVOService.queryCount();
+		
+		String a = count+"";
+		List<String> sz = new ArrayList<>();
+		for(int i=0;i<a.length();i++) {
+			sz.add(a.substring(i, i+1));
+		}
+		
+		System.out.println(sz);
+		
+		/*System.out.println(sz.get(0));
+		
+		System.out.println(sz.get(1));*/
+
+		model.addAttribute("count0",sz.get(0));
+		model.addAttribute("count1",sz.get(1));
+		
+		
 		
 		return "main/mList";
 	}

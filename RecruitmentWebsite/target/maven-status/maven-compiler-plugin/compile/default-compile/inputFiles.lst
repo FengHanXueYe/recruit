@@ -6,6 +6,7 @@ D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp0
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\entity\Ocone.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\entity\Occupationtype.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\ocone\controller\OconeController.java
+D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\Corporate\service\CorporateService.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\project\service\impl\ProjectServiceImpl.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\entity\Founder.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\entity\Product.java
@@ -23,10 +24,13 @@ D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp0
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\selfdescription\service\impl\SelfdescriptionServiceImpl.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\occupation\service\impl\OccupationServiceImpl.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\entity\Selfdescription.java
+D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\Corporate\mapper\CorporateMapper.java
+D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\user\controller\File2Controller.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\entity\Octwo.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\ocone\mapper\OconeMapper.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\emailutils\Email.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\founder\service\FounderService.java
+D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\entity\ZuHe.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\recommendVO\service\RecommendVOService.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\user\controller\A.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\deliverypost\service\impl\DeliverypostServiceImpl.java
@@ -51,10 +55,12 @@ D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp0
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\founder\controller\FounderController.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\user\controller\UserController.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\worksdisplay\mapper\WorksdisplayMapper.java
+D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\Corporate\service\impl\CorporateServiceImpl.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\collectionp\service\impl\CollectionServiceImpl.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\octhree\service\impl\OcthreeServiceImpl.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\entity\Worksdisplay.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\companyresume\service\impl\CompanyresumeServiceImpl.java
+D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\backstage\controller\BackstageController.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\octhree\mapper\OcthreeMapper.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\company\utilEmail\CEmail.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\project\controller\ProjectController.java
@@ -76,6 +82,7 @@ D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp0
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\occupation\controller\OccupationController.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\hopejob\service\impl\HopeJobServiceImpl.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\entity\Fstatus.java
+D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\Corporate\controller\CorporateController.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\product\mapper\ProductMapper.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\octhree\service\OcthreeService.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\selfdescription\service\SelfdescriptionService.java
@@ -93,7 +100,9 @@ D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp0
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\education\mapper\EducationaMapper.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\collectionp\service\CollectionService.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\founder\mapper\FounderMapper.java
+D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\user\controller\Demo.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\eb\service\EbService.java
+D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\entity\Subscribe.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\user\service\UserService.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\entity\Collectionp.java
 D:\STS2\workspace3\recruit\RecruitmentWebsite\src\main\java\cn\kgc\tangcco\tcmp073\qizu\recruit\product\service\ProductService.java

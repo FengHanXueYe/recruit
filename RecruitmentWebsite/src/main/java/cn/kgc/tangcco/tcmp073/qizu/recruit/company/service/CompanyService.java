@@ -3,6 +3,7 @@ package cn.kgc.tangcco.tcmp073.qizu.recruit.company.service;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 import com.github.pagehelper.PageInfo;
 
@@ -56,6 +57,13 @@ public interface CompanyService {
 	 */
 	Company queryCompanyByCid(Integer cid);
 	//公司页面查询方法
-	List<Company> queryListCompany(String ocity,String cfs,String cfield);
+	PageInfo<Company> queryListCompany(String ocity,String cfs,String cfield);
 	PageInfo<Company> queryListCompanylimit(String ocity,String cfs,String cfield,int PageSize,int PageNum);
+	//公司页面的公司简称 介绍的修改
+	int UpdateCompanyById(String cabbreviation,String companyProfile,int cid);
+	//公司页面修改公司介绍
+	int updateCompanyProfileById(String companyProfile,int cid);
+	//公司页面修改 地址 网址 领域 规模
+	int updateCompanys(String caddress,String curl,String cfield,String cscale,int cid);
+		
 }

@@ -327,7 +327,9 @@ public class CompanyController {
 			session.setAttribute("limitocity", ocity);
 			session.setAttribute("limitcfs", cfs);
 			session.setAttribute("limitcfield", cfield);
-			int PageSize=2,PageNum=1;
+			PageInfo<Company> list=this.service.queryListCompanylimit(ocity, cfs, cfield, 1,1);
+			session.setAttribute("PageNum",list.getPageNum());
+			int PageSize=1,PageNum=1;
 			
 			return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize, PageNum);
 		
@@ -339,7 +341,9 @@ public class CompanyController {
 			String ocity=(String) session.getAttribute("limitocity");
 			String cfs=(String) session.getAttribute("limitcfs");
 			String cfield=(String) session.getAttribute("limitcfield");
-			int PageSize=2;
+			int PageSize=1;
+			session.setAttribute("aaaa", "you");
+			session.setAttribute("pagenum", PageNum2);
 			return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize,PageNum2);
 		
 		}
@@ -351,29 +355,34 @@ public class CompanyController {
 			String ocity=(String) session.getAttribute("limitocity");
 			String cfs=(String) session.getAttribute("limitcfs");
 			String cfield=(String) session.getAttribute("limitcfield");
-			int PageSize=2;
-			int PageNum2=1;
-			PageInfo<Company> list=this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize,1);
+			int PageSize=1;
+			int PageNum2;
+			int pageNum;
+			String pagenum=(String) session.getAttribute("aaaa");
+			if(pagenum==null) {
+				pageNum=1;
+			}else {
+				pageNum=(int) session.getAttribute("pagenum");
+				System.err.println("=====================>"+pageNum);
+			}
+			PageInfo<Company> list=this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize,pageNum);
 			if(PageNum==1) {
 				PageNum2=1;
-				list.setPageNum(PageNum2);
 			}else if(PageNum==2) {
 				PageNum2=list.getPrePage();
-				list.setPageNum(PageNum2);
+				session.setAttribute("aaaa", "you");
+				session.setAttribute("pagenum", list.getPageNum()-1);
 			}else if(PageNum==3) {
 				PageNum2=list.getNextPage();
-				list.setPageNum(PageNum2);
-				if(PageNum2==list.getPageNum()) {
-					PageNum2=PageNum2+1;
-				}
-			}else if(PageNum==4) {
+				session.setAttribute("aaaa", "you");
+				session.setAttribute("pagenum", list.getPageNum()+1);
+			}else{
 				PageNum2=list.getPages();
-				list.setPageNum(PageNum2);
 			}	
-			
 			return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize,PageNum2);
 		
 		}
+
 		@ResponseBody
 		@RequestMapping("qeryxuheController")
 		public PageInfo<Company> queryzuhe(Model model,ZuHe zuhe,HttpSession session) 
@@ -382,6 +391,26 @@ public class CompanyController {
 			int PageNum=1;
 		  session.setAttribute("zuhe",zuhe);
 			return this.service.querytoZuhe(zuhe, PageSize, PageNum);
+		}
+		
+		//公司页面的公司简称 介绍的修改
+		@RequestMapping("UpdateCompany")
+		public String updateCompany(String cabbreviation,String cdetail,int cid) {
+			System.err.println("=======================>"+cabbreviation+"+"+cdetail+"+"+cid);
+			int row=this.service.UpdateCompanyById(cabbreviation, cdetail, cid);
+			return "redirect:tomyhome.controller";
+		}
+		//公司页面修改公司简介
+		@RequestMapping("UpdateCompanyProfiles")
+		public String UpdateCompanyProfiles(int cid,String companyProfile) {
+			int row=this.service.updateCompanyProfile(companyProfile, cid);
+			return "redirect:tomyhome.controller";
+		}
+		//公司页面修改 地址 网址 领域 规模
+		@RequestMapping("UpdateCompanys")
+		public String updateCompanys(String caddress,String curl,String cfield,String cscale,int cid) {
+			int row=this.service.updateCompanys(caddress, curl, cfield, cscale,cid);
+			return "redirect:tomyhome.controller";
 		}
 		
 }

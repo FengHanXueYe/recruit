@@ -2,6 +2,8 @@ package cn.kgc.tangcco.tcmp073.qizu.recruit.user.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -10,11 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.kgc.tangcco.tcmp073.qizu.aliyun.util.HttpUtils;
 import cn.kgc.tangcco.tcmp073.qizu.emailutils.Email;
 import cn.kgc.tangcco.tcmp073.qizu.encryption.Encryption;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
@@ -168,7 +173,8 @@ public class UserController {
 	@RequestMapping("doRemoveSession")
 	public String doRemoveSession(HttpSession session, Model model) {
 		// 消除session
-		session.invalidate();
+//		session.invalidate();
+		session.removeAttribute("loginUser");
 		return "redirect:toIndex.controller";
 	}
 
@@ -181,6 +187,57 @@ public class UserController {
 	 * @return
 	 * @throws IOException 
 	 */
+	@ResponseBody
+	@RequestMapping("doidentyIdYanzheng")
+	public String doidentdy(String number,String name) {
+		String obj="";
+		
+		  String host = "http://aliyunverifyidcard.haoservice.com";
+//		    String host = "http://aliyunverifyidcard.haoservice.com/idcard/VerifyIdcardv2";
+		    String path = "/idcard/VerifyIdcardv2";
+		    String method = "GET";
+		    String appcode = "7264d6e7f48c43a3b2c07c78364cc493";
+		    Map<String, String> headers = new HashMap<String, String>();
+		    //最后在header中的格式(中间是英文空格)为Authorization:APPCODE 83359fd73fe94948385f570e3c139105
+		    headers.put("Authorization", "APPCODE " + appcode);
+		    Map<String, String> querys = new HashMap<String, String>();
+		    querys.put("cardNo", number);
+		    querys.put("realName", name);
+
+
+		    try {
+		    	
+		    	HttpResponse response = HttpUtils.doGet(host, path, method, headers, querys);
+		    	String string = EntityUtils.toString(response.getEntity());
+		    	System.out.println(string);
+//		    	System.err.println(response.toString());
+		    	org.json.JSONObject json = new org.json.JSONObject(string);
+		    	org.json.JSONObject string2 = json.getJSONObject("result");
+		    	Boolean object =(Boolean) string2.get("isok");
+		    	if(object==true) {
+		    		obj ="true";
+		    	}
+		    	else {
+		    		obj ="false";
+		    	}
+		    	System.out.println();
+//		    	Object object = json.get("result");
+//		    	System.out.println("----->");
+//		    	System.out.println("++++"+object);
+		    	//获取response的body
+		    } catch (Exception e) {
+		    	e.printStackTrace();
+		    }
+			return obj;
+			
+				// 获取response的body
+	}
+	
+	
+	
+	
+	
+	
 	@RequestMapping("doUpdateResumename")
 	public String doUpdateResumename(RecruitingUsers ruser, String xueli, String jingyan, HttpSession session,
 			Model model) throws IOException {
@@ -195,11 +252,20 @@ public class UserController {
 			} else {
 				ruser.setEducation(detailUser.getEducation());
 			}
+			
+			
 			if (jingyan != null) {
 				ruser.setUserlog(Integer.parseInt(jingyan));
 			} else {
 				ruser.setUserlog(detailUser.getUserlog());
 			}
+			
+		
+			
+			
+			
+			
+			
 			
 			//保存数据库的路径  
 			String sqlPath = null;   

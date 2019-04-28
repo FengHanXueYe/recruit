@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.project.mapper.ProjectMapper">
+ 
+  
+    <update id="updateProject" parameterType="Project">
+		update project
+		<set>
+			<if test="pname!=null and pname!=''">pname=#{pname},</if>
+			<if test="ppostition!=null and ppostition!=''"> ppostition=#{ppostition},</if>
+			<if test="pyear!=null and pyear!=''">pyear=#{pyear},</if>
+			<if test="pyearover!=null and pyearover!=''"> pyearover=#{pyearover},</if>
+			<if test="pdescribe!=null and pdescribe!=''"> pdescribe=#{pdescribe},</if>
+			<if test="puserid!=null and puserid!=''">puserid=#{puserid}</if>
+		</set>
+		where pid=#{pid}
+	</update>
+</mapper>
