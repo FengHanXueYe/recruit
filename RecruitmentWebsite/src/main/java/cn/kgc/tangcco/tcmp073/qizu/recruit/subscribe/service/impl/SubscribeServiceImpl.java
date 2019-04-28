@@ -26,6 +26,8 @@ public class SubscribeServiceImpl implements SubscribeService{
 	public List<Subscribe> detailquery(Integer id) {
 		return subscribeMapper.detailquery(id);
 	}
+
+
 	
 	
 

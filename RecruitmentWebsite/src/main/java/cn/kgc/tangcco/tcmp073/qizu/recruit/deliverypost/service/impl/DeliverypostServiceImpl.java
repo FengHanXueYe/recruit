@@ -12,14 +12,15 @@ import cn.kgc.tangcco.tcmp073.qizu.recruit.deliverypost.service.DeliverypostServ
 @Service
 public class DeliverypostServiceImpl implements DeliverypostService {
 
-	
+
+
 	@Resource
 	private DeliverypostMapper dm;
 	@Override
 	public int addDeliverypost(Deliverypost dp) {
 		return dm.addDeliverypost(dp);
 	}
-
+	
 	@Override
 	public int updateDeliverypost(Deliverypost dp) {
 		return dm.updateDeliverypost(dp);

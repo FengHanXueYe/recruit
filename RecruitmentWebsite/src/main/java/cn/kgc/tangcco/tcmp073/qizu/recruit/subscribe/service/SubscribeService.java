@@ -11,5 +11,6 @@ public interface SubscribeService {
 	int addsubscribe(Subscribe sub);
 	
 	List<Subscribe> detailquery(Integer id);
+	
 
 }

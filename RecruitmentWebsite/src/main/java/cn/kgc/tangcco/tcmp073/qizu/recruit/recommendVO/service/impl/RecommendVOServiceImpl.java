@@ -20,4 +20,11 @@ public class RecommendVOServiceImpl implements RecommendVOService {
 		return recommendVOMapper.queryRecommendVO(rvo);
 	}
 
+	@Override
+	public int queryCount() {
+		return recommendVOMapper.queryCount();
+	}
+	
+	
+
 }

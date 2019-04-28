@@ -236,9 +236,12 @@ public class DeliverypostController {
 	 * @return
 	 */
 	@RequestMapping("toMyList")
-	public String toMyList(Model model) {
+	public String toMyList(/*int sshu,*/Model model) {
+	/*	System.out.println("----------------------------");
+		   sshu=ds.queryCount();
+		   System.err.println(sshu);
+		   model.addAttribute("count", sshu);*/
 		return "main/mList";
 	}
-	
 	
 }
