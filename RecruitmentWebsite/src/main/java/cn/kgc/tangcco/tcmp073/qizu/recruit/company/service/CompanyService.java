@@ -8,6 +8,7 @@ import com.github.pagehelper.PageInfo;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
+import cn.kgc.tangcco.tcmp073.qizu.entity.ZuHe;
 
 public interface CompanyService {
 	int addCompanyOne(Company com);
@@ -30,10 +31,10 @@ public interface CompanyService {
 
 	List<Company> queryalltozuixin();
 
-	List<Company> querylikeoname(String oname);
+	
 
 	Company queryByUid(int userid);
-
+	List<Company> querylikeoname(String oname);
 	List<Company> querylikeomaxsalary(Occupation occ);
 
 	List<Company> querylikeolog(String olog);
@@ -44,6 +45,7 @@ public interface CompanyService {
 
 	List<Company> querylikeorelease(int orelease);
 	List<Company> querytooccname(String ocname);
+	PageInfo<Company> querytoZuhe(ZuHe zuhe, int PageSize, int PageNum);
 
 	// 123
 	/**

@@ -3,32 +3,35 @@
 <mapper
 	namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.company.mapper.CompanyMapper">
 	<select id="queryListCompany" parameterType="String" resultMap="CompanyMaps">
-		select com.*,occ.* from company com,occupation occ  where com.cid=occ.ocid and occ.ostate=0
+		select com.*,occ.* from company com,occupation occ where
+		com.cid=occ.ocid and occ.ostate=0
 		<if test="ocity!='' and ocity!=null and ocity!='全国'">
 			and occ.ocity=#{ocity}
 		</if>
 		<if test="cfs!=null and cfs!=''">
 			AND com.cfs=#{cfs}
 		</if>
-		
+
 		<if test="cfield!=null and cfield!=''">
 			and com.cfield like concat("%",#{cfield},"%")
 		</if>
-		
+
 	</select>
-	<select id="queryListCompanylimit" parameterType="String" resultMap="CompanyMaps">
-		select com.*,occ.* from company com,occupation occ  where com.cid=occ.ocid and occ.ostate=0
+	<select id="queryListCompanylimit" parameterType="String"
+		resultMap="CompanyMaps">
+		select com.*,occ.* from company com,occupation occ where
+		com.cid=occ.ocid and occ.ostate=0
 		<if test="ocity!='' and ocity!=null and ocity!='全国'">
 			and occ.ocity=#{ocity}
 		</if>
 		<if test="cfs!=null and cfs!=''">
 			AND com.cfs=#{cfs}
 		</if>
-		
+
 		<if test="cfield!=null and cfield!=''">
 			and com.cfield like concat("%",#{cfield},"%")
 		</if>
-		
+
 	</select>
 	<select id="qyeryAllCompany" parameterType="int" resultMap="CompanyMaps">
 		SELECT c.*,f.*,p.* FROM company c,founder f,product p WHERE
@@ -104,7 +107,10 @@
 	</select>
 	<select id="querylikeorelease" resultMap="CompanyMaps"
 		parameterType="int">
-		SELECT *FROM company co,founder f,occupation o,education e WHERE f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid AND DATEDIFF(orelease,NOW())&lt;=0 AND DATEDIFF(orelease,NOW())&gt;#{orelease}
+		SELECT *FROM company co,founder f,occupation o,education
+		e WHERE f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid AND
+		DATEDIFF(orelease,NOW())&lt;=0 AND
+		DATEDIFF(orelease,NOW())&gt;#{orelease}
 	</select>
 	<select id="queryByUid" parameterType="int" resultMap="CompanyMaps">
 		select *
@@ -115,11 +121,41 @@
 		parameterType="int">
 		SELECT * FROM `company` WHERE cid=#{cid}
 	</select>
-	<select id="querytooccname" resultMap="CompanyMaps" parameterType="String">
-	SELECT *FROM company co,founder f,occupation o,education
-	        e WHERE
+	<select id="querytooccname" resultMap="CompanyMaps"
+		parameterType="String">
+		SELECT *FROM company co,founder f,occupation o,education
+		e WHERE
 		f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid AND
 		o.oname=#{ocname}
-	
 	</select>
+	<select id="querytoZuhe" parameterType="ZuHe" resultMap="CompanyMaps">
+		SELECT *FROM company co,founder f,occupation o,education e
+		WHERE f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid 
+		<if test="o.omaxsalary!=null and o.omaxsalary>0">
+		AND o.omaxsalary&gt;=#{zuhe.occupation.omaxsalary}
+		</if>
+		<if test="o.ominsalary!=null and o.ominsalary>0">
+		 AND o.ominsalary &lt;=#{zuhe.occupation.ominsalary}
+		</if>
+		<if test="o.olog!=null and o.olog!=''">
+		 AND o.olog=#{zuhe.olog}
+		</if>
+		<if test="e.ename!=null and e.ename!=''">
+		AND
+		e.ename=#{zuhe.ename}
+		</if>
+		<if test="o.onature!=null and o.onature>0">
+		AND o.onature=#{zuhe.onature}
+		</if>
+		<if test="o.ocity!=null and o.ocity!=''">
+		AND o.ocity=#{zuhe.ocity}
+		</if>
+		<if test="zuhe.orelease!=null and zuhe.orelease>0">
+		 AND DATEDIFF(zuhe.orelease,NOW())&lt;=0 AND
+		DATEDIFF(zuhe.orelease,NOW())&gt;#{zuhe.orelease}
+		</if>
+		 
+
+	</select>
+
 </mapper>

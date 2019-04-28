@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.jms.Session;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Product;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
+import cn.kgc.tangcco.tcmp073.qizu.entity.ZuHe;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.utilEmail.CEmail;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.product.service.ProductService;
@@ -315,6 +317,7 @@ public class CompanyController {
 			model.addAttribute("cfield", cfield);
 		}
 		model.addAttribute("ListCompanys", this.service.queryListCompany(ocity, cfs, cfield));
+		
 		return "main/companylist";
 	}
 	//条件查询
@@ -340,6 +343,7 @@ public class CompanyController {
 			return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize,PageNum2);
 		
 		}
+		
 		//上下页
 		@ResponseBody
 		@RequestMapping("queryListCompanyLimits")
@@ -370,4 +374,14 @@ public class CompanyController {
 			return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize,PageNum2);
 		
 		}
+		@ResponseBody
+		@RequestMapping("qeryxuheController")
+		public PageInfo<Company> queryzuhe(Model model,ZuHe zuhe,HttpSession session) 
+		{
+			int PageSize=10;
+			int PageNum=1;
+		  session.setAttribute("zuhe",zuhe);
+			return this.service.querytoZuhe(zuhe, PageSize, PageNum);
+		}
+		
 }

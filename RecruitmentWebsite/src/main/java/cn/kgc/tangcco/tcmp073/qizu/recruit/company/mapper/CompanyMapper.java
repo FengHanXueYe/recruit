@@ -1,6 +1,5 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.company.mapper;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
@@ -10,6 +9,7 @@ import org.apache.ibatis.annotations.Update;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
+import cn.kgc.tangcco.tcmp073.qizu.entity.ZuHe;
 
 public interface CompanyMapper {
 	@Insert("INSERT INTO recruitdb.company (cid,cuid,cphone, cemail ) VALUES(DEFAULT,#{cuid},#{cphone},#{cemail});")
@@ -49,6 +49,7 @@ public interface CompanyMapper {
 	List<Company> querylikeorelease(int orelease);
 	//aa
 	List<Company> querytooccname(String ocnames);
+	List<Company> querytoZuhe(@Param("zuhe")ZuHe zuhe);
 
 	Company qyeryAllCompany(int cuid);
 
