@@ -54,8 +54,8 @@ var youdao_conv_id = 271546;
     		<ul id="navheader" class="reset">
     			<li><a href="toIndex.controller">首页</a></li>
     			<li><a href="queryListCompany.controller">公司</a></li>
-    			<li><a target="_blank" href="h/toForum.html">论坛</a></li>
-    				    			<li class="current"><a rel="nofollow" href="jianli.html">我的简历</a></li>
+    			<li><a target="_blank" href="#">论坛</a></li>
+    				    			<li class="current"><a rel="nofollow" href="toResume.controller">我的简历</a></li>
 	    						    		</ul>
 	    				<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>		    		
         	        	<!-- <dl class="collapsible_menu">
@@ -758,12 +758,13 @@ function updatepictureuser(file){
             				m=50;
             			}else{
             				m=100;
-            			} 
+            			}
+            			
             			
             			$("form#expectForm1 input[name='hcity']").val($("form#expectForm1 input[name='hcityx']").val());
             			
             			$("form#expectForm1 input[name='hmoney']").val(m);
-            			alert(m);
+            			
             			$("input[name='htype']").val(htype);
 
             			  mizhu.alert('提示', '信息完善成功','alert_blue');
@@ -1445,7 +1446,7 @@ function updatepictureuser(file){
                            })
                            
                         function  workJY(){
-                    		   alert('1');
+                    		  
                     			 
                         			var zhi = $("form#expectForm3 input[name='projectName']").val();
                         			
