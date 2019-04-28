@@ -96,16 +96,16 @@ var youdao_conv_id = 271546;
 	                    		                   			<h2 title="${listCompany.cabbreviation}">${listCompany.cabbreviation}</h2>
 	                   			                        
 	                        	                        	<em class="unvalid"></em>
-                        		<span class="va dn">拉勾未认证企业</span>
-	                        	<a target="_blank" class="applyC" href="http://www.lagou.com/c/auth.html">申请认证</a>
+                        		<span class="va dn">拉勾认证企业</span>
+	                        	<a target="_blank" class="applyC" href="">申请认证</a>
 	                        	                        <div class="clear"></div>
 	                       	
 	                       		                   			<h1 title="${listCompany.cname}" class="fullname">${listCompany.cname}</h1>
-	                        	                        
-	                        <form class="clear editDetail dn" id="editDetailForm">
+	                        	        <!-- id="editDetailForm" -->                
+	                        <form class="clear editDetail dn" action="UpdateCompany.controller" method="post">
 	                            <input type="text" placeholder="请输入公司简称" maxlength="15" value="${listCompany.cabbreviation}" name="cabbreviation" id="companyShortName">
-	                            <input type="text" placeholder="一句话描述公司优势，核心价值，限50字" maxlength="50" value="${listCompany.companyProfile}" name="companyProfile" id="companyFeatures">
-	                            <input type="hidden" value="25927" id="companyId" name="companyId">
+	                            <input type="text" placeholder="一句话描述公司优势，核心价值，限50字" maxlength="50" value="${listCompany.cdetail}" name="cdetail" id="companyFeatures">
+	                            <input type="hidden" value="${listCompany.cid}" id="companyId" name="cid">
 	                            <input type="submit" value="保存" id="saveDetail" class="btn_small">
 	                            <a id="cancelDetail" class="btn_cancel_s" >取消</a>
 		                    </form>
@@ -163,7 +163,8 @@ var youdao_conv_id = 271546;
 					                    	<h2><em></em>公司产品</h2>
 					                    </dt>
 					                    <dd>
-					                        <form method="post" class="productForm">
+					                    <!--   -->
+					                        <form method="post" class="productForms" action="UpdateProduct.controller"  enctype="multipart/form-data">
 					                            <div class="new_product">
 					                            	
 							                            <div class="product_upload dn productNo">
@@ -174,24 +175,22 @@ var youdao_conv_id = 271546;
 							                                </div>
 							                            </div>
 							                            <div class="product_upload productShow">
-							                            	<img width="380" height="220" src="style/images/product_default.png">
+							                            	<img width="380" height="220" src="${listCompany.product.ptuxiang}" name="ptuxiang">
 								                        	<span>更换产品图片<br>380*220px 小于5M</span>
 								                        </div>
 							                        
-							                        <input type="file" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="product_check(this,'http://www.lagou.com/c/upload.json','productNo','productShow','type','productInfos');" name="myfiles" id="myfiles0">
-							                    	<input type="hidden" value="3" name="type" class="type"> 
-							                    	<input type="hidden" value="images/product_default.png" name="productPicUrl" class="productInfos">   
+							                        <input type="file" title="支持jpg、jpeg、gif、png格式，文件小于5M"  name="file" id="myfiles0">
 							                    </div>
 					                            
 					                            <div class="cp_intro">
+					                            	<input type="hidden" name="pid" value="${listCompany.product.pid}">
 					                               	<input type="text" placeholder="请输入产品名称" value="${listCompany.product.pname}" name="pname">	
 					                                <input type="text" placeholder="请输入产品网址" value="${listCompany.product.paddress}" name="paddress">	
 					                                <textarea placeholder="请简短描述该产品定位、产品特色、用户群体等" maxlength="500" value="${listCompany.product.pdetail}" class="s_textarea" name="pdetail">${listCompany.product.pdetail}</textarea>	
 					                                <div class="word_count fr">你还可以输入 <span>500</span> 字</div>
 					                                <div class="clear"></div>
-					                                <input type="submit" value="保存" class="btn_small">
+					                                <input type="submit" value="保存" class="btn_small" id="btn_smalls">
 					                                <a class="btn_cancel_s product_delete" href="javascript:void(0)">删除</a>
-					                        		<input type="hidden" value="11867" class="product_id">
 					                            </div>
 											</form>
 					                    </dd>
@@ -237,7 +236,9 @@ var youdao_conv_id = 271546;
 					                        <h2><em></em>公司介绍</h2>
 					                    </dt>
 					                    <dd>
-						                    <form id="companyDesForm">
+					                    <!--  -->
+						                    <form  id="companyDesForms" action="UpdateCompanyProfiles.controller" method="post">
+						                    	<input type="hidden" value="${listCompany.cid}" name="cid">
 						                        <textarea placeholder="请分段详细描述公司简介、企业文化等" name="companyProfile" id="companyProfile">${listCompany.companyProfile}</textarea>		                                        
 						                        <div class="word_count fr">你还可以输入 <span>1000</span> 字</div>
 						                        <div class="clear"></div>
@@ -308,31 +309,33 @@ var youdao_conv_id = 271546;
 	                    <a id="editTags" class="c_edit" href="javascript:void(0)"></a>
 	                </div>
 	                <div id="c_tags_edit" class="c_tags editTags dn">
-		                <form id="tagForms">
+		                <form id="tagFormss" action="UpdateCompanys.controller" method="post">
+		                    <input type="hidden" value="${listCompany.cid}" name="cid">
 		                    <table>
 		                        <tbody><tr>
 		                            <td>地点</td>
 		                            <td>
-		                            	<input type="text" placeholder="请输入地点" value="${listCompany.caddress}" name="city" id="city">	
+		                            	<input type="text" placeholder="请输入地点" value="${listCompany.caddress}" name="caddress" id="city">	
 		                            </td>
 		                        </tr>
 		                        <tr>
 		                            <td>领域</td><!-- 支持多选 -->
 		                            <td>
-		                            	<input type="hidden" value="移动互联网" id="industryField" name="industryField">
+		                            	<input type="hidden" value="${listCompany.cfield }" id="industryField" name="cfield">
 		                            	<input type="button" style="background:none;cursor:default;border:none !important;" disable="disable" value="${listCompany.cfield }" id="select_ind" class="select_tags">
-		                                <!-- <div id="box_ind" class="selectBox dn">
+		                               <div id="box_ind" class="selectBox dn">
 		                                    <ul class="reset">
-			                                    				                        							                            			<li class="current">移动互联网</li>
+			                                    				                        							                            			<li class="current">${listCompany.cfield }</li>
 				                            							                            		                                    </ul>
-		                                </div>	 -->
+		                                </div>	
 		                            </td>
 		                        </tr>
 		                        <tr>
 		                            <td>规模</td>
 		                            <td>
-		                            	<input type="hidden" value="150-500人" id="companySize" name="companySize">
-		                            	<input type="button" value="${listCompany.cscale}" id="select_sca" class="select_tags">
+		                            	<input type="hidden"  id="companySize" name="cscale">
+		                            	<input type="button" value="${listCompany.cscale}" name="cscale" id="select_sca"  class="select_tags">
+		                            	
 		                                <div class="selectBox dn" id="box_sca" style="display: none;">
 		                                    <ul class="reset">
 		                                    			                                    						                            			<li>少于15人</li>
@@ -348,14 +351,14 @@ var youdao_conv_id = 271546;
 		                        <tr>
 		                            <td>主页</td>
 		                            <td>
-                            			<input type="text" placeholder="请输入网址" value="${listCompany.curl}" name="companyUrl" id="companyUrl">	
+                            			<input type="text" placeholder="请输入网址" value="${listCompany.curl}" name="curl" id="companyUrl">	
 		                            </td>
 		                        </tr>
 		                    </tbody></table>
-		                    <input type="hidden" id="comCity" name="caddress" value="${listCompany.caddress}">
+		                    <!--  <input type="hidden" id="comCity" name="caddress" value="${listCompany.caddress}">
 		                    <input type="hidden" id="cfield" name="cfield" value="${listCompany.cfield}">
 		                    <input type="hidden" id="comSize" name="cscale" value="${listCompany.cscale}">
-		                    <input type="hidden" id="curl" name="curl" value="${listCompany.curl}">
+		                    <input type="hidden" id="curl" name="curl" value="${listCompany.curl}">-->
 		                    <input type="submit" value="保存" id="submitFeatures" class="btn_small">
 		                    <a id="cancelFeatures" class="btn_cancel_s" href="javascript:void(0)">取消</a>
 		                    <div class="clear"></div>
@@ -372,7 +375,7 @@ var youdao_conv_id = 271546;
                     	<ul class="reset stageshow">
                     		<li>目前阶段：<span class="c5">${listCompany.cfs}</span></li>
                     		                    	</ul>
-                    	<form class="dn" id="stageform">
+                    	<form class="dn" id="stageform" method="post">
                     		<div class="stageSelect">
                     			<label>目前阶段</label>
                     			<input type="hidden" value="天使轮" id="financeStage" name="financeStage">
@@ -467,16 +470,18 @@ var youdao_conv_id = 271546;
 				                        
 				                        <!-- 编辑创始人 -->
 		                        		<div class="member_info newMember dn">
-			                        		<form class="memberForm">
+			                        		<form id="memberForm" method="post"  action="UpdateFounder.controller"  enctype="multipart/form-data">
+			                        			<input type="hidden" value="${listCompany.founder.fid}" name="fid">
 					                            <div class="new_portrait">
 						                            <div class="portrait_upload dn portraitNo">
 						                                <span>上传创始人头像</span>
 						                            </div>
 						                            <div class="portraitShow">
-						                            	<img width="120" height="120" src="style/images/leader_default.png">
+						                            	<img width="120" height="120" src="${listCompany.founder.fhead}">
 							                        	<span>更换头像</span>
 							                        </div>
-							                        <input type="file" value="" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="member_check(this,'http://www.lagou.com/c/upload.json','portraitNo','portraitShow','type','leaderInfos');" name="myfiles" id="profiles0">
+							                        <!-- onchange="member_check(this,'http://www.lagou.com/c/upload.json','portraitNo','portraitShow','type','leaderInfos');" -->
+							                        <input type="file" value="" title="支持jpg、jpeg、gif、png格式，文件小于5M"  name="file" id="profiles0">
 							                    	<input type="hidden" value="7" name="type" class="type">
 							                    	<input type="hidden" value="images/leader_default.png" name="photo" class="leaderInfos">
 						                            <em>
@@ -484,14 +489,15 @@ var youdao_conv_id = 271546;
 												                                大小：小于5M
 						                            </em>
 						                        </div>
-						                        <input type="text" placeholder="请输入创始人姓名" value="孙泰英" name="name">	
-					                            <input type="text" placeholder="请输入创始人当前职位" value="ceo" name="position">	
-					                            <input type="text" placeholder="请输入创始人新浪微博地址" value="http://weimob.weibo.com" name="weibo">	
-					                            <textarea placeholder="请输入创始人个人简介" maxlength="500" class="s_textarea" name="remark">发放的发达范德萨范德萨范德萨发的复大发大水发生的</textarea>	
+						                        <input type="text" placeholder="请输入创始人姓名" value="${listCompany.founder.fname}" name="fname">	
+					                            <input type="text" placeholder="请输入创始人当前职位" value="${listCompany.founder.fposition}" name="fposition">	
+					                            <input type="text" placeholder="请输入创始人新浪微博地址" value="${listCompany.founder.flang}" name="flang">	
+					                            <textarea placeholder="请输入创始人个人简介" maxlength="500" class="s_textarea" name="fdescribe">${listCompany.founder.fdescribe}</textarea>	
 					                            <div class="word_count fr">你还可以输入 <span>500</span> 字</div>
 					                            <div class="clear"></div>
-					                            <input type="submit" value="保存" class="btn_small">
+					                            <input type="submit" value="保存" id="founders" class="btn_small">
 				                                <a class="btn_cancel_s member_delete" href="javascript:void(0)">删除</a>
+				                                <!--   <a id="cancelStagess" class="btn_cancel_s" href="javascript:void(0)">取消</a>-->
 				                        		<input type="hidden" value="11493" class="leader_id">
 				                        	</form>
 				                        </div>
@@ -530,7 +536,7 @@ var youdao_conv_id = 271546;
                        		<ul class="reset"><li>
 		                			<a style="" class="article" title="随便写" target="_blank" href="http://www.baidu.com">随便写</a>
 		                			<a title="编辑报道" class="c_edit dn" href="javascript:;" style="display: inline;"></a>
-		                			<form class="reportForm dn">
+		                			<form class="reportForm dn" method="post">
 		                				<input type="text" placeholder="请输入文章标题" value="" name="articleTitle" class="valid">
 		                				<input type="text" placeholder="请输入文章链接" value="" name="articleUrl" class="valid"><span for="articleUrl" generated="true" class="error" style="display: none;">请输入有效的文章链接</span>
 		                				<input type="submit" value="保存" class="btn_small">
@@ -540,7 +546,7 @@ var youdao_conv_id = 271546;
 		                		</li><li>
 		                			<a style="" class="article" title="随便写" target="_blank" href="http://www.baidu.com">随便写</a>
 		                			<a title="编辑报道" class="c_edit dn" href="javascript:;" style="display: inline;"></a>
-		                			<form class="reportForm dn">
+		                			<form class="reportForm dn" method="post">
 		                				<input type="text" placeholder="请输入文章标题" value="" name="articleTitle" class="valid">
 		                				<input type="text" placeholder="请输入文章链接" value="" name="articleUrl" class="valid">
 		                				<input type="submit" value="保存" class="btn_small">
@@ -559,7 +565,7 @@ var youdao_conv_id = 271546;
 	                        	<li>
 		                			<a style="display:none;" class="article" title="" target="_blank" ></a>
 		                			<a title="编辑报道" class="c_edit dn" href="javascript:;"></a>
-		                			<form class="reportForm">
+		                			<form class="reportForm" method="post">
 		                				<input type="text" placeholder="请输入文章标题" value="" name="articleTitle">
 		                				<input type="text" placeholder="请输入文章链接" value="" name="articleUrl">
 		                				<input type="submit" value="保存" class="btn_small">
@@ -609,10 +615,32 @@ var youdao_conv_id = 271546;
 <script src="style/js/company.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(function(){
-		$(".btn_small").click(function(){
+		$("#saveDetail").click(function(){
 			
+			$(".clear editDetail dn").submit();
 			
 		})
+		$("#btn_smalls").click(function(){
+			alert("12");
+			$(".productForms").submit();
+		})
+		
+		$("#submitProfile").click(function(){
+			$("#companyDesForms").submit()
+		})
+		
+		$("#submitFeatures").click(function(){
+			alert("1");
+			$("#tagFormss").submit();
+		})
+		$("#founders").click(function(){
+			alert("1s")
+			$("#memberForm").submit();
+		})
+		
+		
+		
+		
 		
 		
 	})

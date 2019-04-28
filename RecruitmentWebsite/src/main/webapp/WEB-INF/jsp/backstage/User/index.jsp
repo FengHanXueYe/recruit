@@ -1,18 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
-    <script type="text/javascript" src="../Js/jquery.js"></script>
-    <script type="text/javascript" src="../Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="../Js/bootstrap.js"></script>
-    <script type="text/javascript" src="../Js/ckform.js"></script>
-    <script type="text/javascript" src="../Js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="backstagestyle/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="backstagestyle/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="backstagestyle/Css/style.css" />
+    <script type="text/javascript" src="backstagestyle/Js/jquery.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/ckform.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/common.js"></script>
 
  
 
@@ -39,38 +41,90 @@
 <body>
 <form class="form-inline definewidth m20" action="index.html" method="get">    
     用户名称：
-    <input type="text" name="username" id="username"class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  
-    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">新增用户</button>
+    <input type="text" name="ausername" oninput="selectAdminuser()" id="username"class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  
+    <!-- <button type="submit" class="btn btn-primary">查询</button >-->
+    &nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">新增用户</button>
 </form>
-<table class="table table-bordered table-hover definewidth m10">
+<table class="table table-bordered table-hover definewidth m10" id="cunselectAdmin">
     <thead>
     <tr>
         <th>用户id</th>
         <th>用户名称</th>
-        <th>真实姓名</th>
-        <th>最后登录时间</th>
+        <th>权限</th>
+        <th>上次操作时间</th>
         <th>操作</th>
     </tr>
     </thead>
+    <c:forEach items="${listAdminuser }" var="item">
 	     <tr>
-            <td>2</td>
-            <td>admin</td>
-            <td>管理员</td>
-            <td></td>
+            <td>${item.aid }</td>
+            <td>${item.ausername }</td>
+            <td><c:if test="${item.astatus eq '1'}">高级管理员</c:if><c:if test="${item.astatus eq '0'}">普通管理员</c:if> </td>
+            <td><fmt:formatDate value="${item.adatatime }" pattern="yyyy-MM-dd  HH:mm:ss"/> </td>
             <td>
                 <a href="edit.html">编辑</a>                
             </td>
-        </tr>	
+        </tr>
+    </c:forEach>	
 </table>
-</body>
-</html>
+<script type="text/javascript" src="${pageContext.request.contextPath }/webjars/jquery/3.2.1/jquery.js"></script>
 <script>
+	function selectAdminuser(){
+		var value = $("input[name='ausername']").val();
+		/* $.post("ajaxListAdminUser.controller","ausername="+value,function(data){
+			alert("ajax");
+			
+		}) */
+		
+		 $.ajax({
+			type:"post",
+			url:"ajaxListAdminUser.controller",
+			data:{"ausername":value},
+			success:function(data){
+				$("#cunselectAdmin").html("");
+				html="<thead>"
+						    +"<tr>"
+						        +"<th>用户id</th>"
+						        +"<th>用户名称</th>"
+						        +"<th>权限</th>"
+						        +"<th>上次操作时间</th>"
+						        +"<th>操作</th>"
+					   		+"</tr>"
+					+"</thead>";
+				
+				$.each(data,function(index,item){
+					var date = new Date(item.adatatime);
+					var d = date.getFullYear() + "-" + (Number(date.getMonth())+Number(1)) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+					var qx = "";
+					if(item.astatus==1){
+						qx="高级管理员";
+					}else{
+						qx="普通管理员";
+					}
+					html+="<tr>"
+					           +"<td>"+item.aid+"</td>"
+					           +"<td>"+item.ausername+"</td>"
+					           +"<td>"+qx+"</td>"
+					           +"<td>"+d+"</td>"
+					           +"<td>"
+					               +"<a href='edit.html'>编辑</a>"                
+					           +"</td>"
+					       +"</tr>";
+				})
+				$("#cunselectAdmin").html(html);
+				 
+			}
+			
+		})
+		
+		
+	}
     $(function () {
         
 
 		$('#addnew').click(function(){
 
-				window.location.href="add.html";
+				window.location.href="toUserAdd.controller";
 		 });
 
 
@@ -83,7 +137,7 @@
 		if(confirm("确定要删除吗？"))
 		{
 		
-			var url = "index.html";
+			var url = "toUserIndex.controller";
 			
 			window.location.href=url;		
 		
@@ -94,3 +148,5 @@
 	
 	}
 </script>
+</body>
+</html>

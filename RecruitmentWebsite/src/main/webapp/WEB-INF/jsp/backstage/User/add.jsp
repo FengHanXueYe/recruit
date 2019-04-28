@@ -5,14 +5,14 @@
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
-    <script type="text/javascript" src="../Js/jquery.js"></script>
-    <script type="text/javascript" src="../Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="../Js/bootstrap.js"></script>
-    <script type="text/javascript" src="../Js/ckform.js"></script>
-    <script type="text/javascript" src="../Js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="backstagestyle/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="backstagestyle/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="backstagestyle/Css/style.css" />
+    <script type="text/javascript" src="backstagestyle/Js/jquery.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/ckform.js"></script>
+    <script type="text/javascript" src="backstagestyle/Js/common.js"></script>
 
  
 
@@ -37,35 +37,39 @@
     </style>
 </head>
 <body>
-<form action="index.html" method="post" class="definewidth m20">
+<form action="doAddAdminUser.controller" method="post" class="definewidth m20">
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td width="10%" class="tableleft">登录名</td>
-        <td><input type="text" name="username"/></td>
+        <td><input type="text" name="ausername"/></td>
     </tr>
     <tr>
         <td class="tableleft">密码</td>
-        <td><input type="password" name="password"/></td>
+        <td><input type="password" name="apassword"/></td>
     </tr>
     <tr>
+        <td class="tableleft">确认密码</td>
+        <td><input type="password" name="qapassword"/></td>
+    </tr>
+   <!--  <tr>
         <td class="tableleft">真实姓名</td>
         <td><input type="text" name="realname"/></td>
-    </tr>
-    <tr>
+    </tr> -->
+    <!-- <tr>
         <td class="tableleft">邮箱</td>
         <td><input type="text" name="email"/></td>
-    </tr>
+    </tr> -->
     <tr>
-        <td class="tableleft">状态</td>
+        <td class="tableleft">权限</td>
         <td>
-            <input type="radio" name="status" value="1" checked/> 启用
-           <input type="radio" name="status" value="0"/> 禁用
+            <input type="radio" name="astatus" value="0" checked/> 普通管理员
+           <input type="radio" name="astatus" value="1"/> 高级管理员
         </td>
     </tr>
-    <tr>
+   <!--  <tr>
         <td class="tableleft">角色</td>
         <td>{$role_checkbox}</td>
-    </tr>
+    </tr> -->
     <tr>
         <td class="tableleft"></td>
         <td>
@@ -74,13 +78,22 @@
     </tr>
 </table>
 </form>
-</body>
-</html>
+<script type="text/javascript" src="${pageContext.request.contextPath }/webjars/jquery/3.2.1/jquery.js"></script>
 <script>
-    $(function () {       
+    $(function () {
+    	$("input[name='qapassword']").blur(function(){
+    		var pwd = $.trim($("input[name='apassword']").val());
+    		var pwd1 = $.trim($("input[name='qapassword']").val());
+    		if(pwd!=pwd1){
+    			alert("两次密码不一致！");
+    		}
+    		
+    	})
 		$('#backid').click(function(){
-				window.location.href="index.html";
+				window.location.href="toUserIndex.controller";
 		 });
 
     });
 </script>
+</body>
+</html>

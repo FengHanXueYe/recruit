@@ -173,7 +173,8 @@ public class UserController {
 	@RequestMapping("doRemoveSession")
 	public String doRemoveSession(HttpSession session, Model model) {
 		// 消除session
-		session.invalidate();
+//		session.invalidate();
+		session.removeAttribute("loginUser");
 		return "redirect:toIndex.controller";
 	}
 

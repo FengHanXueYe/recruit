@@ -16,5 +16,10 @@ public class ProductServiceImpl implements ProductService {
 	public int addProduct(Product pct) {
 		return mapper.addProduct(pct);
 	}
+	//公司页面修改产品信息
+	@Override
+	public int updateProduct(Product pro) {
+		return mapper.updateProduct(pro);
+	}
 
 }

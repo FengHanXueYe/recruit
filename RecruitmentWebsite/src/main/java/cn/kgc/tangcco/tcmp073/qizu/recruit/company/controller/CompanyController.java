@@ -378,4 +378,25 @@ public class CompanyController {
 			return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize,PageNum2);
 		
 		}
+		
+		//公司页面的公司简称 介绍的修改
+		@RequestMapping("UpdateCompany")
+		public String updateCompany(String cabbreviation,String cdetail,int cid) {
+			System.err.println("=======================>"+cabbreviation+"+"+cdetail+"+"+cid);
+			int row=this.service.UpdateCompanyById(cabbreviation, cdetail, cid);
+			return "redirect:tomyhome.controller";
+		}
+		//公司页面修改公司简介
+		@RequestMapping("UpdateCompanyProfiles")
+		public String UpdateCompanyProfiles(int cid,String companyProfile) {
+			int row=this.service.updateCompanyProfile(companyProfile, cid);
+			return "redirect:tomyhome.controller";
+		}
+		//公司页面修改 地址 网址 领域 规模
+		@RequestMapping("UpdateCompanys")
+		public String updateCompanys(String caddress,String curl,String cfield,String cscale,int cid) {
+			int row=this.service.updateCompanys(caddress, curl, cfield, cscale,cid);
+			return "redirect:tomyhome.controller";
+		}
+		
 }
