@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,38 +38,42 @@
     </style>
 </head>
 <body>
-<form action="{:U('User/edit')}" method="post" class="definewidth m20">
-<input type="hidden" name="id" value="{$user.id}" />
+<form action="doUpdateAdminuser.controller" method="post" class="definewidth m20">
+<input type="hidden" name="aid" value="${adminuser.aid }" />
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
             <td width="10%" class="tableleft">登录名</td>
-            <td><input type="text" name="username" value="{$user.username}"/></td>
+            <td><input type="text" name="ausername" oninput="tishik()" value="${adminuser.ausername}"/>&nbsp;&nbsp;<span id="tishi"></span></td>
         </tr>
         <tr>
             <td class="tableleft">密码</td>
-            <td><input type="password" name="password"/></td>
+            <td><input type="password" name="apassword"/></td>
         </tr>
         <tr>
+            <td class="tableleft">密码</td>
+            <td><input type="password" name="qapassword"/></td>
+        </tr>
+        <!-- <tr>
             <td class="tableleft">真实姓名</td>
             <td><input type="text" name="realname" value="{$user.realname}"/></td>
         </tr>
         <tr>
             <td class="tableleft">邮箱</td>
             <td><input type="text" name="email" value="{$user.email}"/></td>
-        </tr>
+        </tr> -->
         <tr>
-            <td class="tableleft">状态</td>
+            <td class="tableleft">权限</td>
             <td>
-                <input type="radio" name="status" value="0"
-                    <eq name="user.status" value='0'>checked</eq> /> 启用
-              <input type="radio" name="status" value="1"
-                    <eq name="user.status" value='1'>checked</eq> /> 禁用
+                <input type="radio" name="astatus" value="0" <c:if test="${adminuser.astatus eq '0'}">checked</c:if>
+                     /> 普通管理员
+              <input type="radio" name="astatus" value="1"
+                    <c:if test="${adminuser.astatus eq '1'}">checked</c:if> > 高级管理员
             </td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td class="tableleft">角色</td>
             <td>{$role_checkbox}</td>
-        </tr>
+        </tr> -->
         <tr>
             <td class="tableleft"></td>
             <td>
@@ -77,13 +82,35 @@
         </tr>
     </table>
 </form>
-</body>
-</html>
+<script type="text/javascript" src="${pageContext.request.contextPath }/webjars/jquery/3.2.1/jquery.js"></script>
 <script>
     $(function () {       
 		$('#backid').click(function(){
-				window.location.href="{:U('User/index')}";
+				/* window.location.href="{:U('User/index')}"; */
+				history.go(-1);
 		 });
 
     });
+    function tishik(){
+    	var zhi = $("input[name='ausername']").val();
+    	//alert(zhi);
+    	$.ajax({
+    		type:"post",
+    		url:"ajaxQueryAdminuserByName.controller",
+    		data:{"ausername":zhi},
+    		success:function(resultData,status){
+    			if("success"==status){
+    				if(!$.isEmptyObject(resultData)){
+        				$("#tishi").html("用户名占用！");
+        			}else{
+        				$("#tishi").html("用户名可用！");
+        				
+        			}
+    			}
+    			
+    		}	
+    	})
+    }
 </script>
+</body>
+</html>

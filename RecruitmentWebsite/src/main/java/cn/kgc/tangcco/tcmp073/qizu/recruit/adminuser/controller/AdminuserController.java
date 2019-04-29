@@ -68,7 +68,6 @@ public class AdminuserController {
 	}
 	
 	
-	//http://localhost:8080/toBackstageIndex.controller
 	/**
 	 * 增加管理员
 	 * @param adminuser
@@ -77,12 +76,60 @@ public class AdminuserController {
 	 */
 	@RequestMapping("doAddAdminUser")
 	public String doAddAdminUser(Adminuser adminuser,Model model) {
-		int addAdminUser = adminService.addAdminUser(adminuser);
-		if(addAdminUser>0) {
-			return "redirect:toUserIndex.controller";
+		int queryCountAdminUser = adminService.queryCountAdminUser();
+		if(queryCountAdminUser>10) {
+				model.addAttribute("admincount", "管理员人数达到上限！");
+				return "redirect:toUserIndex.controller";
 		}else {
-			model.addAttribute("addAdminuser", adminuser);
-			return "backstage/User/add";
+			int addAdminUser = adminService.addAdminUser(adminuser);
+			if(addAdminUser>0) {
+				return "redirect:toUserIndex.controller";
+			}else {
+				model.addAttribute("addAdminuser", adminuser);
+				return "backstage/User/add";
+			}
+		}
+	}
+	
+	/**
+	 * ajax查询用户名
+	 * @param ausername
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("ajaxQueryAdminuserByName")
+	public Adminuser ajaxQueryAdminuserByName(String ausername, Model model) {
+		Adminuser queryAusername = adminService.queryAusername(ausername);
+		return queryAusername;	
+	}
+	/**
+	 * 修改管理员信息
+	 * @param adminuser
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("doUpdateAdminuser")
+	public String doUpdateAdminuser(Adminuser adminuser, Model model) {
+		int updateAdminUser = adminService.updateAdminUser(adminuser);
+		return "redirect:toUserIndex.controller";
+	}
+	
+	/**
+	 * 删除管理员
+	 * @param aid
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("ajaxDeleteAdminuser")
+	public boolean doDeleteAdminuser(Integer aid, Model model) {
+		System.out.println("删除了啊啊啊啊啊啊啊啊");
+		int deleteAdminUser = adminService.deleteAdminUser(aid);
+		if(deleteAdminUser>0) {
+			return true;
+		}else {
+			return false;
 		}
 	}
 	

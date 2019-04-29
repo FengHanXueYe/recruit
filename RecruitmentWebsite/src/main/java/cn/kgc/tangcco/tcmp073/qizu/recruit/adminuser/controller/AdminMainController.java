@@ -59,7 +59,14 @@ public class AdminMainController {
 	public String toUserAdd(Model model) {
 		return "backstage/User/add";
 	}
-
+	
+	@RequestMapping("toUserEdit")
+	public String toUserEdit(Integer aid,Model model) {
+		System.out.println(aid+"----------------------------");
+		Adminuser queryAusernameById = adminService.queryAusernameById(aid);
+		model.addAttribute("adminuser", queryAusernameById);
+		return "backstage/User/edit";
+	}
 	
 	
 }
