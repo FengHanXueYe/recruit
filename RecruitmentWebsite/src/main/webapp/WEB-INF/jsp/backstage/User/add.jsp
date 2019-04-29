@@ -41,7 +41,8 @@
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td width="10%" class="tableleft">登录名</td>
-        <td><input type="text" name="ausername"/></td>
+        <td><input type="text" name="ausername" oninput="tishik()"/>&nbsp;&nbsp;<span id="tishi"></span></td>
+        <!-- <span id="tisi"></span> -->
     </tr>
     <tr>
         <td class="tableleft">密码</td>
@@ -92,8 +93,29 @@
 		$('#backid').click(function(){
 				window.location.href="toUserIndex.controller";
 		 });
-
+		
     });
+    function tishik(){
+    	var zhi = $("input[name='ausername']").val();
+    	//alert(zhi);
+    	$.ajax({
+    		type:"post",
+    		url:"ajaxQueryAdminuserByName.controller",
+    		data:{"ausername":zhi},
+    		success:function(resultData,status){
+    			if("success"==status){
+    				if(!$.isEmptyObject(resultData)){
+        				$("#tishi").html("用户名占用！");
+        			}else{
+        				$("#tishi").html("用户名可用！");
+        				
+        			}
+    			}
+    			
+    		}	
+    	})
+    }
+    
 </script>
 </body>
 </html>
