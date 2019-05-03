@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.chatrecord.mapper.ChatrecordMapper">
+	<resultMap type="Chatrecord" id="chatrecordMap" autoMapping="true">
+		<id column="crid" property="crid"/>
+		<collection property="ruserid" resultMap="ruserMap"></collection>
+	</resultMap>
+	<resultMap type="RecruitingUsers" id="ruserMap" autoMapping="true">
+		<id column="userid" property="userid"/>
+	</resultMap>
+		
+  <select id="queryAllChatrecord" resultMap="chatrecordMap" parameterType="Chatrecord">
+  	SELECT r.username,r.userid,i.username,i.userid,c.* FROM `recruitingusers` r,`recruitingusers` i,chatrecord c WHERE r.`userid`=c.`ruserid` AND i.`userid`=c.`iuserid`and c.ruserid=#{chatrecord.ruserid.userid} and c.iuserid=#{chatrecord.iuserid} order by c.crtime asc
+  </select>
+</mapper>
