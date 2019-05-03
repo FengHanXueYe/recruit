@@ -12,9 +12,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Chatrecord {
 	private Integer crid;
-	private Integer ruserid,iuserid;
+	private RecruitingUsers ruserid;
+	private Integer iuserid;
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Timestamp crtime;
 	private String crtext;
+	private Integer crqf;
 	
 }
