@@ -23,6 +23,13 @@ console.log(1);
 <link href="style/css/style.css" type="text/css" rel="stylesheet">
 <link href="style/css/external.min.css" type="text/css" rel="stylesheet">
 <link href="style/css/popup.css" type="text/css" rel="stylesheet">
+<!-- 许茂峰 -->
+<link href="style/css/zaixianzixun.css" type="text/css" rel="stylesheet">
+<!-- 许茂峰 -->
+<link href="alertDemo/css/style.css" rel="stylesheet" />
+<script src="alertDemo/js/jquery-1.7.1.min.js"></script>
+<script src="alertDemo/js/ui.js"></script>
+
 <script type="text/javascript" src="style/js/jquery.1.10.1.min.js"></script>
 <script src="style/js/jquery.lib.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="style/js/ajaxfileupload.js"></script>
@@ -90,9 +97,13 @@ var youdao_conv_id = 271546;
 		    	    			success:function(resultData,status){
 		    	    				if("success"==status){
 		    	    					if(resultData){
-		    		    					alert("收藏成功！");
+		    	    						//mizhu.alert('提示', '收藏成功！');
+		    	    						mizhu.alert('提示', '收藏成功！','alert_green');
+		    		    					//alert("收藏成功！");
 		    		    				}else{
-		    		    					alert("已取消收藏！");
+		    	    						mizhu.alert('提示', '已取消收藏！','alert_blue');
+		    	    						//mizhu.alert('提示', '已取消收藏！');
+		    		    					//alert("已取消收藏！");
 		    		    				}
 		    	    				}
 		    	    			}
@@ -205,16 +216,19 @@ var youdao_conv_id = 271546;
 							</div>
 						</div>
                     </div>
-                                        <dd>
-                                        	                    				                   		<!-- 用户是否激活 0-否；1-是 -->
-		                				                   			
-	                   					                        									                 	<a title="投个简历" class="btn fr btn_apply" href="doAddDeliverypost.controller?oid=${queryOccupation.oid }">投个简历</a>
-						                	                        				                        	
-		                        	                        	                   		                	                </dd>
+                    			<c:choose>
+                    				<c:when test="${loginUser.userid eq queryCompanyByCid.cuid }"></c:when>
+                    				<c:otherwise>
+                    				 	<dd><!-- 用户是否激活 0-否；1-是 -->
+	                   					                        <a title="在线咨询" class="btn fr btn_apply" href="javascript:void(0)" onclick="zzixuanzx()" id="dianjijinyong">在线咨询</a>
+	                   					                        <a title="投个简历" class="btn fr btn_apply" href="doAddDeliverypost.controller?oid=${queryOccupation.oid }">投个简历</a>
+		                        	    </dd>
+                    				</c:otherwise>
+                    			</c:choose>
                 </dl>
                                 <div id="weibolist"></div>
             </div>	
-            
+
             <div class="content_r">
                 <dl class="job_company">
                     <dt>
@@ -910,4 +924,115 @@ var CallCenter = {
 CallCenter.init(url);
 </script>
 
-<div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div></div></body></html>
+<div id="cboxOverlay" style="display: none;"></div>
+<div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;">
+	<div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div>
+	<div id="cboxTopCenter" style="float: left;"></div>
+	<div id="cboxTopRight" style="float: left;"></div></div>
+	<div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div>
+	<div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div>
+	<div id="cboxCurrent" style="float: left;"></div>
+	<button type="button" id="cboxPrevious"></button>
+	<button type="button" id="cboxNext"></button>
+	<button id="cboxSlideshow"></button>
+	<div id="cboxLoadingOverlay" style="float: left;"></div>
+	<div id="cboxLoadingGraphic" style="float: left;"></div></div>
+	<div id="cboxMiddleRight" style="float: left;"></div></div>
+	<div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div>
+	<div id="cboxBottomCenter" style="float: left;"></div>
+	<div id="cboxBottomRight" style="float: left;"></div></div></div>
+	<div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div>
+	</div>
+<div id="zaixianzixun">
+		<span style="width:10px;height:10px;text-align: center;line-height:10px;stong;border:white solid 1px;color:white;position: absolute;right: 0px;top: 0px;cursor:pointer;" onclick="liaotianhide()">×</span>
+	<div id="zaixianzixunzi">
+		<textarea rows="" cols="" id="yuyan" readonly style="resize:none;width:254px;height:235px;font-size:14px;" ></textarea>
+		<div style="top:-18px;width:254px;">
+			<form id="liantianform">
+				<input type="hidden" name="ruserid" value="${queryCompanyByCid.cuid }"/>
+				<input type="hidden" name="iuserid" value="${loginUser.userid }"/>
+				<input type="hidden"  name="crqf" value="${loginUser.userid }"/>
+				<input type="text"  style="width:200px" name="crtext"  />
+				<input type="button" onclick="fasong()" value="发送" style="background-color:#FAFAFA;width:45px;height:29px;top:276px;left:210px;position: absolute;" />
+			</form>
+			
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	//时间函数
+	var timekongzhi;
+	
+	function zzixuanzx(){
+		//alert("我是咨询");
+		$("#dianjijinyong").hide();
+		var userid = '${loginUser.userid }';
+		if(userid.length>0){
+			$("#zaixianzixun").show();
+			timekongzhi = setInterval("timefasong()",1000);
+		}else{
+			mizhu.alert('提示', '请先登录！','alert_red');
+		}
+	}
+	function fasong(){
+		var crtext=$.trim($("input[name='crtext']").val());
+		var userid = '${loginUser.userid }';
+		var username = '${loginUser.username }';
+		if(crtext!=""){
+			$.ajax({
+				type:"post",
+				url:"ajaxHandleChatrecord.controller",
+				data:$('#liantianform').serialize(),
+				success:function(data){
+					$("#yuyan").html("");
+					html = "";
+					$.each(data,function(index,item){
+						if(item.crqf==userid){
+							html+=username+"(我)："+item.crtext+"\n";
+						}else{
+							html+=item.ruserid.username+"："+item.crtext+"\n";
+						}
+					})
+					$("#yuyan").html(html);
+				}
+			})
+		}else{
+			mizhu.alert('提示', '请输入要咨询的信息！','alert_red');
+		}
+	}
+	
+	function timefasong(){
+		var userid = '${loginUser.userid }';
+		var username = '${loginUser.username }';
+		var cuid = '${queryCompanyByCid.cuid }';
+			$.ajax({
+				type:"post",
+				url:"ajaxQueryChatrecord.controller",
+				data:{"ruserid":cuid,"iuserid":userid},
+				success:function(data){
+					if(data!=null){
+					$("#yuyan").html("");
+						html = "";
+						$.each(data,function(index,item){
+							if(item.crqf==userid){
+								html+=username+"(我)："+item.crtext+"\n";
+							}else{
+								html+=item.ruserid.username+"："+item.crtext+"\n";
+							}
+						})
+						$("#yuyan").html(html);
+					}
+				}
+			})
+	}
+	
+	
+	function liaotianhide(){
+		//alert("我是隐藏");
+		$("#dianjijinyong").show();
+		$("#zaixianzixun").hide();
+		clearInterval(timekongzhi);
+		
+	}
+</script>
+</body></html>

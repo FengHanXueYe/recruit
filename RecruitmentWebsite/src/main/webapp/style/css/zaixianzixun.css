@@ -1,0 +1,22 @@
+@charset "UTF-8";
+#zaixianzixun{ 
+			    /* border:1px solid red;  */
+			   width:280px;
+			   height:320px;
+			   background-color:#019875;
+			   position: fixed;
+			   bottom: 0px;
+			   right:0px;
+			   z-index: 5;
+			   display: none;
+			}
+#zaixianzixunzi{ 
+			   padding:0px;
+/* 			   border:1px solid aqua; */ 
+			   width:254px;
+			   height:240px;
+			   background-color:#019875;
+			   position: absolute;
+			   top: 0px;
+			   left:13px;
+			}
