@@ -472,20 +472,7 @@ var youdao_conv_id = 271546;
 								                               		   				<div id="zaixianzixun">
 																							<span style="width:10px;height:10px;text-align: center;line-height:10px;stong;border:white solid 1px;color:white;position: absolute;right: 0px;top: 0px;cursor:pointer;" onclick="liaotianhide()">×</span>
 																						<div id="zaixianzixunzi">
-																							<textarea rows="" cols="" id="yuyan" readonly style="resize:none;width:450px;height:130px;font-size:12px;" >
-																							${loginUser.username }
-																								<c:forEach items="${listC }" var="item">
-																									${item.crtime }${item.ruserid.username }${item.crtext }
-																									<c:choose>
-																										<c:when test="${item.srqf eq loginUser.userid }">
-																											${loginUser.username }(我)[${item.crtime }]：<br>${item.crtext }<br>
-																										</c:when>
-																										<c:otherwise>
-																											${item.ruserid.username }[${item.crtime }]：<br>${item.crtext }<br>
-																										</c:otherwise>
-																									</c:choose>
-																								</c:forEach>
-																							</textarea>
+																							<textarea rows="" cols="" id="yuyan" readonly style="resize:none;width:450px;height:130px;font-size:12px;" ><c:forEach items="${listC }" var="item"><c:choose><c:when test="${item.crqf eq loginUser.userid }">${loginUser.username }(我)[${item.crtime }]：&#xd; ${item.crtext } &#xd;</c:when><c:otherwise>${item.iuserid.username }[${item.crtime }]：&#xd;${item.crtext }&#xd;</c:otherwise></c:choose></c:forEach></textarea>
 																							<div >
 																								<form id="liantianform">
 																									<input type="hidden" name="ruserid" value="${queryCompanyByCid.cuid }"/>
