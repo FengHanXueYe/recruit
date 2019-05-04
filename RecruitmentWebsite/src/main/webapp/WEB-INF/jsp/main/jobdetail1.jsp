@@ -946,7 +946,7 @@ CallCenter.init(url);
 <div id="zaixianzixun">
 		<span style="width:10px;height:10px;text-align: center;line-height:10px;stong;border:white solid 1px;color:white;position: absolute;right: 0px;top: 0px;cursor:pointer;" onclick="liaotianhide()">×</span>
 	<div id="zaixianzixunzi">
-		<textarea rows="" cols="" id="yuyan" readonly style="resize:none;width:254px;height:235px;font-size:14px;" ></textarea>
+		<textarea rows="" cols="" id="yuyan" readonly style="resize:none;width:254px;height:235px;font-size:12px;" ></textarea>
 		<div style="top:-18px;width:254px;">
 			<form id="liantianform">
 				<input type="hidden" name="ruserid" value="${queryCompanyByCid.cuid }"/>
@@ -1014,10 +1014,12 @@ CallCenter.init(url);
 					$("#yuyan").html("");
 						html = "";
 						$.each(data,function(index,item){
+							var date = new Date(item.crtime);
+							var d = date.getFullYear() + "-" + (Number(date.getMonth())+Number(1)) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 							if(item.crqf==userid){
-								html+=username+"(我)："+item.crtext+"\n";
+								html+=username+"(我)["+d+"]：\n"+item.crtext+"\n";
 							}else{
-								html+=item.ruserid.username+"："+item.crtext+"\n";
+								html+=item.ruserid.username+"["+d+"]：\n"+item.crtext+"\n";
 							}
 						})
 						$("#yuyan").html(html);
