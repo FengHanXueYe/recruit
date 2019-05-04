@@ -1,5 +1,6 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.chatrecord.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -37,7 +38,7 @@ public class ChatrecordController {
 		chatrecord.setCrqf(crqf);
 		chatrecord.setCrtext(crtext);
 		chatrecord.setRuserid(ruser);
-		chatrecord.setIuserid(iuserid);
+		chatrecord.setIuserid(attribute);
 		System.err.println(chatrecord.getRuserid().getUserid()+"--------"+chatrecord.getIuserid());
 		if(attribute!=null) {
 			//增加聊天
@@ -60,11 +61,12 @@ public class ChatrecordController {
 	@ResponseBody
 	@RequestMapping("ajaxQueryChatrecord")
 	public List<Chatrecord> ajaxQueryChatrecord(Integer iuserid,Integer ruserid,HttpSession session,Model model) {
+		RecruitingUsers attribute = (RecruitingUsers) session.getAttribute("loginUser");
 		Chatrecord chatrecord = new Chatrecord();
 		RecruitingUsers ruser = new RecruitingUsers();
 		ruser.setUserid(ruserid);
 		chatrecord.setRuserid(ruser);
-		chatrecord.setIuserid(iuserid);
+		chatrecord.setIuserid(attribute);
 		List<Chatrecord> queryAllChatrecord = chatrecordService.queryAllChatrecord(chatrecord);
 		return queryAllChatrecord;
 	}
@@ -89,6 +91,48 @@ public class ChatrecordController {
 		}
 	}
 	
+	/**
+	 * 我的消息
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("doMyNews")
+	public String doMyNews(HttpSession session,Model model) {
+		//存iuserid
+		List<Integer> listiuserid = new ArrayList<>();
+		//登当前用户
+		RecruitingUsers attribute = (RecruitingUsers) session.getAttribute("loginUser");
+		//查询当前用户所有的消息
+		List<Chatrecord> queryAllChatrecordByrUserid = chatrecordService.queryAllChatrecordByrUserid(attribute.getUserid());
+		for (Chatrecord chatrecord : queryAllChatrecordByrUserid) {
+			for (Integer i : listiuserid) {
+				if(chatrecord.getIuserid().getUserid()!=i) {
+					listiuserid.add(chatrecord.getIuserid().getUserid());
+				}
+			}
+		}
+		System.err.println("我要恢复的聊天记录："+listiuserid);
+		//创建list的集合存放多个用户的聊天
+		List<List<Chatrecord>> listChatrecord = new ArrayList<>();
+		//实例聊天记录对象
+		Chatrecord chatrecord = null;
+		//循环当前的聊天数量
+		for (Integer i : listiuserid) {
+			chatrecord = new Chatrecord();
+			//实例咨询者
+			RecruitingUsers iuser = new RecruitingUsers();
+			iuser.setUserid(i);
+			//将咨询者的id赋值
+			chatrecord.setIuserid(iuser);
+			chatrecord.setRuserid(attribute);
+			List<Chatrecord> queryAllChatrecord = chatrecordService.queryAllChatrecord(chatrecord);
+			listChatrecord.add(queryAllChatrecord);
+		}
+		//发送至页面
+		model.addAttribute("listChatrecord", listChatrecord);
+		return "main/wodexiaoxi";
+	}
 	
 	
 }

@@ -35,4 +35,9 @@ public class ChatrecordServiceImpl implements ChatrecordService {
 		return chatrecordMapper.queryAllChatrecord(chatrecord);
 	}
 
+	@Override
+	public List<Chatrecord> queryAllChatrecordByrUserid(Integer ruserid) {
+		return chatrecordMapper.queryAllChatrecordByrUserid(ruserid);
+	}
+
 }

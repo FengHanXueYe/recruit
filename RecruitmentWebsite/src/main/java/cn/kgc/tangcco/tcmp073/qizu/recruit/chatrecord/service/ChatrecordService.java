@@ -15,4 +15,5 @@ public interface ChatrecordService {
 	
 	List<Chatrecord> queryAllChatrecord(Chatrecord chatrecord);
 	
+	List<Chatrecord> queryAllChatrecordByrUserid(Integer ruserid);
 }
