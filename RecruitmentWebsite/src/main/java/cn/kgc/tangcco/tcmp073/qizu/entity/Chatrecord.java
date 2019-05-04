@@ -19,4 +19,6 @@ public class Chatrecord {
 	private String crtext;
 	private Integer crqf;
 	
+	
+	
 }
