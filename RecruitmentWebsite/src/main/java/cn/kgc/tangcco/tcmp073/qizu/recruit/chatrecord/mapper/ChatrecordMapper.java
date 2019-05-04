@@ -21,7 +21,6 @@ public interface ChatrecordMapper {
 	
 	List<Chatrecord> queryAllChatrecord(@Param("chatrecord")Chatrecord chatrecord);
 	
-	@Select("SELECT * FROM `recruitingusers` r,`recruitingusers` i,chatrecord c WHERE r.`userid`=c.`ruserid` AND i.`userid`=c.`iuserid`AND c.ruserid=#{ruserid} ORDER BY c.crtime ASC")
 	List<Chatrecord> queryAllChatrecordByrUserid(@Param("ruserid")Integer ruserid);
 	
 	

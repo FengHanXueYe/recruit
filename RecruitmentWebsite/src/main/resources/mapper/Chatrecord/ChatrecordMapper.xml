@@ -3,8 +3,8 @@
 <mapper namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.chatrecord.mapper.ChatrecordMapper">
 	<resultMap type="Chatrecord" id="chatrecordMap" autoMapping="true">
 		<id column="crid" property="crid"/>
-		<collection property="ruserid" resultMap="ruserMap"></collection>
-		<collection property="iuserid" resultMap="iuserMap"></collection>
+		<association property="ruserid" resultMap="ruserMap" ></association>
+		<association property="iuserid" resultMap="iuserMap" ></association>
 	</resultMap>
 	<resultMap type="RecruitingUsers" id="ruserMap" autoMapping="true">
 		<id column="userid" property="userid"/>
@@ -14,6 +14,16 @@
 	</resultMap>
 		
   <select id="queryAllChatrecord" resultMap="chatrecordMap" parameterType="Chatrecord">
-  	SELECT r.username,r.userid,i.username,i.userid,c.* FROM `recruitingusers` r,`recruitingusers` i,chatrecord c WHERE r.`userid`=c.`ruserid` AND i.`userid`=c.`iuserid`and c.ruserid=#{chatrecord.ruserid.userid} and c.iuserid=#{chatrecord.iuserid.userid} order by c.crtime asc
+  	SELECT r.username,r.userid,i.username,i.userid,c.* FROM
+  	 `recruitingusers` r,`recruitingusers` i,chatrecord c 
+  	 WHERE r.`userid`=c.`ruserid` AND i.`userid`=c.`iuserid`
+  	 and c.ruserid=#{chatrecord.ruserid.userid} and c.iuserid=#{chatrecord.iuserid.userid} order by c.crtime asc
   </select>
+  
+  <select id="queryAllChatrecordByrUserid" resultMap="chatrecordMap" parameterType="int">
+  	SELECT * FROM `recruitingusers` r,`recruitingusers` i,chatrecord c WHERE r.`userid`=c.`ruserid` AND i.`userid`=c.`iuserid`AND c.ruserid=#{ruserid} ORDER BY c.crtime ASC
+  </select>
+  
+  
+  
 </mapper>

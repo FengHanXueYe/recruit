@@ -105,14 +105,22 @@ public class ChatrecordController {
 		RecruitingUsers attribute = (RecruitingUsers) session.getAttribute("loginUser");
 		//查询当前用户所有的消息
 		List<Chatrecord> queryAllChatrecordByrUserid = chatrecordService.queryAllChatrecordByrUserid(attribute.getUserid());
+		//System.err.println(queryAllChatrecordByrUserid);
 		for (Chatrecord chatrecord : queryAllChatrecordByrUserid) {
-			for (Integer i : listiuserid) {
-				if(chatrecord.getIuserid().getUserid()!=i) {
-					listiuserid.add(chatrecord.getIuserid().getUserid());
+			System.err.println(chatrecord);
+			System.out.println();
+			Integer userid = chatrecord.getIuserid().getUserid();
+			if(listiuserid.size()==0) {
+				listiuserid.add(userid);
+			}else {
+				for (Integer i : listiuserid) {
+					if(userid!=i) {
+						listiuserid.add(userid);
+					}
 				}
 			}
 		}
-		System.err.println("我要恢复的聊天记录："+listiuserid);
+		System.err.println("我要回复的聊天记录："+listiuserid);
 		//创建list的集合存放多个用户的聊天
 		List<List<Chatrecord>> listChatrecord = new ArrayList<>();
 		//实例聊天记录对象
@@ -127,8 +135,17 @@ public class ChatrecordController {
 			chatrecord.setIuserid(iuser);
 			chatrecord.setRuserid(attribute);
 			List<Chatrecord> queryAllChatrecord = chatrecordService.queryAllChatrecord(chatrecord);
+			System.err.println(">>>>>>>>>>>>>>>"+queryAllChatrecord);
 			listChatrecord.add(queryAllChatrecord);
 		}
+		System.out.println(listChatrecord.size()+"=================");
+		System.out.println(listChatrecord);
+		for (List<Chatrecord> listxxx : listChatrecord) {
+			for (Chatrecord chatrecord2 : listxxx) {
+				System.out.println("---"+chatrecord2);
+			}
+		}
+		
 		//发送至页面
 		model.addAttribute("listChatrecord", listChatrecord);
 		return "main/wodexiaoxi";
