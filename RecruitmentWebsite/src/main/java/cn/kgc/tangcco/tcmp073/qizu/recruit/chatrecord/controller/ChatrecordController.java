@@ -22,7 +22,7 @@ public class ChatrecordController {
 	private ChatrecordService chatrecordService;
 	
 	/**
-	 * 增加和查询
+	 * 增加和查询(咨询者)
 	 * @param chatrecord
 	 * @param session
 	 * @param model
@@ -31,6 +31,7 @@ public class ChatrecordController {
 	@ResponseBody
 	@RequestMapping("ajaxHandleChatrecord")
 	public List<Chatrecord> ajaxHandleChatrecord(Integer iuserid,Integer ruserid,Integer crqf,String crtext,HttpSession session,Model model) {
+		System.out.println("**************"+"iuserid"+iuserid+"ruserid"+ruserid+"crqf"+crqf);
 		Chatrecord chatrecord = new Chatrecord();
 		RecruitingUsers ruser = new RecruitingUsers();
 		ruser.setUserid(ruserid);
@@ -52,7 +53,38 @@ public class ChatrecordController {
 		}
 	}
 	/**
-	 * 查询
+	 * 增加和查询(回复者)
+	 * @param chatrecord
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("ajaxHandleChatrecordHF")
+	public List<Chatrecord> ajaxHandleChatrecordHF(Integer iuserid,Integer ruserid,Integer crqf,String crtext,HttpSession session,Model model) {
+		System.out.println("**************"+"iuserid"+iuserid+"ruserid"+ruserid+"crqf"+crqf);
+		Chatrecord chatrecord = new Chatrecord();
+		RecruitingUsers ruser = new RecruitingUsers();
+		ruser.setUserid(iuserid);
+		RecruitingUsers attribute = (RecruitingUsers) session.getAttribute("loginUser");
+		chatrecord.setCrqf(crqf);
+		chatrecord.setCrtext(crtext);
+		chatrecord.setRuserid(attribute);
+		chatrecord.setIuserid(ruser);
+		System.err.println(chatrecord.getRuserid().getUserid()+"--------"+chatrecord.getIuserid());
+		if(attribute!=null) {
+			//增加聊天
+			chatrecordService.insertChatrecord(chatrecord);
+			//查询聊天记录
+			List<Chatrecord> queryAllChatrecord = chatrecordService.queryAllChatrecord(chatrecord);
+			System.err.println(queryAllChatrecord);
+			return queryAllChatrecord;
+		}else {
+			return null;
+		}
+	}
+	/**
+	 * 查询(咨询者)
 	 * @param chatrecord
 	 * @param session
 	 * @param model
@@ -68,6 +100,27 @@ public class ChatrecordController {
 		chatrecord.setRuserid(ruser);
 		chatrecord.setIuserid(attribute);
 		List<Chatrecord> queryAllChatrecord = chatrecordService.queryAllChatrecord(chatrecord);
+		return queryAllChatrecord;
+	}
+	/**
+	 * 查询(回复者)
+	 * @param chatrecord
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("ajaxQueryChatrecordHF")
+	public List<Chatrecord> ajaxQueryChatrecordHF(Integer iuserid,Integer ruserid,HttpSession session,Model model) {
+		System.err.println("0000000000000"+"iuserid"+iuserid+"ruserid"+ruserid);
+		RecruitingUsers attribute = (RecruitingUsers) session.getAttribute("loginUser");
+		Chatrecord chatrecord = new Chatrecord();
+		RecruitingUsers ruser = new RecruitingUsers();
+		ruser.setUserid(iuserid);
+		chatrecord.setRuserid(attribute);
+		chatrecord.setIuserid(ruser);
+		List<Chatrecord> queryAllChatrecord = chatrecordService.queryAllChatrecord(chatrecord);
+		System.out.println("00000000000"+queryAllChatrecord);
 		return queryAllChatrecord;
 	}
 	
