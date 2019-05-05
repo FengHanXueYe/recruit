@@ -23,6 +23,10 @@ console.log(1);
 
 <!-- 峰 -->
 <!-- <link href="style/css/zaixianzixun.css" type="text/css" rel="stylesheet"> -->
+<!-- 许茂峰 -->
+<link href="alertDemo/css/style.css" rel="stylesheet" />
+<script src="alertDemo/js/jquery-1.7.1.min.js"></script>
+<script src="alertDemo/js/ui.js"></script>
 
 <link href="http://www.lagou.com/images/favicon.ico" rel="Shortcut Icon">
 <link href="style/css/style.css" type="text/css" rel="stylesheet">
@@ -254,275 +258,125 @@ var youdao_conv_id = 271546;
                         <a class="d_refresh" href="javascript:;">刷新</a>
                     </dt>
                     <dd>
-                    	<!-- <div class="delivery_tabs">
-                    		<ul class="reset">
-                    			                    			<li class="current">
-                    				<a href="javascript:void(0)" onclick="ajaxLook(9)">全部</a>
-                    			</li>
-                    			                    			<li>
-                    				<a href="javascript:void(0)" onclick="ajaxLook(5)">投递成功</a>
-                    			</li>
-                    			<li>
-                    				<a href="javascript:void(0)" onclick="ajaxLook(1)">被查看</a>
-                    			</li>
-                    			<li>
-                    				<a href="javascript:void(0)" onclick="ajaxLook(2)">通过初筛</a>
-                    			</li>
-                    			<li>
-                    				<a href="javascript:void(0)" onclick="ajaxLook(3)">通知面试</a>
-                    			</li>
-                    			<li class="last">
-                    				<a href="javascript:void(0)" onclick="ajaxLook(4)">不合适</a>
-                    			</li>
-                    		</ul>
-                    	</div> -->
-                    	                        <form id="deliveryForm">
+                    	                         <div id="deliveryForm"> 
                     	                        <!-- 循环体 li -->
                             <ul class="reset my_delivery" id="youdizhuangtaixianshi">
-                            		<%-- <c:if test="${!empty listDeliverypost }">
-                            		<c:forEach items="${listDeliverypost }" var="item">
-                               	                             	<li>
-                             		<div class="d_item">
-                             			 	                                    <h2 title="随便写">
-	                                        <a target="_blank" href="http://www.lagou.com/jobs/149594.html">
-	                                        	<em>${item.deliverypost.occupation.oname }</em> 
-	                                        	<span>（${item.deliverypost.occupation.ominsalary }k-${item.deliverypost.occupation.omaxsalary }k）</span>
-	                                        	<!--  -->
-	                                    	</a>
-	                                    </h2>
-	                                    		                                <div class="clear"></div>
-	                                   	<a title="公司名称" class="d_jobname" target="_blank" href="http://www.lagou.com/c/25927.html">
-	                                   		${item.company.cname } <span>[${item.deliverypost.occupation.oaddress }]</span> 
-	                                    </a>
-	                                    <span class="d_time"><fmt:formatDate value="${item.deliverypost.occupation.orelease }" pattern="yyyy-MM-dd"/></span>
-	                                    <div class="clear"></div>
-	                                    <div class="d_resume">
-	                                    	使用简历：
-	                                    	<span>
-	                                    	                                        		在线简历
-                                        		                                    	</span>
-	                                    </div>
-	                                    	                                    	<a class="btn_showprogress" href="javascript:;">
-	                                    			                                    			<c:if test="${item.deliverypost.dstatus eq '5' }">投递成功</c:if>
-	                                    			                                    			<c:if test="${item.deliverypost.dstatus eq '1' }">被查看</c:if>
-	                                    			                                    			<c:if test="${item.deliverypost.dstatus eq '2' }">通过初筛</c:if>
-	                                    			                                    			<c:if test="${item.deliverypost.dstatus eq '3' }">通知面试</c:if>
-	                                    			                                    			<c:if test="${item.deliverypost.dstatus eq '4' }">不合适</c:if>
-	                                    			                                    	<i></i></a>
-                               			                               		</div>
-                               			                               			<c:if test="${item.deliverypost.dstatus eq '5' }">
-			                               		                               		<div class="progress_status	dn">
-				                               		                               			<ul class="status_steps">
-													                               				<li class="status_done status_1">1</li>
-													                               				
-													                               			</ul>
-													                               			<ul class="status_text">
-													                           					<li>投递成功</li>
-														                                    </ul>
-													                               			<ul class="status_list">
-													                               				    <li class="top">
-													                               					<div class="list_time"><em></em><fmt:formatDate value="${item.deliverypost.dtime }" pattern="yyyy-MM-dd  HH:mm"/></div>
-													                               					<div class="list_body">
-													                               					简历投递成功！                             						                               					</div>
-													                               				</li>
-													                               			</ul>
-													                               			<a class="btn_closeprogress" href="javascript:;"></a>
-													                              </div>
-													                        </c:if>
-                               			                               			<c:if test="${item.deliverypost.dstatus eq '1' }">
-			                               		                               		<div class="progress_status	dn">
-				                               		                               			<ul class="status_steps">
-													                               				<li class="status_done status_1">1</li>
-													                               				<li class="status_line status_line_done"><span></span></li>
-													                               				<li class="status_done"><span>2</span></li>
-													                               			</ul>
-													                               			<ul class="status_text">
-													                           					<li>投递成功</li>
-													                           					<li class="status_text_2">简历被查看</li>
-														                                    </ul>
-													                               			<ul class="status_list">
-													                               				    <li class="top">
-													                               					<div class="list_time"><em></em><fmt:formatDate value="${item.deliverypost.dtime }" pattern="yyyy-MM-dd  HH:mm"/></div>
-													                               					<div class="list_body">
-													                               					简历被${item.cuser.username }查看，请您耐心等待回应！                              						                               					</div>
-													                               				</li>
-													                               			</ul>
-													                               			<a class="btn_closeprogress" href="javascript:;"></a>
-													                              </div>
-													                        </c:if>
-                               			                               			<c:if test="${item.deliverypost.dstatus eq '2' }">
-			                               		                               		<div class="progress_status	dn">
-				                               		                               			<ul class="status_steps">
-													                               				<li class="status_done status_1">1</li>
-													                               				<li class="status_line status_line_done"><span></span></li>
-													                               				<li class="status_done"><span>2</span></li>
-													                               				<li class="status_line status_line_done"><span></span></li>
-													                               				<li class="status_done"><span>3</span></li>
-													                               			</ul>
-													                               			<ul class="status_text">
-													                           					<li>投递成功</li>
-													                           					<li class="status_text_2">简历被查看</li>
-													                           					<li class="status_text_3">通过初步筛选</li>
-														                                    </ul>
-													                               			<ul class="status_list">
-													                               				    <li class="top">
-													                               					<div class="list_time"><em></em><fmt:formatDate value="${item.deliverypost.dtime }" pattern="yyyy-MM-dd  HH:mm"/></div>
-													                               					<div class="list_body">
-													                               					简历通过初步筛选！                              						                               					</div>
-													                               				</li>
-													                               			</ul>
-													                               			<a class="btn_closeprogress" href="javascript:;"></a>
-													                              </div>
-													                        </c:if>
-                               			                               			<c:if test="${item.deliverypost.dstatus eq '3' }">
-			                               		                               		<div class="progress_status	dn">
-				                               		                               			<ul class="status_steps">
-													                               				<li class="status_done status_1">1</li>
-													                               				<li class="status_line status_line_done"><span></span></li>
-													                               				<li class="status_done"><span>2</span></li>
-													                               				<li class="status_line status_line_done"><span></span></li>
-													                               				<li class="status_done"><span>3</span></li>
-													                               				<li class="status_line status_line_done"><span></span></li>
-													                               				<li class="status_done"><span>4</span></li>
-													                               			</ul>
-													                               			<ul class="status_text">
-													                           					<li>投递成功</li>
-													                           					<li class="status_text_2">简历被查看</li>
-													                           					<li class="status_text_3">通过初步筛选</li>
-													                           					<li style="margin-left: 75px;*margin-left: 60px;" class="status_text_4">通知面试</li>
-														                                    </ul>
-													                               			<ul class="status_list">
-													                               				    <li class="top">
-													                               					<div class="list_time"><em></em><fmt:formatDate value="${item.deliverypost.dtime }" pattern="yyyy-MM-dd  HH:mm"/></div>
-													                               					<div class="list_body">
-													                               					简历被${item.cuser.username }查看<div>您的简历已收到,面试</div>                               						                               					</div>
-													                               				</li>
-													                               				<li class="bottom">
-													                               					<div class="list_time"><em></em><fmt:formatDate value="${item.deliverypost.dxytime }" pattern="yyyy-MM-dd  HH:mm"/></div>
-													                               					<div class="list_body">
-													                               					${item.cuser.username }已成功接收你的简历                               						                               					</div>
-													                               				</li>
-													                               			</ul>
-													                               			<a class="btn_closeprogress" href="javascript:;"></a>
-													                              </div>
-													                        </c:if>
-                               			                               			<c:if test="${item.deliverypost.dstatus eq '4' }">
-			                               		                               		<div class="progress_status	dn">
-				                               		                               			<ul class="status_steps">
-													                               				<li class="status_done status_1">1</li>
-													                               				<li class="status_line status_line_done"><span></span></li>
-													                               				<li class="status_done"><span>2</span></li>
-													                               				<li class="status_line status_line_done"><span></span></li>
-													                               				<li class="status_done"><span>3</span></li>
-													                               				<li class="status_line status_line_done"><span></span></li>
-													                               				<li class="status_done"><span>4</span></li>
-													                               			</ul>
-													                               			<ul class="status_text">
-													                           					<li>投递成功</li>
-													                           					<li class="status_text_2">简历被查看</li>
-													                           					<li class="status_text_3">通过初步筛选</li>
-													                           					<li style="margin-left: 75px;*margin-left: 60px;" class="status_text_4">不合适</li>
-														                                    </ul>
-													                               			<ul class="status_list">
-													                               				    <li class="top">
-													                               					<div class="list_time"><em></em><fmt:formatDate value="${item.deliverypost.dtime }" pattern="yyyy-MM-dd  HH:mm"/></div>
-													                               					<div class="list_body">
-													                               					简历被${item.cuser.username }标记为不合适<div>您的简历已收到，但目前您的工作经历与该职位不是很匹配，因此很抱歉地通知您无法进入面试。</div>                               						                               					</div>
-													                               				</li>
-													                               				<li class="bottom">
-													                               					<div class="list_time"><em></em><fmt:formatDate value="${item.deliverypost.dxytime }" pattern="yyyy-MM-dd  HH:mm"/></div>
-													                               					<div class="list_body">
-													                               					${item.cuser.username }已成功接收你的简历                               						                               					</div>
-													                               				</li>
-													                               			</ul>
-													                               			<a class="btn_closeprogress" href="javascript:;"></a>
-													                              </div>
-													                        </c:if>
-                               		                            	</li>
-                               		                            	</c:forEach>
-                               		                            	</c:if> --%>
-                               		                            	<!-- ------------------- -->
                                		                            <c:forEach items="${listChatrecord }" var="listC">
-                               	                             	 <li>
+                               	                             	 <li id="${listC[0].iuserid.userid }">
                                	                             	
 								                             		<div class="d_item">
 								                             			 	                                    <h2 title="随便写">
 									                                        <a target="_blank" href="http://www.lagou.com/jobs/149594.html">
-									                                        	<em>随便写</em> 
-									                                        	<span>（1k-2k）</span>	                                        	
+									                                        	<em>${listC[0].iuserid.username }</em> 
+									                                        	<span>（新消息！）</span>	                                        	
 									                                    	</a>
 									                                    </h2>
-									                                    		                                <!-- <div class="clear"></div>
-									                                  		                                
-									                                    		                                
-									                                   	 <a title="公司名称" class="d_jobname" target="_blank" href="http://www.lagou.com/c/25927.html">
-									                                   		公司名称 <span>[上海]</span> 
-									                                    </a>
-									                                    <span class="d_time">2014-07-01 17:15</span>
-									                                    <div class="clear"></div>
-									                                    <div class="d_resume">
-									                                    	使用简历：
-									                                    	<span>在线简历</span>
-									                                    </div> -->
-									                                    	            <a class="btn_showprogress" href="javascript:;">
+									                                    	            <a class="btn_showprogress" href="javascript:;" onclick="showxunhuan(${listC[0].iuserid.userid })">
 									                                    			       回复他
 									                                    			    <i></i></a>
 								                               			</div>
 								                               		    <div class="progress_status	dn">
 								                               		   				<div id="zaixianzixun">
-																							<span style="width:10px;height:10px;text-align: center;line-height:10px;stong;border:white solid 1px;color:white;position: absolute;right: 0px;top: 0px;cursor:pointer;" onclick="liaotianhide()">×</span>
 																						<div id="zaixianzixunzi">
-																							<textarea rows="" cols="" id="yuyan" readonly style="resize:none;width:450px;height:130px;font-size:12px;" ><c:forEach items="${listC }" var="item"><c:choose><c:when test="${item.crqf eq loginUser.userid }">${loginUser.username }(我)[${item.crtime }]：&#xd; ${item.crtext } &#xd;</c:when><c:otherwise>${item.iuserid.username }[${item.crtime }]：&#xd;${item.crtext }&#xd;</c:otherwise></c:choose></c:forEach></textarea>
+																							<textarea rows="" cols="" class="yuyan" readonly style="resize:none;width:450px;height:130px;font-size:12px;" ><c:forEach items="${listC }" var="item"><c:choose><c:when test="${item.crqf eq loginUser.userid }">${loginUser.username }(我)[<fmt:formatDate value="${item.crtime }" pattern="yyyy-MM-dd HH:mm" />]：&#xd; ${item.crtext } &#xd;</c:when><c:otherwise>${item.iuserid.username }[<fmt:formatDate value="${item.crtime }" pattern="yyyy-MM-dd HH:mm" />]：&#xd;${item.crtext }&#xd;</c:otherwise></c:choose></c:forEach></textarea>
 																							<div >
-																								<form id="liantianform">
-																									<input type="hidden" name="ruserid" value="${queryCompanyByCid.cuid }"/>
-																									<input type="hidden" name="iuserid" value="${loginUser.userid }"/>
+																								<form class="liantianform">
+																									<input type="hidden" name="ruserid" value="${loginUser.userid}"/>
+																									<input type="hidden" name="iuserid" value="${listC[0].iuserid.userid }"/>
 																									<input type="hidden"  name="crqf" value="${loginUser.userid }"/>
-																									<input type="text"  style="width:380px" name="crtext"  />
-																									<input type="button" onclick="fasong()" value="发送" style="background-color:91CEBE;width:45px;height:29px;" />
+																									<input type="text" placeholder="请输入要回复的信息..." style="width:380px;font-size:12px;" name="crtext"  />
+																									<input type="button"  onclick="fasong(${listC[0].iuserid.userid })" value="回复" style="background-color:91CEBE;width:45px;height:29px;" />
+																									<!--  -->
 																								</form>
-																								
 																							</div>
 																						</div>
 																					</div>
-									                               		       <!-- <ul class="status_steps">
-										                               				<li class="status_done status_1">1</li>
-										                               				<li class="status_line status_line_done"><span></span></li>
-										                               				<li class="status_done"><span>2</span></li>
-										                               				<li class="status_line status_line_done"><span></span></li>
-										                               				<li class="status_done"><span>3</span></li>
-										                               				<li class="status_line status_line_done"><span></span></li>
-										                               				<li class="status_done"><span>4</span></li>
-								                               				   </ul>
-										                               		   <ul class="status_text">
-										                           					<li>投递成功</li>
-										                           					<li class="status_text_2">简历被查看</li>
-										                           					<li class="status_text_3">通过初步筛选</li>
-								                           						    <li style="margin-left: 75px;*margin-left: 60px;" class="status_text_4">不合适</li>
-									                                    	   </ul>
-										                               		   <ul class="status_list">
-										                               				<li class="top">
-										                               					<div class="list_time"><em></em>2014-07-01 17:15</div>
-										                               					<div class="list_body">
-										                               					简历被lixiang标记为不合适<div>您的简历已收到，但目前您的工作经历与该职位不是很匹配，因此很抱歉地通知您无法进入面试。</div></div>
-										                               				</li>
-										                               				<li class="bottom">
-										                               					<div class="list_time"><em></em>2014-07-01 17:08</div>
-										                               					<div class="list_body">lixiang已成功接收你的简历</div>
-										                               				</li>
-								                               				   </ul> -->
-								                               			       <a class="btn_closeprogress" href="javascript:;"></a> 
+								                               			       <a class="btn_closeprogress" href="javascript:;" onclick="hidexunhuan(${listC[0].iuserid.userid })"></a> 
 								                               		</div>	
                                		                            </li> 
                                		                            </c:forEach>
                                		                            	
                             	                            </ul>
-                                                    	<input type="hidden" value="-1" name="tag">
+                                                    	 <input type="hidden" value="-1" name="tag">
                         	<input type="hidden" value="" name="r">
-                        </form>
+                        </div> 
                                             </dd>
                 </dl>
             </div>	
+            
+            <script type="text/javascript">
+           		$(function(){
+           			
+           			
+           		})/* 主函数 */
+           		var timexunhuan;
+           		//开始
+           		function showxunhuan(id){
+           			timexunhuan = setInterval("xunhuan("+id+")",1000);
+           		}
+           		//结束
+           		function hidexunhuan(id){
+           			clearInterval(xunhuan(id));
+           		}
+           		function xunhuan(id){
+           			var userid = '${loginUser.userid }';
+           			var username = '${loginUser.username }';
+           			//var cuid = '${queryCompanyByCid.cuid }';
+           				$.ajax({
+           					type:"post",
+           					url:"ajaxQueryChatrecordHF.controller",
+           					data:{"ruserid":userid,"iuserid":id},
+           					success:function(data){
+           						if(data!=null){
+           							$("#"+id+" .yuyan").html("");
+           							html = "";
+           							$.each(data,function(index,item){
+           								var date = new Date(item.crtime);
+           								var d = date.getFullYear() + "-" + (Number(date.getMonth())+Number(1)) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
+           								/* var d = date.getFullYear() + "-" + (Number(date.getMonth())+Number(1)) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(); */
+           								if(item.crqf==userid){
+           									html+=username+"(我)["+d+"]：\n"+item.crtext+"\n";
+           								}else{
+           									html+=item.iuserid.username+"["+d+"]：\n"+item.crtext+"\n";
+           								}
+           							})
+           							$("#"+id+" .yuyan").html(html);
+           						}
+           					}
+           				})
+           			
+           		}
+           		
+		            function fasong(id){
+						var crtext1=$.trim($("#"+id+" input[name='crtext']").val());
+						var userid = '${loginUser.userid }';
+						var username = '${loginUser.username }';
+						if(crtext1!=""){
+							$.ajax({
+								type:"post",
+								url:"ajaxHandleChatrecordHF.controller",
+								data:$("#"+id+" .liantianform").serialize(),
+								success:function(data){
+									$("#"+id+" .yuyan").html("");
+									html = "";
+									$.each(data,function(index,item){
+										if(item.crqf==userid){
+											html+=username+"(我)："+item.crtext+"\n";
+										}else{
+											html+=item.iuserid.username+"："+item.crtext+"\n";
+										}
+									})
+									$("#"+id+" .yuyan").html(html);
+								}
+							})
+						}else{
+							mizhu.alert('提示', '请输入要回复的信息！','alert_red');
+						}
+						$("#"+id+" input[name='crtext']").val("");
+					}
+            
+            </script>
+            
             <div class="content_r">
             	<div class="mycenterR" id="myInfo">
             		<h2>我的信息</h2>

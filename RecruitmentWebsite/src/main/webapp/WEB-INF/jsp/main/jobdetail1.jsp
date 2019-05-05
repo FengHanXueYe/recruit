@@ -952,8 +952,8 @@ CallCenter.init(url);
 				<input type="hidden" name="ruserid" value="${queryCompanyByCid.cuid }"/>
 				<input type="hidden" name="iuserid" value="${loginUser.userid }"/>
 				<input type="hidden"  name="crqf" value="${loginUser.userid }"/>
-				<input type="text"  style="width:200px" name="crtext"  />
-				<input type="button" onclick="fasong()" value="发送" style="background-color:#FAFAFA;width:45px;height:29px;top:276px;left:210px;position: absolute;" />
+				<input type="text" placeholder="请输入要咨询的信息..." style="width:200px;font-size:12px;" name="crtext"  />
+				<input type="button" onclick="fasong()" value="发送" style="background-color:#FAFAFA;width:45px;height:26px;top:276px;left:210px;position: absolute;" />
 			</form>
 			
 		</div>
@@ -999,6 +999,7 @@ CallCenter.init(url);
 		}else{
 			mizhu.alert('提示', '请输入要咨询的信息！','alert_red');
 		}
+		$("input[name='crtext']").val("");
 	}
 	
 	function timefasong(){
