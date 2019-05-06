@@ -26,7 +26,7 @@ public class RecruitingUsers {
 	@NonNull
 	private String email,password;
 	private String identity;
-	private  Integer gender,education,userlog,jurisdiction;
+	private  Integer gender,education,userlog,jurisdiction,quanxian;
 	private String telephone,userpicture,resumeName;
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Timestamp registrationTime;
