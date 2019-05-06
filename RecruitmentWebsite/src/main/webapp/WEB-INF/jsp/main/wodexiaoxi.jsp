@@ -268,7 +268,7 @@ var youdao_conv_id = 271546;
 								                             			 	                                    <h2 title="随便写">
 									                                        <a target="_blank" href="http://www.lagou.com/jobs/149594.html">
 									                                        	<em>${listC[0].iuserid.username }</em> 
-									                                        	<span>（新消息！）</span>	                                        	
+									                                        	<span>（<span class="xinxiaoxi">新消息！</span>）</span>	                                        	
 									                                    	</a>
 									                                    </h2>
 									                                    	            <a class="btn_showprogress" href="javascript:;" onclick="showxunhuan(${listC[0].iuserid.userid })">
@@ -278,13 +278,13 @@ var youdao_conv_id = 271546;
 								                               		    <div class="progress_status	dn">
 								                               		   				<div id="zaixianzixun">
 																						<div id="zaixianzixunzi">
-																							<textarea rows="" cols="" class="yuyan" readonly style="resize:none;width:450px;height:130px;font-size:12px;" ><c:forEach items="${listC }" var="item"><c:choose><c:when test="${item.crqf eq loginUser.userid }">${loginUser.username }(我)[<fmt:formatDate value="${item.crtime }" pattern="yyyy-MM-dd HH:mm" />]：&#xd; ${item.crtext } &#xd;</c:when><c:otherwise>${item.iuserid.username }[<fmt:formatDate value="${item.crtime }" pattern="yyyy-MM-dd HH:mm" />]：&#xd;${item.crtext }&#xd;</c:otherwise></c:choose></c:forEach></textarea>
+																							<textarea rows="" cols=""  class="yuyan" readonly style="resize:none;width:450px;height:130px;font-size:12px;" ><c:forEach items="${listC }" var="item"><c:choose><c:when test="${item.crqf eq loginUser.userid }">${loginUser.username }(我)[<fmt:formatDate value="${item.crtime }" pattern="yyyy-MM-dd HH:mm" />]：&#xd; ${item.crtext } &#xd;</c:when><c:otherwise>${item.iuserid.username }[<fmt:formatDate value="${item.crtime }" pattern="yyyy-MM-dd HH:mm" />]：&#xd;${item.crtext }&#xd;</c:otherwise></c:choose></c:forEach></textarea>
 																							<div >
 																								<form class="liantianform">
 																									<input type="hidden" name="ruserid" value="${loginUser.userid}"/>
 																									<input type="hidden" name="iuserid" value="${listC[0].iuserid.userid }"/>
 																									<input type="hidden"  name="crqf" value="${loginUser.userid }"/>
-																									<input type="text" placeholder="请输入要回复的信息..." style="width:380px;font-size:12px;" name="crtext"  />
+																									<input type="text" placeholder="请输入要回复的信息..." value="你好,还在吗？" style="width:380px;font-size:12px;" name="crtext"  />
 																									<input type="button"  onclick="fasong(${listC[0].iuserid.userid })" value="回复" style="background-color:91CEBE;width:45px;height:29px;" />
 																									<!--  -->
 																								</form>
@@ -306,16 +306,19 @@ var youdao_conv_id = 271546;
             
             <script type="text/javascript">
            		$(function(){
-           			
-           			
+           		 		var scrollTop = $("textarea").scrollHeight;
+           	   		 $(".yuyan").scrollTop(scrollTop);
+
            		})/* 主函数 */
            		var timexunhuan;
            		//开始
            		function showxunhuan(id){
+           			$("#"+id+" .xinxiaoxi").html("正在回复中...");
            			timexunhuan = setInterval("xunhuan("+id+")",1000);
            		}
            		//结束
            		function hidexunhuan(id){
+           			$("#"+id+" .xinxiaoxi").html("新消息！");
            			clearInterval(xunhuan(id));
            		}
            		function xunhuan(id){

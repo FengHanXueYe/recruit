@@ -952,7 +952,7 @@ CallCenter.init(url);
 				<input type="hidden" name="ruserid" value="${queryCompanyByCid.cuid }"/>
 				<input type="hidden" name="iuserid" value="${loginUser.userid }"/>
 				<input type="hidden"  name="crqf" value="${loginUser.userid }"/>
-				<input type="text" placeholder="请输入要咨询的信息..." style="width:200px;font-size:12px;" name="crtext"  />
+				<input type="text" placeholder="请输入要咨询的信息..." value="你好，请问${queryOccupation.oname }这个职位还招人吗？我想咨询一下。 " style="width:200px;font-size:12px;" name="crtext"  />
 				<input type="button" onclick="fasong()" value="发送" style="background-color:#FAFAFA;width:45px;height:26px;top:276px;left:210px;position: absolute;" />
 			</form>
 			
