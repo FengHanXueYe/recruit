@@ -62,7 +62,7 @@
 <script type="text/javascript" src="backstagestyle/assets/js/config-min.js"></script>
 <script>
     BUI.use('common/main',function(){
-        var config = [{id:'1',menu:[{text:'系统管理',items:[{id:'12',text:'公司管理',href:'toNodeIndex.controller'},{id:'3',text:'用户管理',href:'toRoleIndex.controller'},{id:'4',text:'管理员',href:'toUserIndex.controller'},{id:'6',text:'职位管理',href:'toMenuIndex.controller'}]}]},{id:'7',homePage : '9',menu:[{text:'业务管理',items:[{id:'9',text:'查询业务',href:'toNodeIndex.controller'}]}]}];
+        var config = [{id:'1',menu:[{text:'系统管理',items:[{id:'12',text:'公司管理',href:'toNodeIndex.controller'},{id:'3',text:'用户管理',href:'toRecuitUserIndex.controller'},{id:'4',text:'管理员',href:'toUserIndex.controller'},{id:'6',text:'职位管理',href:'toMenuIndex.controller'}]}]},{id:'7',homePage : '9',menu:[{text:'业务管理',items:[{id:'9',text:'查询业务',href:'toNodeIndex.controller'}]}]}];
         new PageUtil.MainPage({
             modulesConfig : config
         });
