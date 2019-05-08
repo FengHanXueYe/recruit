@@ -73,8 +73,12 @@ public interface CompanyMapper {
 	@Update("UPDATE company SET caddress=#{caddress},curl=#{curl},cfield=#{cfield},cscale=#{cscale} where cid=#{cid}")
 	int updateCompanys(@Param("caddress")String caddress,@Param("curl")String curl,@Param("cfield")String cfield,@Param("cscale")String cscale,@Param("cid")int cid);
 	//公司后台的查看方法
-	List<Company> queryAllCompany();
-
+	List<Company> queryAllCompany(@Param("cname")String cname);
+	//公司后台修改方法
+	@Update("UPDATE recruitdb.company SET cphone=#{com.cphone},cdetail=#{com.cdetail},caddress=#{com.caddress},cemail =#{com.cemail},cname=#{com.cname},cabbreviation=#{com.cabbreviation},curl=#{com.curl},companyProfile=#{com.companyProfile}  WHERE cid =#{com.cid}")
+	int updateCompanyss(@Param("com")Company com);
+	
+	
 
 
 

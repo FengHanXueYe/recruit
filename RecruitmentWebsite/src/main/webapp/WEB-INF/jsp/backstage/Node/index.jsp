@@ -36,10 +36,10 @@
     </style>
 </head>
 <body>
-<form class="form-inline definewidth m20" action="index.html" method="get">  
+<form class="form-inline definewidth m20" action="toNodeIndex.controller" method="post">  
     机构名称：
-    <input type="text" name="rolename" id="rolename"class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  
-    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">新增机构</button>
+    <input type="text" name="cname" id="rolename"class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  
+    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp;<!--   <button type="button" class="btn btn-success" id="addnew">新增机构</button>-->
 </form>
 <table class="table table-bordered table-hover definewidth m10" >
     <thead>
@@ -57,7 +57,7 @@
             <td>${company.companyProfile}</td>
             <td>
                   
-                  <a href="">编辑</a>                
+                  <a href="toNodeEdit.controller?cid=${company.cid}">编辑</a>                
                   <a href="">禁用</a>
                   <a href="">删除</a>
             </td>

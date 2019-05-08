@@ -66,5 +66,7 @@ public interface CompanyService {
 	//公司页面修改 地址 网址 领域 规模
 	int updateCompanys(String caddress,String curl,String cfield,String cscale,int cid);
 	//公司后台的查看方法
-	List<Company> queryAllCompany();	
+	List<Company> queryAllCompany(String cname);
+	//公司后台的編輯方法
+	int updateCompanys(@Param("com")Company com);
 }

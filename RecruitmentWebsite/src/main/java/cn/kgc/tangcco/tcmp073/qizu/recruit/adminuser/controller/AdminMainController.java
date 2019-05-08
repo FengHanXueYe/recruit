@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Adminuser;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.adminuser.service.AdminuserService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.service.OccupationService;
 
 @Controller
 public class AdminMainController {
@@ -21,8 +23,9 @@ public class AdminMainController {
 	@Resource
 	private AdminuserService adminService;
 	@Resource
-	private CompanyService service;
-	
+	private CompanyService companyservice;
+	@Resource
+	private OccupationService occupationservice;
 	/**
 	 * 去后台登录界面
 	 * 
@@ -33,13 +36,31 @@ public class AdminMainController {
 	public String toLoginAdminuser(Model model) {
 		return "backstage/Public/login";
 	}
-
+	//去后台公司管理页面
 	@RequestMapping("toNodeIndex")
-	public String toNodeIndex(Model model) {
-		model.addAttribute("listCompany", this.service.queryAllCompany());
+	public String toNodeIndex(Model model,String cname) {
+		model.addAttribute("listCompany", this.companyservice.queryAllCompany(cname));
 		return "backstage/Node/index";
 	}
-
+	//去公司编辑
+	@RequestMapping("toNodeEdit")
+	public String NodeEdit(Model model,int cid) {
+		model .addAttribute("company", this.companyservice.queryCompanyByCid(cid));
+		return "backstage/Node/edit";
+	}
+	//公司编辑
+	@RequestMapping("doUpdateCompany")
+	public String doUpdateCompany(Company com) {
+		this.companyservice.updateCompanys(com);
+		return "redirect:toNodeIndex.controller";
+	}
+//	//禁用
+//	@RequestMapping("doUpdateOstate")
+//	public String doUpdateOstate(int cid) {
+//		this.occupationservice.updateOcc(cid);
+//		return "";
+//	}
+	
 	@RequestMapping("toMenuIndex")
 	public String toMenuIndex(Model model) {
 		return "backstage/Menu/index";

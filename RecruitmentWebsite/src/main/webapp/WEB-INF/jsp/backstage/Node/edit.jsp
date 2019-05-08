@@ -35,17 +35,45 @@
     </style>
 </head>
 <body>
-<form action="index.html" method="post" class="definewidth m20">
+<form action="doUpdateCompany.controller" method="post" class="definewidth m20">
 <input type="hidden" name="id" value="" />
 <table class="table table-bordered table-hover ">
     <tr>
-        <td width="10%" class="tableleft">机构号</td>
-        <td><input type="text" name="grouptitle" value=""/></td>
+        <td width="10%" class="tableleft">公司编号</td>
+        <td>${company.cid}<input type="hidden" name="cid" value="${company.cid}"/></td>
     </tr>
     <tr>
-        <td class="tableleft">机构名称</td>
-        <td ><input type="text" name="moduletitle" value=""/></td>
-    </tr>  
+        <td width="10%" class="tableleft">公司名称</td>
+        <td><input type="text" name="cname" value="${company.cname}"/></td>
+    </tr>
+     <tr>
+        <td class="tableleft">公司简称</td>
+        <td ><input type="text" name="cabbreviation" value="${company.cabbreviation}"/></td>
+    </tr>    
+    <tr>
+        <td class="tableleft">公司地址</td>
+        <td ><input type="text" name="caddress" value="${company.caddress}"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">公司电话</td>
+        <td ><input type="text" name="cphone" value="${company.cphone}"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">公司网址</td>
+        <td ><input type="text" name="curl" value="${company.curl}"/></td>
+    </tr>
+     <tr>
+        <td class="tableleft">公司简述</td>
+        <td ><input type="text" name="cdetail" value="${company.cdetail}"/></td>
+    </tr> 
+    <tr>
+        <td class="tableleft">接收简历的邮箱</td>
+        <td ><input type="text" name="cemail" value="${company.cemail}"/></td>
+    </tr>
+     <tr>
+        <td class="tableleft">公司介紹</td>
+        <td ><input type="text" name="companyProfile" value="${company.companyProfile}"/></td>
+    </tr>
     <tr>
         <td class="tableleft">状态</td>
         <td >

@@ -157,7 +157,11 @@
 		 
 
 	</select>
-	<select id="queryAllCompany" resultMap="CompanyMaps">
+	<select id="queryAllCompany" parameterType="String" resultMap="CompanyMaps">
 		SELECT c.*,o.*,f.*,p.* FROM company c,occupation o,founder f,product p WHERE c.cid=o.ocid AND c.cid=f.cfid AND c.cid=p.pcid
+		<if test="cname!=null and cname!=''">
+			and c.cname like concat("%",#{cname},"%")
+		</if>
+		
 	</select>
 </mapper>

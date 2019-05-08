@@ -146,12 +146,16 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 	
 	@Override
-	public List<Company> queryAllCompany() {
-		List<Company> com=mapper.queryAllCompany();
+	public List<Company> queryAllCompany(String cname) {
+		List<Company> com=mapper.queryAllCompany(cname);
 		
 		//PageHelper.startPage(1,3);
 //		List<Company> list = mapper.queryAllCompany();
 //		PageInfo<Company> pageInfo = new PageInfo<>(list);
-		return mapper.queryAllCompany();
+		return mapper.queryAllCompany(cname);
+	}
+	@Override
+	public int updateCompanys(Company com) {
+		return mapper.updateCompanyss(com);
 	}
 }
