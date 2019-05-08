@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Adminuser;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.adminuser.service.AdminuserService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
 
 @Controller
 public class AdminMainController {
@@ -19,6 +20,9 @@ public class AdminMainController {
 
 	@Resource
 	private AdminuserService adminService;
+	@Resource
+	private CompanyService service;
+	
 	/**
 	 * 去后台登录界面
 	 * 
@@ -32,6 +36,7 @@ public class AdminMainController {
 
 	@RequestMapping("toNodeIndex")
 	public String toNodeIndex(Model model) {
+		model.addAttribute("listCompany", this.service.queryAllCompany());
 		return "backstage/Node/index";
 	}
 

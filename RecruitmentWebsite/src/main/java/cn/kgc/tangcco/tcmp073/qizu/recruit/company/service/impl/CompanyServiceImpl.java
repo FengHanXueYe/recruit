@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -142,5 +143,15 @@ public class CompanyServiceImpl implements CompanyService {
 	public PageInfo<Company> querytoZuhe(ZuHe zuhe, int PageSize, int PageNum) {
 		
 		return null;
+	}
+	
+	@Override
+	public List<Company> queryAllCompany() {
+		List<Company> com=mapper.queryAllCompany();
+		
+		//PageHelper.startPage(1,3);
+//		List<Company> list = mapper.queryAllCompany();
+//		PageInfo<Company> pageInfo = new PageInfo<>(list);
+		return mapper.queryAllCompany();
 	}
 }

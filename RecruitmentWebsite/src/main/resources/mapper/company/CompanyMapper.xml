@@ -157,5 +157,7 @@
 		 
 
 	</select>
-
+	<select id="queryAllCompany" resultMap="CompanyMaps">
+		SELECT c.*,o.*,f.*,p.* FROM company c,occupation o,founder f,product p WHERE c.cid=o.ocid AND c.cid=f.cfid AND c.cid=p.pcid
+	</select>
 </mapper>

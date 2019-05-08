@@ -72,4 +72,15 @@ public interface CompanyMapper {
 	//公司页面修改 地址 网址 领域 规模
 	@Update("UPDATE company SET caddress=#{caddress},curl=#{curl},cfield=#{cfield},cscale=#{cscale} where cid=#{cid}")
 	int updateCompanys(@Param("caddress")String caddress,@Param("curl")String curl,@Param("cfield")String cfield,@Param("cscale")String cscale,@Param("cid")int cid);
+	//公司后台的查看方法
+	List<Company> queryAllCompany();
+
+
+
+
+
+
+
+
+
 }

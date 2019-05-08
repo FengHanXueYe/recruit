@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,21 +44,26 @@
 <table class="table table-bordered table-hover definewidth m10" >
     <thead>
     <tr>
-        <th>机构编号</th>
-        <th>机构名称</th>
-        <th>状态</th>
+        <th>公司编号</th>
+        <th>公司名称</th>
+        <th>公司介绍</th>
         <th>管理操作</th>
     </tr>
     </thead>
+    <c:forEach items="${listCompany}" var="company" >
 	     <tr>
-            <td>5</td>
-            <td>管理员</td>
-            <td>1</td>
+            <td>${company.cid}</td>
+            <td>${company.cname}</td>
+            <td>${company.companyProfile}</td>
             <td>
-                  <a href="edit.html">编辑</a>
                   
+                  <a href="">编辑</a>                
+                  <a href="">禁用</a>
+                  <a href="">删除</a>
             </td>
-        </tr></table>
+        </tr>
+        </c:forEach>
+        </table>
 <div class="inline pull-right page">
          10122 条记录 1/507 页  <a href='#'>下一页</a>     <span class='current'>1</span><a href='#'>2</a><a href='/chinapost/index.php?m=Label&a=index&p=3'>3</a><a href='#'>4</a><a href='#'>5</a>  <a href='#' >下5页</a> <a href='#' >最后一页</a>    </div>
 </body>
