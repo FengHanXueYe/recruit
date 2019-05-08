@@ -412,5 +412,10 @@ public class CompanyController {
 			int row=this.service.updateCompanys(caddress, curl, cfield, cscale,cid);
 			return "redirect:tomyhome.controller";
 		}
-		
+		//去公司认证页面
+		@RequestMapping("toauth")
+		public String toauth() {
+
+			return "main/auth";
+		}
 }
