@@ -95,10 +95,10 @@ var youdao_conv_id = 271546;
 	                    <div class="c_box companyName">
 	                    		                   			<h2 title="${listCompany.cabbreviation}">${listCompany.cabbreviation}</h2>
 	                   			                        
-	                        	                        	<em class="unvalid"></em>
+	                        	                         	<em class="unvalid" ><img alt="拉钩认证企业" src="/style/images/valid.png"></em>
                         		<span class="va dn">拉勾认证企业</span>
-	                        	<a target="_blank" class="applyC" href="">申请认证</a>
-	                        	                        <div class="clear"></div>
+	                        	<a target="_blank" class="applyC" href="toauth.controller">申请认证</a>
+	                        	                        <div class="clear" ></div>
 	                       	
 	                       		                   			<h1 title="${listCompany.cname}" class="fullname">${listCompany.cname}</h1>
 	                        	        <!-- id="editDetailForm" -->                

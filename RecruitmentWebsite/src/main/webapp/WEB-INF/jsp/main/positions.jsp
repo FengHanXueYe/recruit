@@ -193,6 +193,7 @@ var youdao_conv_id = 271546;
                 	<input type="hidden" id="companyid" value="${companys.cid}">
             	<a class="btn_create" href="tocreate.controller">发布新职位</a>
                 <dl class="company_center_aside">
+                <!--  
 		<dt>我收到的简历</dt>
 		<dd>
 		<a href="unHandleResumes.html">待处理简历</a> 
@@ -210,7 +211,7 @@ var youdao_conv_id = 271546;
 		<a href="autoFilterResumes.html">自动过滤简历</a> 
 			</dd>
 </dl>
-<dl class="company_center_aside">
+<dl class="company_center_aside">-->
 		<dt>我发布的职位</dt>
 			<dd class="current">
 		<a href="javascript:void(0)" pk="${companys.cid}" ostate="0" class="occupactions"  >有效职位</a>
