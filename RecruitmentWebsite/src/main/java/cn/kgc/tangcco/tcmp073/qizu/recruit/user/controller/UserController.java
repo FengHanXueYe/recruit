@@ -411,4 +411,14 @@ public class UserController {
 	}
 	
 	
+	@RequestMapping("toqueryUser")
+	public String queryUser() {
+		
+		return null;
+	}
+	
+	
+	
+	
+	
 }
