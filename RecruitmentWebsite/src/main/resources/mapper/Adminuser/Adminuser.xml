@@ -8,4 +8,20 @@
 		</where>
 		order by aid desc
 	</select>
+	
+	
+	<select id="queryAllrecuit" resultType="RecruitingUsers" parameterType="RecruitingUsers">
+	    select * from RecruitingUsers
+	    <where>
+           <if test="_parameter!=null and _parameter!=''">
+           
+           username like concat('%',#{username},'%')
+           </if>	    
+	    
+	    </where>
+	    order by userid desc
+	</select>
+	
+	
+	
 </mapper>
