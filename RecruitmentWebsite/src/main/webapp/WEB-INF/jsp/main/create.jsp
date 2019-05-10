@@ -33,6 +33,14 @@ console.log(1);
 <script src="style/js/jquery.lib.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="style/js/ajaxfileupload.js"></script>
 <script src="style/js/additional-methods.js" type="text/javascript"></script>
+
+<!-- 许茂峰 -->
+<!-- <link rel="stylesheet" type="text/css" href="alertDemo/css/style.css" />
+<script type="text/javascript" src="alertDemo/js/ui.js"></script>
+<script type="text/javascript" src="alertDemo/js/jquery-1.7.1.min.js"></script> -->
+<link href="alertDemo/css/style.css" rel="stylesheet" />
+<script src="alertDemo/js/ui.js"></script>
+
 <!--[if lte IE 8]>
     <script type="text/javascript" src="style/js/excanvas.js"></script>
 <![endif]-->
@@ -2273,7 +2281,9 @@ div.BMap_cmLstItem {
 										<td width="25"></td>
 										<td colspan="2"><!--  <input type="submit" value="预览"
 											id="jobPreview" class="btn_32">--> <input type="button"
-											value="发布" id="formSubmits" class="btn_32"></td>
+											value="发布" id="formSubmits" class="btn_32">
+											<input id="cstate" value="${company.cstate}" type="hidden">
+											</td>
 									</tr>
 								</tbody>
 							</table>
@@ -2735,6 +2745,7 @@ $(function(){
 	<script src="style/js/core.min.js" type="text/javascript"></script>
 	<script src="style/js/popup.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
+		var cstate=$("#cstate").val();
 		$(function(){
 			var olog="";
 			var oeducation="";
@@ -2777,7 +2788,13 @@ $(function(){
 			
 			$("#formSubmits").click(function(){
 				
-				$("form").attr("action","doAddOccupation.controller").submit();
+				if(cstate==0){
+					$("form").attr("action","doAddOccupation.controller").submit();
+				}else{
+					
+					mizhu.alert('提示', '对不起,权限不足,请联系客服!','alert_red');
+				}
+				
 			})
 		})
 	

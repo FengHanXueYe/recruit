@@ -31,5 +31,5 @@ public class Company {
 	private List<Occupation> occupation;
 	private MultipartFile file;
 	private List<String> biaoqian;
-	
+	private int cstate;
 }

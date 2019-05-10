@@ -59,12 +59,19 @@ public class AdminMainController {
 		this.companyservice.updateCompanys(com);
 		return "redirect:toNodeIndex.controller";
 	}
-//	//禁用
-//	@RequestMapping("doUpdateOstate")
-//	public String doUpdateOstate(int cid) {
-//		this.occupationservice.updateOcc(cid);
-//		return "";
-//	}
+	//公司禁用
+	@RequestMapping("doUpdateOstate")
+	public String doUpdateOstate(int cid,int cstate) {
+		this.companyservice.updateCompanyCstate(cid,cstate);
+		return "redirect:toNodeIndex.controller";
+	}
+	//公司删除
+	@RequestMapping("deleteCompany")
+	public String deleteCompany(int cid) {
+		this.companyservice.deleteCompany(cid);
+		return "redirect:toNodeIndex.controller";
+	}
+
 	
 	@RequestMapping("toMenuIndex")
 	public String toMenuIndex(Model model) {

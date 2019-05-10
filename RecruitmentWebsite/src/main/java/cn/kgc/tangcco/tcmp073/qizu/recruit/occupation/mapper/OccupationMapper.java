@@ -29,4 +29,8 @@ public interface OccupationMapper {
 	//后台事务删除
 	@Delete("DELETE FROM occupation WHERE ocid IN(SELECT cid FROM company WHERE cuid=#{pk})")
 	int deleteAdminOccupation(@Param("pk")int pk);
+	//后台公司删除
+	@Delete("delete from occupation where ocid=#{ocid}")
+	int deleteOcc(@Param("ocid")int ocid);
+	
 }

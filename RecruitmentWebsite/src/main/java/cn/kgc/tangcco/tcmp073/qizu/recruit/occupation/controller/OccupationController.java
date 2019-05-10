@@ -26,7 +26,7 @@ public class OccupationController {
 	public String tocreate(Model model,HttpSession session) {
 		RecruitingUsers user=(RecruitingUsers) session.getAttribute("loginUser");
 		Company con=(Company) this.comservice.queryByUid(user.getUserid());
-		
+		model.addAttribute("company", con);
 		return "main/create";
 	}
 	
