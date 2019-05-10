@@ -15,6 +15,7 @@ import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.adminuser.service.AdminuserService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.service.OccupationService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
 
 @Controller
 public class AdminMainController {
@@ -26,6 +27,10 @@ public class AdminMainController {
 	private CompanyService companyservice;
 	@Resource
 	private OccupationService occupationservice;
+	@Resource
+	private UserService userService;
+	
+	
 	/**
 	 * 去后台登录界面
 	 * 
@@ -88,13 +93,20 @@ public class AdminMainController {
 		model.addAttribute("listrecuit",queryAllUser);
 		return "backstage/Role/index";
 	}
+	//去用户编辑
 	@RequestMapping("toeditUser")
 	public String toedituser(Integer userid,Model model) {
-		System.out.println(userid+"----------------------------");
 		RecruitingUsers queryRusernameById = adminService.queryRecuitUserById(userid);
 		model.addAttribute("recuitUser", queryRusernameById);
 		return "backstage/Role/edit";
 	}	
+	
+	//用户编辑
+		@RequestMapping("doUpdateUser")
+		public String doUpdateUser(RecruitingUsers users) {
+			this.adminService.updateRecuitUser(users);
+			return "redirect:toRecuitUserIndex.controller";
+		}
 	
 	/**
 	 * 删除用户
@@ -104,10 +116,10 @@ public class AdminMainController {
 	 */
 	@ResponseBody
 	@RequestMapping("ajaxDeleteUser")
-	public boolean doDeleteUser(Integer userid, Model model) {
+	public boolean doDeleteUser(Integer pk, Model model) {
 		System.out.println("用户已删除");
-		int deleteUser = adminService.deleterecutUser(userid);
-		if(deleteUser>0) {
+		int delUser = userService.deleteUser(pk);
+		if(delUser>0) {
 			return true;
 		}else {
 			return false;
