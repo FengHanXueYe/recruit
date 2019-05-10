@@ -64,7 +64,7 @@ public interface AdminuserMapper {
     //查询用户
 	List<RecruitingUsers> queryAllrecuit(String username);
 	//编辑用户
-    @Update("update RecruitingUsers set username=#{recuitUser.username},password=#{recuitUser.password},identity=#{recuitUser.identity},gender=#{recuitUser.gender},email=#{recuitUser.email},telephone=#{recuitUser.telephone},education=#{recuitUser.education},userlog=#{recuitUser.userlog},currentstate=#{recuitUser.currentstate}")
+    @Update("update RecruitingUsers set username=#{recuitUser.username},password=#{recuitUser.password},identity=#{recuitUser.identity},gender=#{recuitUser.gender},email=#{recuitUser.email},telephone=#{recuitUser.telephone},education=#{recuitUser.education},userlog=#{recuitUser.userlog},currentstate=#{recuitUser.currentstate} where userid=#{recuitUser.userid}")
     int updateRecuitUser(@Param("recuitUser")RecruitingUsers recuitUser);
 	
 	//禁用

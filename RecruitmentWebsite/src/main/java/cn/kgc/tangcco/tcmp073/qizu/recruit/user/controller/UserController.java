@@ -69,9 +69,11 @@ public class UserController {
 		ruser.setPassword(password);
 		// 从数据库中查询是否有这样一个用户
 		RecruitingUsers loginRecruitingUsers = userService.loginRecruitingUsers(ruser);
+	
 		// System.out.println("session==============>"+loginRecruitingUsers);
 		session.setAttribute("ruserpwd", ruserpwd);
-		if (loginRecruitingUsers == null) {
+		
+		if (loginRecruitingUsers == null ) {
 			model.addAttribute("ruser", ruser);
 			model.addAttribute("loginCuowu", "密码账号错误！");
 			return "main/login";
@@ -88,6 +90,13 @@ public class UserController {
 //				model.addAttribute("cookiename", cookiename);
 //				model.addAttribute("cookiepwd", cookiepwd);
 			}
+			
+			Integer quanxian=loginRecruitingUsers.getQuanxian();
+			if(quanxian==1) {
+				model.addAttribute("cuo","用户已被禁用");
+				return "main/login";
+			}else {
+			
 			model.addAttribute("ocone",os.queryType());
 			model.addAttribute("com", cs.queryalltoFounder());
 			model.addAttribute("coo",cs.queryalltozuixin());
@@ -95,6 +104,7 @@ public class UserController {
 				model.addAttribute("ocone1"+i, os.querySuiji(i));
 			}
 			return "main/index";
+		}
 		}
 
 	}

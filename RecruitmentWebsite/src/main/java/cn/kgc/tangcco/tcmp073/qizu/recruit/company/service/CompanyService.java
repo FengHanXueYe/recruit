@@ -69,4 +69,7 @@ public interface CompanyService {
 	List<Company> queryAllCompany(String cname);
 	//公司后台的編輯方法
 	int updateCompanys(@Param("com")Company com);
+	
+	
+	int deleteAdminCompanys(int pk);
 }

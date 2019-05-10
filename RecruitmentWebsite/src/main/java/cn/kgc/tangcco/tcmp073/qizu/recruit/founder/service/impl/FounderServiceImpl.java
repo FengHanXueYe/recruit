@@ -9,6 +9,7 @@ import cn.kgc.tangcco.tcmp073.qizu.recruit.founder.mapper.FounderMapper;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.founder.service.FounderService;
 @Service
 public class FounderServiceImpl implements FounderService {
+	
 	@Resource
 	private FounderMapper mapper;
 	@Override
@@ -18,6 +19,11 @@ public class FounderServiceImpl implements FounderService {
 	@Override
 	public int update(Founder fou) {
 		return mapper.update(fou);
+	}
+	@Override
+	public int deleteFounder(int pk) {
+		
+		return mapper.deleteFounder(pk);
 	}
 
 }

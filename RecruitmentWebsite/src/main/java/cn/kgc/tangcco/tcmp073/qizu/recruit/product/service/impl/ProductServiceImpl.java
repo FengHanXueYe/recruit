@@ -9,6 +9,7 @@ import cn.kgc.tangcco.tcmp073.qizu.recruit.product.mapper.ProductMapper;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.product.service.ProductService;
 @Service
 public class ProductServiceImpl implements ProductService {
+	
 	@Resource
 	private ProductMapper mapper;
 	
@@ -20,6 +21,10 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int updateProduct(Product pro) {
 		return mapper.updateProduct(pro);
+	}
+	@Override
+	public int deleteProduct(int pk) {
+		return mapper.deleteProduct(pk);
 	}
 
 }

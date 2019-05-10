@@ -2,7 +2,7 @@ package cn.kgc.tangcco.tcmp073.qizu.recruit.user.service;
 
 
 
-import org.apache.ibatis.annotations.Param;
+
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 
@@ -11,7 +11,8 @@ public interface UserService {
 	
 	int updateUser(RecruitingUsers ruser);
 	
-	int deleteUser(Integer userid);
+	//后台删除
+	int deleteUser(Integer pk);
 	
 	RecruitingUsers loginRecruitingUsers(RecruitingUsers ruser);
 	

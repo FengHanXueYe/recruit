@@ -2,6 +2,7 @@ package cn.kgc.tangcco.tcmp073.qizu.recruit.company.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -78,8 +79,9 @@ public interface CompanyMapper {
 	@Update("UPDATE recruitdb.company SET cphone=#{com.cphone},cdetail=#{com.cdetail},caddress=#{com.caddress},cemail =#{com.cemail},cname=#{com.cname},cabbreviation=#{com.cabbreviation},curl=#{com.curl},companyProfile=#{com.companyProfile}  WHERE cid =#{com.cid}")
 	int updateCompanyss(@Param("com")Company com);
 	
-	
-
+    //后台事务删除
+    @Delete("DELETE FROM company WHERE cuid=#{pk}")
+	int deleteAdminCompanys(@Param("pk")int pk);
 
 
 

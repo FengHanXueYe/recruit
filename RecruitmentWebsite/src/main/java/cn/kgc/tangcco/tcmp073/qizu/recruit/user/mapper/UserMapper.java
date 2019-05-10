@@ -1,6 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.user.mapper;
 
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -18,7 +19,12 @@ public interface UserMapper {
 	
 	int updateUser(@Param("ruser")RecruitingUsers ruser);
 	
-	int deleteUser(Integer userid);
+	
+	//事务删除
+	@Delete("DELETE FROM recruitingusers WHERE userid=#{id}")
+	int deleteUser(@Param("id")Integer pk);
+	
+	
 	@Select("select * from recruitingusers where email=#{ruser.email} and password=#{ruser.password}")
 	RecruitingUsers loginRecruitingUsers(@Param("ruser")RecruitingUsers ruser);
 	
