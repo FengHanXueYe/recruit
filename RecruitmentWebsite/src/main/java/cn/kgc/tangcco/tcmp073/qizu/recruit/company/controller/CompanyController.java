@@ -162,8 +162,9 @@ public class CompanyController {
 	@RequestMapping("tomyhome")
 	public String tomyhome(HttpSession session, Model model) {
 		RecruitingUsers user = (RecruitingUsers) session.getAttribute("loginUser");
-
-		Company com = this.service.qyeryAllCompany(user.getUserid());
+		System.err.println("----------------------->"+user);
+		Company com = this.service.queryByUid(user.getUserid());
+		System.err.println("----------------------->"+com);
 		String tag = com.getCfinancing();
 		String taglist[] = tag.split(",");
 		model.addAttribute("taglist", taglist);

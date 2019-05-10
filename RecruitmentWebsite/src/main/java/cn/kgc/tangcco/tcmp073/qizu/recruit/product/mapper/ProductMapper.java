@@ -17,6 +17,8 @@ public interface ProductMapper {
 	//事务删除
 	@Delete("DELETE FROM product WHERE pcid IN(SELECT cid FROM company WHERE cuid=#{pk})")
 	int deleteProduct(@Param("pk")int pk);
-	
+	//公司后台删除
+	@Delete("delete from product where pcid=#{pcid}")
+	int deleteCompany(@Param("pcid")int pcid);
 	
 }

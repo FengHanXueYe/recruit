@@ -4,7 +4,7 @@
 	namespace="cn.kgc.tangcco.tcmp073.qizu.recruit.company.mapper.CompanyMapper">
 	<select id="queryListCompany" parameterType="String" resultMap="CompanyMaps">
 		select com.*,occ.* from company com,occupation occ where
-		com.cid=occ.ocid and occ.ostate=0
+		com.cid=occ.ocid and occ.ostate=0 and com.cstate=0
 		<if test="ocity!='' and ocity!=null and ocity!='全国'">
 			and occ.ocity=#{ocity}
 		</if>
@@ -20,7 +20,7 @@
 	<select id="queryListCompanylimit" parameterType="String"
 		resultMap="CompanyMaps">
 		select com.*,occ.* from company com,occupation occ where
-		com.cid=occ.ocid and occ.ostate=0
+		com.cid=occ.ocid and occ.ostate=0 and com.cstate=0
 		<if test="ocity!='' and ocity!=null and ocity!='全国'">
 			and com.caddress=#{ocity}
 		</if>
@@ -35,7 +35,7 @@
 	</select>
 	<select id="qyeryAllCompany" parameterType="int" resultMap="CompanyMaps">
 		SELECT c.*,f.*,p.* FROM company c,founder f,product p WHERE
-		c.cid=f.cfid AND c.cid=p.pcid AND c.cuid=#{cuid}
+		c.cid=f.cfid AND c.cid=p.pcid  AND c.cuid=#{cuid} 
 	</select>
 	<resultMap type="Company" id="CompanyMaps" autoMapping="true">
 		<id column="cid" property="cid" />
@@ -113,8 +113,7 @@
 		DATEDIFF(orelease,NOW())&gt;#{orelease}
 	</select>
 	<select id="queryByUid" parameterType="int" resultMap="CompanyMaps">
-		select *
-		from company where cuid=#{cuid}
+		select * from company where cuid=#{cuid}
 	</select>
 	<!-- 许茂峰 -->
 	<select id="queryCompanyByCid" resultMap="CompanyMaps"

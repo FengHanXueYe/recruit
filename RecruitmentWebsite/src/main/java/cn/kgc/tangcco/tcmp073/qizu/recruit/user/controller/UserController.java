@@ -319,7 +319,7 @@ public class UserController {
 		userService.updateUser(ruser);
 		// 再次查询该用户信息储存到session中覆盖
 		session.setAttribute("loginUser", userService.detailRecruitingUsers(attribute.getUserid()));
-		return "main/jianli";
+		return "redirect:toResume.controller";
 	}
 
 	/**

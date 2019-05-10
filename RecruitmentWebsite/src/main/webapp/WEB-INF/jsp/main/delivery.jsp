@@ -505,13 +505,13 @@ var youdao_conv_id = 271546;
             <div class="content_r">
             	<div class="mycenterR" id="myInfo">
             		<h2>我的信息</h2>
-            		<a href="collections.html">我收藏的职位</a>
+            		<a href="doListCollectionp.controller">我收藏的职位</a>
             		<br>
-            		            		<a href="toudi.html" target="_blank">我投递的职位<span id="noticeNoPage" class="red dn">&nbsp;(0)</span></a>
+            		            		<a href="doListDeliverypost.controller" target="_blank">我投递的职位<span id="noticeNoPage" class="red dn">&nbsp;(0)</span></a>
             		<br>
-            		            		<a target="_blank" href="subscribe.html">我订阅的职位</a>
+            		            		<a target="_blank" href="listqueryscribe.controller">我订阅的职位</a>
             		            		<br>
-            		<a href="doQueryRecommendVO.controller">我的职位推荐</a>
+            		<a href="toListsubscribe.controller">我的职位推荐</a>
             		            	</div><!--end #myInfo-->
             					<div class="mycenterR" id="myRecommend">
             		<h2>可能适合你的职位 <i>匹配度</i></h2>

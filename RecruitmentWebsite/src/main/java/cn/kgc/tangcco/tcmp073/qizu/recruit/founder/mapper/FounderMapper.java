@@ -22,5 +22,7 @@ public interface FounderMapper {
 	//事务删除创世人
 	@Delete("DELETE FROM founder WHERE cfid IN(SELECT cid FROM company WHERE cuid=#{pk})")
 	int deleteFounder(@Param("pk")int pk);
-	
+	//公司后台删除
+	@Delete("delete from founder where cfid=#{cid}")
+	int deleteCompany(@Param("cid")int cid);
 }

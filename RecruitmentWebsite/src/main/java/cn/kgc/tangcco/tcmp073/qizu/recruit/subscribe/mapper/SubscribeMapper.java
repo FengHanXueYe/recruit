@@ -15,7 +15,7 @@ public interface SubscribeMapper {
 	int addsubscribe(Subscribe sub);
 	
 	
-	@Select("SELECT * FROM subscribe,recruitingusers WHERE subscribe.`suserid`=recruitingusers.`userid` AND  suserid=3")
+	@Select("SELECT * FROM subscribe,recruitingusers WHERE subscribe.`suserid`=recruitingusers.`userid` AND  suserid=1")
 	List<Subscribe> detailquery(@Param("id")Integer id);
 	 
 
