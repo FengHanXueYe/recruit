@@ -72,4 +72,9 @@ public interface CompanyService {
 	
 	
 	int deleteAdminCompanys(int pk);
+	
+	//后台公司禁用的方法
+	int  updateCompanyCstate(int cid,int cstate);
+	//后台删除的方法
+	int deleteCompany(int cid);
 }

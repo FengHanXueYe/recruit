@@ -83,6 +83,12 @@ public interface CompanyMapper {
     @Delete("DELETE FROM company WHERE cuid=#{pk}")
 	int deleteAdminCompanys(@Param("pk")int pk);
 
+    //后台公司禁用的方法
+  	@Update("update company set cstate=#{cstate} where cid=#{cid}")
+  	int  updateCompanyCstate(@Param("cid")int cid,@Param("cstate")int cstate);
+  	//后台删除的方法
+  	@Delete("delete from company where cid=#{cid}")
+  	int deleteCompany(@Param("cid")int cid);
 
 
 

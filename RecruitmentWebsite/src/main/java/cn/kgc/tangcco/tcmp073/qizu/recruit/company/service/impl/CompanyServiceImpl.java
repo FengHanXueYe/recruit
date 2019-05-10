@@ -15,13 +15,21 @@ import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 import cn.kgc.tangcco.tcmp073.qizu.entity.ZuHe;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.mapper.CompanyMapper;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.service.CompanyService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.founder.mapper.FounderMapper;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.mapper.OccupationMapper;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.product.mapper.ProductMapper;
 
 @Controller
 public class CompanyServiceImpl implements CompanyService {
 	// 1234   4
 	@Resource
 	private CompanyMapper mapper;
-
+	@Resource
+	private FounderMapper founderMapper;
+	@Resource
+	private ProductMapper productMapper;
+	@Resource
+	private OccupationMapper occMapper;
 	@Override
 	public int addCompanyOne(Company com) {
 		return mapper.addCompanyOne(com);
@@ -162,5 +170,18 @@ public class CompanyServiceImpl implements CompanyService {
 	@Override
 	public int updateCompanys(Company com) {
 		return mapper.updateCompanyss(com);
+	}
+	@Override
+	public int updateCompanyCstate(int cid,int cstate) {
+		return mapper.updateCompanyCstate(cid,cstate);
+	}
+	@Override
+	@javax.transaction.Transactional
+	public int deleteCompany(int cid) {
+		this.occMapper.deleteOcc(cid);
+		this.productMapper.deleteCompany(cid);
+		this.founderMapper.deleteCompany(cid);
+		int row=mapper.deleteCompany(cid);
+		return row;
 	}
 }
