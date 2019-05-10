@@ -26,7 +26,7 @@ public class SubscribeController {
 	}
 	
 	
-	@RequestMapping("doListsubscribe.controller")
+	@RequestMapping("doListsubscribe")
 	public String doadd(Subscribe sub,HttpSession session) {
 		RecruitingUsers attribute = (RecruitingUsers) session.getAttribute("loginUser");
 		sub.setSuserid(attribute.getUserid());
