@@ -1,4 +1,4 @@
-2<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 ﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -1244,7 +1244,7 @@
 				$(function() {
 					$(".remen").click(function() {
 						var ocname=$.trim($(this).html());
-						location.href="toListOoccupation.controller?oname="+ocname;
+						location.href="toListOoccupation.controller?oname="+ocname;zz
 					})
 				})
 				
@@ -1384,6 +1384,7 @@
 											value="${ooname.ominsalary}" pattern="#.0k"></fmt:formatNumber></span>
 									<span><em class="c7">经验：</em> ${ooname.olog}</span>
 									<c:forEach items="${ooname.education}" var="oooname">
+									<br/>
 										<span><em class="c7">最低学历： </em>${oooname.ename}</span>
 
 									</c:forEach>

@@ -31,6 +31,7 @@ public class AdminMainController {
 	private UserService userService;
 	
 	
+	
 	/**
 	 * 去后台登录界面
 	 * 
@@ -67,7 +68,13 @@ public class AdminMainController {
 //	}
 	
 	@RequestMapping("toMenuIndex")
-	public String toMenuIndex(Model model) {
+	public String toMenuIndex(Model model,String oname) {
+		List<Company> querylikeoname = adminService.querylikeoname(oname);
+		model.addAttribute("zhiwei",querylikeoname);
+		for (Company company : querylikeoname) {
+			System.err.println("===========>"+company);
+			System.out.println();
+		}
 		return "backstage/Menu/index";
 	}
 
@@ -124,6 +131,22 @@ public class AdminMainController {
 		}else {
 			return false;
 		}
+	}
+	@ResponseBody
+	@RequestMapping("ajaxDeleteOcc")
+	public boolean deleteocc(Model model,Integer oid) {
+		int deleteocc=adminService.deleteOcc(oid);
+		if(deleteocc>0) {
+			return true;
+		}else {
+			return false;	
+		}
+		
+	}
+	@RequestMapping("toDetailOcc")
+	public String chakan(Model model,int oid) {
+		model.addAttribute("detailOcc",adminService.queryDatial(oid));
+		return "backstage/Menu/add";
 	}
 	
 	/**
@@ -182,6 +205,7 @@ public class AdminMainController {
 		model.addAttribute("adminuser", queryAusernameById);
 		return "backstage/User/edit";
 	}
+	
 	
 	
 }

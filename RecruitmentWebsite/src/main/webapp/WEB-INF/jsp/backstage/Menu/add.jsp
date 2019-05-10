@@ -38,39 +38,75 @@
 <form action="index.html" method="post" class="definewidth m20">
 <table class="table table-bordered table-hover m10">
     <tr>
-        <td width="10%" class="tableleft">上级</td>
+        <!-- <td width="10%" class="tableleft">上级</td>
         <td>
             <select name="parentid">
             <option value="0">一级菜单</option><option value='1'   />&nbsp;系统管理</option><option value='7'   />&nbsp;明信片管理</option>            </select>
-        </td>
+        </td> -->
     </tr>
     <tr>
-        <td class="tableleft">名称</td>
+        <td class="tableleft">职位名称</td>
         <td><input type="text" name="name"/></td>
     </tr>
     <tr>
-        <td class="tableleft">Group</td>
+        <td class="tableleft">公司名称</td>
         <td><input type="text" name="group"/></td>
     </tr>
     <tr>
-        <td class="tableleft">Model</td>
+        <td class="tableleft">工作地点</td>
         <td><input type="text" name="module"/></td>
     </tr>
     <tr>
-        <td class="tableleft">Action</td>
+        <td class="tableleft">月薪</td>
         <td><input type="text" name="action"/></td>
     </tr>
     <tr>
-        <td class="tableleft">备注</td>
+        <td class="tableleft">经验</td>
         <td><input type="text" name="remark"/></td>
     </tr>
     <tr>
-        <td class="tableleft">状态</td>
+        <td class="tableleft">最低学历</td>
+        <td><input type="text" name="remark"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">职位诱惑</td>
+        <td><input type="text" name="remark"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">发布时间</td>
+        <td><input type="text" name="remark"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">公司名称</td>
+        <td><input type="text" name="remark"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">领域</td>
+        <td><input type="text" name="remark"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">创始人</td>
+        <td><input type="text" name="remark"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">阶段</td>
+        <td><input type="text" name="remark"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">规模</td>
+        <td><input type="text" name="remark"/></td>
+    </tr>
+     <tr>
+        <td class="tableleft">待遇</td>
+        <td><input type="text" name="remark"/></td>
+    </tr>
+    <!-- <tr>
+        <td class="tableleft">创始人</td>
         <td>
             <input type="radio" name="status" value="0" checked/> 启用
             <input type="radio" name="status" value="1"/> 禁用
         </td>
-    </tr>
+    </tr> -->
     <tr>
         <td class="tableleft"></td>
         <td>

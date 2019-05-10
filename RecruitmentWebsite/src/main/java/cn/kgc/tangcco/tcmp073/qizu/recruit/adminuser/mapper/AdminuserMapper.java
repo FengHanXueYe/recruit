@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Adminuser;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 
 public interface AdminuserMapper {
@@ -74,6 +75,14 @@ public interface AdminuserMapper {
     //恢复
     @Update("UPDATE recruitingusers SET quanxian=0 WHERE userid=#{userid}")
     int  RecoveryUser(Integer userid);
+    //查询职位
+    List<Company> querylikeoname(@Param("oname") String oname);
+    @Delete("DELETE FROM occupation WHERE oid=#{oid}")
+    int deleteOcc(int oid);
+    
+    //查看单条职位
+    List<Company>queryDatial(int oid);
+    
 	
 	
 	

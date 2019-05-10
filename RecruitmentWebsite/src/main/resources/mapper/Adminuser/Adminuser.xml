@@ -21,6 +21,40 @@
 	    </where>
 	    order by userid desc
 	</select>
+	<resultMap type="Company" id="CompanyMaps" autoMapping="true">
+		<id column="cid" property="cid" />
+		<collection property="founder" resultMap="FounderMap"></collection>
+		<collection property="product" resultMap="ProductMap"></collection>
+		<collection property="occupation" resultMap="occupationMap"></collection>
+	</resultMap>
+	<resultMap type="Occupation" id="occupationMap" autoMapping="true">
+		<id column="oid" property="oid" />
+		<collection property="education" resultMap="educationMap"></collection>
+	</resultMap>
+	<resultMap type="Education" id="educationMap" autoMapping="true">
+		<id column="eid" property="eid" />
+	</resultMap>
+	<resultMap type="Founder" id="FounderMap" autoMapping="true">
+		<id column="fid" property="fid" />
+	</resultMap>
+	<resultMap type="Product" id="ProductMap" autoMapping="true">
+		<id column="pid" property="pid" />
+	</resultMap>
+	<select id="querylikeoname" resultMap="CompanyMaps" parameterType="String">
+	SELECT *FROM company
+		co,founder f,occupation o,education e WHERE
+		f.cfid=co.cid AND
+		e.eid=o.oeducation AND co.cid=o.ocid
+		<if test="oname!=null and oname!=''">
+			and o.oname like concat('%',#{oname},'%')
+		</if>
+	</select>
+	<select id="queryDatial"  resultMap="CompanyMaps" parameterType="int">
+	SELECT *FROM company
+		co,founder f,occupation o,education e WHERE
+		f.cfid=co.cid AND
+		e.eid=o.oeducation AND co.cid=o.ocid AND o.oid=#{oid}
+	</select>
 	
 	
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Adminuser;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 
 public interface AdminuserService {
@@ -45,4 +46,10 @@ public interface AdminuserService {
 	 
 	 //恢复
 	 int  RecoveryUser(Integer userid);
+	 //查询职位
+	 List<Company> querylikeoname(String oname);
+	 //删除职位
+	 int deleteOcc(int oid);
+	 //查看单条职位
+	    List<Company>queryDatial(int oid);
 }
