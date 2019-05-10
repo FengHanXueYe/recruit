@@ -96,7 +96,7 @@ var youdao_conv_id = 271546;
      $(function(){
     	 
     	  var quanxian='${cuo}';
-    	  alert(quanxian);
+    	 
      })
 
 </script>
