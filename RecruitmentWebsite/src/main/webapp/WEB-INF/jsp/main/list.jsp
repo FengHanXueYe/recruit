@@ -55,7 +55,7 @@
 				<ul class="reset" id="navheader">
 					<li><a href="toIndex.controller">首页</a></li>
 					<li><a href="companylist.html">公司</a></li>
-					<li><a href="h/toForum.html" target="_blank">论坛</a></li>
+					<!-- <li><a href="h/toForum.html" target="_blank">论坛</a></li> -->
 					<li><a href="jianli.html" rel="nofollow">我的简历</a></li>
 					<li><a href="create.html" rel="nofollow">发布职位</a></li>
 				</ul>
