@@ -766,7 +766,7 @@
 						</div>
 					</div>
 				</div>
-				<a class="subscribe" href="subscribe.html" target="_blank">订阅职位</a>
+				<a class="subscribe" href="toListsubscribe.controller" target="_blank">订阅职位</a>
 			</div>
 			<div class="content">
 				<div id="search_box">

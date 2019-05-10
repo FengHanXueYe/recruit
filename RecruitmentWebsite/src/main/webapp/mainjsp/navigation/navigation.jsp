@@ -22,7 +22,7 @@
                 	<dd><a href="doListCompanyresume.controller">我收到的简历</a></dd>
                 	<dd><a href="doMyNews.controller">我收到的消息</a></dd>
                 	<dd class="btm"><a href="tomyhome.controller">我的公司主页</a></dd>
-                	<dd><a href="jianli.html">我要找工作</a></dd>
+                	<dd><a href="listqueryscribe.controller">我订阅的职位</a></dd>
                 	<dd><a href="doListDeliverypost.controller">我投递的职位</a></dd>
                     <dd><a href="toAccountSettings.controller">帐号设置</a></dd>
                     <dd class="logout"><a rel="nofollow" href="doRemoveSession.controller">退出</a></dd>

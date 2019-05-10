@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+      <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 ﻿<!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb">
 <head>
@@ -37,35 +39,34 @@ var youdao_conv_id = 271546;
 </head>
 <body>
 <div id="body">
-	<div id="header">
-	
-	<!--
-	
-		private Integer subid,subweek;
-	private String subname,subemail,subcity,substate,subrealm,subprice;
-	
-	
-	  -->
-	
-	
-    	<div class="wrapper">
-    		<a href="index.html" class="logo">
-    			<img src="style/images/logo.png" width="229" height="43" alt="拉勾招聘-专注互联网招聘" />
-    		</a>
-    		<ul class="reset" id="navheader">
-    			<li ><a href="index.html">首页</a></li>
-    			<li ><a href="companylist.html" >公司</a></li>
-    			<li ><a href="#" target="_blank">论坛</a></li>
-    				    			<li ><a href="toResume.controller" rel="nofollow">我的简历</a></li>
-	    							    			<li ><a href="create.html" rel="nofollow">发布职位</a></li>
-	    		    		</ul>
-        	            <ul class="loginTop">
+		<div id="header">
+			<div class="wrapper">
+				<a href="index.html" class="logo"> <img
+					src="style/images/logo.png" width="229" height="43"
+					alt="拉勾招聘-专注互联网招聘" />
+				</a>
+				<ul class="reset" id="navheader">
+					<li class="current"><a href="toIndex.controller">首页</a></li>
+					<li><a href="queryListCompany.controller">公司</a></li>
+					<li><a href="#" target="_blank">论坛</a></li>
+					<li><a href="toResume.controller" rel="nofollow">我的简历</a></li>
+					<li><a href="tocreate.controller" rel="nofollow">发布职位</a></li>
+				</ul>
+				<c:choose>
+					<c:when test="${empty loginUser }">
+						<jsp:include page="/mainjsp/login/registerSignin.jsp"></jsp:include>
+					</c:when>
+					<c:otherwise>
+						<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
+					</c:otherwise>
+				</c:choose>
+				<!--   <ul class="loginTop">
             	<li><a href="login.html" rel="nofollow">登录</a></li> 
             	<li>|</li>
             	<li><a href="register.html" rel="nofollow">注册</a></li>
-            </ul>
-                                </div>
-    </div><!-- end #header -->
+            </ul> -->
+			</div>
+		</div>
     <div id="container">
         	  	
         <div class="clearfix">
@@ -575,15 +576,10 @@ var youdao_conv_id = 271546;
           $(function(){
         	  
         	  
-        	  
-        	  
-        	  alert("1");
-        	  
-        	  
         	  $("#week li").each(function(){
             	  $(this).click(function(){
             	  var week=$(this).text();
-            	  alert(week);
+//             	  alert(week);
             		})
             	})
         	  
@@ -591,33 +587,33 @@ var youdao_conv_id = 271546;
         	  $("#sub_box_job  li ul li").each(function(){
             	  $(this).click(function(){
             	  var zhi=$(this).text();
-            	  alert(zhi);
+//             	  alert(zhi);
             		})
             	})
         	  $("#city li").each(function(){
             	  $(this).click(function(){
             	  var city=$(this).text();
-            	  alert(city);
+//             	  alert(city);
             		})
             	})
             	
               
         	  $("#type li").each(function(){
             	  $(this).click(function(){
-            	  alert($(this).text());
+//             	  alert($(this).text());
             		})
             	})
         	  
         	  $("#box_industry li").each(function(){
             	  $(this).click(function(){
             	
-            	  alert($(this).text());
+//             	  alert($(this).text());
             		})
             	})
         	  
         	  $("#box_salary ul li").each(function(){
         	  $(this).click(function(){
-        	  alert($(this).text());
+//         	  alert($(this).text());
         		})
         	  })
         		$("input[id='subSubmit']").click(function() {
