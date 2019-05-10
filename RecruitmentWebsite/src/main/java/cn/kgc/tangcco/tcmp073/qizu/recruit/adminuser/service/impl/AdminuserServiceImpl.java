@@ -96,8 +96,12 @@ public class AdminuserServiceImpl implements AdminuserService {
 		return adminMapper.deleteOcc(oid);
 	}
 	@Override
-	public List<Company> queryDatial(int oid) {
+	public Company queryDatial(int oid) {
 		return adminMapper.queryDatial(oid);
+	}
+	@Override
+	public int updataOccStatic(int oid) {
+		return adminMapper.updataOccStatic(oid);
 	}
 	
 

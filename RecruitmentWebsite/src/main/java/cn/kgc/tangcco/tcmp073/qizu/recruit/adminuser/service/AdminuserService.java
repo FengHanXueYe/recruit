@@ -24,32 +24,37 @@ public interface AdminuserService {
 	Adminuser queryAusername(String ausername);
 
 	Adminuser queryAusernameById(Integer aid);
-	
-	
+
 	/*----------------------*/
-	
+
 	RecruitingUsers queryUsername(String username);
-	
+
 	List<RecruitingUsers> queryAllrecuit(String username);
-	
-    //删除用户	
+
+	// 删除用户
 	int deleterecutUser(Integer userid);
-	
-	//编辑用户
+
+	// 编辑用户
 	int updateRecuitUser(RecruitingUsers recuitUser);
-	
-	//根据id查询用户
+
+	// 根据id查询用户
 	RecruitingUsers queryRecuitUserById(Integer userid);
-	
-	//禁用
-	 int  ProhibitRecuitUser(Integer userid);
-	 
-	 //恢复
-	 int  RecoveryUser(Integer userid);
-	 //查询职位
-	 List<Company> querylikeoname(String oname);
-	 //删除职位
-	 int deleteOcc(int oid);
-	 //查看单条职位
-	    List<Company>queryDatial(int oid);
+
+	// 禁用
+	int ProhibitRecuitUser(Integer userid);
+
+	// 恢复
+	int RecoveryUser(Integer userid);
+
+	// 查询职位
+	List<Company> querylikeoname(String oname);
+
+	// 删除职位
+	int deleteOcc(int oid);
+
+	// 查看单条职位
+	Company queryDatial(int oid);
+
+	int updataOccStatic(int oid);
+
 }

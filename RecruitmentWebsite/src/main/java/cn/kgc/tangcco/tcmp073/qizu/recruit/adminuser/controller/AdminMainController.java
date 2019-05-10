@@ -66,6 +66,12 @@ public class AdminMainController {
 		this.companyservice.updateCompanyCstate(cid,cstate);
 		return "redirect:toNodeIndex.controller";
 	}
+	//职位禁用
+	@RequestMapping("toxiaxian")
+	public String xiaxian(Model model,int oid) {
+		 this.adminService.updataOccStatic(oid);
+		return "redirect:toMenuIndex.controller";
+	}
 	//公司删除
 	@RequestMapping("deleteCompany")
 	public String deleteCompany(int cid) {
@@ -152,9 +158,16 @@ public class AdminMainController {
 	}
 	@RequestMapping("toDetailOcc")
 	public String chakan(Model model,int oid) {
+		
+//		companyservice.queryCompanyByCid(cid)
+		
+		System.out.println("我是id=====》"+oid);
 		model.addAttribute("detailOcc",adminService.queryDatial(oid));
+		System.err.println(")))))))))))))))))))))"+adminService.queryDatial(oid));
 		return "backstage/Menu/add";
 	}
+	
+	
 	
 	/**
 	 * 
