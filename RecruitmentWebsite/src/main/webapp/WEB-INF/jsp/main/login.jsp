@@ -92,6 +92,16 @@ var youdao_conv_id = 271546;
         </div>
         <div class="login_box_btm"></div>
     </div>
+<script type="text/javascript">
+     $(function(){
+    	 
+    	  var quanxian='${cuo}';
+    	  alert(quanxian);
+     })
+
+</script>
+
+
 
 <script type="text/javascript">
 $(function(){
