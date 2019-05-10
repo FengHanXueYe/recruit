@@ -164,7 +164,7 @@ function finds(){
     		function deleteUser(userid){
     			var flg = confirm("确定要删除吗？");
     			if(flg){
-    				$.post("ajaxDeleteUser.controller","userid="+userid,function(data){
+    				$.post("ajaxDeleteUser.controller","pk="+userid,function(data){
     					if(data){
     						$(".del"+userid).remove();
     					}

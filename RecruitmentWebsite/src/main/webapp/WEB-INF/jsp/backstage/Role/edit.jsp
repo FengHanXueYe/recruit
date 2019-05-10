@@ -36,33 +36,33 @@
     </style>
 </head>
 <body>
-<form action="toeditUser.controller" method="post" class="definewidth m20" >
-<input type="hidden" name="id" value="${recuitUser.userid }" />
+<form action="doUpdateUser.controller" method="post" class="definewidth m20" >
+<input type="hidden" name="userid" value="${recuitUser.userid }" />
 
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td width="10%" class="tableleft">用户名</td>
-        <td><input type="text" name="title" value="${recuitUser.username}"/></td>
+        <td><input type="text" name="username" value="${recuitUser.username}"/></td>
     </tr>
      <tr>
         <td width="10%" class="tableleft">身份证号</td>
-        <td><input type="text" name="title" value="${recuitUser.identity}"/></td>
+        <td><input type="text" name="identity" value="${recuitUser.identity}"/></td>
     </tr>
     <tr>
         <td width="10%" class="tableleft">性别</td>
         <td>
-        <input type="radio" name="title" value="2"   <c:if test="${recuitUser.gender eq '2'}">checked="checked"</c:if> />男
+        <input type="radio" name="gender" value="2"   <c:if test="${recuitUser.gender eq '2'}">checked="checked"</c:if> />男
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <input type="radio" name="title" value="1"   <c:if test="${recuitUser.gender eq '1'}">checked="checked"</c:if> />女
+        <input type="radio" name="gender" value="1"   <c:if test="${recuitUser.gender eq '1'}">checked="checked"</c:if> />女
        </td>
     </tr>
     <tr>
         <td width="10%" class="tableleft">邮箱</td>
-        <td><input type="text" name="title" value="${recuitUser.email}"/></td>
+        <td><input type="text" name="email" value="${recuitUser.email}"/></td>
     </tr>
     <tr>
         <td width="10%" class="tableleft">电话</td>
-        <td><input type="text" name="title" value="${recuitUser.telephone}"/></td>
+        <td><input type="text" name="telephone" value="${recuitUser.telephone}"/></td>
     </tr>
     <tr>
         <td width="10%" class="tableleft">学历</td>
@@ -72,13 +72,13 @@
             <c:if test="${list.education eq '3'}">硕士</c:if>
             <c:if test="${list.education eq '4'}">博士</c:if>
             <c:if test="${list.education eq '5'}">其他</c:if> --%>
-        <select  name="curStatus" value="${list.education}">
+        <select  name="education" value="${list.education}">
              <option value="1"><c:if test="${list.education eq '1'}">selected</c:if>大专</option>
               <option value="2"><c:if test="${list.education eq '2'}">selected</c:if>本科</option>
                <option value="3"><c:if test="${list.education eq '3'}">selected</c:if>硕士</option>
-                <option value="4"><c:if test="${list.education eq '4'}">selected</c:if>博士</option>
+        []        <option value="4"><c:if test="${list.education eq '4'}">selected</c:if>博士</option>
                  <option value="5"><c:if test="${list.education eq '5'}">selected</c:if>其他</option>
-        </select>
+        </select> 
         </td>
     </tr>
     <tr>
@@ -98,26 +98,26 @@
         <c:if test="${list.userlog eq '12'}">10年以上</c:if>
         <br></c:if> --%>
         <td>
-        <select name="userlog" value="${list.userlog}">
-         <option value="1"><c:if test="${list.education eq '1'}">selected</c:if>应届毕业生</option>
-              <option value="2"><c:if test="${list.userlog eq '2'}">selected</c:if>1年</option>
-               <option value="3"><c:if test="${list.userlog eq '3'}">selected</c:if>2年</option>
-                <option value="4"><c:if test="${list.userlog eq '4'}">selected</c:if>3年</option>
-                 <option value="5"><c:if test="${list.userlog eq '5'}">selected</c:if>4年</option>
-                  <option value="6"><c:if test="${list.userlog eq '6'}">selected</c:if>5年</option>
-              <option value="7"><c:if test="${list.userlog eq '7'}">selected</c:if>6年</option>
-               <option value="8"><c:if test="${list.userlog eq '8'}">selected</c:if>7年</option>
-                <option value="9"><c:if test="${list.userlog eq '9'}">selected</c:if>8年</option>
-                 <option value="10"><c:if test="${list.userlog eq '10'}">selected</c:if>9年</option>
-                  <option value="11"><c:if test="${list.userlog eq '11'}">selected</c:if>10年</option>
-              <option value="12"><c:if test="${list.userlog eq '12'}">selected</c:if>10年以上</option>
+        <select name="userlog">
+         <option value="1"<c:if test="${list.userlog eq '1'}">selected="selected"</c:if>>应届毕业生</option>
+              <option value="2"<c:if test="${list.userlog eq '2'}">selected="selected"</c:if>>1年</option>
+               <option value="3"<c:if test="${list.userlog eq '3'}">selected="selected"</c:if>>2年</option>
+                <option value="4"<c:if test="${list.userlog eq '4'}">selected="selected"</c:if>>3年</option>
+                 <option value="5"<c:if test="${list.userlog eq '5'}">selected="selected"</c:if>>4年</option>
+                  <option value="6"<c:if test="${list.userlog eq '6'}">selected="selected"</c:if>>5年</option>
+              <option value="7"<c:if test="${list.userlog eq '7'}">selected="selected"</c:if>>6年</option>
+               <option value="8"<c:if test="${list.userlog eq '8'}">selected="selected"</c:if>>7年</option>
+                <option value="9"<c:if test="${list.userlog eq '9'}">selected="selected"</c:if>>8年</option>
+                 <option value="10"<c:if test="${list.userlog eq '10'}">selected="selected"</c:if>>9年</option>
+                  <option value="11"<c:if test="${list.userlog eq '11'}">selected="selected"</c:if>>10年</option>
+              <option value="12"<c:if test="${list.userlog eq '12'}">selected="selected"</c:if>>10年以上</option>
                
         </select>
         </td>
     </tr>
     <tr>
         <td width="10%" class="tableleft">求职状态</td>
-        <td><input type="text" name="title" value="${recuitUser.currentstate}"/></td>
+        <td><input type="text" name="currentstate" value="${recuitUser.currentstate}"/></td>
     </tr>
     
     <!-- <tr>
