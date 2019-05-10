@@ -12,12 +12,17 @@ import cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.service.OccupationService;
 
 @Service
 public class OccupationServiceImpl implements OccupationService {
+	
 	@Resource
 	private OccupationMapper mapper;
 
 	@Override
 	public int addOccupation(Occupation occ) {
 		return mapper.addOccupation(occ);
+	}
+	@Override
+	public int deleteAdminOccupation(int pk) {
+		return mapper.deleteAdminOccupation(pk);
 	}
 
 	@Override
