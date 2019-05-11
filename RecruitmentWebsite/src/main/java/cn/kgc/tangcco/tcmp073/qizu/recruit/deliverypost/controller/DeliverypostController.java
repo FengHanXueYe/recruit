@@ -141,6 +141,7 @@ public class DeliverypostController {
 		/*RecruitingUsers attribute = (RecruitingUsers) session.getAttribute("loginUser");
 		System.err.println(attribute.getUserid());*/
 		/* 储存教育背景 */
+		RecruitingUsers queryRecruitingUsers = userService.queryRecruitingUsers(Integer.parseInt(userid));
 		if (userid != null) {
 			Educationalbackground queryEducationalbackground = ebService
 					.queryEducationalbackground(Integer.parseInt(userid));
@@ -161,7 +162,7 @@ public class DeliverypostController {
 			}
 			
 		}
-		
+		model.addAttribute("userP", queryRecruitingUsers);
 		
 		return "main/preview";
 	}

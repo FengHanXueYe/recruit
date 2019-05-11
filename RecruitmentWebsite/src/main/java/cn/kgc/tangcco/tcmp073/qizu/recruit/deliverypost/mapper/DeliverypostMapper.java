@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Select;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Deliverypost;
 
 public interface DeliverypostMapper {
-	@Insert(value = "insert into Deliverypost value(null,#{dp.ruser.userid},#{dp.occupation.oid},#{dp.dstatus},default,NOW(),null)")
+	@Insert(value = "insert into Deliverypost value(null,#{dp.ruser.userid},#{dp.occupation.oid},#{dp.dstatus},default,NOW(),#{dp.texttz})")
 	int addDeliverypost(@Param("dp") Deliverypost dp);
 
 	int updateDeliverypost(@Param("dp") Deliverypost dp);
