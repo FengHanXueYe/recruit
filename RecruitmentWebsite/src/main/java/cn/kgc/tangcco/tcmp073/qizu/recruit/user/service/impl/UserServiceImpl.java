@@ -1,19 +1,24 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.impl;
 
 import javax.annotation.Resource;
-
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Eclosure;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.Corporate.mapper.CorporateMapper;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.mapper.CompanyMapper;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.education.mapper.EducationaMapper;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.founder.mapper.FounderMapper;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.hopejob.mapper.HopeJobMapper;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.occupation.mapper.OccupationMapper;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.product.mapper.ProductMapper;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.project.mapper.ProjectMapper;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.selfdescription.mapper.SelfdescriptionMapper;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.user.mapper.UserMapper;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.worksdisplay.mapper.WorksdisplayMapper;
 
 /**
  * 用户service实现类
@@ -23,6 +28,7 @@ import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
  */
 @Service
 public class UserServiceImpl implements UserService {
+
 
 	@Resource
 	private UserMapper userMapper;
@@ -34,7 +40,18 @@ public class UserServiceImpl implements UserService {
 	private ProductMapper productMapper;
 	@Resource
 	private FounderMapper founderMapper;
-
+	@Resource
+	private HopeJobMapper hopejobMappper;
+	@Resource
+	private CorporateMapper corporateMapper;
+	@Resource
+	private ProjectMapper proMapper;
+	@Resource
+	private EducationaMapper educationMapper;
+	@Resource
+	private SelfdescriptionMapper selfdescriptionMapper;
+	@Resource 
+	private WorksdisplayMapper worksdisplayMapper;
 	// 后台事务删除根据用户主键删除对应关系表
 	@Transactional
 	@Override
@@ -43,6 +60,12 @@ public class UserServiceImpl implements UserService {
 		productMapper.deleteProduct(pk);
 		occMapper.deleteAdminOccupation(pk);
 		companyMapper.deleteAdminCompanys(pk);
+		hopejobMappper.deleteHopeJobById(pk);
+		corporateMapper.deleteCorporateById(pk);
+		proMapper.deleteProjectById(pk);
+		educationMapper.deleteEducationaById(pk);
+		selfdescriptionMapper.deleteSelfdescriptionById(pk);
+		worksdisplayMapper.deleteWorkdisplayById(pk);
 		int rows = userMapper.deleteUser(pk);
 		return rows;
 	}

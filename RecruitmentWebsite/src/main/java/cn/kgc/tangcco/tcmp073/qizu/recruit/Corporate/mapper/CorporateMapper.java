@@ -1,5 +1,6 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.Corporate.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -24,4 +25,9 @@ public interface CorporateMapper {
 	
 	@Select("select * from corporate where cid=#{userid}")
     Corporate queryAll(Integer userid);
+	
+	//关联用户事务删除
+	@Delete("DELETE FROM corporate WHERE cuserid=#{id}")
+	int deleteCorporateById(@Param("id")int pk);
+	
 }
