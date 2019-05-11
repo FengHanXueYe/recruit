@@ -139,11 +139,24 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("toxiangqing")
-	public String toxiangqing(String cccname, Model model) {
+	public String toxiangqing(String cccname,HttpSession session, Model model) {
 		System.out.println("-------------------->>>>>>>" + cccname);
 		// 查询职业详情
 		Occupation queryOccupation = occupationService.queryOccupation(Integer.parseInt(cccname));
+		RecruitingUsers attribute = (RecruitingUsers) session.getAttribute("loginUser");
 		// 查询职业所在的公司
+		Eclosure queryescName = userService.queryescName(attribute.getUserid());
+		if(queryescName!=null) {
+			String escName = queryescName.getEsurename();
+		    int  wenjianming=escName.lastIndexOf('=');
+		    int  lujin=escName.lastIndexOf('\\');
+		    int  lujin1=escName.lastIndexOf('\\', lujin-1);
+		    String fName = escName.substring(wenjianming+1);
+		    String fNameLiJin = escName.substring(lujin1+1);
+		    System.err.println(fName);
+		    model.addAttribute("escname",fName); //文件名
+		    model.addAttribute("fNameLiJin",fNameLiJin); //路径
+		}
 		Company queryCompanyByCid = com.queryCompanyByCid(queryOccupation.getOcid());
 		model.addAttribute("queryOccupation", queryOccupation);
 		model.addAttribute("queryCompanyByCid", queryCompanyByCid);

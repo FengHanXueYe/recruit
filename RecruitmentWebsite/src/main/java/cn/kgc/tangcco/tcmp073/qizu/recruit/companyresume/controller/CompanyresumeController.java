@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.CoRe;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Companyresume;
-import cn.kgc.tangcco.tcmp073.qizu.entity.CpCy;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Deliverypost;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Eclosure;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Educationalbackground;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
@@ -24,6 +24,7 @@ import cn.kgc.tangcco.tcmp073.qizu.recruit.companyresume.service.CompanyresumeSe
 import cn.kgc.tangcco.tcmp073.qizu.recruit.deliverypost.service.DeliverypostService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.eb.service.EbService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.selfdescription.service.SelfdescriptionService;
+import cn.kgc.tangcco.tcmp073.qizu.recruit.user.service.UserService;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.worksdisplay.service.WorksdisplayService;
 
 @Controller
@@ -44,6 +45,9 @@ public class CompanyresumeController {
 	@Resource
 	private DeliverypostService ds;
 
+	
+	@Resource
+	private UserService userService;
 	/**
 	 * 查询收到的简历
 	 * 
@@ -58,6 +62,8 @@ public class CompanyresumeController {
 		RecruitingUsers attribute = (RecruitingUsers) session.getAttribute("loginUser");
 		List<CoRe> coreList = new ArrayList<>();
 		CoRe core = null;
+		Eclosure eclosure = null;
+		
 		Companyresume cr = new Companyresume();
 
 		Companyresume queryOccuotion = cs.queryOccuotion(attribute.getUserid());
@@ -73,6 +79,26 @@ public class CompanyresumeController {
 			List<Companyresume> queryAllCompanyresume = cs.queryAllCompanyresume(cr);
 			for (Companyresume companyresume : queryAllCompanyresume) {
 				core = new CoRe();
+				
+				eclosure = new Eclosure();
+				
+				Eclosure queryescName = userService.queryescName(companyresume.getCuser().getUserid());
+				if(queryescName!=null) {
+					String escName = queryescName.getEsurename();
+					int  lujin=escName.lastIndexOf('\\');
+					int  lujin1=escName.lastIndexOf('\\', lujin-1);
+					String fNameLiJin = escName.substring(lujin1+1);
+					eclosure.setEsurename(fNameLiJin);
+					eclosure.setEid(queryescName.getEid());
+					eclosure.setEuid(queryescName.getEuid());
+				}
+				
+				core.setEclosure(eclosure);
+				
+				
+				
+				
+				
 				Educationalbackground queryEducationalbackground = ebService
 						.queryEducationalbackground(companyresume.getCuser().getUserid());
 				if (queryEducationalbackground != null) {
@@ -171,6 +197,9 @@ public class CompanyresumeController {
 		RecruitingUsers attribute = (RecruitingUsers) session.getAttribute("loginUser");
 		List<CoRe> coreList = new ArrayList<>();
 		CoRe core = null;
+		
+		Eclosure eclosure = null;
+		
 		Companyresume cr = new Companyresume();
 
 		Companyresume queryOccuotion = cs.queryOccuotion(attribute.getUserid());
@@ -186,6 +215,22 @@ public class CompanyresumeController {
 		List<Companyresume> queryAllCompanyresume = cs.queryAllCompanyresume(cr);
 		for (Companyresume companyresume : queryAllCompanyresume) {
 			core = new CoRe();
+			
+			eclosure = new Eclosure();
+			
+			Eclosure queryescName = userService.queryescName(companyresume.getCuser().getUserid());
+			if(queryescName!=null) {
+				String escName = queryescName.getEsurename();
+				int  lujin=escName.lastIndexOf('\\');
+				int  lujin1=escName.lastIndexOf('\\', lujin-1);
+				String fNameLiJin = escName.substring(lujin1+1);
+				eclosure.setEsurename(fNameLiJin);
+				eclosure.setEid(queryescName.getEid());
+				eclosure.setEuid(queryescName.getEuid());
+			}
+			
+			core.setEclosure(eclosure);
+			
 			Educationalbackground queryEducationalbackground = ebService
 					.queryEducationalbackground(companyresume.getCuser().getUserid());
 			if (queryEducationalbackground != null) {

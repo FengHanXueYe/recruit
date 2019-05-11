@@ -172,9 +172,10 @@ public class DeliverypostController {
 	 * @return
 	 */
 	@RequestMapping("doAddDeliverypost")
-	public String doAddDeliverypost(String oid,HttpSession session,Model model) {
+	public String doAddDeliverypost(String oid,String texttz, HttpSession session,Model model) {
 		RecruitingUsers attribute = (RecruitingUsers) session.getAttribute("loginUser");
 		
+		System.out.println("jiang------->"+texttz);
 		//判断是否登录
 		if(attribute!=null) {
 			
@@ -190,7 +191,7 @@ public class DeliverypostController {
 				occ.setOid(Integer.parseInt(oid));
 				dp.setRuser(attribute);
 				dp.setOccupation(occ);
-				
+				dp.setTexttz(texttz);
 				Deliverypost detailDeliverypost = ds.detailDeliverypost(dp);
 				if(detailDeliverypost!=null) {
 					return "redirect:toIndex.controller";
@@ -211,6 +212,8 @@ public class DeliverypostController {
 				cr.setOccupation(queryOccupation);
 				//用户赋值给Companyresume
 				cr.setCuser(attribute);
+				
+				cr.setCtext(texttz);
 				//赋值状态
 				cr.setDstatus(5);
 				//添加投递信息
