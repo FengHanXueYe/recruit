@@ -32,4 +32,9 @@ public class WorksdisplayServiceImpl implements WorksdisplayService {
 		return wm.queryWorksdisplay(userid);
 	}
 
+	@Override
+	public int deleteWorkdisplayById(int pk) {
+		return wm.deleteWorkdisplayById(pk);
+	}
+
 }

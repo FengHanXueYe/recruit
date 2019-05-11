@@ -10,6 +10,7 @@ import cn.kgc.tangcco.tcmp073.qizu.recruit.Corporate.service.CorporateService;
 @Service
 public class CorporateServiceImpl implements CorporateService{
 	
+	
 	@Resource
 	private CorporateMapper corporateMapper;
 
@@ -17,6 +18,12 @@ public class CorporateServiceImpl implements CorporateService{
 	public int addCorporate(Corporate corporate) {
 		return corporateMapper.addCorporate(corporate);
 	}
+	
+	@Override
+	public int deleteCorporateById(int pk) {
+		return corporateMapper.deleteCorporateById(pk);
+	}
+
 
 	@Override
 	public int updateCorporate(Corporate corporate) {

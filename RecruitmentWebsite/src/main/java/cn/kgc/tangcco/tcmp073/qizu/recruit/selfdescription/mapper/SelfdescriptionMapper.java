@@ -20,5 +20,10 @@ public interface SelfdescriptionMapper {
 
 	@Select("SELECT * FROM `selfdescription` s ,`recruitingusers` r WHERE s.`suserid`=r.userid AND r.userid=#{userid} LIMIT 1;")
 	Selfdescription querySelfdescription(@Param("userid") Integer userid);
+	
+	
+	@Delete("DELETE  FROM selfdescription WHERE suserid=#{id}")
+	int deleteSelfdescriptionById(@Param("id")int pk);
+	
 
 }

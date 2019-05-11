@@ -11,6 +11,8 @@ import cn.kgc.tangcco.tcmp073.qizu.recruit.user.mapper.UserMapper;
 @Service
 public class SelfdescriptionServiceImpl implements SelfdescriptionService {
 
+	
+
 	@Resource
 	private SelfdescriptionMapper selfdescriptionService;
 	
@@ -21,6 +23,10 @@ public class SelfdescriptionServiceImpl implements SelfdescriptionService {
 		return selfdescriptionService.addSelfdescription(sion);
 	}
 
+	@Override
+	public int deleteSelfdescriptionById(int pk) {
+		return selfdescriptionService.deleteSelfdescriptionById(pk);
+	}
 	@Override
 	public int updateSelfdescription(Selfdescription sion) {
 		return selfdescriptionService.updateSelfdescription(sion);

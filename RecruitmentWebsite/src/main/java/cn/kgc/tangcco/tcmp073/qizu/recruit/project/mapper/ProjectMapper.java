@@ -27,5 +27,9 @@ public interface ProjectMapper {
 	/*@Select(value="SELECT * FROM `Project` e,`recruitingusers` r WHERE r.userid=e.puserid AND r.userid=#{puserid} LIMIT 1;")*/
 	@Select("select * from project where pid=#{puserid}")
 	Project queryProject(@Param("puserid")Integer puserid);
+	
+	//外键关联用户事务删除
+	@Delete("DELETE FROM project WHERE puserid=#{id}")
+	int deleteProjectById(@Param("id")int pk);
 
 }

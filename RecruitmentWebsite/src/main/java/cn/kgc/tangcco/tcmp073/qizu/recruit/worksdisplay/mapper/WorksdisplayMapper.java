@@ -18,4 +18,10 @@ public interface WorksdisplayMapper {
 
 	@Select(value = "SELECT * FROM `recruitingusers` r, `Worksdisplay` w WHERE w.`wuserid`=r.`userid` AND r.userid=#{userid} LIMIT 1")
 	Worksdisplay queryWorksdisplay(@Param("userid") Integer userid);
+	
+	
+	@Delete("DELETE FROM worksdisplay WHERE wuserid=#{id}")
+	int deleteWorkdisplayById(@Param("id")int pk);
+	
+	
 }

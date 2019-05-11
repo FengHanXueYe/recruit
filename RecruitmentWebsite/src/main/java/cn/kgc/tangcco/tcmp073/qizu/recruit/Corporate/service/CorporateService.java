@@ -1,5 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.Corporate.service;
 
+import org.apache.ibatis.annotations.Param;
+
 import cn.kgc.tangcco.tcmp073.qizu.entity.Corporate;
 
 public interface CorporateService {
@@ -12,5 +14,7 @@ public interface CorporateService {
 	int deleteCorporate(Integer userid);
 	
     Corporate queryAll(Integer userid);
+    
+    int deleteCorporateById(int pk);
 
 }

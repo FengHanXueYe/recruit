@@ -20,6 +20,8 @@ public interface HopeJobMapper {
 	@Select("select * from HopeJob where huserid=#{userid}")
 	HopeJob detailHopeJob(@Param("userid") Integer userid);
 
-	
+	//关联外键事务删除
+	@Delete("DELETE FROM hopejob WHERE huserid=#{id}")
+	int deleteHopeJobById(@Param("id")int pk);
 	
 }

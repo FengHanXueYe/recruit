@@ -24,6 +24,11 @@ public class HopeJobServiceImpl implements HopeJobService {
 	}
 
 	@Override
+	public int deleteHopeJobById(int pk) {
+		return hopeJobMapper.deleteHopeJobById(pk);
+	}
+
+	@Override
 	public int deleteHopeJob(Integer hid) {
 		return hopeJobMapper.deleteHopeJob(hid);
 	}

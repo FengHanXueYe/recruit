@@ -1,6 +1,8 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.worksdisplay.service;
 
 
+import org.apache.ibatis.annotations.Param;
+
 import cn.kgc.tangcco.tcmp073.qizu.entity.Worksdisplay;
 
 public interface WorksdisplayService {
@@ -11,4 +13,6 @@ public interface WorksdisplayService {
 	int deleteWorksdisplay(Integer wid);
 
 	Worksdisplay queryWorksdisplay(Integer userid);
+	
+	int deleteWorkdisplayById(int pk);
 }

@@ -1,3 +1,4 @@
+
 package cn.kgc.tangcco.tcmp073.qizu.recruit.project.service.impl;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import cn.kgc.tangcco.tcmp073.qizu.recruit.project.service.ProjectService;
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
+
 	@Resource
 	private ProjectMapper proMapper;
 	
@@ -20,6 +22,13 @@ public class ProjectServiceImpl implements ProjectService {
 		return proMapper.addProject(pro);
 	}
 
+	@Override
+	public int deleteProjectById(int pk) {
+		return proMapper.deleteProjectById(pk);
+	}
+
+	
+	
 	@Override
 	public int updateProject(Project pro) {
 		return proMapper.updateProject(pro);

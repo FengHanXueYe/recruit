@@ -1,6 +1,7 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.selfdescription.service;
 
 
+
 import cn.kgc.tangcco.tcmp073.qizu.entity.Selfdescription;
 
 public interface SelfdescriptionService {
@@ -12,6 +13,8 @@ public interface SelfdescriptionService {
 	int deleteSelfdescription(Integer sid);
 
 	Selfdescription querySelfdescription(Integer userid);
+	
+	int deleteSelfdescriptionById(int pk);
 	
 	
 }
