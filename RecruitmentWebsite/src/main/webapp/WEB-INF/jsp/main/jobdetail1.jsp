@@ -192,15 +192,20 @@ var youdao_conv_id = 271546;
                     </dd>
                      
                                         	<!-- 用户是否激活 0-否；1-是 -->
-	                			       									                    <dd class="resume resume_web">
+                                        	<c:choose>
+                    				<c:when test="${loginUser.userid eq queryCompanyByCid.cuid }"></c:when>
+                    				<c:otherwise>
+	                			    <dd class="resume resume_web">
+	                			       									                    
 				                        <div style="width:400px;">
-								          <span> 你已设置默认投递简历：<a title="jason的简历" target="_blank" href="resume/myresume.html"><strong>在线简历：<c:if test="${empty loginUser.resumeName }">${loginUser.email }</c:if>
+								          <span> 你已设置默认投递简历：<a title="jason的简历" target="_blank" href="resume/myresume.html"><strong id="biangeng">在线简历：<c:if test="${empty loginUser.resumeName }">${loginUser.email }</c:if>
 	            																																		 <c:if test="${!empty loginUser.resumeName }">${loginUser.resumeName }</c:if></strong></a></span><br>
 								          <span>设置于<fmt:formatDate value="${loginUser.registrationTime}" pattern="yyyy-MM-dd HH:mm" /></span>
 				                        </div>
 				                        <a title="设置默认投递简历" href="#setResume" class="inline fl cboxElement">重新设置</a>
 				                    </dd>
-				               				            	                                                        <div class="saoma saoma_btm">
+				               			</c:otherwise>
+                    			</c:choose>	            	                                                        <div class="saoma saoma_btm">
                       	<div class="dropdown_menu">
 							<div class="drop_l">
 								<img width="131" height="131" src="style/images/73338ca8e1694b298d223745670f8daf_318969.jpg">
@@ -219,6 +224,8 @@ var youdao_conv_id = 271546;
                     			<c:choose>
                     				<c:when test="${loginUser.userid eq queryCompanyByCid.cuid }"></c:when>
                     				<c:otherwise>
+                    				
+                    				
                     				 	<dd><!-- 用户是否激活 0-否；1-是 -->
 	                   					                        <a title="在线咨询" class="btn fr btn_apply" href="javascript:void(0)" onclick="zzixuanzx()" id="dianjijinyong">在线咨询</a>
 	                   					                        <a title="投个简历" class="btn fr btn_apply" href="doAddDeliverypost.controller?oid=${queryOccupation.oid }">投个简历</a>
@@ -370,26 +377,42 @@ var youdao_conv_id = 271546;
             			</div>
 	            		<div class="clear"></div>
 	            		<label class="radio">
-	            			<input type="radio" value="0" class="resume0" name="resumeName">
+	            			<input type="radio" <c:if test="${!empty escname }">value="1"</c:if> <c:if test="${empty escname }">value="0"</c:if>  class="resume0" name="resumeName">
 	            			附件简历：
-	            				            				<span class="uploadedResume red">暂无附件简历</span>
+	            				            				<c:if test="${!empty escname }"><span title="${escname }"><a href="${fNameLiJin }">${escname }</a></span></c:if><c:if test="${empty escname }"> <span class="uploadedResume red">暂无附件简历</span></c:if>
 	            				            		</label>
 	            		<div class="setBtns">
 	            				            				<a class="downloadResume dn" href="nearBy/downloadResume">下载</a> <span class="dn">|</span>
-            					<a class="reUpload" title="上传附件简历" target="_blank">上传附件简历</a>
+            					<!-- <a class="reUpload" title="上传附件简历" target="_blank">上传附件简历</a> -->
 	            				            			
             				<input type="file" onchange="file_check(this,'nearBy/updateMyResume.json','reUploadResume1')" id="reUploadResume1" name="newResume" title="支持word、pdf、ppt、txt、wps格式文件，大小不超过10M">
             			</div>
             			<div class="clear"></div>
             			<span style="display:none;" class="error">只支持word、pdf、ppt、txt、wps格式文件，请重新上传</span>
-	            		<label class="bgPink">默认使用此简历直接投递，下次不再提示</label>
+	            		<label class="bgPink">----------若此附件简历有变更，请到我的简历中调整----------</label>
 	            		<span class="setTip error"></span>
-	            		<input type="submit" value="保存设置" class="btn_profile_save btn_s">
+	            		<input type="submit" value="保存设置"  class="btn_profile_save btn_s">
 	            	</form>
 	            </td>
 	        </tr>
 	    </tbody></table>
 	</div><!--/#setResume-->
+<script type="text/javascript">
+	$(function(){
+		$("input[type='radio']").change(function(){
+			var z = $("input[type='radio']:checked").val();
+			var h = $(this).next().text();
+			$("#biangeng").html(h);
+			
+			$("a[title='投个简历']").attr("href","doAddDeliverypost.controller?oid=${queryOccupation.oid }&texttz="+z);
+			//var x = $("a[title='投个简历']").attr("href");
+			//alert(x);
+		})
+		
+	})
+
+</script>
+
 
 <!-- 投递简历时  - 设置默认投递简历 -->
 	<div style="height:280px;" class="popup" id="setResumeApply">
@@ -761,6 +784,7 @@ var options = {
 <script src="style/js/common.js" type="text/javascript"></script> -->
 <script>
 $(function(){
+	
 	$('#weibolist .cookietxte').text('推荐本职位给好友');
 	$(document).bind('cbox_complete', function(){ 
 		hbzxJQ("#gaosutapt .pttui a").trigger("click"); 
@@ -774,6 +798,7 @@ $(function(){
 			top.location.reload();
 		}
 	});
+	
 			popQR();
 	})
 </script>
@@ -930,7 +955,7 @@ CallCenter.init(url);
 	<div id="cboxTopCenter" style="float: left;"></div>
 	<div id="cboxTopRight" style="float: left;"></div></div>
 	<div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div>
-	<div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div>
+	<div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;">asdad</div>
 	<div id="cboxCurrent" style="float: left;"></div>
 	<button type="button" id="cboxPrevious"></button>
 	<button type="button" id="cboxNext"></button>
