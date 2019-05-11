@@ -130,23 +130,23 @@
 	<select id="querytoZuhe" parameterType="ZuHe" resultMap="CompanyMaps">
 		SELECT *FROM company co,founder f,occupation o,education e
 		WHERE f.cfid=co.cid AND e.eid=o.oeducation AND co.cid=o.ocid 
-		<if test="o.omaxsalary!=null and o.omaxsalary>0">
+		<if test="zuhe.occupation.omaxsalary!=0.0">
 		AND o.omaxsalary&gt;=#{zuhe.occupation.omaxsalary}
 		</if>
-		<if test="o.ominsalary!=null and o.ominsalary>0">
+		<if test="zuhe.occupation.ominsalary!=0.0">
 		 AND o.ominsalary &lt;=#{zuhe.occupation.ominsalary}
 		</if>
-		<if test="o.olog!=null and o.olog!=''">
+		<if test="zuhe.olog!=null and zuhe.olog!=''">
 		 AND o.olog=#{zuhe.olog}
 		</if>
-		<if test="e.ename!=null and e.ename!=''">
+		<if test="zuhe.ename!=null and zuhe.ename!=''">
 		AND
 		e.ename=#{zuhe.ename}
 		</if>
-		<if test="o.onature!=null and o.onature>0">
+		<if test="zuhe.onature!=null and zuhe.onature>0">
 		AND o.onature=#{zuhe.onature}
 		</if>
-		<if test="o.ocity!=null and o.ocity!=''">
+		<if test="zuhe.ocity!=null and zuhe.ocity!=''">
 		AND o.ocity=#{zuhe.ocity}
 		</if>
 		<if test="zuhe.orelease!=null and zuhe.orelease>0">

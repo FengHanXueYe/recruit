@@ -3,11 +3,12 @@ package cn.kgc.tangcco.tcmp073.qizu.recruit.company.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
-import javax.jms.Session;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -162,9 +163,9 @@ public class CompanyController {
 	@RequestMapping("tomyhome")
 	public String tomyhome(HttpSession session, Model model) {
 		RecruitingUsers user = (RecruitingUsers) session.getAttribute("loginUser");
-		System.err.println("----------------------->"+user);
+		System.err.println("----------------------->" + user);
 		Company com = this.service.queryByUid(user.getUserid());
-		System.err.println("----------------------->"+com);
+		System.err.println("----------------------->" + com);
 		String tag = com.getCfinancing();
 		String taglist[] = tag.split(",");
 		model.addAttribute("taglist", taglist);
@@ -276,7 +277,7 @@ public class CompanyController {
 			c.setBiaoqian(bq);
 
 		}
-     System.err.println(querylikeoname);
+		System.err.println(querylikeoname);
 		System.out.println("_____________________<>>>>" + querylikeoname);
 		return querylikeoname;
 	}
@@ -286,12 +287,14 @@ public class CompanyController {
 	public List<Company> querylikeolog(int orelease) {
 		List<Company> querylikeorelease = service.querylikeorelease(orelease);
 		for (Company company : querylikeorelease) {
-			System.err.println(company+"\t\t");
+			System.err.println(company + "\t\t");
 			System.out.println();
 		}
 		System.out.println(querylikeorelease);
-		/*System.err.println(orelease);
-		System.err.println(service.querylikeorelease(-30));*/
+		/*
+		 * System.err.println(orelease);
+		 * System.err.println(service.querylikeorelease(-30));
+		 */
 		return querylikeorelease;
 	}
 
@@ -318,105 +321,176 @@ public class CompanyController {
 			model.addAttribute("cfield", cfield);
 		}
 		model.addAttribute("ListCompanys", this.service.queryListCompany(ocity, cfs, cfield));
-		
+
 		return "main/companylist";
 	}
-	//条件查询
-		@ResponseBody
-		@RequestMapping("queryListCompanyLimit")
-		public PageInfo<Company> querylimit(String ocity, String cfs,String cfield,HttpSession session) {
-			session.setAttribute("limitocity", ocity);
-			session.setAttribute("limitcfs", cfs);
-			session.setAttribute("limitcfield", cfield);
-			PageInfo<Company> list=this.service.queryListCompanylimit(ocity, cfs, cfield, 1,1);
-			session.setAttribute("PageNum",list.getPageNum());
-			int PageSize=1,PageNum=1;
-			
-			return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize, PageNum);
-		
+
+	// 条件查询
+	@ResponseBody
+	@RequestMapping("queryListCompanyLimit")
+	public PageInfo<Company> querylimit(String ocity, String cfs, String cfield, HttpSession session) {
+		session.setAttribute("limitocity", ocity);
+		session.setAttribute("limitcfs", cfs);
+		session.setAttribute("limitcfield", cfield);
+		PageInfo<Company> list = this.service.queryListCompanylimit(ocity, cfs, cfield, 1, 1);
+		session.setAttribute("PageNum", list.getPageNum());
+		int PageSize = 1, PageNum = 1;
+
+		return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize, PageNum);
+
+	}
+
+	// 输入框页数
+	@ResponseBody
+	@RequestMapping("queryListCompanyLimitss")
+	public PageInfo<Company> querylimits(int PageNum2, HttpSession session) {
+		String ocity = (String) session.getAttribute("limitocity");
+		String cfs = (String) session.getAttribute("limitcfs");
+		String cfield = (String) session.getAttribute("limitcfield");
+		int PageSize = 1;
+		session.setAttribute("aaaa", "you");
+		session.setAttribute("pagenum", PageNum2);
+		return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize, PageNum2);
+
+	}
+
+	// 上下页
+	@ResponseBody
+	@RequestMapping("queryListCompanyLimits")
+	public PageInfo<Company> querylimit(int PageNum, HttpSession session) {
+		String ocity = (String) session.getAttribute("limitocity");
+		String cfs = (String) session.getAttribute("limitcfs");
+		String cfield = (String) session.getAttribute("limitcfield");
+		int PageSize = 1;
+		int PageNum2;
+		int pageNum;
+		String pagenum = (String) session.getAttribute("aaaa");
+		if (pagenum == null) {
+			pageNum = 1;
+		} else {
+			pageNum = (int) session.getAttribute("pagenum");
+			System.err.println("=====================>" + pageNum);
 		}
-		//输入框页数
-		@ResponseBody
-		@RequestMapping("queryListCompanyLimitss")
-		public PageInfo<Company> querylimits(int PageNum2,HttpSession session) {
-			String ocity=(String) session.getAttribute("limitocity");
-			String cfs=(String) session.getAttribute("limitcfs");
-			String cfield=(String) session.getAttribute("limitcfield");
-			int PageSize=1;
+		PageInfo<Company> list = this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize, pageNum);
+		if (PageNum == 1) {
+			PageNum2 = 1;
+		} else if (PageNum == 2) {
+			PageNum2 = list.getPrePage();
 			session.setAttribute("aaaa", "you");
-			session.setAttribute("pagenum", PageNum2);
-			return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize,PageNum2);
-		
+			session.setAttribute("pagenum", list.getPageNum() - 1);
+		} else if (PageNum == 3) {
+			PageNum2 = list.getNextPage();
+			session.setAttribute("aaaa", "you");
+			session.setAttribute("pagenum", list.getPageNum() + 1);
+		} else {
+			PageNum2 = list.getPages();
 		}
-		
-		//上下页
-		@ResponseBody
-		@RequestMapping("queryListCompanyLimits")
-		public PageInfo<Company> querylimit(int PageNum,HttpSession session) {
-			String ocity=(String) session.getAttribute("limitocity");
-			String cfs=(String) session.getAttribute("limitcfs");
-			String cfield=(String) session.getAttribute("limitcfield");
-			int PageSize=1;
-			int PageNum2;
-			int pageNum;
-			String pagenum=(String) session.getAttribute("aaaa");
-			if(pagenum==null) {
-				pageNum=1;
-			}else {
-				pageNum=(int) session.getAttribute("pagenum");
-				System.err.println("=====================>"+pageNum);
-			}
-			PageInfo<Company> list=this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize,pageNum);
-			if(PageNum==1) {
-				PageNum2=1;
-			}else if(PageNum==2) {
-				PageNum2=list.getPrePage();
-				session.setAttribute("aaaa", "you");
-				session.setAttribute("pagenum", list.getPageNum()-1);
-			}else if(PageNum==3) {
-				PageNum2=list.getNextPage();
-				session.setAttribute("aaaa", "you");
-				session.setAttribute("pagenum", list.getPageNum()+1);
-			}else{
-				PageNum2=list.getPages();
-			}	
-			return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize,PageNum2);
-		
-		}
+		return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize, PageNum2);
 
-		@ResponseBody
-		@RequestMapping("qeryxuheController")
-		public PageInfo<Company> queryzuhe(Model model,ZuHe zuhe,HttpSession session) 
-		{
-			int PageSize=10;
-			int PageNum=1;
-		  session.setAttribute("zuhe",zuhe);
-			return this.service.querytoZuhe(zuhe, PageSize, PageNum);
+	}
+
+	
+	public static ZuHe zuhela;
+	
+	@ResponseBody
+	@RequestMapping("qeryxuheController")
+	public PageInfo<Company> queryzuhe(Model model, ZuHe zuhe, HttpSession session) {
+		System.err.println("=============================>" + zuhe);
+		ZuHe attribute = (ZuHe)session.getAttribute("zuhe");
+		System.out.println("+++++++++++++++++++++>"+attribute);
+		if(attribute!=null) {
+			
+		
+		if(attribute.getOcity()!=null&&zuhe.getOcity()==null) {
+			System.err.println("+++++++++++++++++++++>1"+attribute.getOcity());
+			zuhe.setOcity(attribute.getOcity());
+			System.err.println("+++++++++++++++++++++>2"+zuhe.getOcity());
+		}
 		}
 		
-		//公司页面的公司简称 介绍的修改
-		@RequestMapping("UpdateCompany")
-		public String updateCompany(String cabbreviation,String cdetail,int cid) {
-			System.err.println("=======================>"+cabbreviation+"+"+cdetail+"+"+cid);
-			int row=this.service.UpdateCompanyById(cabbreviation, cdetail, cid);
-			return "redirect:tomyhome.controller";
-		}
-		//公司页面修改公司简介
-		@RequestMapping("UpdateCompanyProfiles")
-		public String UpdateCompanyProfiles(int cid,String companyProfile) {
-			int row=this.service.updateCompanyProfile(companyProfile, cid);
-			return "redirect:tomyhome.controller";
-		}
-		//公司页面修改 地址 网址 领域 规模
-		@RequestMapping("UpdateCompanys")
-		public String updateCompanys(String caddress,String curl,String cfield,String cscale,int cid) {
-			int row=this.service.updateCompanys(caddress, curl, cfield, cscale,cid);
-			return "redirect:tomyhome.controller";
-		}
-		//去公司认证页面
-		@RequestMapping("toauth")
-		public String toauth() {
+		
+		
+		
+//		session.setAttribute("occ", zuhe);
+//		Occupation occ = new Occupation();
+//		occ.setOmaxsalary(zuhe.getOccupation().getOmaxsalary());
+//		occ.setOminsalary(zuhe.getOccupation().getOminsalary());
+//		ZuHe attribute = (ZuHe)session.getAttribute("zuhe");
+//		System.out.println(occ+"-------------------");
+//		attribute.setOccupation(occ);
+//		attribute.setOcity(zuhe.getOcity());
+//		attribute.setOlog(zuhe.getOlog());
+//		
+//		session.setAttribute("occ", attribute);
+		
+//		session.removeAttribute("occ");
+//		Map<String,Object> map = new HashMap<String,Object>();
+//		map.put("zuhe1", zuhe.getOlog());
+		
+		int PageSize = 10;
+		int PageNum = 1;
+//		zuhela = new ZuHe();
+////		session.setAttribute("zuhe", zuhe);
+//		int zhi = (int)((zuhe.getOccupation().getOmaxsalary())*10);
+//		String zhi1 = zhi+"";
+//		int zhi2 = (int)((zuhe.getOccupation().getOminsalary())*10);
+//		String zhi22 = zhi+"";
+//		System.out.println(zuhe.getOccupation().getOmaxsalary()+"============="+zuhe.getOccupation().getOminsalary());
+//		System.out.println(zhi+"================"+zhi22);
+//		Occupation occ = new Occupation();
+//		if(zhi1 !="0" && zhi22!="0") {
+//			occ.setOmaxsalary(zuhe.getOccupation().getOmaxsalary());
+//			occ.setOminsalary(zuhe.getOccupation().getOminsalary());
+//		}else {
+//			occ.setOmaxsalary(0);
+//			occ.setOminsalary(0);
+//		}
+//		
+//		zuhela.setOccupation(occ);
+//		zuhela.setOlog(zuhe.getOlog());
+//		zuhela.setEname(zuhe.getEname());
+//		zuhela.setOcity(zuhe.getOcity());
+//		System.out.println("我是组合啦"+zuhela);
+		//System.err.println("???????????????????========"+zuhe);
+//		PageInfo<Company> querytoZuhe = service.querytoZuhe(attribute, PageSize, PageNum);
+//		List<Company> querytoZuhes=querytoZuhe.getList();
+//		for(Company c:querytoZuhes) {
+//			System.err.println("========================>"+c);
+//			
+//		}
+		session.setAttribute("zuhe", zuhe);
+		
+		//System.err.println(this.service.querytoZuhe(zuhe, PageSize, PageNum));
+		
+		return this.service.querytoZuhe(zuhe, PageSize, PageNum);
+	}
 
-			return "main/auth";
-		}
+	// 公司页面的公司简称 介绍的修改
+	@RequestMapping("UpdateCompany")
+	public String updateCompany(String cabbreviation, String cdetail, int cid) {
+		System.err.println("=======================>" + cabbreviation + "+" + cdetail + "+" + cid);
+		int row = this.service.UpdateCompanyById(cabbreviation, cdetail, cid);
+		return "redirect:tomyhome.controller";
+	}
+
+	// 公司页面修改公司简介
+	@RequestMapping("UpdateCompanyProfiles")
+	public String UpdateCompanyProfiles(int cid, String companyProfile) {
+		int row = this.service.updateCompanyProfile(companyProfile, cid);
+		return "redirect:tomyhome.controller";
+	}
+
+	// 公司页面修改 地址 网址 领域 规模
+	@RequestMapping("UpdateCompanys")
+	public String updateCompanys(String caddress, String curl, String cfield, String cscale, int cid) {
+		int row = this.service.updateCompanys(caddress, curl, cfield, cscale, cid);
+		return "redirect:tomyhome.controller";
+	}
+
+	// 去公司认证页面
+	@RequestMapping("toauth")
+	public String toauth() {
+
+		return "main/auth";
+	}
 }

@@ -154,8 +154,10 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 	@Override
 	public PageInfo<Company> querytoZuhe(ZuHe zuhe, int PageSize, int PageNum) {
-		
-		return null;
+		PageHelper.startPage(PageNum, PageSize);
+		List<Company> list = mapper.querytoZuhe(zuhe);
+		PageInfo<Company> pageInfo = new PageInfo<>(list);
+		return pageInfo;
 	}
 	
 	@Override

@@ -15,6 +15,8 @@ public class ZuHe {
 	private int orelease;
 	private String oname;
 	private String ocity;
+	private Founder founder;
+	private Company company;
 	//a
 
 }
