@@ -229,6 +229,18 @@ var youdao_conv_id = 271546;
     					}else {
     						eduction = "其它";
     					}
+    					var jlzt = "";
+//     					alert(item.companyresume.ctext);
+//     					alert(item.eclosure.esurename);
+    					if(item.companyresume.ctext=="1"){
+//     						alert("111");
+    						jlzt = item.eclosure.esurename;
+    					}else{
+//     						alert("000");
+    						jlzt = "doCheckView.controller?userid="+item.companyresume.cuser.userid;
+    					}
+    					
+    					
     					
 						html+="<li data-id='1686182' class='onlineResume' id='"+item.companyresume.crid+"'>"
 				                        +"<label class='checkbox'>"
@@ -241,7 +253,7 @@ var youdao_conv_id = 271546;
 				                        +"</a>"
 				                        +"<div class='resumeIntro'>"
 				                            +"<h3 class='unread'>"
-												+"<a target='_blank' title='预览"+item.companyresume.cuser.username +"的简历' href='resumeView.html?deliverId=1686182'>"+item.companyresume.cuser.username +"的简历</a>"
+												+"<a target='_blank' title='预览"+item.companyresume.cuser.username +"的简历' href='"+jlzt+"'>"+item.companyresume.cuser.username +"的简历</a>"
 				                            	+"<em></em>"
 				                            +"</h3>" 
 				                            +"<span class='fr'>投递时间："+d+"</span>"
@@ -362,12 +374,12 @@ var youdao_conv_id = 271546;
 				                                    <i></i>
 				                                </label>
 				                                <div class="resumeShow">
-				                                	<a title="预览在线简历" target="_blank" class="resumeImg" href="resumeView.html?deliverId=1686182">
+				                                	<a title="预览简历" target="_blank" class="resumeImg" href="resumeView.html?deliverId=1686182">
 				                                    	<img src="style/images/default_headpic.png">
 				                                    </a>
 				                                    <div class="resumeIntro">
 				                                        <h3 class="unread">
-															<a target="_blank" title="预览jason的简历" href="resumeView.html?deliverId=1686182">${item.companyresume.cuser.username }的简历</a>
+															<a target="_blank" title="预览jason的简历" <c:if test="${item.companyresume.ctext eq '1' }">href="${item.eclosure.esurename }"</c:if><c:if test="${item.companyresume.ctext eq '0' }">href="doCheckView.controller?userid=${item.companyresume.cuser.userid }"</c:if> >${item.companyresume.cuser.username }的简历</a>
 				                                        	<em></em>
 				                                        </h3> 
 				                                        <span class="fr">投递时间：<fmt:formatDate value="${item.companyresume.ctouditime }" pattern="yyyy-MM-dd HH:mm:ss"/></span>
