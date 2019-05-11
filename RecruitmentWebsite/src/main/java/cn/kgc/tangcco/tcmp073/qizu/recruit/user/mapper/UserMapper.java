@@ -42,6 +42,8 @@ public interface UserMapper {
 	@Select(value="select * from recruitingusers where email=#{email}")
 	RecruitingUsers queryUserByEmail(@Param("email")String email);
 	
+	@Select("select * from RecruitingUsers where userid=#{userid}")
+	RecruitingUsers queryRecruitingUsers(@Param("userid")Integer userid);
 	//
 	@Insert("insert into eclosure values(default,#{esc.esurename},#{esc.euid})")
 	int addEclosure(@Param("esc")Eclosure esure);

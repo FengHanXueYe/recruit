@@ -120,6 +120,11 @@ public class UserServiceImpl implements UserService {
 		return userMapper.updateEclosure(eclosure);
 	}
 
+	@Override
+	public RecruitingUsers queryRecruitingUsers(Integer userid) {
+		return userMapper.queryRecruitingUsers(userid);
+	}
+
 	/**
 	 * 啊实打实
 	 */

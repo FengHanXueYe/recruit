@@ -23,6 +23,8 @@ public interface UserService {
 	
 	RecruitingUsers detailRecruitingUsers(Integer userid);
 	
+	RecruitingUsers queryRecruitingUsers(Integer userid);
+	
 	int updateTime(Integer userid);
 	
 	RecruitingUsers queryUserByEmail(String email);
