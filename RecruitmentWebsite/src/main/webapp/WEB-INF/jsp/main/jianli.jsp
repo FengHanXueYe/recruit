@@ -2104,16 +2104,18 @@ function updatepictureuser(file){
 				
             		<h2>我的附件简历 
             		
+            		
             			            			<a title="上传附件简历" href="#uploadFile" class="inline cboxElement">上传简历</a>
+            			            			<c:if test="${!empty fNameLiJin }"><a href="${fNameLiJin }">预览&nbsp;&nbsp;&nbsp;</a></c:if>
             			            		</h2>
             		<div class="resumeUploadDiv">
 	            			            		<span></span>
 	            		            		</div>
             	</div><!--end #myResume-->
 
-            	<div class="mycenterR" id="resumeSet">
+            	<!-- <div class="mycenterR" id="resumeSet">
             		<h2>投递简历设置  <span>修改设置</span></h2>
-            		<!-- -1 (0=附件， 1=在线， 其他=未设置) -->
+            		-1 (0=附件， 1=在线， 其他=未设置)
             		            		            			<div class="noSet set0 dn">默认使用<span>附件简历</span>进行投递</div>
             			<div class="noSet set1 dn">默认使用<span>在线简历</span>进行投递</div>
 						<div class="noSet">暂未设置默认投递简历</div>
@@ -2126,7 +2128,7 @@ function updatepictureuser(file){
 	            		<input type="submit" value="保 存" class="btn_profile_save">
 						<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            	</form>
-            	</div><!--end #resumeSet-->
+            	</div> --><!--end #resumeSet-->
 				
 				<div class="mycenterR" id="myShare">
             		<h2>当前每日投递量：10个</h2>
@@ -2142,7 +2144,18 @@ function updatepictureuser(file){
         </div>
         
       <input type="hidden" id="userid" name="userid" value="314873">
-
+<script type="text/javascript">
+	$(function(){
+		$("#wenjianshangchuan").submit(function(){
+			var fileZhi = $("#wenjianshangchuan input[name='file']").val();
+			if(fileZhi==""){
+				mizhu.alert('提示', '请选择上传的文件','alert_blue');
+				return false;
+			}
+			return true;
+		})
+	})
+</script>
 <!-------------------------------------弹窗lightbox ----------------------------------------->
 <div style="display:none;">
 	<!-- 上传简历 -->
@@ -2152,7 +2165,7 @@ function updatepictureuser(file){
 	        	<td align="center">
 	        	  
 	        	<form action="upload.controller"
-      method="post" enctype="multipart/form-data">
+      method="post" id="wenjianshangchuan" enctype="multipart/form-data">
     选择文件:<input type="file" name="file" width="120px"> <input
         type="submit" value="上传">
 </form>
@@ -2312,7 +2325,7 @@ $(function(){
 
 <!--  -->
 
-<script type="text/javascript">
+ <script type="text/javascript">
 /* function jianli(){
 	alert("asdasd");
 	//action="doUpdateResumename.controller" method="post"
