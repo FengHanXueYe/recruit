@@ -23,5 +23,8 @@ public class CoRe {
 	private Selfdescription selfdescription;
 	private Worksdisplay worksdisplay;
 	
+	private Eclosure eclosure;
+	
+	
 }
 
