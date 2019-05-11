@@ -95,6 +95,12 @@ var youdao_conv_id = 271546;
     					var d = date.getFullYear() + "-" + (Number(date.getMonth())+Number(1)) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     					var date1 = new Date(item.deliverypost.dxytime);
     					var ffff = date1.getFullYear() + "-" + (Number(date1.getMonth())+Number(1)) + "-" + date1.getDate() + " " + date1.getHours() + ":" + date1.getMinutes() + ":" + date1.getSeconds();
+    					var jlqf = "";
+    					if(item.deliverypost.texttz=="1"){
+    						jlqf = "附件简历";
+    					}else{
+    						jlqf = "在线简历";
+    					}
     					html+="<li><div class='d_item'>"
 		                          	+"<h2 title='随便写'>"
 		    							+"<a target='_blank' href='http://www.lagou.com/jobs/149594.html'>"
@@ -107,7 +113,7 @@ var youdao_conv_id = 271546;
 		    						+"</a>"
 		    						+"<span class='d_time'>"+item.deliverypost.occupation.orelease+"</span>"
 		    						+"<div class='clear'></div>"
-		    						+"<div class='d_resume'>使用简历:<span>在线简历</span>"
+		    						+"<div class='d_resume'>使用简历:<span>"+jlqf+"</span>"
 		    						
 									if(item.deliverypost.dstatus==5){
 		    							
@@ -295,8 +301,11 @@ var youdao_conv_id = 271546;
 	                                    <div class="d_resume">
 	                                    	使用简历：
 	                                    	<span>
-	                                    	                                        		在线简历
-                                        		                                    	</span>
+	                                    	<c:if test="${item.deliverypost.texttz eq '1' }">附件简历</c:if>
+	                                    	<c:if test="${item.deliverypost.texttz eq '0' }">在线简历</c:if>
+	                                    	
+	                                    	
+	                                    	</span>
 	                                    </div>
 	                                    	                                    	<a class="btn_showprogress" href="javascript:;">
 	                                    			                                    			<c:if test="${item.deliverypost.dstatus eq '5' }">投递成功</c:if>

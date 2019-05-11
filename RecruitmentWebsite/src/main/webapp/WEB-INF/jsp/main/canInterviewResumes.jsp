@@ -112,7 +112,7 @@ var youdao_conv_id = 271546;
                     </dt>
                     <dd>
                     	<form action="canInterviewResumes.html" method="get" id="filterForm">
-	                    			                    	<div class="filter_actions">
+	                    			                    	<!-- <div class="filter_actions">
 		                        	<label class="checkbox">
 		                        		<input type="checkbox">
 		                                <i></i>
@@ -120,7 +120,7 @@ var youdao_conv_id = 271546;
 		                            <span>全选</span>
 		                        	<a id="resumeRefuseAll" href="javascript:;">待处理简历</a>
 		                            <div id="filter_btn" class="">筛选简历 <em class=""></em></div>
-		                        </div><!-- end .filter_actions -->
+		                        </div> --><!-- end .filter_actions -->
 		                        <div class="filter_options  dn " style="display: none;">
  	<dl>
      	<dt>简历状态：</dt>
@@ -240,11 +240,13 @@ var youdao_conv_id = 271546;
     						jlzt = "doCheckView.controller?userid="+item.companyresume.cuser.userid;
     					}
     					
+    					//alert(item.companyresume.cuser.userid);
     					
+    					/* +"<label class='checkbox'>"
+                        +"<input type='checkbox'>" */
     					
 						html+="<li data-id='1686182' class='onlineResume' id='"+item.companyresume.crid+"'>"
-				                        +"<label class='checkbox'>"
-				                        +"<input type='checkbox'>"
+				                        
 				                        +"<i></i>"
 				                    +"</label>"
 				                    +"<div class='resumeShow'>"
@@ -258,7 +260,7 @@ var youdao_conv_id = 271546;
 				                            +"</h3>" 
 				                            +"<span class='fr'>投递时间："+d+"</span>"
 				                            +"<div>" 
-				                            	+item.companyresume.cuser.username + "/ "+item.eb.ename+"/ "+gender+"/ "+eduction+"/ "+item.companyresume.cuser.userlog+"/ "+item.companyresume.occupation.oaddress+"/ "+item.eb.ename 
+				                            	+item.companyresume.cuser.username + "/ "+item.eb.ename+"/ "+gender+"/ "+eduction+"/ "+item.companyresume.cuser.userlog+"年/ "+item.companyresume.occupation.oaddress+"/ "+item.eb.ename 
 				                            +"</div>"
 				                            +"<div class='jdpublisher'>"
 				                                +"<span>"
@@ -369,8 +371,8 @@ var youdao_conv_id = 271546;
  									
  										<c:forEach items="${queryAllCompanyresume }" var="item">
 			                        		<li data-id="1686182" class="onlineResume" id="${item.companyresume.crid }">
-				                                <label class="checkbox">
-				                                    <input type="checkbox">
+				                                <!-- <label class="checkbox">
+				                                    <input type="checkbox"> -->
 				                                    <i></i>
 				                                </label>
 				                                <div class="resumeShow">
@@ -379,7 +381,7 @@ var youdao_conv_id = 271546;
 				                                    </a>
 				                                    <div class="resumeIntro">
 				                                        <h3 class="unread">
-															<a target="_blank" title="预览jason的简历" <c:if test="${item.companyresume.ctext eq '1' }">href="${item.eclosure.esurename }"</c:if><c:if test="${item.companyresume.ctext eq '0' }">href="doCheckView.controller?userid=${item.companyresume.cuser.userid }"</c:if> >${item.companyresume.cuser.username }的简历</a>
+															<a target="_blank" title="预览${item.companyresume.cuser.username }的简历" <c:if test="${item.companyresume.ctext eq '1' }">href="${item.eclosure.esurename }"</c:if><c:if test="${item.companyresume.ctext eq '0' }">href="doCheckView.controller?userid=${item.companyresume.cuser.userid }"</c:if> >${item.companyresume.cuser.username }的简历${item.companyresume.cuser.userid }</a>
 				                                        	<em></em>
 				                                        </h3> 
 				                                        <span class="fr">投递时间：<fmt:formatDate value="${item.companyresume.ctouditime }" pattern="yyyy-MM-dd HH:mm:ss"/></span>

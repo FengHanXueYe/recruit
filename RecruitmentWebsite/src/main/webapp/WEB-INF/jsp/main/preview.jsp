@@ -49,12 +49,12 @@ $(function(){
             <div class="profile_box" id="basicInfo">
                 <h2>基本信息</h2>
                 <div class="basicShow">
-                		<span><c:if test="${!empty loginUser.username }">${loginUser.username } |</c:if>
-            			            			<c:if test="${!empty loginUser.gender}"><c:if test="${loginUser.gender eq '2' }">男</c:if><c:if test="${loginUser.gender eq '1' }">女</c:if> |</c:if>
-            			            			<c:if test="${!empty loginUser.education }"><c:if test="${loginUser.education eq '1'}">大专</c:if><c:if test="${loginUser.education eq '2'}">本科</c:if><c:if test="${loginUser.education eq '3'}">硕士</c:if><c:if test="${loginUser.education eq '4'}">博士</c:if><c:if test="${loginUser.education eq '5'}">其它</c:if> |</c:if>
-            			            			<c:if test="${!empty loginUser.userlog }"><c:if test="${loginUser.userlog eq '1'}">应届毕业生</c:if><c:if test="${loginUser.userlog eq '2'}">1年</c:if><c:if test="${loginUser.userlog eq '3'}">2年</c:if><c:if test="${loginUser.userlog eq '4'}">3年</c:if><c:if test="${loginUser.userlog eq '5'}">4年</c:if><c:if test="${loginUser.userlog eq '6'}">5年</c:if><c:if test="${loginUser.userlog eq '7'}">6年</c:if><c:if test="${loginUser.userlog eq '8'}">7年</c:if><c:if test="${loginUser.userlog eq '9'}">8年</c:if><c:if test="${loginUser.userlog eq '10'}">9年</c:if><c:if test="${loginUser.userlog eq '11'}">10年</c:if><c:if test="${loginUser.userlog eq '12'}">10年以上</c:if> |<br></c:if>
-            			            			<c:if test="${!empty loginUser.telephone }">${loginUser.telephone } |</c:if>
-            			            			  ${loginUser.email }<br>
+                		<span><c:if test="${!empty userP.username }">${userP.username } |</c:if>
+            			            			<c:if test="${!empty userP.gender}"><c:if test="${userP.gender eq '2' }">男</c:if><c:if test="${userP.gender eq '1' }">女</c:if> |</c:if>
+            			            			<c:if test="${!empty userP.education }"><c:if test="${userP.education eq '1'}">大专</c:if><c:if test="${userP.education eq '2'}">本科</c:if><c:if test="${userP.education eq '3'}">硕士</c:if><c:if test="${userP.education eq '4'}">博士</c:if><c:if test="${userP.education eq '5'}">其它</c:if> |</c:if>
+            			            			<c:if test="${!empty userP.userlog }"><c:if test="${userP.userlog eq '1'}">应届毕业生</c:if><c:if test="${userP.userlog eq '2'}">1年</c:if><c:if test="${userP.userlog eq '3'}">2年</c:if><c:if test="${userP.userlog eq '4'}">3年</c:if><c:if test="${userP.userlog eq '5'}">4年</c:if><c:if test="${userP.userlog eq '6'}">5年</c:if><c:if test="${userP.userlog eq '7'}">6年</c:if><c:if test="${userP.userlog eq '8'}">7年</c:if><c:if test="${userP.userlog eq '9'}">8年</c:if><c:if test="${userP.userlog eq '10'}">9年</c:if><c:if test="${userP.userlog eq '11'}">10年</c:if><c:if test="${userP.userlog eq '12'}">10年以上</c:if> |<br></c:if>
+            			            			<c:if test="${!empty userP.telephone }">${userP.telephone } |</c:if>
+            			            			  ${userP.email }<br>
             			</span>
                    <!-- <span>jason | 
                     男 |                     大专 |                                       		3年工作经验
@@ -65,11 +65,11 @@ $(function(){
             		</span> -->
            			<div class="m_portrait">
                     	<div></div>
-                    	<c:if test="${empty loginUser.userpicture }">
+                    	<c:if test="${empty userP.userpicture }">
 	                    		<img width="120" height="120" alt="jason" src="style/images/default_headpic.png">
 	                    	</c:if>
-	                    	<c:if test="${!empty loginUser.userpicture }">
-	                    		<img width="120" height="120" alt="jason" src="${loginUser.userpicture }">
+	                    	<c:if test="${!empty userP.userpicture }">
+	                    		<img width="120" height="120" alt="jason" src="${userP.userpicture }">
 	                    	</c:if>
                     </div>
                 </div><!--end .basicShow-->
