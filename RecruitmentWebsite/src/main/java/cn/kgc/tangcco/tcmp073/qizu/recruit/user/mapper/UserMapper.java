@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import cn.kgc.tangcco.tcmp073.qizu.entity.Eclosure;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 /**
  * 用户dao接口
@@ -40,6 +41,27 @@ public interface UserMapper {
 	
 	@Select(value="select * from recruitingusers where email=#{email}")
 	RecruitingUsers queryUserByEmail(@Param("email")String email);
+	
+	//
+	@Insert("insert into eclosure values(default,#{esc.esurename},#{esc.euid})")
+	int addEclosure(@Param("esc")Eclosure esure);
+	
+	/**
+	 * 增加简历
+	 * @param userid
+	 * @return
+	 */
+	@Select("select * from Eclosure where euid=#{userid}")
+	Eclosure queryescName(@Param("userid")Integer userid);
+	
+	/**
+	 * 修改简历
+	 * @param eclosure
+	 * @return
+	 */
+	@Update("update Eclosure set esurename=#{esure.esurename} where euid=#{esure.euid}")
+	int updateEclosure(@Param("esure")Eclosure eclosure);
+	
 	
 	
 }

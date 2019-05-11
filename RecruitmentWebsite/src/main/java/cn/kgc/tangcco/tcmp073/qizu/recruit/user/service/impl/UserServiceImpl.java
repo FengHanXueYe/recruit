@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import cn.kgc.tangcco.tcmp073.qizu.entity.Eclosure;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.company.mapper.CompanyMapper;
 import cn.kgc.tangcco.tcmp073.qizu.recruit.founder.mapper.FounderMapper;
@@ -81,8 +82,24 @@ public class UserServiceImpl implements UserService {
 		return userMapper.queryUserByEmail(email);
 	}
 
+	@Override
+	public int addEclosure(Eclosure esure) {
+		return userMapper.addEclosure(esure);
+	}
+
+	@Override
+	public Eclosure queryescName(Integer userid) {
+		return userMapper.queryescName(userid);
+	}
+
+	@Override
+	public int updateEclosure(Eclosure eclosure) {
+		return userMapper.updateEclosure(eclosure);
+	}
+
 	/**
 	 * 啊实打实
 	 */
+	
 
 }

@@ -1,5 +1,6 @@
 package cn.kgc.tangcco.tcmp073.qizu.recruit.user.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.kgc.tangcco.tcmp073.qizu.entity.Company;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Corporate;
+import cn.kgc.tangcco.tcmp073.qizu.entity.Eclosure;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Educationalbackground;
 import cn.kgc.tangcco.tcmp073.qizu.entity.HopeJob;
 import cn.kgc.tangcco.tcmp073.qizu.entity.Occupation;
@@ -161,6 +163,7 @@ public class MainController {
 		/* 储存教育背景 */
 		
 		
+		
 		Integer jindutiao=0;
 		
 		if (attribute != null) {
@@ -201,6 +204,21 @@ public class MainController {
 			// System.err.println(queryWorksdisplay.getWlink());
 			// System.out.println("-------------------------------");
 			// System.err.println(ss.querySelfdescription(attribute.getUserid()).getSdescription());
+		
+		
+			Eclosure queryescName = userService.queryescName(attribute.getUserid());
+			if(queryescName!=null) {
+				String escName = queryescName.getEsurename();
+			    int  wenjianming=escName.lastIndexOf('=');
+			    int  lujin=escName.lastIndexOf('\\');
+			    int  lujin1=escName.lastIndexOf('\\', lujin-1);
+			    String fName = escName.substring(wenjianming+1);
+			    String fNameLiJin = escName.substring(lujin1+1);
+			    System.err.println(fName);
+			    model.addAttribute("escname",fName); //文件名
+			    model.addAttribute("fNameLiJin",fNameLiJin); //路径
+			}
+		    
 		}
 		return "main/jianli";
 	}

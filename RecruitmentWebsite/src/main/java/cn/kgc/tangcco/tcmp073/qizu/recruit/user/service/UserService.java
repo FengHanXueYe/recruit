@@ -4,6 +4,9 @@ package cn.kgc.tangcco.tcmp073.qizu.recruit.user.service;
 
 
 
+import org.apache.ibatis.annotations.Param;
+
+import cn.kgc.tangcco.tcmp073.qizu.entity.Eclosure;
 import cn.kgc.tangcco.tcmp073.qizu.entity.RecruitingUsers;
 
 public interface UserService {
@@ -24,5 +27,9 @@ public interface UserService {
 	
 	RecruitingUsers queryUserByEmail(String email);
 	
+	int addEclosure(Eclosure esure);
 	
+	Eclosure queryescName(Integer userid);
+	
+	int updateEclosure(Eclosure eclosure);
 }
