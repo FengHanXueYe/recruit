@@ -11,7 +11,7 @@ import cn.kgc.tangcco.tcmp073.qizu.entity.Companyresume;
 import cn.kgc.tangcco.tcmp073.qizu.entity.CpCy;
 
 public interface CompanyresumeMapper {
-	@Insert("insert into Companyresume value(null,#{cr.company.cid},#{cr.occupation.oid},#{cr.cuser.userid},#{cr.dstatus},default,null,NOW())")
+	@Insert("insert into Companyresume value(null,#{cr.company.cid},#{cr.occupation.oid},#{cr.cuser.userid},#{cr.dstatus},default,#{cr.ctext},NOW())")
 	int addCompanyresume(@Param("cr")Companyresume cr);
 	
 	int updateCompanyresume(@Param("cr")Companyresume cr);
