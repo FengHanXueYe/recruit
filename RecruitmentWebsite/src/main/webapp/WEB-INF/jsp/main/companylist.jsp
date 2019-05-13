@@ -44,7 +44,8 @@ var youdao_conv_id = 271546;
 </head>
 <body>
 <div id="body">
-	<div id="header">
+	<jsp:include page="/mainjsp/daohang/daohang.jsp"></jsp:include>
+	<%-- <div id="header">
     	<div class="wrapper">
     		<a href="index.html" class="logo">
     			<img src="style/images/logo.png" width="229" height="43" alt="拉勾招聘-专注互联网招聘" />
@@ -52,7 +53,7 @@ var youdao_conv_id = 271546;
     		<ul class="reset" id="navheader">
     			<li ><a href="toIndex.controller">首页</a></li>
     			<li class="current"><a href="queryListCompany.controller" >公司</a></li>
-    			<li ><a href="h/toForum.html" target="_blank">论坛</a></li>
+    			<!-- <li ><a href="h/toForum.html" target="_blank">论坛</a></li> -->
     				    			<li ><a href="jianli.html" rel="nofollow">我的简历</a></li>
 	    							    			<li ><a href="tocreate.controller" rel="nofollow">发布职位</a></li>
 	    		    		</ul>
@@ -70,7 +71,7 @@ var youdao_conv_id = 271546;
             	<li><a href="register.html" rel="nofollow">注册</a></li>
             </ul> -->
                                 </div>
-    </div><!-- end #header -->
+    </div> --%><!-- end #header -->
     <div id="container">
         
         <div class="clearfix">

@@ -334,7 +334,7 @@ public class CompanyController {
 		session.setAttribute("limitcfield", cfield);
 		PageInfo<Company> list = this.service.queryListCompanylimit(ocity, cfs, cfield, 1, 1);
 		session.setAttribute("PageNum", list.getPageNum());
-		int PageSize = 1, PageNum = 1;
+		int PageSize = 9, PageNum = 1;
 
 		return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize, PageNum);
 
@@ -347,7 +347,7 @@ public class CompanyController {
 		String ocity = (String) session.getAttribute("limitocity");
 		String cfs = (String) session.getAttribute("limitcfs");
 		String cfield = (String) session.getAttribute("limitcfield");
-		int PageSize = 1;
+		int PageSize = 9;
 		session.setAttribute("aaaa", "you");
 		session.setAttribute("pagenum", PageNum2);
 		return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize, PageNum2);
@@ -361,7 +361,7 @@ public class CompanyController {
 		String ocity = (String) session.getAttribute("limitocity");
 		String cfs = (String) session.getAttribute("limitcfs");
 		String cfield = (String) session.getAttribute("limitcfield");
-		int PageSize = 1;
+		int PageSize = 9;
 		int PageNum2;
 		int pageNum;
 		String pagenum = (String) session.getAttribute("aaaa");
