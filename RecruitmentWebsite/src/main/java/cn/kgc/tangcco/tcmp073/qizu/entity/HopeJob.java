@@ -14,4 +14,5 @@ public class HopeJob {
 		private String hname;
 		private double hmoney;
 		private Integer huserid;
+		
 }
