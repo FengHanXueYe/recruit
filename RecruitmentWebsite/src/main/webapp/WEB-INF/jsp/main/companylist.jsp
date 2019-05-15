@@ -784,11 +784,11 @@ $(function(){
 		
 	})
 	$(".limita").click(function(){
-		var num=$(this).attr("num")
+		var num=$(this).attr("num");
 		alert(num);
 		$.ajax({
 			  type:"post",
-			  url:"queryListCompanyLimits.controller",
+			  url:"qeryxuheControllers.controller",
 			  data:{"PageNum":num},
 			  success:function(returnData){
 				  	$(".hdiv").html("");

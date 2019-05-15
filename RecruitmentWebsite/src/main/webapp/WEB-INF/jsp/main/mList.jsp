@@ -583,8 +583,7 @@ var youdao_conv_id = 271546;
 	                		                	            </ul>
 	            
 	            <form id="searchForm"></form>
-	                                <div class="Pagination myself"><a title="1" >首页</a><span title="上一页" class="disabled">上一页 </span><span title="1" class="current">1</span><a title="2" >2</a><a title="3" >3</a><a title="4" >4</a><a title="5" >5</a><a title="2" >下一页 </a><a title="7" >尾页</a></div>
-                            </div>	
+	                             
             <div class="content_r">
             	<div class="subscribe_side">
 	            	<a target="_blank" href="toListsubscribe.controller">

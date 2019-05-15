@@ -353,6 +353,16 @@ public class CompanyController {
 		return this.service.queryListCompanylimit(ocity, cfs, cfield, PageSize, PageNum2);
 
 	}
+	@ResponseBody
+	@RequestMapping("qeryxuheControllerss")
+	public PageInfo<Company> queryzuhe3(int PageNum2, HttpSession session) {
+		ZuHe zuhe = (ZuHe)session.getAttribute("zuhe");
+		int PageSize = 2;
+		session.setAttribute("aaaa", "you");
+		session.setAttribute("pagenum", PageNum2);
+		return this.service.querytoZuhe(zuhe, PageSize, PageNum2);
+
+	}
 
 	// 上下页
 	@ResponseBody
@@ -391,77 +401,52 @@ public class CompanyController {
 
 	
 	public static ZuHe zuhela;
+	@ResponseBody
+	@RequestMapping("qeryxuheControllers")
+	public PageInfo<Company> queryzuhe2(int PageNum, HttpSession session) {
+		ZuHe zuhe = (ZuHe)session.getAttribute("zuhe");
+		int PageSize = 2;
+		int PageNum2;
+		int pageNum;
+		String pagenum = (String) session.getAttribute("aaaa");
+		if (pagenum == null) {
+			pageNum = 1;
+		} else {
+			pageNum = (int) session.getAttribute("pagenum");
+			System.err.println("=====================>" + pageNum);
+		}
+		PageInfo<Company> list = this.service.querytoZuhe(zuhe, PageSize, pageNum);
+		if (PageNum == 1) {
+			PageNum2 = 1;
+		} else if (PageNum == 2) {
+			PageNum2 = list.getPrePage();
+			session.setAttribute("aaaa", "you");
+			session.setAttribute("pagenum", list.getPageNum() - 1);
+		} else if (PageNum == 3) {
+			PageNum2 = list.getNextPage();
+			session.setAttribute("aaaa", "you");
+			session.setAttribute("pagenum", list.getPageNum() + 1);
+		} else {
+			PageNum2 = list.getPages();
+		}
+		System.err.println(service.querytoZuhe(zuhe, PageSize, PageNum));
+		return this.service.querytoZuhe(zuhe, PageSize, PageNum2);
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping("qeryxuheController")
 	public PageInfo<Company> queryzuhe(Model model, ZuHe zuhe, HttpSession session) {
-		System.err.println("=============================>" + zuhe);
+		session.setAttribute("zuhe",zuhe);
 		ZuHe attribute = (ZuHe)session.getAttribute("zuhe");
+		PageInfo<Company> list = this.service.querytoZuhe(zuhe, 1, 1);
+		session.setAttribute("PageNum", list.getPageNum());
+		 
 		System.out.println("+++++++++++++++++++++>"+attribute);
-		if(attribute!=null) {
-			
 		
-		if(attribute.getOcity()!=null&&zuhe.getOcity()==null) {
-			System.err.println("+++++++++++++++++++++>1"+attribute.getOcity());
-			zuhe.setOcity(attribute.getOcity());
-			System.err.println("+++++++++++++++++++++>2"+zuhe.getOcity());
-		}
-		}
-		
-		
-		
-		
-//		session.setAttribute("occ", zuhe);
-//		Occupation occ = new Occupation();
-//		occ.setOmaxsalary(zuhe.getOccupation().getOmaxsalary());
-//		occ.setOminsalary(zuhe.getOccupation().getOminsalary());
-//		ZuHe attribute = (ZuHe)session.getAttribute("zuhe");
-//		System.out.println(occ+"-------------------");
-//		attribute.setOccupation(occ);
-//		attribute.setOcity(zuhe.getOcity());
-//		attribute.setOlog(zuhe.getOlog());
-//		
-//		session.setAttribute("occ", attribute);
-		
-//		session.removeAttribute("occ");
-//		Map<String,Object> map = new HashMap<String,Object>();
-//		map.put("zuhe1", zuhe.getOlog());
-		
-		int PageSize = 10;
+		int PageSize = 2;
 		int PageNum = 1;
-//		zuhela = new ZuHe();
-////		session.setAttribute("zuhe", zuhe);
-//		int zhi = (int)((zuhe.getOccupation().getOmaxsalary())*10);
-//		String zhi1 = zhi+"";
-//		int zhi2 = (int)((zuhe.getOccupation().getOminsalary())*10);
-//		String zhi22 = zhi+"";
-//		System.out.println(zuhe.getOccupation().getOmaxsalary()+"============="+zuhe.getOccupation().getOminsalary());
-//		System.out.println(zhi+"================"+zhi22);
-//		Occupation occ = new Occupation();
-//		if(zhi1 !="0" && zhi22!="0") {
-//			occ.setOmaxsalary(zuhe.getOccupation().getOmaxsalary());
-//			occ.setOminsalary(zuhe.getOccupation().getOminsalary());
-//		}else {
-//			occ.setOmaxsalary(0);
-//			occ.setOminsalary(0);
-//		}
-//		
-//		zuhela.setOccupation(occ);
-//		zuhela.setOlog(zuhe.getOlog());
-//		zuhela.setEname(zuhe.getEname());
-//		zuhela.setOcity(zuhe.getOcity());
-//		System.out.println("我是组合啦"+zuhela);
-		//System.err.println("???????????????????========"+zuhe);
-//		PageInfo<Company> querytoZuhe = service.querytoZuhe(attribute, PageSize, PageNum);
-//		List<Company> querytoZuhes=querytoZuhe.getList();
-//		for(Company c:querytoZuhes) {
-//			System.err.println("========================>"+c);
-//			
-//		}
-		session.setAttribute("zuhe", zuhe);
-		
-		//System.err.println(this.service.querytoZuhe(zuhe, PageSize, PageNum));
-		
+		System.err.println(service.querytoZuhe(zuhe, PageSize, PageNum));
 		return this.service.querytoZuhe(zuhe, PageSize, PageNum);
 	}
 

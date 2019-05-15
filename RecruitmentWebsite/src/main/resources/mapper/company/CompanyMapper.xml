@@ -149,9 +149,10 @@
 		<if test="zuhe.ocity!=null and zuhe.ocity!=''">
 		AND o.ocity=#{zuhe.ocity}
 		</if>
-		<if test="zuhe.orelease!=null and zuhe.orelease>0">
-		 AND DATEDIFF(zuhe.orelease,NOW())&lt;=0 AND
-		DATEDIFF(zuhe.orelease,NOW())&gt;#{zuhe.orelease}
+		 <if test="zuhe.orelease!=null and zuhe.orelease>0">
+		 AND
+		DATEDIFF(o.orelease,NOW())<![CDATA[ <= ]]>0 AND
+		DATEDIFF(o.orelease,NOW())<![CDATA[ > ]]>#{zuhe.orelease}
 		</if>
 		 
 
