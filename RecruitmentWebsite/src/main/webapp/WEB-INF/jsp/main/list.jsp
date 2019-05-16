@@ -564,7 +564,7 @@
 				} */
 				
 				$(function(){
-					alert(6);
+					
 					$(".limita").click(function(){
 						
 						var num = $(this).attr("num")

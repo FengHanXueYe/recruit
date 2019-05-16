@@ -45,7 +45,7 @@ var youdao_conv_id = 271546;
     		<ul id="navheader" class="reset">
     			<li><a href="toIndex.controller">首页</a></li>
     			<li class="current"><a href="queryListCompany.controller">公司</a></li>
-    			<li><a target="_blank" href="">论坛</a></li>
+    			<!-- <li><a target="_blank" href="">论坛</a></li> -->
     				    			<li>
 	    				<a rel="nofollow" href="">简历管理</a>
 	    					    			</li>
@@ -621,7 +621,7 @@ var youdao_conv_id = 271546;
 			
 		})
 		$("#btn_smalls").click(function(){
-			alert("12");
+			/* alert("12"); */
 			$(".productForms").submit();
 		})
 		
@@ -630,11 +630,11 @@ var youdao_conv_id = 271546;
 		})
 		
 		$("#submitFeatures").click(function(){
-			alert("1");
+			/* alert("1"); */
 			$("#tagFormss").submit();
 		})
 		$("#founders").click(function(){
-			alert("1s")
+			/* alert("1s") */
 			$("#memberForm").submit();
 		})
 		

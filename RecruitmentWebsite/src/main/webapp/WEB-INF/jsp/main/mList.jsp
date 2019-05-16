@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+2<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 ﻿<!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb"><head>
 </script><script type="text/javascript" async="" src="style/js/conversion.js"></script><script src="style/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script><style type="text/css"></style>
@@ -46,11 +44,10 @@ var youdao_conv_id = 271546;
     		<ul id="navheader" class="reset">
     			<li><a href="toIndex.controller">首页</a></li>
     			<li><a href="queryListCompany.controller">公司</a></li>
-    			<li><a target="_blank" href="#">论坛</a></li>
+    			<li><a target="_blank" href="">论坛</a></li>
     				    			<li><a rel="nofollow" href="toResume.controller">我的简历</a></li>
 	    						    		</ul>
-	    						    		<jsp:include page="/mainjsp/navigation/navigation.jsp"></jsp:include>
-        	        	<!-- <dl class="collapsible_menu">
+        	        	<dl class="collapsible_menu">
             	<dt>
            			<span>jason&nbsp;</span> 
             		<span class="red dn" id="noticeDot-0"></span>
@@ -63,7 +60,7 @@ var youdao_conv_id = 271546;
                 	<dd><a href="create.html">我要招人</a></dd>
                                                 <dd><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
-            </dl> -->
+            </dl>
                                     <div class="dn" id="noticeTip">
             	<span class="bot"></span>
 				<span class="top"></span>
@@ -76,46 +73,43 @@ var youdao_conv_id = 271546;
         	  	
         <div class="clearfix">
             <div class="content_l recommend_list">
-            	<h2>拉勾网根据你的个人简历为你推荐以下职位： <a class="more" href="toResume.controller">修改简历信息&gt;&gt;</a></h2>
+            	<h2>拉勾网根据你的个人简历为你推荐以下职位： <a class="more" href="jianli.html">修改简历信息&gt;&gt;</a></h2>
             	
             	<ul class="hot_pos reset">
-            	
-            			<c:forEach items="${queryRecommendVO }" var="item">
-	            		   <li class="clearfix">
-		            			 <div class="hot_pos_l">
+	            		            		            				            		<li class="clearfix">
+		            			            						            						            					                	<div class="hot_pos_l">
 			                    	<div class="mb10">
-			                        	<a target="_blank" href="http://www.lagou.com/jobs/22194.html">${item.occupation.oname }</a> 
+			                        	<a target="_blank" href="http://www.lagou.com/jobs/22194.html">产品经理</a> 
 			                            &nbsp;
-			                            <span class="c9">[${item.occupation.oaddress }]</span>
-			                        </div>
-			                        <span><em class="c7">月薪：</em> ${item.occupation.ominscalary }k-${item.occupation.omaxscalary }k</span>
-			                        <span><em class="c7">经验：</em> ${item.occupation.olog }</span>
-			                        <span><em class="c7">最低学历：</em> <c:if test="${item.occupation.oeducation eq '1' }">大专</c:if><c:if test="${item.occupation.oeducation eq '2' }">本科</c:if><c:if test="${item.occupation.oeducation eq '3' }">硕士</c:if><c:if test="${item.occupation.oeducation eq '4' }">博士</c:if><c:if test="${item.occupation.oeducation eq '5' }">其它</c:if> </span>
+			                            <span class="c9">[广州]</span>
+			                            			                        </div>
+			                        <span><em class="c7">月薪：</em> 8k-15k</span>
+			                        <span><em class="c7">经验：</em> 1-3年</span>
+			                        <span><em class="c7">最低学历：</em> 本科</span>
 			                        <br>
-			                        <span><em class="c7">职位诱惑：</em> ${item.occupation.owelfare }</span>
+			                        <span><em class="c7">职位诱惑：</em> 上市公司，快速发展空间，产品的话语权</span>
 			                        <br>
-				                    <span><fmt:formatDate value="${item.occupation.orelease }" pattern="yyyy-MM-dd"/></span>
+				                    <span>1天前发布</span>
 			                        <!-- <a  class="wb">分享到微博</a> -->
 			                    </div>
 			                	<div class="hot_pos_r">
-			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/5004.html">${item.company.cname }</a></div>
-				                        <span><em class="c7">领域：</em> ${item.company.cfield }</span><br>
-				                        <span><em class="c7">阶段：</em> ${item.company.cfs }</span>
-				                        <span><em class="c7">规模：</em> ${item.company.cscale }</span>
+			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/5004.html">广州百田</a></div>
+			                        <span><em class="c7">领域：</em> 移动互联网,游戏</span>
+			                        			                        <br>
+			                        <span><em class="c7">阶段：</em> 上市公司</span>
+			                        <span><em class="c7">规模：</em> 500-2000人</span>
 			                        <ul class="companyTags reset">
-				                   		<li>股票期权</li>
-				                    	<li>专项奖金</li>
-				                        <li>年底双薪</li>
-			                  		</ul>
+			                        				                        					                        			<li>股票期权</li>
+			                        					                        				                        					                        			<li>专项奖金</li>
+			                        					                        				                        					                        			<li>年底双薪</li>
+			                        					                        				                        </ul>
 			                    </div>
 			                    <div class="recommend">
-			                    	92%
+			                    	
 			                    	<span>该职位与你的简历匹配度是92%  </span>
 			                    </div>
 			                </li>
-	                	</c:forEach>    
-	                	
-	                	<!-- <li class="odd clearfix">
+	                		                	            				            		<li class="odd clearfix">
 		            			            						            						            					                	<div class="hot_pos_l">
 			                    	<div class="mb10">
 			                        	<a target="_blank" href="http://www.lagou.com/jobs/148004.html">产品经理</a> 
@@ -129,7 +123,7 @@ var youdao_conv_id = 271546;
 			                        <span><em class="c7">职位诱惑：</em> 年底双薪、绩效奖金、良好的职业晋升机制。</span>
 			                        <br>
 				                    <span>1天前发布</span>
-			                        <a  class="wb">分享到微博</a>
+			                        <!-- <a  class="wb">分享到微博</a> -->
 			                    </div>
 			                	<div class="hot_pos_r">
 			                    	<div class="mb10 recompany"><a target="_blank" href="http://www.lagou.com/c/25725.html">短讯神州</a></div>
@@ -143,7 +137,7 @@ var youdao_conv_id = 271546;
 			                        					                        				                        					                        			<li>五险一金</li>
 			                        					                        				                        </ul>
 			                    </div>
-			                    <div class="recommend">
+			                <!--     <div class="recommend">
 			                    	92%
 			                    	<span>该职位与你的简历匹配度是92%  </span>
 			                    </div>
@@ -578,12 +572,13 @@ var youdao_conv_id = 271546;
 			                    <div class="recommend">
 			                    	84%
 			                    	<span>该职位与你的简历匹配度是84%  </span>
-			                    </div>
-			                </li> -->
+			                    </div> -->
+			                </li>
 	                		                	            </ul>
 	            
-	            <form id="searchForm"></form>
-	                             
+	            <form id="doQueryRecommendVO.controller"></form>
+	                                <div class="Pagination myself"><a title="1" >首页</a><span title="上一页" class="disabled">上一页 </span><span title="1" class="current">1</span><a title="2" >2</a><a title="3" >3</a><a title="4" >4</a><a title="5" >5</a><a title="2" >下一页 </a><a title="7" >尾页</a></div>
+                            </div>	
             <div class="content_r">
             	<div class="subscribe_side">
 	            	<a target="_blank" href="toListsubscribe.controller">
@@ -610,23 +605,6 @@ var youdao_conv_id = 271546;
             </div>
        	</div>
       <input type="hidden" id="userid" name="userid" value="314873">
-      
-    <!--   <script type="text/javascript">
-              $(function(){
-            	  var shu=$("#shju").val();
-            	  /* alert(shu); */
-            	   
-            	  var count=$(".querycount").val();
-            	  if(count<=10){
-            		  $("#count5").val(count);
-            	  }
-            	  
-              })
-      
-      
-      </script>
-       -->
-      
 <script>
 $(function(){
 	

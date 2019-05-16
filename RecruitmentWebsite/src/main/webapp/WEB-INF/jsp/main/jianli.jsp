@@ -2097,7 +2097,7 @@ function updatepictureuser(file){
             		<a  href="doListCollectionp.controller">我收藏的职位</a>
             		<!-- target="_blank" -->
             		<br>
-            		            		            		<a target="_blank" href="toListsubscribe.controller">我订阅的职位</a>
+            		            		            		<a target="_blank" href="listqueryscribe.controller">我订阅的职位</a>
             	</div><!--end #myInfo-->
 
 				<div class="mycenterR" id="myResume">
