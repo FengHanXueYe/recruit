@@ -469,8 +469,8 @@
 							})//post
 					
 				}
-				function fenye() {
-					var num=$("a[num='3']").attr("num");
+				/* function fenye() {
+					var num=$().attr("num");
 					
 					alert(num);
 					$.post("qeryxuheControllers.controller",
@@ -479,7 +479,7 @@
 								var html = "";
 											$.each(data.list,function(index,item) {
 												$.each(item.occupation,function(index,t){
-													$.each(t.education,function(index,education){
+							$.each(t.education,function(index,education){
 														 var date1 = new Date(t.orelease);
 														var dd = date1.getFullYear()
 																+ "-"
@@ -561,7 +561,108 @@
 											$("#ajax").html(html).hide().slideDown(500);
 							})//post
 					
-				}
+				} */
+				
+				$(function(){
+					alert(6);
+					$(".limita").click(function(){
+						
+						var num = $(this).attr("num")
+						
+						$.post("qeryxuheControllers.controller",
+								{"PageNum":num},function(data){
+									$("#ajax").html("");
+									var html = "";
+												$.each(data.list,function(index,item) {
+													$.each(item.occupation,function(index,t){
+								$.each(t.education,function(index,education){
+															 var date1 = new Date(t.orelease);
+															var dd = date1.getFullYear()
+																	+ "-"
+																	+ (Number(date1
+																			.getMonth()) + Number(1))
+																	+ "-"
+																	+ date1
+																			.getDate()
+																	+ " "
+																	+ date1
+																			.getHours()
+																	+ ":"
+																	+ date1
+																			.getMinutes()
+																	+ ":"
+																	+ date1
+																			.getSeconds(); 
+															html += "<li class='odd clearfix'>"
+																+ "<div class='hot_pos_l'>"
+																+ "<div class='mb10'>"
+																+ "<a href='toxiangqing.controller?cccname="
+																+ t.oid
+																+ "'>"
+																+ t.oname
+																+ "</a>"
+																+ "&nbsp; <span class='c9'>["
+																+ t.ocity
+																+ "]</span>"
+																+ "</div>"
+																+ "<span><em class='c7'>月薪：</em>"
+																+ t.ominsalary
+																+ "--"
+																+ t.omaxsalary
+																+ "</span>"
+																+ "<span><em class='c7'>经验：</em>"
+																+ t.olog
+																+ "</span>"
+																+ "<span><em class='c7'>最低学历： </em>"
+																+ education.ename
+																+ "</span>"
+																+ "<br /><span><em class='c7'>职位诱惑：</em>"
+																+ t.owelfare
+																+ "</span>"
+																+ "<br /><span>发布时间:"
+																+ t.orelease
+																+ "</span>"
+																+ "</div>"
+																+ "<div class='hot_pos_r'>"
+																+ "<div class='apply'>"
+																+ "<a href='toxiangqing.controller?cccname="
+																+ t.oid
+																+ "'>投个简历</a>"
+																+ "</div>"
+																+ "<div class='mb10'>"
+																+ "<a href='h/c/1712.html' title='紫色医疗' target='_blank'>"
+																+ item.cname
+																+ "</a>"
+																+ "</div>"
+																+ "<span><em class='c7'>领域：</em>"
+																+ item.cfield
+																+ "</span><span><em class='c7'>创始人：</em>"
+																+ item.founder.fname
+																+ "</span> <br />"
+																+ "<span><em class='c7'>阶段： </em>"
+																+ item.cfs
+																+ "</span><span><em class='c7'>规模：</em>"
+																+ item.cscale
+																+ "</span>"
+																+ "<ul class='companyTags reset'>"
+																+ "<li>五险一金</li>"
+																+ "<li>股票期权</li>"
+																+ "<li>年度旅游</li>"
+																+ "</ul>"
+																+ "</div>"
+																+ "</li>";	
+														})
+													})
+												})
+												$("#ajax").html(html).hide().slideDown(500);
+								})//post
+						
+					})
+					
+					
+				})
+				
+				
 		</script>
 		
 		 
@@ -877,7 +978,7 @@
 				</div>
 				
 		                		               	<div class="Pagination1" align="center">
-		                		               	<a href="javascript:void(0)" class="limita" num="1" onclick="fenye()"> 首页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		                		               	<a href="javascript:void(0)"  class="limita" num="1" onclick="fenye()"> 首页</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		                		               	<a href="javascript:void(0)" class="limita" num="2" onclick="fenye()">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		                		               	<input id="pagenum" size="1" ><input onclick="fenye2()" type="button" value="跳转到" id="pagenumss">
 		                		               	
