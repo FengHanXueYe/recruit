@@ -381,7 +381,7 @@ var youdao_conv_id = 271546;
 				                                    </a>
 				                                    <div class="resumeIntro">
 				                                        <h3 class="unread">
-															<a target="_blank" title="预览${item.companyresume.cuser.username }的简历" <c:if test="${item.companyresume.ctext eq '1' }">href="${item.eclosure.esurename }"</c:if><c:if test="${item.companyresume.ctext eq '0' }">href="doCheckView.controller?userid=${item.companyresume.cuser.userid }"</c:if> >${item.companyresume.cuser.username }的简历${item.companyresume.cuser.userid }</a>
+															<a target="_blank" title="预览${item.companyresume.cuser.username }的简历" <c:if test="${item.companyresume.ctext eq '1' }">href="${item.eclosure.esurename }"</c:if><c:if test="${item.companyresume.ctext eq '0' }">href="doCheckView.controller?userid=${item.companyresume.cuser.userid }"</c:if> >${item.companyresume.cuser.username }的简历</a>
 				                                        	<em></em>
 				                                        </h3> 
 				                                        <span class="fr">投递时间：<fmt:formatDate value="${item.companyresume.ctouditime }" pattern="yyyy-MM-dd HH:mm:ss"/></span>
